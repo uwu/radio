@@ -19,6 +19,8 @@ Object:
 ### `Timestamp`
 Integer, UNIX timestamp in seconds.
 
+THIS IS IN UTC.
+
 ### `SeekTime`
 Integer, seconds.
 

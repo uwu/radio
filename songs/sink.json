@@ -1,0 +1,10 @@
+[
+  {
+    "name": "A cool song",
+    "artist": "A cool artist",
+    "stream": "https://youtu.be/abc",
+    "//": "the next two are optional",
+    "art": "https://coverartarchive.org/...",
+    "album": "a collection of neat tracks"
+  }
+]

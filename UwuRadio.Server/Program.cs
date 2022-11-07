@@ -1,10 +1,16 @@
 using UwuRadio.Server;
+using UwuRadio.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSignalR();
 builder.Services.AddCors();
 builder.Services.AddRouting();
+
+// our own custom services
+builder.Services.AddSingleton<SongDbService>();
+builder.Services.AddSingleton<DownloadService>();
+builder.Services.AddSingleton<CoordinatorService>();
 
 var app = builder.Build();
 
@@ -13,6 +19,6 @@ app.UseCors(cors => cors.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(_ 
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints => { endpoints.MapHub<SyncHub>("/sync"); });
+app.UseEndpoints(endpoints => endpoints.MapHub<SyncHub>("/sync"));
 
 app.Run();
