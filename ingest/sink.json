@@ -1,0 +1,20 @@
+{
+  "Name": "Yellowsink",
+  "PfpUrl": "https://gravatar.com/avatar/07c71710cff6bc1bd3ef089a2530cc82",
+  "Songs": [
+    {
+      "Name": "Break the Silence",
+      "Artist": "Camellia",
+      "StreamUrl": "https://youtu.be/muXETzNQG-c",
+      "ArtUrl": "https://coverartarchive.org/release/88291e64-c9ef-4c38-bfec-d12435d937cd/26387378350.png",
+      "Album": "INSANE INFLAME"
+    },
+    {
+      "Name": "Disconnect",
+      "Artist": "fiend",
+      "StreamUrl": "https://fiend.bandcamp.com/track/disconnect",
+      "ArtUrl": "https://coverartarchive.org/release/415bb942-0d5e-4ffa-a488-c342c6d01471/31074063200.jpg",
+      "Album": "FEVER DREAM"
+    }
+  ]
+}

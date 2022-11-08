@@ -26,4 +26,9 @@ public static class Constants
 	/// Downloaded files are saved here and removed on app exit
 	/// </summary>
 	public const string CacheFolder = "DL_CACHE";
+
+	/// <summary>
+	/// Where the raw data is stored
+	/// </summary>
+	public const string IngestFolder = "../ingest";
 }
