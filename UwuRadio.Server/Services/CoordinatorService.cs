@@ -8,19 +8,11 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class CoordinatorService : IDisposable
 {
-	/// <summary>
-	///  Time between this song ending and the next being queued to start
-	/// </summary>
-	public const int BufferTime = 1;
-
-	/// <summary>
-	/// Time remaining when the next song should be broadcasted for preloading
-	/// </summary>
-	public const int PreloadTime = 30;
+	
 
 	private readonly IHubContext<SyncHub> _hubCtxt;
 	private readonly DownloadService      _dlService;
-	private readonly SongDbService        _dbService;
+	private readonly QueueService        _queueService;
 
 	private bool _haltThread;
 
@@ -29,16 +21,14 @@ public class CoordinatorService : IDisposable
 	public Instant CurrentStarted;
 	public Instant CurrentEnds;
 
-	public Duration SeekPos => TimeHelpers.Now() - CurrentStarted;
-
-	public CoordinatorService(IHubContext<SyncHub> hubCtxt, DownloadService dlService, SongDbService dbService)
+	public CoordinatorService(IHubContext<SyncHub> hubCtxt, DownloadService dlService, QueueService queueService)
 	{
 		_hubCtxt   = hubCtxt;
 		_dlService = dlService;
-		_dbService = dbService;
+		_queueService = queueService;
 
-		Current = _dbService.SelectSong();
-		Next    = _dbService.SelectSong();
+		Current = _queueService.SelectSong();
+		Next    = _queueService.SelectSong();
 
 		// run this explicitly on another thread
 		Task.Run(StartBgThread);
@@ -66,19 +56,25 @@ public class CoordinatorService : IDisposable
 				CurrentEnds    = CurrentEnds.Plus(info.Length);
 
 				Current = Next;
-				Next    = _dbService.SelectSong();
+				Next    = _queueService.SelectSong();
+				
+				// clients are only told about the next when we need to handle preloading
+				// however we will *need* to know the length of the song and be able to serve it at preload time
+				// so its good for us to get a healthy head start - most likely 3-5 minutes!
+				// also makes it feasible to use really really slow hosts such as niconico
+				_dlService.EnsureDownloaded(Next);
 			}
 			
 			// handle preloading
-			if (!preloadHandled && TimeHelpers.Now() >= CurrentEnds - Duration.FromSeconds(PreloadTime))
+			else if (!preloadHandled && TimeHelpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.PreloadTime))
 			{
 				preloadHandled = true;
-				_dlService.EnsureDownloaded(Next);
 				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
 													 Next,
-													 CurrentEnds.ToUnixTimeSeconds() + BufferTime);
+													 CurrentEnds.ToUnixTimeSeconds() + Constants.BufferTime);
 			}
 
+			// poll slowly, be chill on the CPU :D
 			await Task.Delay(1000);
 		}
 	}

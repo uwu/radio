@@ -12,7 +12,7 @@ Object:
 
 - string Name
 - string Artist
-- string DlUrl
+- string? DlUrl
 - string? ArtUrl
 - string? Album
 
@@ -21,9 +21,6 @@ Integer, UNIX timestamp in seconds.
 
 THIS IS IN UTC.
 
-### `SeekTime`
-Integer, seconds.
-
 ## HTTP server endpoints
 None yet.
 
@@ -31,15 +28,15 @@ None yet.
 
 Server Methods:
 
-| Method         | Purpose                                                     | Payload |
-|----------------|-------------------------------------------------------------|---------|
-| RequestCurrent | Used by clients to request the currently playing song       | void    |
-| RequestSeekPos | Used by clients to request the current position in the song | void    |
+| Method         | Purpose                                                       | Payload |
+|----------------|---------------------------------------------------------------|---------|
+| RequestState   | Used by clients to request the current, next, and seekpos     | void    |
+| RequestSeekPos | Used by clients to request the current position for resyncing | void    |
 
 Client Methods:
 
-| Method         | Purpose                                                                      | Payload           |
-|----------------|------------------------------------------------------------------------------|-------------------|
-| BroadcastNext  | Receive the data of the next song for pre-loading. Enables seamless playback | [Song, Timestamp] |
-| ReceiveCurrent | Receive the data of the current song. Used to reply to imperative requests   | Song              |
-| ReceiveSeekPos | Receive the current song position. Used for joining part-way through a song  | Seektime          |
+| Method         | Purpose                                                                                 | Payload                  |
+|----------------|-----------------------------------------------------------------------------------------|--------------------------|
+| BroadcastNext  | Receive the data of the next song for pre-loading. Enables seamless playback            | [Song, Timestamp]        |
+| ReceiveState   | Receive the data of the current current state. Used for joining part-way through a song | [Song, Song, Timestamp]  |
+| ReceiveSeekPos | Receive the time the current song started. Used for resyncing                           | Timestamp                |

@@ -8,7 +8,7 @@ builder.Services.AddCors();
 builder.Services.AddRouting();
 
 // our own custom services
-builder.Services.AddSingleton<SongDbService>();
+builder.Services.AddSingleton<QueueService>();
 builder.Services.AddSingleton<DownloadService>();
 builder.Services.AddSingleton<CoordinatorService>();
 
