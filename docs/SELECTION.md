@@ -1,5 +1,6 @@
 # uwu radio technical docs: selection
 
-The song selector should pick a song at random for the list.
+Every day at midnight UTC, the list of all songs is shuffled and used as the queue for that day.
+It loops when finished.
 
-It should first disqualify songs which share artist with the last 5 songs.
+The seed for the randomisation should be the unix timestamp of midnight that day.

@@ -1,6 +1,8 @@
+using NodaTime;
+
 namespace UwuRadio.Server.Services;
 
-public record FileInfo(Song song, FileInfo file, string hash, TimeSpan length);
+public record SongFileInfo(FileInfo File, string Md5, Duration Length);
 
 /// <summary>
 /// This service downloads songs when required and keeps track of them on disk
@@ -11,5 +13,5 @@ public class DownloadService
 
 	public bool IsDownloaded(Song song) => throw new NotImplementedException();
 	
-	public FileInfo GetFileInfo(Song song) => throw new NotImplementedException();
+	public SongFileInfo GetFileInfo(Song song) => throw new NotImplementedException();
 }

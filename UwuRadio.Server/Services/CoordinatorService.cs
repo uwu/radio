@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.SignalR;
+using NodaTime;
 
 namespace UwuRadio.Server.Services;
 
@@ -21,16 +22,14 @@ public class CoordinatorService : IDisposable
 	private readonly DownloadService      _dlService;
 	private readonly SongDbService        _dbService;
 
-	private bool _haltThread     = false;
-
-	public string[] LastFiveArtists = { "", "", "", "", "" };
+	private bool _haltThread;
 
 	public Song           Current;
 	public Song           Next;
-	public DateTimeOffset CurrentStarted;
-	public DateTimeOffset CurrentEnds;
+	public Instant CurrentStarted;
+	public Instant CurrentEnds;
 
-	public TimeSpan SeekPos => DateTimeOffset.UtcNow.Subtract(CurrentStarted);
+	public Duration SeekPos => TimeHelpers.Now() - CurrentStarted;
 
 	public CoordinatorService(IHubContext<SyncHub> hubCtxt, DownloadService dlService, SongDbService dbService)
 	{
@@ -38,10 +37,8 @@ public class CoordinatorService : IDisposable
 		_dlService = dlService;
 		_dbService = dbService;
 
-		Current = _dbService.SelectSong(LastFiveArtists);
-		PushArtist(Current.Artist);
-		Next = _dbService.SelectSong(LastFiveArtists);
-		PushArtist(Next.Artist);
+		Current = _dbService.SelectSong();
+		Next    = _dbService.SelectSong();
 
 		// run this explicitly on another thread
 		Task.Run(StartBgThread);
@@ -60,21 +57,20 @@ public class CoordinatorService : IDisposable
 		while (!_haltThread)
 		{
 			// handle advancing song
-			if (DateTimeOffset.UtcNow >= CurrentEnds && _dlService.IsDownloaded(Next))
+			if (TimeHelpers.Now() >= CurrentEnds && _dlService.IsDownloaded(Next))
 			{
 				preloadHandled = false;
 
 				var info = _dlService.GetFileInfo(Next);
 				CurrentStarted = CurrentEnds;
-				CurrentEnds    = CurrentEnds.Add(info.length);
+				CurrentEnds    = CurrentEnds.Plus(info.Length);
 
 				Current = Next;
-				Next    = _dbService.SelectSong(LastFiveArtists);
-				PushArtist(Next.Artist);
+				Next    = _dbService.SelectSong();
 			}
 			
 			// handle preloading
-			if (!preloadHandled && DateTimeOffset.UtcNow >= CurrentEnds.Subtract(new TimeSpan(0, 0, 0, PreloadTime)))
+			if (!preloadHandled && TimeHelpers.Now() >= CurrentEnds - Duration.FromSeconds(PreloadTime))
 			{
 				preloadHandled = true;
 				_dlService.EnsureDownloaded(Next);
@@ -85,18 +81,6 @@ public class CoordinatorService : IDisposable
 
 			await Task.Delay(1000);
 		}
-	}
-
-	private void PushArtist(string artist)
-	{
-		LastFiveArtists = new[]
-		{
-			artist,
-			LastFiveArtists[0],
-			LastFiveArtists[1],
-			LastFiveArtists[2],
-			LastFiveArtists[3],
-		};
 	}
 
 	public void Dispose() { _haltThread = true; }
