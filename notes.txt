@@ -1,3 +1,5 @@
 notes to future sink from current sink :)
 
 dont forget to handle clients who join after the preload buffer
+
+evaluate if requestseekpos has ANY purpose

@@ -35,8 +35,8 @@ Server Methods:
 
 Client Methods:
 
-| Method         | Purpose                                                                                 | Payload                  |
-|----------------|-----------------------------------------------------------------------------------------|--------------------------|
-| BroadcastNext  | Receive the data of the next song for pre-loading. Enables seamless playback            | [Song, Timestamp]        |
-| ReceiveState   | Receive the data of the current current state. Used for joining part-way through a song | [Song, Song, Timestamp]  |
-| ReceiveSeekPos | Receive the time the current song started. Used for resyncing                           | Timestamp                |
+| Method         | Purpose                                                                                 | Payload                            |
+|----------------|-----------------------------------------------------------------------------------------|------------------------------------|
+| BroadcastNext  | Receive the data of the next song for pre-loading. Enables seamless playback            | [Song, Timestamp]                  |
+| ReceiveState   | Receive the data of the current current state. Used for joining part-way through a song | [Song, Timestamp, Song, Timestamp] |
+| ReceiveSeekPos | Receive the time the current song started. Used for resyncing                           | Timestamp                          |

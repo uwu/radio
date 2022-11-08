@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSignalR();
 builder.Services.AddCors();
 builder.Services.AddRouting();
+builder.Services.AddControllers();
 
 // our own custom services
 builder.Services.AddSingleton<QueueService>();
@@ -19,6 +20,10 @@ app.UseCors(cors => cors.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(_ 
 
 app.UseRouting();
 
-app.UseEndpoints(endpoints => endpoints.MapHub<SyncHub>("/sync"));
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapHub<SyncHub>("/sync");
+	endpoints.MapDefaultControllerRoute();
+});
 
 app.Run();

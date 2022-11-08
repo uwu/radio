@@ -22,10 +22,12 @@ public class SyncHub : Hub
 	public async Task RequestState() => await Clients.Caller.SendAsync("ReceiveState",
 																	   new TransitSong(_coordinatorService.Current,
 																		   _dlService),
+																	   _coordinatorService.CurrentStarted
+																		  .ToUnixTimeSeconds(),
 																	   new TransitSong(_coordinatorService.Next,
 																		   _dlService),
-																	   _coordinatorService.CurrentStarted
-																		  .ToUnixTimeSeconds());
+																	   _coordinatorService.CurrentEnds
+																		  .ToUnixTimeSeconds() + Constants.BufferTime);
 
 	public async Task RequestSeekPos()
 		=> await Clients.Caller.SendAsync("ReceiveSeekPos", _coordinatorService.CurrentStarted.ToUnixTimeSeconds());

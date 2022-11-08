@@ -1,36 +1,71 @@
-import { HubConnectionBuilder, HubConnection } from "@microsoft/signalr"
+import {HubConnection, HubConnectionBuilder} from "@microsoft/signalr"
 
-class SyncClient {
+export interface Song {
+	Name: string;
+	Artist: string;
+	DlUrl?: string;
+	ArtUrl?: string;
+	Album?: string;
+}
+
+export default class SyncClient {
+	constructor(host: string) {
+		const connection = new HubConnectionBuilder()
+			.withUrl(new URL("/sync", host).href)
+			.build();
+
+		this.#connect(connection);
+	}
+
 	#connection: HubConnection;
-	
-	listeners = {
-		BroadcastNext: [],
-		ReceiveCurrent: [],
-		ReceiveSeekPos: [],
+
+	current: undefined | Song;
+	next: undefined | Song;
+
+	currentStarted: undefined | number;
+	nextStarts: undefined | number;
+
+	/** The seek into the current song in seconds */
+	get seekPos() {
+		return this.currentStarted
+			? Date.now() - this.currentStarted
+			: undefined;
+	}
+
+	#handlers = {
+		BroadcastNext: (nextSong: Song, startTime: number) => {
+			this.next = nextSong;
+			this.nextStarts = startTime;
+		},
+		ReceiveState: (currentSong: Song, currentStarted: number, nextSong: Song, nextStart: number) => {
+			// TODO: emit events and stuff and tie this to audio playing and when it joins etc etc
+			this.current = currentSong;
+			this.currentStarted = currentStarted;
+			this.next = nextSong;
+			this.nextStarts = nextStart;
+		},
+		ReceiveSeekPos: (currentStarted: number) => {
+			// TODO: i guess emit events, like this should only really be used if we drop connection
+			//  but even shouldn't we just call ReceiveState
+			this.currentStarted = currentStarted;
+		},
 	};
-	
-	connect(connection: HubConnection) {
+
+	#connect(connection: HubConnection) {
 		if (this.#connection) throw new Error("This client is already connected");
 		this.#connection = connection;
 		connection.onclose(() => this.#connection = undefined);
-		
-		return this;
-	}
-	
-	listen(event: "BroadcastNext", cb: () => void): () => void;
-	listen(event: "ReceiveCurrent", cb: () => void): () => void;
-	listen(event: "ReceiveSeekPos", cb: () => void): () => void;
-	
-	listen(event: keyof typeof this.listeners, cb) {
-		this.listeners[event].push(cb);
-		return () => this.listeners[event] = this.listeners[event].filter(v => v !== cb);
-	}
-}
 
-export function connectClient(host: string) {
-	const connection = new HubConnectionBuilder()
-		.withUrl(new URL("/sync", host).href)
-		.build();
-	
-	return new SyncClient().connect(connection);
+		connection.on("BroadcastNext", this.#handlers.BroadcastNext);
+		connection.on("ReceiveState", this.#handlers.ReceiveState);
+		connection.on("ReceiveSeekPos", this.#handlers.ReceiveSeekPos);
+	}
+
+	requestState() {
+		this.#connection.invoke("RequestState");
+	}
+
+	requestSeekPos() {
+		this.#connection.invoke("RequestSeekPos");
+	}
 }

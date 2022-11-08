@@ -8,16 +8,14 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class CoordinatorService : IDisposable
 {
-	
-
 	private readonly IHubContext<SyncHub> _hubCtxt;
 	private readonly DownloadService      _dlService;
 	private readonly QueueService        _queueService;
 
 	private bool _haltThread;
 
-	public Song           Current;
-	public Song           Next;
+	public Song    Current;
+	public Song    Next;
 	public Instant CurrentStarted;
 	public Instant CurrentEnds;
 
