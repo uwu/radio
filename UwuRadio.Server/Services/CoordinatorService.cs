@@ -47,7 +47,7 @@ public class CoordinatorService : IDisposable
 		while (!_haltThread)
 		{
 			// handle advancing song
-			if (TimeHelpers.Now() >= CurrentEnds && _dlService.IsDownloaded(Next))
+			if (Helpers.Now() >= CurrentEnds && _dlService.IsDownloaded(Next))
 			{
 				preloadHandled = false;
 
@@ -66,7 +66,7 @@ public class CoordinatorService : IDisposable
 			}
 			
 			// handle preloading
-			else if (!preloadHandled && TimeHelpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.PreloadTime))
+			else if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.PreloadTime))
 			{
 				preloadHandled = true;
 				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
