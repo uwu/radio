@@ -19,19 +19,13 @@ public class SyncHub : Hub
 		_dlService          = dServ;
 	}
 
-	public async Task RequestState()
-	{
-		var current = _coordinatorService.Current;
-		var next    = _coordinatorService.Next;
-
-		_dlService.AttachUrl(ref current);
-		_dlService.AttachUrl(ref next);
-
-		await Clients.Caller.SendAsync("ReceiveState",
-									   current,
-									   next,
-									   _coordinatorService.CurrentStarted.ToUnixTimeSeconds());
-	}
+	public async Task RequestState() => await Clients.Caller.SendAsync("ReceiveState",
+																	   new TransitSong(_coordinatorService.Current,
+																		   _dlService),
+																	   new TransitSong(_coordinatorService.Next,
+																		   _dlService),
+																	   _coordinatorService.CurrentStarted
+																		  .ToUnixTimeSeconds());
 
 	public async Task RequestSeekPos()
 		=> await Clients.Caller.SendAsync("ReceiveSeekPos", _coordinatorService.CurrentStarted.ToUnixTimeSeconds());

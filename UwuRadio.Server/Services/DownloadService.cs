@@ -33,13 +33,11 @@ public class DownloadService : IDisposable
 
 	public SongFileInfo GetFileInfo(Song song) => _fileInfos[song.Id];
 
-	public void AttachUrl(ref Song song)
+	public string? GetUrl(Song song)
 	{
 		if (IsDownloaded(song))
-			song = song with
-			{
-				StreamUrl = Constants.ServerDlUrl + GetFileInfo(song).Md5
-			};
+			return Constants.ServerDlUrl + GetFileInfo(song).Md5;
+		return null;
 	}
 
 	private async void StartDownloading()
