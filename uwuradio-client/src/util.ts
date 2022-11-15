@@ -1,1 +1,1 @@
-export const currentTimestamp = () => ~~(new Date().getTime() / 1000);
+export const currentTimestamp = () => ~~(Date.now() / 1000);

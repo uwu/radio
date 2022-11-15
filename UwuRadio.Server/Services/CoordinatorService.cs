@@ -74,7 +74,7 @@ public class CoordinatorService : IDisposable
 			}
 			
 			// handle preloading
-			else if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.PreloadTime))
+			else if (!preloadHandled && (Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.PreloadTime)))
 			{
 				preloadHandled = true;
 				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",

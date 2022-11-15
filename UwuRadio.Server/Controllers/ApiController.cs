@@ -32,6 +32,8 @@ public class ApiController : Controller
 			return StatusCode((int) HttpStatusCode.ServiceUnavailable, "The server does not have this file cached");
 
 		var fileInfo = _downloadService.GetFileInfo(id);
-		return File(fileInfo.File.OpenRead(), "audio/mpeg", enableRangeProcessing: true);
+    
+    // if range processing is enabled it makes the client get very angy
+		return File(fileInfo.File.OpenRead(), "audio/mpeg", enableRangeProcessing: false);
 	}
 }

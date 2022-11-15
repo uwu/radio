@@ -59,7 +59,7 @@ export default class SyncClient {
   /** The seek into the current song in seconds */
   get seekPos() {
     const startTime = this.#currentStarted[0]();
-    return startTime ? Date.now() - startTime : undefined;
+    return startTime ? currentTimestamp() - startTime : undefined;
   }
 
   #handlers = {
@@ -74,7 +74,7 @@ export default class SyncClient {
         this.#nextStarts[1]();
 
         play(this.#current[0]()!.dlUrl!, 0);
-      }, this.#nextStarts[0]()! - currentTimestamp());
+      }, 1000 * (startTime - currentTimestamp()));
     },
     ReceiveState: (
       currentSong: Song,
