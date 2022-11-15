@@ -1,9 +1,10 @@
-body, p {
-    margin: 0;
+body,
+p {
+  margin: 0;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .slider {
@@ -16,7 +17,8 @@ body, p {
   outline: none;
 }
 
-.slider::-webkit-slider-thumb, .slider::-moz-range-thumb {
+.slider::-webkit-slider-thumb,
+.slider::-moz-range-thumb {
   height: 15px;
   width: 15px;
   background: black;

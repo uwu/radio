@@ -1,21 +1,21 @@
-import {HubConnection, HubConnectionBuilder} from "@microsoft/signalr"
-import {currentTimestamp} from "./util";
-import {play, seekTo} from "./audio";
-import {createSignal} from "solid-js";
+import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
+import { currentTimestamp } from "./util";
+import { play, seekTo } from "./audio";
+import { createSignal } from "solid-js";
 
 export interface Song {
-	name: string;
-	artist: string;
-	dlUrl?: string;
-	artUrl?: string;
-	album?: string;
-	submitter: string;
+  name: string;
+  artist: string;
+  dlUrl?: string;
+  artUrl?: string;
+  album?: string;
+  submitter: string;
 }
 
 export interface Submitter {
-	name: string;
-	pfpUrl: string;
-	quotes: string[];
+  name: string;
+  pfpUrl: string;
+  quotes: string[];
 }
 
 export default class SyncClient {

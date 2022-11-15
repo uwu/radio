@@ -1,15 +1,24 @@
 import { createMemo, on } from "solid-js";
-import { seek, getDuration, prettySeek, prettyDuration, volume, setVolume } from "../audio";
+import {
+  seek,
+  getDuration,
+  prettySeek,
+  prettyDuration,
+  volume,
+  setVolume,
+} from "../audio";
 import { clientInstance } from "../syncClient";
 
 // reactivity fun
-const timestamps = createMemo(on([prettySeek], ([seek]) => (
-  <div class="flex">
-    {seek}
-    <div class="flex-1" />
-    {prettyDuration()}
-  </div>
-)));
+const timestamps = createMemo(
+  on([prettySeek], ([seek]) => (
+    <div class="flex">
+      {seek}
+      <div class="flex-1" />
+      {prettyDuration()}
+    </div>
+  ))
+);
 
 export default () => (
   <div class="self-center flex flex-col text-center">
