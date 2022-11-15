@@ -15,7 +15,7 @@ public static class Constants
 	/// <summary>
 	/// The URL route to build download urls from
 	/// </summary>
-	public const string ServerDlUrl = "https://localhost:5002/api/file/";
+	public const string ServerDlUrl = "http://localhost:5002/api/file/";
 
 	/// <summary>
 	/// Where to find yt-dlp

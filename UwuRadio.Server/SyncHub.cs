@@ -11,21 +11,17 @@ namespace UwuRadio.Server;
 public class SyncHub : Hub
 {
 	private readonly CoordinatorService _coordinatorService;
-	private readonly DownloadService    _dlService;
 
-	public SyncHub(CoordinatorService cServ, DownloadService dServ)
+	public SyncHub(CoordinatorService cServ)
 	{
 		_coordinatorService = cServ;
-		_dlService          = dServ;
 	}
 
 	public async Task RequestState() => await Clients.Caller.SendAsync("ReceiveState",
-																	   new TransitSong(_coordinatorService.Current,
-																		   _dlService),
+																	   new TransitSong(_coordinatorService.Current),
 																	   _coordinatorService.CurrentStarted
 																		  .ToUnixTimeSeconds(),
-																	   new TransitSong(_coordinatorService.Next,
-																		   _dlService),
+																	   new TransitSong(_coordinatorService.Next),
 																	   _coordinatorService.CurrentEnds
 																		  .ToUnixTimeSeconds() + Constants.BufferTime);
 

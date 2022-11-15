@@ -35,13 +35,6 @@ public class DownloadService : IDisposable
 	public SongFileInfo GetFileInfo(string id) => _fileInfos[id];
 	public SongFileInfo GetFileInfo(Song song) => GetFileInfo(song.Id);
 
-	public string? GetUrl(Song song)
-	{
-		if (IsDownloaded(song))
-			return Constants.ServerDlUrl + GetFileInfo(song).Md5;
-		return null;
-	}
-
 	private async void StartDownloading()
 	{
 		_isCurrentlyDownloading = true;

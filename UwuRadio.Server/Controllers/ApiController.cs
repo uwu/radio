@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using UwuRadio.Server.Services;
 
@@ -27,9 +28,10 @@ public class ApiController : Controller
 	// /api/file/id
 	public IActionResult File(string id)
 	{
-		if (!_downloadService.IsDownloaded(id)) return StatusCode(503, "The server does not have this file cached");
+		if (!_downloadService.IsDownloaded(id))
+			return StatusCode((int) HttpStatusCode.ServiceUnavailable, "The server does not have this file cached");
 
 		var fileInfo = _downloadService.GetFileInfo(id);
-		return File(fileInfo.File.OpenRead(), "audio/mpeg");
+		return File(fileInfo.File.OpenRead(), "audio/mpeg", enableRangeProcessing: true);
 	}
 }

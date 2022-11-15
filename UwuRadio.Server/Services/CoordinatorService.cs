@@ -35,11 +35,21 @@ public class CoordinatorService : IDisposable
 	private async Task StartBgThread()
 	{
 		_dlService.EnsureDownloaded(Current);
+		_dlService.EnsureDownloaded(Next);
 
 		// poll for the very first song to be downloaded and ready
 		while (!_haltThread && !_dlService.IsDownloaded(Current))
 			await Task.Delay(1000);
 
+		CurrentStarted = Helpers.Now();
+		CurrentEnds    = CurrentStarted + _dlService.GetFileInfo(Current).Length;
+
+		await _hubCtxt.Clients.All.SendAsync("ReceiveState",
+											 new TransitSong(Current),
+											 CurrentStarted.ToUnixTimeSeconds(),
+											 new TransitSong(Next),
+											 CurrentEnds.ToUnixTimeSeconds() + Constants.BufferTime);
+		
 		var preloadHandled = false;
 		
 		while (!_haltThread)
@@ -68,7 +78,7 @@ public class CoordinatorService : IDisposable
 			{
 				preloadHandled = true;
 				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
-													 Next,
+													 new TransitSong(Next),
 													 CurrentEnds.ToUnixTimeSeconds() + Constants.BufferTime);
 			}
 

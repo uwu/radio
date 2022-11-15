@@ -9,11 +9,11 @@ public record Song(string Name, string Artist, string StreamUrl, string? ArtUrl,
 
 public record TransitSong(string Name, string Artist, string? DlUrl, string? ArtUrl, string? Album)
 {
-	public TransitSong(Song song, DownloadService dlService) : this(song.Name,
-																	song.Artist,
-																	dlService.GetUrl(song),
-																	song.ArtUrl,
-																	song.Album)
+	public TransitSong(Song song) : this(song.Name,
+										 song.Artist,
+										 Constants.ServerDlUrl + song.Id,
+										 song.ArtUrl,
+										 song.Album)
 	{
 	}
 }
