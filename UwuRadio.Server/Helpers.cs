@@ -8,7 +8,7 @@ public static class Helpers
 	public static Instant Now() => SystemClock.Instance.GetCurrentInstant();
 
 	/// <summary>
-	/// Only the date component of an Instant
+	///     Only the date component of an Instant
 	/// </summary>
 	public static Instant StripTime(Instant inst) => inst.InUtc().Date.AtStartOfDayInZone(DateTimeZone.Utc).ToInstant();
 

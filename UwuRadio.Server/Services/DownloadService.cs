@@ -8,16 +8,16 @@ namespace UwuRadio.Server.Services;
 public record SongFileInfo(FileInfo File, string Md5, Duration Length);
 
 /// <summary>
-/// This service downloads songs when required and keeps track of them on disk
+///     This service downloads songs when required and keeps track of them on disk
 /// </summary>
 public class DownloadService : IDisposable
 {
-	private readonly Dictionary<string, SongFileInfo> _fileInfos = new();
+	private readonly Queue<Song>                      _downloadQueue = new();
+	private readonly Dictionary<string, SongFileInfo> _fileInfos     = new();
 
-	private          bool        _isCurrentlyDownloading;
-	private readonly Queue<Song> _downloadQueue = new();
+	private bool _isCurrentlyDownloading;
 
-	public DownloadService() => Directory.CreateDirectory(Constants.CacheFolder);
+	public DownloadService() { Directory.CreateDirectory(Constants.CacheFolder); }
 
 	public void Dispose() => Directory.Delete(Constants.CacheFolder, true);
 
@@ -32,8 +32,8 @@ public class DownloadService : IDisposable
 	public bool IsDownloaded(string id)   => _fileInfos.ContainsKey(id);
 	public bool IsDownloaded(Song   song) => IsDownloaded(song.Id);
 
-	public SongFileInfo GetFileInfo(string id) => _fileInfos[id];
-	public SongFileInfo GetFileInfo(Song song) => GetFileInfo(song.Id);
+	public SongFileInfo GetFileInfo(string id)   => _fileInfos[id];
+	public SongFileInfo GetFileInfo(Song   song) => GetFileInfo(song.Id);
 
 	private async void StartDownloading()
 	{

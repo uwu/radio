@@ -6,8 +6,8 @@ namespace UwuRadio.Server.Controllers;
 
 public class ApiController : Controller
 {
-	private readonly QueueService    _queueService;
 	private readonly DownloadService _downloadService;
+	private readonly QueueService    _queueService;
 
 	public ApiController(QueueService queueService, DownloadService downloadService)
 	{
@@ -32,8 +32,8 @@ public class ApiController : Controller
 			return StatusCode((int) HttpStatusCode.ServiceUnavailable, "The server does not have this file cached");
 
 		var fileInfo = _downloadService.GetFileInfo(id);
-    
-    // if range processing is enabled it makes the client get very angy
-		return File(fileInfo.File.OpenRead(), "audio/mpeg", enableRangeProcessing: false);
+
+		// if range processing is enabled it makes the client get very angy
+		return File(fileInfo.File.OpenRead(), "audio/mpeg", false);
 	}
 }

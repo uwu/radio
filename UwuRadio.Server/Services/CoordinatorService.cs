@@ -4,25 +4,25 @@ using NodaTime;
 namespace UwuRadio.Server.Services;
 
 /// <summary>
-/// Keeps track of state and controls the queue advancing, starting downloads, etc.
+///     Keeps track of state and controls the queue advancing, starting downloads, etc.
 /// </summary>
 public class CoordinatorService : IDisposable
 {
-	private readonly IHubContext<SyncHub> _hubCtxt;
 	private readonly DownloadService      _dlService;
-	private readonly QueueService        _queueService;
+	private readonly IHubContext<SyncHub> _hubCtxt;
+	private readonly QueueService         _queueService;
 
 	private bool _haltThread;
 
 	public Song    Current;
-	public Song    Next;
-	public Instant CurrentStarted;
 	public Instant CurrentEnds;
+	public Instant CurrentStarted;
+	public Song    Next;
 
 	public CoordinatorService(IHubContext<SyncHub> hubCtxt, DownloadService dlService, QueueService queueService)
 	{
-		_hubCtxt   = hubCtxt;
-		_dlService = dlService;
+		_hubCtxt      = hubCtxt;
+		_dlService    = dlService;
 		_queueService = queueService;
 
 		Current = _queueService.SelectSong();
@@ -31,6 +31,8 @@ public class CoordinatorService : IDisposable
 		// run this explicitly on another thread
 		Task.Run(StartBgThread);
 	}
+
+	public void Dispose() { _haltThread = true; }
 
 	private async Task StartBgThread()
 	{
@@ -49,9 +51,9 @@ public class CoordinatorService : IDisposable
 											 CurrentStarted.ToUnixTimeSeconds(),
 											 new TransitSong(Next),
 											 CurrentEnds.ToUnixTimeSeconds() + Constants.BufferTime);
-		
+
 		var preloadHandled = false;
-		
+
 		while (!_haltThread)
 		{
 			// handle advancing song
@@ -65,16 +67,16 @@ public class CoordinatorService : IDisposable
 
 				Current = Next;
 				Next    = _queueService.SelectSong();
-				
+
 				// clients are only told about the next when we need to handle preloading
 				// however we will *need* to know the length of the song and be able to serve it at preload time
 				// so its good for us to get a healthy head start - most likely 3-5 minutes!
 				// also makes it feasible to use really really slow hosts such as niconico
 				_dlService.EnsureDownloaded(Next);
 			}
-			
+
 			// handle preloading
-			else if (!preloadHandled && (Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.PreloadTime)))
+			else if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.PreloadTime))
 			{
 				preloadHandled = true;
 				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
@@ -86,6 +88,4 @@ public class CoordinatorService : IDisposable
 			await Task.Delay(1000);
 		}
 	}
-
-	public void Dispose() { _haltThread = true; }
 }
