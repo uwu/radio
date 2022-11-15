@@ -5,6 +5,7 @@ It should have the following structure:
 
 - `Name`: string - the name of the submitter
 - `PfpUrl`: string - a URL to the submitter's displayed image
+- `Quotes`: string[] - a list of quotes you want to show while your tracks play
 - `Songs`: object[] - the songs to submit
   * `Name`: string - the name of the song
   * `Artist`: string - the artist

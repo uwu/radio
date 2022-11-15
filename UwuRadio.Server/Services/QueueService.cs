@@ -9,17 +9,20 @@ public class SubmitterIngest
 {
 	public Song[] Songs { get; set; } = null!;
 
-	// TODO: sending submitter data to client
-	public string Name   { get; set; } = null!;
-	public string PfpUrl { get; set; } = null!;
+	public string   Name   { get; set; } = null!;
+	public string   PfpUrl { get; set; } = null!;
+	public string[] Quotes { get; set; } = null!;
 }
+
+public record Submitter(string Name, string PfpUrl, string[] Quotes);
 
 /// <summary>
 /// Keeps track of all songs and selects new songs
 /// </summary>
 public class QueueService
 {
-	public Song[] AllSongs;
+	public          Song[]                        AllSongs   = Array.Empty<Song>();
+	public readonly Dictionary<string, Submitter> Submitters = new();
 
 	private readonly Random _rand = new();
 
@@ -28,7 +31,7 @@ public class QueueService
 
 	public QueueService()
 	{
-		AllSongs = DiskIngest();
+		DiskIngest();
 		_queue   = AllSongs;
 		ShuffleQueue();
 	}
@@ -37,19 +40,29 @@ public class QueueService
 		=> string.IsNullOrWhiteSpace(ingest.Name) || string.IsNullOrWhiteSpace(ingest.PfpUrl)
 												  || ingest.Songs.Any(s => string.IsNullOrWhiteSpace(s.Name)
 																		|| string.IsNullOrWhiteSpace(s.Artist)
-																		|| string.IsNullOrWhiteSpace(s.StreamUrl));
+																		|| string.IsNullOrWhiteSpace(s.StreamUrl))
+												  || ingest.Quotes == null!;
 
-	private static Song[] DiskIngest() => Directory.GetFiles(Constants.IngestFolder)
-												   .SelectMany(file =>
-													{
-														var txt      = File.ReadAllText(file);
-														var ingested = JsonSerializer.Deserialize<SubmitterIngest>(txt);
-														if (ingested == null || IngestInvalid(ingested))
-															throw new
-																InvalidDataException($"Failure ingesting {file}, ingest did not pass validation.");
-														return ingested!.Songs;
-													})
-												   .ToArray();
+	private void DiskIngest()
+	{
+		var ingests = Directory.GetFiles(Constants.IngestFolder)
+								.Select(file =>
+								 {
+									 var txt      = File.ReadAllText(file);
+									 var ingested = JsonSerializer.Deserialize<SubmitterIngest>(txt);
+									 if (ingested == null || IngestInvalid(ingested))
+										 throw new
+											 InvalidDataException($"Failure ingesting {file}, ingest did not pass validation.");
+									 return ingested;
+								 })
+								.ToArray();
+
+		AllSongs = ingests.SelectMany(ingest => ingest.Songs.Select(s => s with { Submitter = ingest.Name }))
+						  .ToArray();
+
+		foreach (var ingest in ingests)
+			Submitters[ingest.Name] = new Submitter(ingest.Name, ingest.PfpUrl, ingest.Quotes);
+	}
 
 	public Song SelectSong()
 	{

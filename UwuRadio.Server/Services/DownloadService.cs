@@ -29,9 +29,11 @@ public class DownloadService : IDisposable
 		if (!_isCurrentlyDownloading) StartDownloading();
 	}
 
-	public bool IsDownloaded(Song song) => _fileInfos.ContainsKey(song.Id);
+	public bool IsDownloaded(string id)   => _fileInfos.ContainsKey(id);
+	public bool IsDownloaded(Song   song) => IsDownloaded(song.Id);
 
-	public SongFileInfo GetFileInfo(Song song) => _fileInfos[song.Id];
+	public SongFileInfo GetFileInfo(string id) => _fileInfos[id];
+	public SongFileInfo GetFileInfo(Song song) => GetFileInfo(song.Id);
 
 	public string? GetUrl(Song song)
 	{

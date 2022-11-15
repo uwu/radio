@@ -22,7 +22,20 @@ Integer, UNIX timestamp in seconds.
 THIS IS IN UTC.
 
 ## HTTP server endpoints
-None yet.
+
+| Method | Endpoint        | Purpose                   | Resp (success)      | Resp (err)              |
+|--------|-----------------|---------------------------|---------------------|-------------------------|
+| GET    | `/api/ping`     | Debugging                 | `200`: "Pong!"      | N/A                     |
+| GET    | `/api/data`     | Sending ingest to client  | `200`: JSON         | N/A                     |
+| GET    | `/api/file/:id` | Clients downloading songs | `200`: [audio/mpeg] | 503 service unavailable |
+
+The data returned looks like
+```ts
+{
+	//Songs: {  }[] might include if needed in future
+    Submitters: { Name: string; PfpUrl: string; Quotes: string[] }[]
+}
+```
 
 ## SignalR Hub (`SyncHub.cs`, `syncClient.ts`, `/sync`) endpoints
 
