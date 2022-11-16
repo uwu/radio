@@ -8,10 +8,16 @@ They are the beating heart of the backend and:
  - Do actual work
  - Make scheduled events happen
 
+## DataService
+
+- Load all data off of the disk and be the central source of it
+  * songs
+  * submitters
+  * quotes
+
 ## QueueService
 
-The queue service has three jobs:
- - Load all songs off of the disk and be the central source of this data
+The queue service has two jobs:
  - Keep track of the current randomised queue
  - Select songs from the queue when requested, and shuffle the queue once used
 

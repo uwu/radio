@@ -54,6 +54,8 @@ public class CoordinatorService : IDisposable
 
 		var preloadHandled = false;
 
+		Helpers.Log(nameof(CoordinatorService), "Initial cache done, ready to serve clients, entering poll loop");
+		
 		while (!_haltThread)
 		{
 			// handle advancing song

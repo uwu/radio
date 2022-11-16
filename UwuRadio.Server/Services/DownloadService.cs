@@ -41,11 +41,15 @@ public class DownloadService : IDisposable
 		while (_downloadQueue.Count > 0)
 		{
 			var song = _downloadQueue.Dequeue();
+			// this only really happens with small queues but it can happen
+			if (IsDownloaded(song)) continue;
+			
 			_fileInfos[song.Id] = await DownloadSong(song.StreamUrl);
+			Helpers.Log(nameof(DownloadService), $"Downloaded and cached {song.Name}");
 		}
 	}
 
-	private async Task<SongFileInfo> DownloadSong(string url)
+	private static async Task<SongFileInfo> DownloadSong(string url)
 	{
 		var tempFolder = Path.GetTempPath();
 

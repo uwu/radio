@@ -7,11 +7,11 @@ namespace UwuRadio.Server.Controllers;
 public class ApiController : Controller
 {
 	private readonly DownloadService _downloadService;
-	private readonly QueueService    _queueService;
+	private readonly DataService     _dataService;
 
-	public ApiController(QueueService queueService, DownloadService downloadService)
+	public ApiController(DataService dataService, DownloadService downloadService)
 	{
-		_queueService    = queueService;
+		_dataService     = dataService;
 		_downloadService = downloadService;
 	}
 
@@ -21,8 +21,8 @@ public class ApiController : Controller
 	// /api/data
 	public IActionResult Data() => Json(new
 	{
-		//Songs      = _queueService.AllSongs,
-		Submitters = _queueService.Submitters.Values.ToArray()
+		//Songs      = _dataService.AllSongs,
+		Submitters = _dataService.Submitters.Values.ToArray()
 	});
 
 	// /api/file/id

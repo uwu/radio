@@ -1,6 +1,8 @@
 using UwuRadio.Server;
 using UwuRadio.Server.Services;
 
+Helpers.Log(null, "Hello, world!");
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSignalR();
@@ -9,6 +11,7 @@ builder.Services.AddRouting();
 builder.Services.AddControllers();
 
 // our own custom services
+builder.Services.AddSingleton<DataService>();
 builder.Services.AddSingleton<QueueService>();
 builder.Services.AddSingleton<DownloadService>();
 builder.Services.AddSingleton<CoordinatorService>();
@@ -25,5 +28,10 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapHub<SyncHub>("/sync");
 	endpoints.MapDefaultControllerRoute();
 });
+
+// start the services so that it starts downloading instantly
+app.Services.GetService<CoordinatorService>();
+
+Helpers.Log(null, "Started services successfully, starting web server now");
 
 app.Run();
