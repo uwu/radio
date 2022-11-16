@@ -5,7 +5,7 @@ namespace UwuRadio.Server.Services;
 /// <summary>
 ///     The data ingest for one submitter
 /// </summary>
-public class SubmitterIngest
+internal class Ingest
 {
 	public string   Name   { get; set; } = null!;
 	public string   PfpUrl { get; set; } = null!;
@@ -28,7 +28,7 @@ public class DataService
 		Helpers.Log(nameof(DataService), $"Ingested {Songs.Length} songs from {Submitters.Count} submitters");
 	}
 	
-	private static bool IngestInvalid(SubmitterIngest ingest)
+	private static bool IngestInvalid(Ingest ingest)
 		=> string.IsNullOrWhiteSpace(ingest.Name) || string.IsNullOrWhiteSpace(ingest.PfpUrl)
 												  || ingest.Songs.Any(s => string.IsNullOrWhiteSpace(s.Name)
 																		|| string.IsNullOrWhiteSpace(s.Artist)
@@ -37,11 +37,11 @@ public class DataService
 
 	private void DiskIngest()
 	{
-		var ingests = Directory.GetFiles(Constants.IngestFolder)
+		var ingests = Directory.GetFiles(Constants.C.IngestFolder)
 							   .Select(file =>
 								{
 									var txt      = File.ReadAllText(file);
-									var ingested = JsonSerializer.Deserialize<SubmitterIngest>(txt);
+									var ingested = JsonSerializer.Deserialize<Ingest>(txt);
 									if (ingested == null || IngestInvalid(ingested))
 										throw new
 											InvalidDataException($"Failure ingesting {file}, ingest did not pass validation.");

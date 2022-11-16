@@ -9,7 +9,7 @@ public record TransitSong(string Name, string Artist, string? DlUrl, string? Art
 {
 	public TransitSong(Song song) : this(song.Name,
 										 song.Artist,
-										 Constants.ServerDlUrl + song.Id,
+										 Constants.C.ServerDlUrl + song.Id,
 										 song.ArtUrl,
 										 song.Album)
 	{

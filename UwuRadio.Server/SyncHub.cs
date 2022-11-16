@@ -20,7 +20,7 @@ public class SyncHub : Hub
 																		  .ToUnixTimeSeconds(),
 																	   new TransitSong(_coordinatorService.Next),
 																	   _coordinatorService.CurrentEnds
-																		  .ToUnixTimeSeconds() + Constants.BufferTime);
+																		  .ToUnixTimeSeconds() + Constants.C.BufferTime);
 
 	public async Task RequestSeekPos()
 		=> await Clients.Caller.SendAsync("ReceiveSeekPos", _coordinatorService.CurrentStarted.ToUnixTimeSeconds());

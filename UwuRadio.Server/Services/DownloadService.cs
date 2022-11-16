@@ -17,9 +17,9 @@ public class DownloadService : IDisposable
 
 	private bool _isCurrentlyDownloading;
 
-	public DownloadService() { Directory.CreateDirectory(Constants.CacheFolder); }
+	public DownloadService() { Directory.CreateDirectory(Constants.C.CacheFolder); }
 
-	public void Dispose() => Directory.Delete(Constants.CacheFolder, true);
+	public void Dispose() => Directory.Delete(Constants.C.CacheFolder, true);
 
 	public void EnsureDownloaded(Song song)
 	{
@@ -61,7 +61,7 @@ public class DownloadService : IDisposable
 
 		if (isYtUrl) args += " -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0";
 
-		var startOptions = new ProcessStartInfo(Constants.YtDlpPath, args)
+		var startOptions = new ProcessStartInfo(Constants.C.YtDlpPath, args)
 		{
 			WorkingDirectory       = tempFolder,
 			RedirectStandardOutput = true
@@ -86,7 +86,7 @@ public class DownloadService : IDisposable
 
 		var hash = Helpers.MD5(await File.ReadAllBytesAsync(tempPath));
 
-		var cachePath = Path.Combine(Constants.CacheFolder, hash + ext);
+		var cachePath = Path.Combine(Constants.C.CacheFolder, hash + ext);
 		File.Move(tempPath, cachePath, true);
 
 		return new SongFileInfo(new FileInfo(cachePath), hash, Helpers.ParseDuration(ytdlOutput.DurationString));

@@ -29,9 +29,9 @@ app.UseEndpoints(endpoints =>
 	endpoints.MapDefaultControllerRoute();
 });
 
-// start the services so that it starts downloading instantly
+// start the services way before they're technically needed so that it starts downloading instantly
 app.Services.GetService<CoordinatorService>();
 
-Helpers.Log(null, "Started services successfully, starting web server now");
+Helpers.Log(null, "Kickstarted services successfully, starting web server now");
 
 app.Run();

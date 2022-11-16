@@ -32,7 +32,11 @@ public class CoordinatorService : IDisposable
 		Task.Run(StartBgThread);
 	}
 
-	public void Dispose() { _haltThread = true; }
+	public void Dispose()
+	{
+		_haltThread = true; 
+		Helpers.Log(nameof(CoordinatorService), "Disposed");
+	}
 
 	private async Task StartBgThread()
 	{
@@ -50,7 +54,7 @@ public class CoordinatorService : IDisposable
 											 new TransitSong(Current),
 											 CurrentStarted.ToUnixTimeSeconds(),
 											 new TransitSong(Next),
-											 CurrentEnds.ToUnixTimeSeconds() + Constants.BufferTime);
+											 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 
 		var preloadHandled = false;
 
@@ -78,12 +82,12 @@ public class CoordinatorService : IDisposable
 			}
 
 			// handle preloading
-			else if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.PreloadTime))
+			else if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
 				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
 													 new TransitSong(Next),
-													 CurrentEnds.ToUnixTimeSeconds() + Constants.BufferTime);
+													 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 			}
 
 			// poll slowly, be chill on the CPU :D
