@@ -20,8 +20,8 @@ p {
 .slider::-webkit-slider-thumb,
 .slider::-moz-range-thumb {
   height: 15px;
-  width: 15px;
+  width: 7px;
   background: black;
   border: 1px solid white;
-  border-radius: 9999px;
+  border-radius: 0;
 }

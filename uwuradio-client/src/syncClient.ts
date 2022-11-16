@@ -36,7 +36,7 @@ export default class SyncClient {
   #current = createSignal<Song>();
   #next = createSignal<Song>();
 
-  submitters: undefined | Submitter[];
+  submitters = new Map<string, Submitter>();
 
   #currentStarted = createSignal<number>();
   #nextStarts = createSignal<number>();
@@ -112,7 +112,8 @@ export default class SyncClient {
     fetch(this.#apiRes("/api/data"))
       .then((r) => r.json())
       .then((r) => {
-        this.submitters = r.submitters;
+	    for (const submitter of r.submitters)
+          this.submitters.set(submitter.name, submitter);
       });
 
     this.requestState();

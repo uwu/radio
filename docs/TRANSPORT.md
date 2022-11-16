@@ -10,11 +10,12 @@
 ### `Song`
 Object:
 
-- string Name
-- string Artist
-- string? DlUrl
-- string? ArtUrl
-- string? Album
+- string name
+- string artist
+- string? dlUrl
+- string? artUrl
+- string? album
+- string submitter
 
 ### `Timestamp`
 Integer, UNIX timestamp in seconds.
