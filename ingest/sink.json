@@ -1,7 +1,43 @@
 {
   "Name": "Yellowsink",
   "PfpUrl": "https://gravatar.com/avatar/07c71710cff6bc1bd3ef089a2530cc82",
-  "Quotes": [],
+  "//": [
+    "-- Quote sources -- (in order!)",
+    "Monty Python",
+    "Edsger Dijkstra",
+    "unknown",
+    "Porter Robinson (Nurture; Spitfire)",
+    "Mori Calliope",
+    "Ninomae Ina'nis",
+    "Gawr Gura"
+  ],
+  "Quotes": [
+    "We interrupt this program to annoy you and make things generally more irritating.",
+    "He's not the Messiah—he's a very naughty boy!",
+    "Let's not bicker and argue over who killed who.",
+    "Are you suggesting that coconuts migrate?",
+    "I fart in your general direction! Your mother was a hamster and your father smelt of elderberries!",
+    "Now, go away, or I shall taunt you a second time!",
+
+    "Object-oriented programs are offered as alternatives to correct ones.",
+
+    "Saying Java is good because it works on all platforms is like saying anal sex is good because it works on all genders.",
+
+    "It's not the voice of all the others; You've only said it to yourself.",
+    "They come to feel like things we're saying to ourselves.",
+    "It's so holy, it's so ho—, so holy, so holy-",
+    "You're fucking in for it now bitch [...] And keep taking the motherfucking thing until you get 100% in the bitch",
+
+    "If you quit when you suck, you'll suck forever.",
+    "We never forget the fallen, but we move on.",
+    "Guh!",
+
+    "Time is also a limited resource, you can't even buy that with money.",
+    "<long pause> Tomorrow!",
+
+    "Oh nyo.",
+    "You can't be mad at me... I'm cute!"
+  ],
   "Songs": [
     {
       "Name": "Pascal Beats",
@@ -445,14 +481,12 @@
     {
       "Name": "Beat Eater (cover)",
       "Artist": "Mori Calliope, Pavola Reine, Hoshimachi Suisei",
-      "StreamUrl": "https://youtu.be/nbB3KsFRv4U",
-      "ArtUrl": ""
+      "StreamUrl": "https://youtu.be/nbB3KsFRv4U"
     },
     {
       "Name": "Tabi no Tochuu (cover)",
       "Artist": "Ninomae Ina'nis",
-      "StreamUrl": "https://youtu.be/NIv_yYKl9tQ",
-      "ArtUrl": ""
+      "StreamUrl": "https://youtu.be/NIv_yYKl9tQ"
     },
     {
       "Name": "Kanalumi",
@@ -471,14 +505,12 @@
     {
       "Name": "Solar System Disco (cover)",
       "Artist": "Tokino Sora",
-      "StreamUrl": "https://youtu.be/wHw3jSvZxNI",
-      "ArtUrl": ""
+      "StreamUrl": "https://youtu.be/wHw3jSvZxNI"
     },
     {
       "Name": "Newton Dance",
       "Artist": "Haikyu Koyori, Takanashi Kiara",
-      "StreamUrl": "https://youtu.be/X8NiwUykf8U",
-      "ArtUrl": ""
+      "StreamUrl": "https://youtu.be/X8NiwUykf8U"
     },
     {
       "Name": "TTTTTONE",
@@ -522,14 +554,12 @@
     {
       "Name": "FIRE TEMPLE",
       "Artist": "ヒゲドライバー",
-      "StreamUrl": "https://youtu.be/uh1cb-m9JwQ",
-      "ArtUrl": ""
+      "StreamUrl": "https://youtu.be/uh1cb-m9JwQ"
     },
     {
       "Name": "Rappin' for Jesus",
       "Artist": "Brian Spinney",
-      "StreamUrl": "https://youtu.be/Kppx4bzfAaE",
-      "ArtUrl": ""
+      "StreamUrl": "https://youtu.be/Kppx4bzfAaE"
     }
   ]
 }
