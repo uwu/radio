@@ -1,0 +1,49 @@
+{
+  "Name": "alyxia",
+  "PfpUrl": "https://f4.bcbits.com/img/0020339057_10.jpg",
+  "Quotes": [],
+  "Songs": [
+    {
+      "Name": "Turnstile Jumper",
+      "Artist": "Frums",
+      "StreamUrl": "https://soundcloud.com/frums/turnstile-jumper",
+      "Album": "Turnstile Jumper",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000374198934-8uqm0o-t500x500.jpg"
+    },
+    {
+      "Name": "チューリングの跡",
+      "Artist": "Frums",
+      "StreamUrl": "https://soundcloud.com/frums/remnants-of-turing",
+      "Album": "チューリングの跡",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-7x2jVCbgIkzvfRtp-HuO2WQ-t500x500.jpg"
+    },
+    {
+      "Name": "VIS::CRACKED",
+      "Artist": "Frums",
+      "StreamUrl": "https://soundcloud.com/frums/viscracked",
+      "Album": "VIS::CRACKED",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000498879012-5kfi1e-t500x500.jpg"
+    },
+    {
+      "Name": "dimensionalize nervous breakdown (rev.flat)",
+      "Artist": "Frums",
+      "StreamUrl": "https://soundcloud.com/frums/dimensionalize-nervous-breakdown-revflat",
+      "Album": "vignette",
+      "ArtUrl": "https://coverartarchive.org/release/3ca1a14a-24f6-4b95-ba9b-2b26a286a0ba/28530228831.png"
+    },
+    {
+      "Name": "Kneading",
+      "Artist": "Frums",
+      "StreamUrl": "https://diversesystem.bandcamp.com/track/kneading",
+      "Album": "ADvantage",
+      "ArtUrl": "https://coverartarchive.org/release-group/b3155d4f-8cc8-4ffa-96be-9b54c11a282a/front"
+    },
+    {
+      "Name": "Doll and Difference",
+      "Artist": "Frums",
+      "StreamUrl": "https://diversesystem.bandcamp.com/track/doll-and-difference",
+      "Album": "fig 3: wave",
+      "ArtUrl": "https://coverartarchive.org/release/5375fe4e-7eac-4213-acb4-60ab00b64bef/16712247666.jpg"
+    }
+  ]
+}
