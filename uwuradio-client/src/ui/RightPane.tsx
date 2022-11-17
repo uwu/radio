@@ -1,7 +1,7 @@
 import { createMemo } from "solid-js";
 import { clientInstance } from "../syncClient"
 
-const quotes = createMemo(() => clientInstance.submitters.get(clientInstance.currentSong?.submitter).quotes);
+const quotes = createMemo(() => clientInstance.submitters.get(clientInstance.currentSong?.submitter)?.quotes);
 
 const randomQuote = createMemo(() =>
 	quotes() ? quotes()[~~(Math.random() * quotes().length)] : undefined)

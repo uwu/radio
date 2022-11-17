@@ -1,7 +1,7 @@
 {
   "BufferTime": 1,
   "PreloadTime": 30,
-  "ServerDlUrl": "https://alyxia.dev:5002/api/file/",
+  "ServerDlUrl": "https://radio.alyxia.dev/api/file/",
   "YtDlpPath": "yt-dlp",
   "CacheFolder": "DL_CACHE",
   "IngestFolder": "ingest"

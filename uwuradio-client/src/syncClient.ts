@@ -2,6 +2,7 @@ import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import { currentTimestamp } from "./util";
 import { play, seekTo } from "./audio";
 import { createSignal } from "solid-js";
+import { serverUrl } from "./constants";
 
 export interface Song {
   name: string;
@@ -128,4 +129,4 @@ export default class SyncClient {
   }
 }
 
-export const clientInstance = new SyncClient("http://localhost:5002/");
+export const clientInstance = new SyncClient(serverUrl);
