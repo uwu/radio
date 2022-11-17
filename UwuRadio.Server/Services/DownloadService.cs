@@ -24,6 +24,8 @@ public class DownloadService : IDisposable
 	public void EnsureDownloaded(Song song)
 	{
 		if (IsDownloaded(song)) return;
+		
+		Helpers.Log(nameof(DownloadService), $"Queued {song.Name} for DL");
 
 		_downloadQueue.Enqueue(song);
 		if (!_isCurrentlyDownloading) StartDownloading();
@@ -37,16 +39,26 @@ public class DownloadService : IDisposable
 
 	private async void StartDownloading()
 	{
+		// dont knock the excessive logging, this log right here (or absence thereof)
+		// found an issue where this loop would run once and once *only*
+		Helpers.Log(nameof(DownloadService), "Entered download loop");
+		
 		_isCurrentlyDownloading = true;
-		while (_downloadQueue.Count > 0)
+		while (_downloadQueue.TryDequeue(out var song))
 		{
-			var song = _downloadQueue.Dequeue();
-			// this only really happens with small queues but it can happen
-			if (IsDownloaded(song)) continue;
+			try { _fileInfos[song.Id] = await DownloadSong(song.StreamUrl); }
+			catch (Exception e)
+			{
+				Helpers.Log(nameof(DownloadService), $"Caught exception while downloading {song.Name}!\n" + e);
+				continue;
+			}
 			
-			_fileInfos[song.Id] = await DownloadSong(song.StreamUrl);
 			Helpers.Log(nameof(DownloadService), $"Downloaded and cached {song.Name}");
 		}
+
+		_isCurrentlyDownloading = false;
+		
+		Helpers.Log(nameof(DownloadService), "Finished download loop");
 	}
 
 	private static async Task<SongFileInfo> DownloadSong(string url)

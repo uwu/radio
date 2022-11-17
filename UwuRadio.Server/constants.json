@@ -1,5 +1,5 @@
 {
-  "BufferTime": 1,
+  "BufferTime": 2,
   "PreloadTime": 30,
   "ServerDlUrl": "https://radio.alyxia.dev/api/file/",
   "YtDlpPath": "yt-dlp",

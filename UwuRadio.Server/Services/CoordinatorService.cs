@@ -79,6 +79,9 @@ public class CoordinatorService : IDisposable
 				// so its good for us to get a healthy head start - most likely 3-5 minutes!
 				// also makes it feasible to use really really slow hosts such as niconico
 				_dlService.EnsureDownloaded(Next);
+
+				Helpers.Log(nameof(CoordinatorService),
+							$"loop: advanced queue, current song: {Current.Name}, next song: {Next.Name}");
 			}
 
 			// handle preloading
@@ -88,6 +91,8 @@ public class CoordinatorService : IDisposable
 				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
 													 new TransitSong(Next),
 													 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
+				
+				Helpers.Log(nameof(CoordinatorService), $"loop: broadcasted next song ({Next.Name}) to clients");
 			}
 
 			// poll slowly, be chill on the CPU :D
