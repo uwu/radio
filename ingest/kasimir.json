@@ -149,6 +149,153 @@
       "Album": "One Last Kiss",
       "StreamUrl": "https://youtu.be/GYeOVn0PhSk",
       "ArtUrl": "https://coverartarchive.org/release-group/e9e72dc3-178f-43bc-b8d1-1b6ddfb5fec3/front"
+    },
+    {
+      "Name": "UnAlive",
+      "Artist": "Mori Calliope, Elliot Hsu",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/IGv9EPBvfCc",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "Q",
+      "Artist": "Mori Calliope, Gawr Gura, DECO*27, Rockwell",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/B0K18JoMhXg",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "Dead On Arrival",
+      "Artist": "Mori Calliope, Camellia",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/SwOat0JYPAY",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "Graveyard Shift",
+      "Artist": "Mori Calliope, BOOGEY VOXX, The Herb Shop",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/YYxGyh4_90U",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "Lose-Lose Days",
+      "Artist": "Mori Calliope, seibin (ESTIMATE)",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/Lq0xVtTr5a0",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "HUGE W",
+      "Artist": "Mori Calliope, Camellia",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/tuTSmrDwyLw",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "Resting Power",
+      "Artist": "Mori Calliope, Pretty Patterns",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/Hve3-Uum7dk",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "Scuffed Up Age",
+      "Artist": "Mori Calliope, Camellia",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/sEtUyl7Ryu4",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "Ouroboros",
+      "Artist": "Mori Calliope, Elliot Hsu",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/r1Iq738NU5o",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "UnAlive (Japanese Version)",
+      "Artist": "Mori Calliope, Elliot Hsu",
+      "Album": "UnAlive",
+      "StreamUrl": "https://youtu.be/57ytHNCSTNY",
+      "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422.png"
+    },
+    {
+      "Name": "SPARKS",
+      "Artist": "Takanashi Kiara",
+      "Album": "SPARKS",
+      "StreamUrl": "https://youtu.be/Lq9eqHDKJPE",
+      "ArtUrl": "https://coverartarchive.org/release-group/490550f4-02fd-490a-b5f8-10290a677de5/front"
+    },
+    {
+      "Name": "end of a life",
+      "Artist": "Mori Calliope",
+      "Album": "end of a life",
+      "StreamUrl": "https://youtu.be/JkR9vPsPXiE",
+      "ArtUrl": "https://coverartarchive.org/release/ecb69ac2-fac4-474c-89fa-4daa703058d7/30551977383.png"
+    },
+    {
+      "Name": "Rain of Amethyst",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/wFNaR2Hx_sI",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
+    },
+    {
+      "Name": "Artificial Snow",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/QG-oGP2KKUw",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
+    },
+    {
+      "Name": "amorphous",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/4g74IxKNtBs",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
+    },
+    {
+      "Name": "First Town Of This Journey",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/Fuo230G--iQ",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
+    },
+    {
+      "Name": "yesterday",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/mk49f4F6JS8",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
+    },
+    {
+      "Name": "Light it up",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/kNa91r8nQ-o",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
+    },
+    {
+      "Name": "NUCLEAR-STAR",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/HM2tGXZquyk",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
+    },
+    {
+      "Name": "crystallized",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/oZdO3yHSYYw",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
+    },
+    {
+      "Name": "liquated",
+      "Artist": "Camellia",
+      "Album": "crystallized",
+      "StreamUrl": "https://youtu.be/0y0IXrBB-f4",
+      "ArtUrl": "https://coverartarchive.org/release/63dc9a75-a133-48e1-b309-620283d9506d/28877909063.png"
     }
   ]
 }
