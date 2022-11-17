@@ -884,6 +884,34 @@
       "Album": "Devil Trigger",
       "StreamUrl": "https://youtu.be/lVp--suat9o",
       "ArtUrl": "https://coverartarchive.org/release-group/e11a1d7c-761e-4797-a0a6-7d6ea871eb81/front"
+    },
+    {
+      "Name": "Sing My Pleasure",
+      "Artist": "Vivy (Vo.Kairi Yagi)",
+      "Album": "Vivy -Fluorite Eye's Song- Vocal Collection Sing for Your Smile",
+      "StreamUrl": "https://youtu.be/OYsLvPEMeSo",
+      "ArtUrl": "https://coverartarchive.org/release/c7f4bd55-90ec-45cf-9d94-5bd0498d0b7c/32503066200.jpg"
+    },
+    {
+      "Name": "Sing My Pleasure (Grace Version)",
+      "Artist": "Grace (Vo.Hikari Kodama)",
+      "Album": "Vivy -Fluorite Eye's Song- Vocal Collection Sing for Your Smile",
+      "StreamUrl": "https://youtu.be/pSCSR2GQoaI",
+      "ArtUrl": "https://coverartarchive.org/release/c7f4bd55-90ec-45cf-9d94-5bd0498d0b7c/32503066200.jpg"
+    },
+    {
+      "Name": "Harmony of One's Heart",
+      "Artist": "Diva (Vo.Kairi Yagi)",
+      "Album": "Vivy -Fluorite Eye's Song- Vocal Collection Sing for Your Smile",
+      "StreamUrl": "https://youtu.be/zQFQBoYKDUI",
+      "ArtUrl": "https://coverartarchive.org/release/c7f4bd55-90ec-45cf-9d94-5bd0498d0b7c/32503066200.jpg"
+    },
+    {
+      "Name": "Fluorite Eye's Song",
+      "Artist": "Vivy (Vo.Kairi Yagi)",
+      "Album": "Vivy -Fluorite Eye's Song- Vocal Collection Sing for Your Smile",
+      "StreamUrl": "https://youtu.be/H34rIjExVqU",
+      "ArtUrl": "https://coverartarchive.org/release/c7f4bd55-90ec-45cf-9d94-5bd0498d0b7c/32503066200.jpg"
     }
   ]
 }
