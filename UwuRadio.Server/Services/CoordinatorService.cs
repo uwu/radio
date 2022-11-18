@@ -62,26 +62,46 @@ public class CoordinatorService : IDisposable
 		
 		while (!_haltThread)
 		{
-			// handle advancing song
-			if (Helpers.Now() >= CurrentEnds && _dlService.IsDownloaded(Next))
+			if (_dlService.IsBlacklisted(Next))
 			{
-				preloadHandled = false;
+				Helpers.Log(nameof(CoordinatorService), "Encountered download blacklisted song, skipping it!");
 
-				var info = _dlService.GetFileInfo(Next);
-				CurrentStarted = CurrentEnds;
-				CurrentEnds    = CurrentEnds.Plus(info.Length);
-
-				Current = Next;
-				Next    = _queueService.SelectSong();
-
-				// clients are only told about the next when we need to handle preloading
-				// however we will *need* to know the length of the song and be able to serve it at preload time
-				// so its good for us to get a healthy head start - most likely 3-5 minutes!
-				// also makes it feasible to use really really slow hosts such as niconico
+				Next = _queueService.SelectSong();
 				_dlService.EnsureDownloaded(Next);
+			}
+			
+			// handle advancing song
+			if (Helpers.Now() >= CurrentEnds)
+			{
+				if (_dlService.IsDownloaded(Next))
+				{
+					preloadHandled = false;
 
-				Helpers.Log(nameof(CoordinatorService),
-							$"loop: advanced queue, current song: {Current.Name}, next song: {Next.Name}");
+					var info = _dlService.GetFileInfo(Next);
+					CurrentStarted = CurrentEnds;
+					CurrentEnds    = CurrentEnds.Plus(info.Length);
+
+					Current = Next;
+					Next    = _queueService.SelectSong();
+
+					// clients are only told about the next when we need to handle preloading
+					// however we will *need* to know the length of the song and be able to serve it at preload time
+					// so its good for us to get a healthy head start - most likely 3-5 minutes!
+					// also makes it feasible to use really really slow hosts such as niconico
+					_dlService.EnsureDownloaded(Next);
+
+					Helpers.Log(nameof(CoordinatorService),
+								$"loop: advanced queue, current song: {Current.Name}, next song: {Next.Name}");
+				}
+				else if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
+				{
+					preloadHandled = true;
+					await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
+														 new TransitSong(Next),
+														 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
+				
+					Helpers.Log(nameof(CoordinatorService), $"loop: broadcasted next song ({Next.Name}) to clients");
+				}
 			}
 
 			// handle preloading

@@ -12,8 +12,9 @@ public record SongFileInfo(FileInfo File, string Md5, Duration Length);
 /// </summary>
 public class DownloadService : IDisposable
 {
-	private readonly Queue<Song>                      _downloadQueue = new();
-	private readonly Dictionary<string, SongFileInfo> _fileInfos     = new();
+	private readonly Queue<Song>                      _downloadQueue     = new();
+	private readonly Dictionary<string, SongFileInfo> _fileInfos         = new();
+	private readonly HashSet<string>                  _downloadBlacklist = new();
 
 	private bool _isCurrentlyDownloading;
 
@@ -21,9 +22,12 @@ public class DownloadService : IDisposable
 
 	public void Dispose() => Directory.Delete(Constants.C.CacheFolder, true);
 
+	public bool IsBlacklisted(Song song) => _downloadBlacklist.Contains(song.Id);
+	
 	public void EnsureDownloaded(Song song)
 	{
 		if (IsDownloaded(song)) return;
+		if (IsBlacklisted(song)) return;
 		
 		Helpers.Log(nameof(DownloadService), $"Queued {song.Name} for DL");
 
@@ -49,7 +53,10 @@ public class DownloadService : IDisposable
 			try { _fileInfos[song.Id] = await DownloadSong(song.StreamUrl); }
 			catch (Exception e)
 			{
-				Helpers.Log(nameof(DownloadService), $"Caught exception while downloading {song.Name}!\n" + e);
+				Helpers.Log(nameof(DownloadService),
+							$"Caught exception while downloading {song.Name}! Blacklisting from future download attempts.\n"
+						  + e);
+				_downloadBlacklist.Add(song.Id);
 				continue;
 			}
 			
@@ -63,45 +70,46 @@ public class DownloadService : IDisposable
 
 	private static async Task<SongFileInfo> DownloadSong(string url)
 	{
-		var tempFolder = Path.GetTempPath();
+		var args
+			= $"\"{url}\" -O after_move:filepath --quiet --print-json -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0";
 
+		var (rawPath, durationStr) = await InvokeYtDlp(args);
 
-		var isYtUrl = url.Contains("youtube.com") || url.Contains("youtu.be");
+		var ext = new FileInfo(rawPath).Extension;
 
-		// %(ext)s is a pattern that tells YTDL to insert the correct file extension
-		var args = $"\"{url}\" --print-json --quiet";
+		if (ext != ".mp3")
+			throw new Exception("Incorrect extension after yt-dlp invocation");
+		
+		var hash = Helpers.MD5(await File.ReadAllBytesAsync(rawPath));
 
-		if (isYtUrl) args += " -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0";
+		var cachePath = Path.Combine(Constants.C.CacheFolder, hash);
+		File.Move(rawPath, cachePath, true);
 
+		return new SongFileInfo(new FileInfo(cachePath), hash, Helpers.ParseDuration(durationStr));
+	}
+
+	private static async Task<(string, string)> InvokeYtDlp(string args)
+	{
 		var startOptions = new ProcessStartInfo(Constants.C.YtDlpPath, args)
 		{
-			WorkingDirectory       = tempFolder,
+			WorkingDirectory       = Path.GetTempPath(),
 			RedirectStandardOutput = true
 		};
 
 		var process = Process.Start(startOptions);
-		await process!.WaitForExitAsync();
-		var stdOut = await process.StandardOutput.ReadToEndAsync();
+		
+		// honest-to-god this caused the download to hang for some songs (solar system disco was one)
+		// reading the stream async to the end effectively does this anyway ;)
+		//await process!.WaitForExitAsync();
+		
+		var stdOut = (await process!.StandardOutput.ReadToEndAsync()).Split("\n");
 
-		var ytdlOutput = JsonSerializer.Deserialize<YtdlOutputObject>(stdOut)!;
+		var jsonOut = stdOut[0];
+		var rawPath = stdOut[1];
 
-		if (isYtUrl)
-		{
-			// yt-dlp claims that its downloaded a webm (which to be fair it has)
-			// but its been transcoded to mp3.
-			ytdlOutput.Filename  = ytdlOutput.Filename[Range.EndAt(ytdlOutput.Filename.Length - 5)] + ".mp3";
-			ytdlOutput.Extension = "mp3";
-		}
+		var durationStr = JsonSerializer.Deserialize<YtdlOutputObject>(jsonOut)!.DurationString;
 
-		var tempPath = Path.Combine(tempFolder, ytdlOutput.Filename);
-		var ext      = new FileInfo(tempPath).Extension;
-
-		var hash = Helpers.MD5(await File.ReadAllBytesAsync(tempPath));
-
-		var cachePath = Path.Combine(Constants.C.CacheFolder, hash + ext);
-		File.Move(tempPath, cachePath, true);
-
-		return new SongFileInfo(new FileInfo(cachePath), hash, Helpers.ParseDuration(ytdlOutput.DurationString));
+		return (rawPath, durationStr);
 	}
 
 	/// <summary>
@@ -109,12 +117,6 @@ public class DownloadService : IDisposable
 	/// </summary>
 	public class YtdlOutputObject
 	{
-		[JsonPropertyName("filename")]
-		public string Filename { get; set; } = null!;
-
-		[JsonPropertyName("ext")]
-		public string Extension { get; set; } = null!;
-
 		[JsonPropertyName("duration_string")]
 		public string DurationString { get; set; } = null!;
 	}
