@@ -319,6 +319,41 @@
       "ArtUrl": "https://coverartarchive.org/release/ec116461-5b0d-4c98-bb44-a4de5de63076/12639807914-500.jpg"
     },
     {
+      "Name": "Give Life Back to Music",
+      "Artist": "Daft Punk",
+      "StreamUrl": "https://youtu.be/IluRBvnYMoY",
+      "Album": "Random Access Memories",
+      "ArtUrl": "https://coverartarchive.org/release/ec116461-5b0d-4c98-bb44-a4de5de63076/12639807914-500.jpg"
+    },
+    {
+      "Name": "Lose Yourself to Dance",
+      "Artist": "Daft Punk feat. Pharrell Williams",
+      "StreamUrl": "https://youtu.be/NF-kLy44Hls",
+      "Album": "Random Access Memories",
+      "ArtUrl": "https://coverartarchive.org/release/ec116461-5b0d-4c98-bb44-a4de5de63076/12639807914-500.jpg"
+    },
+    {
+      "Name": "Doin' it Right",
+      "Artist": "Daft Punk feat. Panda Bear",
+      "StreamUrl": "https://youtu.be/LL-gyhZVvx0",
+      "Album": "Random Access Memories",
+      "ArtUrl": "https://coverartarchive.org/release/ec116461-5b0d-4c98-bb44-a4de5de63076/12639807914-500.jpg"
+    },
+    {
+      "Name": "Aerodynamic",
+      "Artist": "Daft Punk",
+      "StreamUrl": "https://youtu.be/Mjpu0-o9iek",
+      "Album": "Discovery",
+      "ArtUrl": "https://coverartarchive.org/release/6cd30d99-4923-4d5e-8e51-9d87506976f1/26585368511-500.jpg"
+    },
+    {
+      "Name": "Face to Face",
+      "Artist": "Daft Punk",
+      "StreamUrl": "https://youtu.be/UKYWWfR_GKA",
+      "Album": "Discovery",
+      "ArtUrl": "https://coverartarchive.org/release/6cd30d99-4923-4d5e-8e51-9d87506976f1/26585368511-500.jpg"
+    },
+    {
       "Name": "DiscoVision",
       "Artist": "Anders Enger Jensen",
       "StreamUrl": "https://youtu.be/Azsk21MpbUk",
@@ -557,9 +592,80 @@
       "StreamUrl": "https://youtu.be/uh1cb-m9JwQ"
     },
     {
-      "Name": "Rappin' for Jesus",
-      "Artist": "Brian Spinney",
-      "StreamUrl": "https://youtu.be/Kppx4bzfAaE"
+      "Name": "Don't Worry",
+      "Artist": "Virtual Riot",
+      "StreamUrl": "https://youtu.be/aQM-EaeA7ts",
+      "Album": "Simulation",
+      "ArtUrl": "https://coverartarchive.org/release/17a7c32b-6e11-4542-89c0-2f79fa1053b9/31666311889-500.jpg"
+    },
+    {
+      "Name": "Rewrite",
+      "Artist": "Virtual Riot",
+      "StreamUrl": "https://youtu.be/X1ReetsZSiM",
+      "Album": "Simulation",
+      "ArtUrl": "https://coverartarchive.org/release/17a7c32b-6e11-4542-89c0-2f79fa1053b9/31666311889-500.jpg"
+    },
+    {
+      "Name": "Dreaming",
+      "Artist": "Virtual Riot",
+      "StreamUrl": "https://youtu.be/UEczL_pfJI4",
+      "Album": "Simulation",
+      "ArtUrl": "https://coverartarchive.org/release/17a7c32b-6e11-4542-89c0-2f79fa1053b9/31666311889-500.jpg"
+    },
+    {
+      "Name": "This Could Be Us",
+      "Artist": "Virtual Riot",
+      "StreamUrl": "https://youtu.be/-Q8zCihY9_Y",
+      "Album": "Simulation",
+      "ArtUrl": "https://coverartarchive.org/release/17a7c32b-6e11-4542-89c0-2f79fa1053b9/31666311889-500.jpg"
+    },
+    {
+      "Name": "Bossfight Afterparty",
+      "Artist": "Virtual Riot",
+      "StreamUrl": "https://youtu.be/Ayj_3EhZfRs",
+      "Album": "Simulation",
+      "ArtUrl": "https://coverartarchive.org/release/17a7c32b-6e11-4542-89c0-2f79fa1053b9/31666311889-500.jpg"
+    },
+    {
+      "Name": "Morrissey",
+      "Artist": "fiend",
+      "StreamUrl": "https://fiend.bandcamp.com/track/morrissey",
+      "Album": "FEVER DREAM",
+      "ArtUrl": "https://f4.bcbits.com/img/a0930597781_16.jpg"
+    },
+    {
+      "Name": "Blessings",
+      "Artist": "fiend",
+      "StreamUrl": "https://fiend.bandcamp.com/track/blessings",
+      "Album": "FEVER DREAM",
+      "ArtUrl": "https://f4.bcbits.com/img/a0930597781_16.jpg"
+    },
+    {
+      "Name": "Disconnect",
+      "Artist": "fiend",
+      "StreamUrl": "https://fiend.bandcamp.com/track/disconnect",
+      "Album": "FEVER DREAM",
+      "ArtUrl": "https://f4.bcbits.com/img/a0930597781_16.jpg"
+    },
+    {
+      "Name": "4BLOOD (cover)",
+      "Artist": "Takanashi Kiara & KIRA",
+      "StreamUrl": "https://youtu.be/Fwc-LH8IGj8",
+      "ArtUrl": "https://coverartarchive.org/release/d2a3493f-35ea-453f-b136-993035ecb8fc/31053271032-500.jpg"
+    },
+    {
+      "Name": "Candy Kids",
+      "Artist": "Barely Alive & Datsik",
+      "StreamUrl": "https://youtu.be/lefGSuNSZ1U",
+      "Album": "Internet Streets EP",
+      "ArtUrl": "https://coverartarchive.org/release/bbcefc4f-12c9-4fda-8fd5-c53d778ad9a6/16290178291-500.jpg"
+    },
+    {
+      "Name": "Roots",
+      "Artist": "In This Moment",
+      "StreamUrl": "https://youtu.be/zfTz83yQ8hU",
+      "Album": "Ritual",
+      "ArtUrl": "https://coverartarchive.org/release/1f82f39d-f985-460e-80a8-a711b78c5b1b/17576063179-500.jpg"
     }
   ]
 }
