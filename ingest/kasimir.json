@@ -919,6 +919,20 @@
       "Album": "Bubble (feat. Uta)",
       "StreamUrl": "https://youtu.be/KDXsZbsrHWo",
       "ArtUrl": "https://coverartarchive.org/release-group/aaa0e87f-6936-4a3b-a6c9-ad906932a5f2/front"
+    },
+    {
+      "Name": "Credits",
+      "Artist": "Frums",
+      "Album": "BOFU2015",
+      "StreamUrl": "https://soundcloud.com/frums/credits",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000129516190-c4nsuz-t500x500.jpg"
+    },
+    {
+      "Name": "Credits EX",
+      "Artist": "Frums",
+      "Album": "Groundbreaking 2015",
+      "StreamUrl": "https://soundcloud.com/frums/credits-ex",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000129516190-c4nsuz-t500x500.jpg"
     }
   ]
 }
