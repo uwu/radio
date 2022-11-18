@@ -60,14 +60,6 @@ jobs:
           wget "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux_aarch64"
           
           mv yt-dlp_linux_aarch64 dist/yt-dlp
-        
-      - name: Stop running instance on server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSHHOST }}
-          username: ${{ secrets.SSHUSER }}
-          key: ${{ secrets.SSHPRIVKEY }}
-          script: killall UwuRadio.Server -w || true
 
       - name: SCP dist to server
         uses: appleboy/scp-action@master
@@ -77,16 +69,21 @@ jobs:
           key: ${{ secrets.SSHPRIVKEY }}
           rm: true
           source: "dist/*"
-          target: "~/UWU_RADIO_SERVER"
+          target: "~/UWU_RADIO_SERVER_TMP"
 
 
-      - name: Start instance on server
+      - name: Restart instance on server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSHHOST }}
           username: ${{ secrets.SSHUSER }}
           key: ${{ secrets.SSHPRIVKEY }}
           script: |
+            killall UwuRadio.Server -w || true
+
+            rm -rf ~/UWU_RADIO_SERVER
+            mv ~/UWU_RADIO_SERVER_TMP ~/UWU_RADIO_SERVER
+
             mkdir ~/UWU_RADIO_LOGS || true
             
             cd ~/UWU_RADIO_SERVER
