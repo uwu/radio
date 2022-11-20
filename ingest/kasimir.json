@@ -935,6 +935,47 @@
       "Album": "Groundbreaking 2015",
       "StreamUrl": "https://soundcloud.com/frums/credits-ex",
       "ArtUrl": "https://i1.sndcdn.com/artworks-000129516190-c4nsuz-t500x500.jpg"
+    },
+    {
+      "Name": "Ghost City Tokyo",
+      "Artist": "Ayase ft. Hatsune Miku",
+      "StreamUrl": "https://youtu.be/lWl5viCqGSc",
+      "ArtUrl": "https://assets.audiomack.com/memezilla/61ac925dea0f2f5d6b106b82e65e6efb93a1877ac8cb2ec00f85eddcfdf8b7ef.jpeg?width=750&height=750&max=true"
+    },
+    {
+      "Name": "I REALLY WANT TO STAY AT YOUR HOUSE",
+      "Artist": "Rosa Walton & Hallie Coggins",
+      "Album": "CYBERPUNK 2077 SOUNDTRACK",
+      "StreamUrl": "https://youtu.be/gzbLODUb1sA",
+      "ArtUrl": "https://coverartarchive.org/release/53002383-0ea4-44a4-97e1-b5d7d25e91a4/28105410573-500.jpg"
+    },
+    {
+      "Name": "Let You Down",
+      "Artist": "Dawid Podsiadło",
+      "Album": "Cyberpunk: Edgerunners OST",
+      "StreamUrl": "https://youtu.be/BnnbP7pCIvQ",
+      "ArtUrl": "https://coverartarchive.org/release/da2af3ee-900c-4f05-b63c-e350a2931a94/33603035224-500.jpg"
+    },
+    {
+      "Name": "Everything Goes On",
+      "Artist": "Porter Robinson",
+      "Album": "Single",
+      "StreamUrl": "https://youtu.be/eEFVxI9lqjU",
+      "ArtUrl": "https://coverartarchive.org/release/579c06cf-605e-4e5b-9044-065778b19a5e/33030094635-500.jpg"
+    },
+    {
+      "Name": "WHO'S READY FOR TOMORROW",
+      "Artist": "Rat Boy & IBDY",
+      "Album": "CYBERPUNK 2077 SOUNDTRACK",
+      "StreamUrl": "https://www.youtube.com/watch?v=jLXTBbMRxK8",
+      "ArtUrl": "https://coverartarchive.org/release/53002383-0ea4-44a4-97e1-b5d7d25e91a4/28105410573-500.jpg"
+    },
+    {
+      "Name": "I Need Air",
+      "Artist": "Magnetic Man feat. Angela Hunte",
+      "Album": "Single",
+      "StreamUrl": "https://youtu.be/z6sRV-xEZ0Q",
+      "ArtUrl": "https://coverartarchive.org/release/3b842f84-0407-4a08-b303-2e6b1db8921c/31628613108-500.jpg"
     }
   ]
 }
