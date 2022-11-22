@@ -34,7 +34,7 @@ export default class SyncClient {
 
     const connection = new HubConnectionBuilder()
       .withUrl(this.#apiRes("/sync"))
-      .withAutomaticReconnect(new Array(10).fill(15))
+      .withAutomaticReconnect(new Array(10).fill(15000))
       .build();
 
     this.#connect(connection);
