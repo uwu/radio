@@ -27,6 +27,7 @@ export default class SyncClient {
 
     const connection = new HubConnectionBuilder()
       .withUrl(this.#apiRes("/sync"))
+      .withAutomaticReconnect(new Array(10).fill(15))
       .build();
 
     this.#connect(connection);
@@ -105,7 +106,9 @@ export default class SyncClient {
   async #connect(connection: HubConnection) {
     if (this.#connection) throw new Error("This client is already connected");
     this.#connection = connection;
+
     connection.onclose(() => (this.#connection = undefined));
+    connection.onreconnected(this.updateState);
 
     await connection.start();
 
@@ -113,12 +116,16 @@ export default class SyncClient {
     connection.on("ReceiveState", this.#handlers.ReceiveState);
     connection.on("ReceiveSeekPos", this.#handlers.ReceiveSeekPos);
 
+    this.updateState();
+  }
+
+  updateState() {
     fetch(this.#apiRes("/api/data"))
       .then((r) => r.json())
       .then((r) => {
-	    for (const submitter of r.submitters)
+        for (const submitter of r.submitters)
           this.submitters.set(submitter.name, submitter);
-      });
+    });
 
     this.requestState();
   }
