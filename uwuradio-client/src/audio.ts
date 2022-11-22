@@ -23,7 +23,7 @@ const [seek, setSeek] = createSignal<number>();
 export { seek };
 export const prettySeek = createMemo(() => prettyFormatTime(seek()!));
 
-setInterval(() => setSeek(audioCtx.currentTime - startTime + startSeek), 100);
+setInterval(() => setSeek(Math.min(audioCtx.currentTime - startTime + startSeek, getDuration())), 100);
 
 export const seekTo = (seek: number) => {
   startSeek = seek;
