@@ -1,31 +1,31 @@
 body,
 p {
-  margin: 0;
+	margin: 0;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .root {
-  grid-template-columns: minmax(0, .5fr) minmax(0, 1fr);
+	grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
 }
 
 .slider {
-  appearance: none;
-  background: white;
-  height: 1px;
+	appearance: none;
+	background: white;
+	height: 1px;
 }
 
 .slider:focus {
-  outline: none;
+	outline: none;
 }
 
 .slider::-webkit-slider-thumb,
 .slider::-moz-range-thumb {
-  height: 15px;
-  width: 7px;
-  background: black;
-  border: 1px solid white;
-  border-radius: 0;
+	height: 15px;
+	width: 7px;
+	background: black;
+	border: 1px solid white;
+	border-radius: 0;
 }
