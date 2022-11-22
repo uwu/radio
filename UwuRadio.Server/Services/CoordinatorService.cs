@@ -62,50 +62,58 @@ public class CoordinatorService : IDisposable
 		
 		while (!_haltThread)
 		{
+			// this lives at the top so we can just use continue; to return to idle state from anywhere.
+			await Task.Delay(1000);
+			
+			// if there is a blacklisted song, keep skipping until a song downloads
 			if (_dlService.IsBlacklisted(Next))
 			{
 				Helpers.Log(nameof(CoordinatorService), "Encountered download blacklisted song, skipping it!");
 
 				Next = _queueService.SelectSong();
 				_dlService.EnsureDownloaded(Next);
+
+				// wait for the song to either succeed or fail to download
+				// the loop *probably* shouldn't be blocked for this but its an unlikely code path
+				// and the state to mutex this isnt worth it
+				while (!_dlService.IsDownloaded(Next) && !_dlService.IsBlacklisted(Next))
+					await Task.Delay(100);
+				
+				continue;
 			}
 			
 			// handle advancing song
 			if (Helpers.Now() >= CurrentEnds)
 			{
-				if (_dlService.IsDownloaded(Next))
-				{
-					preloadHandled = false;
+				// we need this to be downloaded for the song length.
+				while (!_dlService.IsDownloaded(Next) && !_dlService.IsBlacklisted(Next))
+					await Task.Delay(100);
 
-					var info = _dlService.GetFileInfo(Next);
-					CurrentStarted = CurrentEnds;
-					CurrentEnds    = CurrentEnds.Plus(info.Length);
-
-					Current = Next;
-					Next    = _queueService.SelectSong();
-
-					// clients are only told about the next when we need to handle preloading
-					// however we will *need* to know the length of the song and be able to serve it at preload time
-					// so its good for us to get a healthy head start - most likely 3-5 minutes!
-					// also makes it feasible to use really really slow hosts such as niconico
-					_dlService.EnsureDownloaded(Next);
-
-					Helpers.Log(nameof(CoordinatorService),
-								$"loop: advanced queue, current song: {Current.Name}, next song: {Next.Name}");
-				}
-				else if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
-				{
-					preloadHandled = true;
-					await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
-														 new TransitSong(Next),
-														 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
+				if (_dlService.IsBlacklisted(Next)) continue;
 				
-					Helpers.Log(nameof(CoordinatorService), $"loop: broadcasted next song ({Next.Name}) to clients");
-				}
+				preloadHandled = false;
+
+				var info = _dlService.GetFileInfo(Next);
+				CurrentStarted = CurrentEnds;
+				CurrentEnds    = CurrentEnds.Plus(info.Length);
+
+				Current = Next;
+				Next    = _queueService.SelectSong();
+
+				// clients are only told about the next when we need to handle preloading
+				// however we will *need* to know the length of the song and be able to serve it at preload time
+				// so its good for us to get a healthy head start - most likely 3-5 minutes!
+				// also makes it feasible to use really really slow hosts such as niconico
+				_dlService.EnsureDownloaded(Next);
+
+				Helpers.Log(nameof(CoordinatorService),
+							$"loop: advanced queue, current song: {Current.Name}, next song: {Next.Name}");
+
+				continue;
 			}
 
 			// handle preloading
-			else if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
+			if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
 				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
@@ -113,10 +121,9 @@ public class CoordinatorService : IDisposable
 													 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 				
 				Helpers.Log(nameof(CoordinatorService), $"loop: broadcasted next song ({Next.Name}) to clients");
+				
+				continue;
 			}
-
-			// poll slowly, be chill on the CPU :D
-			await Task.Delay(1000);
 		}
 	}
 }
