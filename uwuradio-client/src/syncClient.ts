@@ -5,6 +5,12 @@ import { createSignal } from "solid-js";
 import { serverUrl } from "./constants";
 import { cacheImage } from "./imgCache";
 
+const loadingSong: Song = {
+  name: "loading...",
+  artist: "...",
+  submitter: "...",
+};
+
 export interface Song {
   name: string;
   artist: string;
@@ -36,7 +42,7 @@ export default class SyncClient {
 
   #connection: undefined | HubConnection;
 
-  #current = createSignal<Song>();
+  #current = createSignal<Song | undefined>(loadingSong);
   #next = createSignal<Song>();
 
   submitters = new Map<string, Submitter>();
