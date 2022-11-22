@@ -1,6 +1,6 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import { currentTimestamp } from "./util";
-import { play, seekTo } from "./audio";
+import { play, preload, seekTo } from "./audio";
 import { createSignal } from "solid-js";
 import { serverUrl } from "./constants";
 
@@ -68,13 +68,16 @@ export default class SyncClient {
       this.#next[1](nextSong);
       this.#nextStarts[1](startTime);
 
+      preload(this.#next[0]()!.dlUrl!);
+
       setTimeout(() => {
         this.#current[1](this.#next[0]());
         this.#currentStarted[1](this.#nextStarts[0]());
         this.#next[1]();
         this.#nextStarts[1]();
 
-        play(this.#current[0]()!.dlUrl!, 0);
+        const correction = Math.min(-(startTime - currentTimestamp()), 0);
+        play(this.#current[0]()!.dlUrl!, correction);
       }, 1000 * (startTime - currentTimestamp()));
     },
     ReceiveState: (

@@ -1,15 +1,20 @@
 import { createSignal, createMemo, createEffect } from "solid-js";
-import { Howl } from "howler";
 
-let audioPlayer: Howl;
+const audioCtx = new AudioContext();
+const audioGain = audioCtx.createGain();
+audioGain.gain.value = 0.01;
+let audioSource: AudioBufferSourceNode;
 
-window["audio"] = () => audioPlayer;
+let startTime: number;
+let startSeek: number;
+
+const songs: Record<string, Promise<AudioBuffer>> = {};
+// const songs: Array<Promise<AudioBuffer>> = {};
 
 export const [volume, setVolume] = createSignal(1);
 
 createEffect(() => {
-  volume();
-  audioPlayer?.volume(volume());
+  audioGain.gain.value = volume();
 });
 
 const prettyFormatTime = (time: number) =>
@@ -19,24 +24,39 @@ const [seek, setSeek] = createSignal<number>();
 export { seek };
 export const prettySeek = createMemo(() => prettyFormatTime(seek()!));
 
-setInterval(() => setSeek(audioPlayer?.seek()), 100);
+setInterval(() => setSeek(audioCtx.currentTime - startTime + startSeek), 100);
 
-export const seekTo = (seek: number) => audioPlayer?.seek(seek);
+export const seekTo = (seek: number) => {
+  startSeek = seek;
+  audioSource?.start(0, seek);
+}
 
-export const getDuration = () => audioPlayer?.duration();
+export const getDuration = () => audioSource?.buffer?.duration ?? 0;
 export const prettyDuration = () => prettyFormatTime(getDuration());
 
-export function play(url: string, seek: number) {
-  audioPlayer?.stop();
+async function loadAudio(url: string) {
+  const response = await fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+  return audioBuffer;
+}
 
-  audioPlayer = new Howl({
-    src: url,
-    html5: true,
-    format: "mp3",
-    volume: volume(),
+export async function preload(url: string) {
+  songs[url] = loadAudio(url);
+}
+
+export async function play(url: string, seek: number) {
+  const then = new Date();
+  audioSource?.stop();
+
+  audioSource = new AudioBufferSourceNode(audioCtx, {
+    buffer: await (songs[url] ?? loadAudio(url)),
   });
 
-  audioPlayer.once("play", () => audioPlayer.seek(seek));
+  audioSource.connect(audioGain).connect(audioCtx.destination);
 
-  audioPlayer.play();
+  seek = seek + (new Date().getTime() - then.getTime()) / 1000;
+  startTime = audioCtx.currentTime;
+  startSeek = seek;
+  audioSource.start(0, seek);
 }
