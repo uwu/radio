@@ -9,7 +9,6 @@ let startTime: number;
 let startSeek: number;
 
 const songs: Record<string, Promise<AudioBuffer>> = {};
-// const songs: Array<Promise<AudioBuffer>> = {};
 
 export const [volume, setVolume] = createSignal(1);
 
