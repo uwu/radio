@@ -71,28 +71,28 @@
       "Artist": "塞壬唱片-MSR",
       "StreamUrl": "https://www.youtube.com/watch?v=KDM3kzZK7Ys",
       "Album": "ALIVE",
-      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/a2/e5/05a2e58d-002c-6c9c-dcbc-a2b00793658a/4711099660605.jpg/316x316bb.webp"
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/a2/e5/05a2e58d-002c-6c9c-dcbc-a2b00793658a/4711099660605.jpg/4096x4096bb.webp"
     },
     {
       "Name": "Madeon - Beings (Porter Robinson Secret Sky 2020 Live Edit)",
-      "Artist": "Porter Robsinon",
+      "Artist": "Porter Robinson",
       "StreamUrl": "https://www.youtube.com/watch?v=ctnC6NGNcsk",
       "Album": "Secret Sky 2020 (DJ Mix)",
-      "ArtUrl": "https://i1.sndcdn.com/artworks-bNgJL4AeAMOKAFtS-Jz32PA-t500x500.jpg"
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/a2/e5/05a2e58d-002c-6c9c-dcbc-a2b00793658a/4711099660605.jpg/4096x4096bb.webp"
     },
     {
       "Name": "Shelter",
       "Artist": "Porter Robinson & Madeon",
       "StreamUrl": "https://www.youtube.com/watch?v=fzQ6gRAEoy0",
       "Album": "Shelter",
-      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music125/v4/a9/aa/a8/a9aaa8cb-708c-899e-b968-22304e720edb/SHELTER.jpg/316x316bb.webp"
+      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music125/v4/a9/aa/a8/a9aaa8cb-708c-899e-b968-22304e720edb/SHELTER.jpg/4096x4096bb.webp"
     },
     {
       "Name": "Easy",
       "Artist": "Mat Zo & Porter Robinson",
       "StreamUrl": "https://www.youtube.com/watch?v=at3FPJaAwoY",
       "Album": "Damage Control",
-      "ArtUrl": "https://is2-ssl.mzstatic.com/image/thumb/Music/v4/a3/09/5b/a3095b63-2bda-67fa-8bd3-f84acbe24c75/5039060215197.jpg/316x316bb.webp"
+      "ArtUrl": "https://is2-ssl.mzstatic.com/image/thumb/Music/v4/a3/09/5b/a3095b63-2bda-67fa-8bd3-f84acbe24c75/5039060215197.jpg/4096x4096bb.webp"
     },
     {
       "Name": "Slit",
@@ -219,6 +219,41 @@
       "StreamUrl": "https://www.youtube.com/watch?v=qytgJ2mbzfM",
       "Album": "Nurture",
       "ArtUrl": "https://coverartarchive.org/release/e601587e-047b-4cc6-80f7-8f44d21cd7a4/29158737458.jpg"
+    },
+    {
+      "Name": "Wind Tempos (Nurture Live version)",
+      "Artist": "Porter Robinson",
+      "StreamUrl": "https://public.alyxia.dev/uwuradio/Wind-Tempos-Nurture-Live.mp3",
+      "Album": "Nurture Live",
+      "ArtUrl": "https://public.alyxia.dev/uwuradio/Second-Sky-cover.png"
+    },
+    {
+      "Name": "Easy (Nurture Live edit)",
+      "Artist": "Porter Robinson",
+      "StreamUrl": "https://public.alyxia.dev/uwuradio/Easy-Nurture-Live.mp3",
+      "Album": "Nurture Live",
+      "ArtUrl": "https://public.alyxia.dev/uwuradio/Second-Sky-cover.png"
+    },
+    {
+      "Name": "The Thrill x Sea of Voices (Nurture Live edit)",
+      "Artist": "Porter Robinson",
+      "StreamUrl": "https://public.alyxia.dev/uwuradio/The-Thrill-X-Sea-of-Voices-Nurture-Live.mp3",
+      "Album": "Nurture Live",
+      "ArtUrl": "https://public.alyxia.dev/uwuradio/Second-Sky-cover.png"
+    },
+    {
+      "Name": "Language x Unfold (Nurture Live edit)",
+      "Artist": "Porter Robinson",
+      "StreamUrl": "https://public.alyxia.dev/uwuradio/Language-X-Unfold-Nurture-Live.mp3",
+      "Album": "Nurture Live",
+      "ArtUrl": "https://public.alyxia.dev/uwuradio/Second-Sky-cover.png"
+    },
+    {
+      "Name": "Unfold (Nurture Live edit)",
+      "Artist": "Porter Robinson",
+      "StreamUrl": "https://public.alyxia.dev/uwuradio/Unfold-Nurture-Live.mp3",
+      "Album": "Nurture Live",
+      "ArtUrl": "https://public.alyxia.dev/uwuradio/Second-Sky-cover.png"
     },
     {
       "Name": "fullmoon lullaby",
