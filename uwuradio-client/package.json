@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@microsoft/signalr": "^7.0.0",
-    "howler": "^2.2.3",
     "solid-js": "^1.5.1",
     "unocss": "^0.46.5"
   }
