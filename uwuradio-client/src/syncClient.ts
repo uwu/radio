@@ -3,6 +3,7 @@ import { currentTimestamp } from "./util";
 import { play, preload, seekTo } from "./audio";
 import { createSignal } from "solid-js";
 import { serverUrl } from "./constants";
+import { cacheImage } from "./imgCache";
 
 export interface Song {
   name: string;
@@ -70,6 +71,7 @@ export default class SyncClient {
       this.#nextStarts[1](startTime);
 
       preload(this.#next[0]()!.dlUrl!);
+      cacheImage(this.#next[0]()!.artUrl!);
 
       setTimeout(() => {
         this.#current[1](this.#next[0]());
