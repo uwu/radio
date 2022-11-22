@@ -2,7 +2,6 @@ import { createSignal, createMemo, createEffect } from "solid-js";
 
 const audioCtx = new AudioContext();
 const audioGain = audioCtx.createGain();
-audioGain.gain.value = 0.01;
 let audioSource: AudioBufferSourceNode;
 
 let startTime: number;
@@ -10,10 +9,11 @@ let startSeek: number;
 
 const songs: Record<string, Promise<AudioBuffer>> = {};
 
-export const [volume, setVolume] = createSignal(1);
+export const [volume, setVolume] = createSignal(JSON.parse(localStorage.getItem("volume") ?? "1"));
 
 createEffect(() => {
   audioGain.gain.value = volume();
+  localStorage.setItem("volume", volume().toString());
 });
 
 const prettyFormatTime = (time: number) =>
