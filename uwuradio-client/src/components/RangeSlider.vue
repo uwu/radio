@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-nocheck TypeScript is actually wrong. I'm not joking.
 import { computed } from "vue";
 
 const props = defineProps(["modelValue"]);
