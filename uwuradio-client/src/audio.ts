@@ -1,4 +1,4 @@
-import { createSignal, createMemo, createEffect } from "solid-js";
+import { ref, computed, watchEffect } from "vue";
 
 const audioCtx = new AudioContext();
 const audioGain = audioCtx.createGain();
@@ -9,52 +9,56 @@ let startSeek: number;
 
 const songs: Record<string, Promise<AudioBuffer>> = {};
 
-export const [volume, setVolume] = createSignal(JSON.parse(localStorage.getItem("volume") ?? "1"));
+export const volume = ref(JSON.parse(localStorage.getItem("volume") ?? "1"));
 
-createEffect(() => {
-	audioGain.gain.value = volume();
-	localStorage.setItem("volume", volume().toString());
+watchEffect(() => {
+  audioGain.gain.value = volume.value;
+  localStorage.setItem("volume", volume.value.toString());
 });
 
-const prettyFormatTime = (time: number) => `${~~(time / 60)}:${(~~(time % 60)).toString().padStart(2, "0")}`;
+const prettyFormatTime = (time: number) =>
+  `${~~(time / 60)}:${(~~(time % 60)).toString().padStart(2, "0")}`;
 
-const [seek, setSeek] = createSignal<number>();
+const seek = ref<number>();
 export { seek };
-export const prettySeek = createMemo(() => prettyFormatTime(seek()!));
+export const prettySeek = computed(() => prettyFormatTime(seek.value!));
 
-setInterval(() => setSeek(Math.min(audioCtx.currentTime - startTime + startSeek, getDuration())), 100);
+setInterval(
+  () => (seek.value = Math.min(audioCtx.currentTime - startTime + startSeek, getDuration())),
+  100,
+);
 
 export const seekTo = (seek: number) => {
-	startSeek = seek;
-	audioSource?.start(0, seek);
+  startSeek = seek;
+  audioSource?.start(0, seek);
 };
 
 export const getDuration = () => audioSource?.buffer?.duration ?? 0;
 export const prettyDuration = () => prettyFormatTime(getDuration());
 
 async function loadAudio(url: string) {
-	const response = await fetch(url);
-	const arrayBuffer = await response.arrayBuffer();
-	const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-	return audioBuffer;
+  const response = await fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+  return audioBuffer;
 }
 
 export async function preload(url: string) {
-	songs[url] = loadAudio(url);
+  songs[url] = loadAudio(url);
 }
 
 export async function play(url: string, seek: number) {
-	const then = new Date();
-	audioSource?.stop();
+  const then = new Date();
+  audioSource?.stop();
 
-	audioSource = new AudioBufferSourceNode(audioCtx, {
-		buffer: await (songs[url] ?? loadAudio(url)),
-	});
+  audioSource = new AudioBufferSourceNode(audioCtx, {
+    buffer: await (songs[url] ?? loadAudio(url)),
+  });
 
-	audioSource.connect(audioGain).connect(audioCtx.destination);
+  audioSource.connect(audioGain).connect(audioCtx.destination);
 
-	seek = seek + (new Date().getTime() - then.getTime()) / 1000;
-	startTime = audioCtx.currentTime;
-	startSeek = seek;
-	audioSource.start(0, seek);
+  seek = seek + (new Date().getTime() - then.getTime()) / 1000;
+  startTime = audioCtx.currentTime;
+  startSeek = seek;
+  audioSource.start(0, seek);
 }

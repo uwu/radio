@@ -1,0 +1,39 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import RangeSlider from "./RangeSlider.vue";
+import { prettySeek, prettyDuration, volume } from "@/audio";
+import { getClient } from "@/syncClient";
+
+const client = getClient();
+
+// @ts-expect-error IT IS COMPLETELY FINE IF UNDEFINED GETS RETURNED, OPTIONAL CHAINING EXISTS PLEASE SHUT THE FUCK UP.
+const quotes = computed(() => client.submitters.get(client.currentSong?.submitter)?.quotes);
+
+const randomQuote = computed(() =>
+  quotes.value?.length ? `"${quotes.value[~~(Math.random() * quotes.value.length)]}"` : "",
+);
+</script>
+
+<template>
+  <div class="flex flex-col items-center justify-between h-full w-full">
+    <span class="text-lg">RADIO.UWU.NETWORK</span>
+    <div class="text-center w-100">
+      <img class="w-100 h-100 pb-2" :src="client.currentSong?.artUrl" />
+      <div class="text-xl">
+        <div>{{ client.currentSong?.name }}</div>
+        <div>by {{ client.currentSong?.artist }}</div>
+      </div>
+      <div class="text-sm">submitted by {{ client.currentSong?.submitter }}</div>
+      <div class="w-full">
+        <div class="mb-4 border-b border-white flex justify-between w-full">
+          <span>{{ prettySeek }}</span>
+          <span>{{ prettyDuration() }}</span>
+        </div>
+        <div class="flex items-center gap-3">VOL <RangeSlider v-model="volume" /></div>
+      </div>
+    </div>
+    <span>
+      {{ randomQuote }}
+    </span>
+  </div>
+</template>

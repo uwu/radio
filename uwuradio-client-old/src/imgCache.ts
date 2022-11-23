@@ -1,10 +1,10 @@
 const cache: Array<HTMLImageElement> = [];
 
 export function cacheImage(url: string) {
-  cache.shift();
+	cache.shift();
 
-  const image = new Image();
-  image.src = url;
+	const image = new Image();
+	image.src = url;
 
-  cache.push(image);
+	cache.push(image);
 }
