@@ -17,14 +17,14 @@ const randomQuote = computed(() =>
 <template>
   <div class="flex flex-col items-center justify-between h-full w-full">
     <span class="text-lg">RADIO.UWU.NETWORK</span>
-    <div class="text-center w-100">
-      <img class="w-100 h-100 pb-2" :src="client.currentSong?.artUrl" />
-      <div class="text-xl">
+    <div class="text-center w-70 md:w-100">
+      <img class="w-70 h-70 pb-2 md:(w-100 h-100)" :src="client.currentSong?.artUrl" />
+      <div class="md:text-xl">
         <div>{{ client.currentSong?.name }}</div>
         <div>by {{ client.currentSong?.artist }}</div>
       </div>
       <div class="text-sm">submitted by {{ client.currentSong?.submitter }}</div>
-      <div class="w-full">
+      <div class="p-5 w-full">
         <div class="mb-4 border-b border-white flex justify-between w-full">
           <span>{{ prettySeek }}</span>
           <span>{{ prettyDuration() }}</span>
@@ -32,7 +32,7 @@ const randomQuote = computed(() =>
         <div class="flex items-center gap-3">VOL <RangeSlider v-model="volume" /></div>
       </div>
     </div>
-    <span>
+    <span class="text-center">
       {{ randomQuote }}
     </span>
   </div>

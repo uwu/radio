@@ -3,7 +3,8 @@ import ChannelLink from "./ChannelLink.vue";
 </script>
 
 <template>
-  <div class="border-r border-white w-80 h-full text-center text-lg flex flex-col">
+  <!-- display-none! here is a TEMPFIX. We'll add a proper menu for this LATER. -->
+  <div class="display-none! md:display-block! border-r border-white w-80 h-full text-center text-lg flex flex-col">
     <div class="border-b border-white">
       <ChannelLink name="global" />
     </div>
