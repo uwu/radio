@@ -1,4 +1,5 @@
 import { ref, computed, watchEffect } from "vue";
+import { setupMediaSession } from "./mediaSession";
 
 const audioCtx = new AudioContext();
 const audioGain = audioCtx.createGain();
@@ -9,7 +10,7 @@ let startSeek: number;
 
 const songs: Record<string, Promise<AudioBuffer>> = {};
 
-export const volume = ref(JSON.parse(localStorage.getItem("volume") ?? "1"));
+export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? "1"));
 
 watchEffect(() => {
   audioGain.gain.value = volume.value;
@@ -48,6 +49,7 @@ export async function preload(url: string) {
 }
 
 export async function play(url: string, seek: number) {
+  setupMediaSession();
   const then = new Date();
   audioSource?.stop();
 
