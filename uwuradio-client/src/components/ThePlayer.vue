@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import RangeSlider from "./RangeSlider.vue";
-import { prettySeek, prettyDuration, volume } from "@/audio";
+import { prettySeek, prettyDuration, volume, getDuration, seek } from "@/audio";
 import { getClient } from "@/syncClient";
 
 const client = getClient();
@@ -25,9 +25,14 @@ const randomQuote = computed(() =>
       </div>
       <div class="text-sm">submitted by {{ client.currentSong?.submitter }}</div>
       <div class="p-5 w-full">
-        <div class="mb-4 border-b border-white flex justify-between w-full">
+        <div class="flex justify-between w-full">
           <span>{{ prettySeek }}</span>
           <span>{{ prettyDuration() }}</span>
+        </div>
+        <div class="w-full mb-4">
+          <div
+            class="h-px bg-white"
+            :style="{ width: (100 * (seek ?? 0)) / getDuration() + '%' }" />
         </div>
         <div class="flex items-center gap-3">VOL <RangeSlider v-model="volume" /></div>
       </div>
