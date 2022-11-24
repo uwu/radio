@@ -5,8 +5,6 @@ import { getClient } from "./syncClient";
 
 export let initalized = false;
 
-const client = getClient();
-
 const audio = new Audio(magic);
 audio.loop = true;
 
@@ -14,6 +12,8 @@ audio.loop = true;
 export function setupMediaSession() {
   if (initalized) return;
   initalized = true;
+
+  const client = getClient();
   audio.play();
 
   watchEffect(() => {
