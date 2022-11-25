@@ -7,9 +7,14 @@ const visible = ref(false);
 
 <template>
   <div class="display-none! md:display-block! absolute top-2 right-3 text-right">
-    <span :class="{ 'cursor-pointer': true, underline: visible }" @click="visible = !visible">history</span>
+    <span :class="{ 'cursor-pointer': true, underline: visible }" @click="visible = !visible"
+      >history</span
+    >
     <ul v-if="visible">
-      <li v-for="(song, index) in history.reverse()" :key="index" :style="{ opacity: history.length - (index) / history.length }">
+      <li
+        v-for="(song, index) in history.reverse()"
+        :key="index"
+        :style="{ opacity: history.length - index / history.length }">
         <span class="display-none">{{ song.artist }} - </span>
         <a :href="song.sourceUrl" class="hover:underline">{{ song.name }}</a>
       </li>
@@ -26,7 +31,7 @@ li:hover {
   opacity: 1 !important;
 }
 
-li:hover>span {
+li:hover > span {
   display: initial;
 }
 </style>
