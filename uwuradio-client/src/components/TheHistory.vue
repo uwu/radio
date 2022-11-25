@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { history } from "@/audio";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const visible = ref(false);
+const reversed = computed(() => [...history].reverse());
 </script>
 
 <template>
@@ -12,7 +13,7 @@ const visible = ref(false);
     >
     <ul v-if="visible">
       <li
-        v-for="(song, index) in history.reverse()"
+        v-for="(song, index) in reversed"
         :key="index"
         :style="{ opacity: history.length - index / history.length }">
         <span class="display-none">{{ song.artist }} - </span>
