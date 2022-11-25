@@ -11,14 +11,7 @@ let startSeek: number;
 
 const songs: Record<string, Promise<AudioBuffer>> = {};
 
-export const history = reactive<
-  Array<
-    {
-      historyId: number;
-    } & Song
-  >
->([]);
-let historyId = 0;
+export const history = reactive<Array<Song>>([]);
 
 export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? "1"));
 
@@ -76,6 +69,6 @@ export async function play(song: Song, seek: number) {
   startSeek = seek;
   audioSource.start(0, seek);
 
-  history.push({ ...song, historyId: historyId++ });
+  history.push(song);
   if (history.length > 10) history.shift();
 }

@@ -3,37 +3,19 @@ import { history } from "@/audio";
 </script>
 
 <template>
-  <TransitionGroup name="history" tag="ul" class="absolute bottom-2 left-3">
+  <ul class="display-none! md:display-block! absolute bottom-2 left-3">
     <li
       v-for="(song, index) in history"
-      :key="song.historyId"
+      :key="index"
       :style="{ opacity: (index + 1) / history.length }">
       {{ song.name }}
-      <span> - {{ song.artist }}</span>
+      <span class="display-none"> - {{ song.artist }}</span>
     </li>
-  </TransitionGroup>
+  </ul>
 </template>
 
 <style>
-li {
-  transition: 0.3s;
-}
-
-li:hover {
-  opacity: 1 !important;
-}
-
-li > span {
-  display: none;
-}
-
 li:hover > span {
   display: initial;
-}
-
-.history-move,
-.history-enter-active,
-.history-leave-active {
-  transition: 0.3s;
 }
 </style>
