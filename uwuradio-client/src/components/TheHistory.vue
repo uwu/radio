@@ -15,6 +15,11 @@ import { history } from "@/audio";
 </template>
 
 <style>
+li:hover {
+  background: black;
+  opacity: 1 !important;
+}
+
 li:hover > span {
   display: initial;
 }
