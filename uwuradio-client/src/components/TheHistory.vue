@@ -8,7 +8,7 @@ import { history } from "@/audio";
       v-for="(song, index) in history"
       :key="index"
       :style="{ opacity: (index + 1) / history.length }">
-      {{ song.name }}
+      <a :href="song.sourceUrl" class="hover:underline">{{ song.name }}</a>
       <span class="display-none"> - {{ song.artist }}</span>
     </li>
   </ul>

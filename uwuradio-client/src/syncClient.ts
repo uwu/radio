@@ -15,6 +15,7 @@ export interface Song {
   name: string;
   artist: string;
   dlUrl?: string;
+  sourceUrl?: string;
   artUrl?: string;
   album?: string;
   submitter: string;
