@@ -78,7 +78,7 @@
       "Artist": "Porter Robinson",
       "StreamUrl": "https://www.youtube.com/watch?v=ctnC6NGNcsk",
       "Album": "Secret Sky 2020 (DJ Mix)",
-      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/a2/e5/05a2e58d-002c-6c9c-dcbc-a2b00793658a/4711099660605.jpg/4096x4096bb.webp"
+      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/5a/fc/44/5afc441b-cc4b-c175-a4fa-c209494b731c/Porter_Robinson_-_Secret_Sky_Set_2020.jpg/4096x4096bb.webp"
     },
     {
       "Name": "Shelter",
@@ -723,6 +723,90 @@
       "StreamUrl": "https://compllege.bandcamp.com/track/encounter-like-a-rendezvous-in-another-world",
       "Album": "Somewhere Not in This World",
       "ArtUrl": "https://coverartarchive.org/release/0773bdd1-77ef-4b5b-b1b9-a47c0881825e/33379985038.jpg"
+    },
+    {
+      "Name": "bluefieldcreator",
+      "Artist": "Taishi (compllege)",
+      "StreamUrl": "https://compllege.bandcamp.com/track/bluefieldcreator",
+      "Album": "Phant",
+      "ArtUrl": "https://f4.bcbits.com/img/a3811248320_10.jpg"
+    },
+    {
+      "Name": "Empty Egg",
+      "Artist": "Nhato",
+      "StreamUrl": "https://compllege.bandcamp.com/track/empty-egg",
+      "Album": "Phant",
+      "ArtUrl": "https://f4.bcbits.com/img/a3811248320_10.jpg"
+    },
+    {
+      "Name": "freeflakes",
+      "Artist": "zts",
+      "StreamUrl": "https://compllege.bandcamp.com/track/freeflakes",
+      "Album": "Phant",
+      "ArtUrl": "https://f4.bcbits.com/img/a3811248320_10.jpg"
+    },
+    {
+      "Name": "Tangency",
+      "Artist": "Taishi (compllege)",
+      "StreamUrl": "https://compllege.bandcamp.com/track/tangency",
+      "Album": "Phant 2",
+      "ArtUrl": "https://f4.bcbits.com/img/a0780740868_10.jpg"
+    },
+    {
+      "Name": "The First Velocity",
+      "Artist": "Taishi (compllege)",
+      "StreamUrl": "https://compllege.bandcamp.com/track/the-first-velocity",
+      "Album": "Phant 2",
+      "ArtUrl": "https://f4.bcbits.com/img/a0780740868_10.jpg"
+    },
+    {
+      "Name": "Apparition of Solid",
+      "Artist": "Taishi (compllege)",
+      "StreamUrl": "https://compllege.bandcamp.com/track/apparition-of-solid",
+      "Album": "Phant 2",
+      "ArtUrl": "https://f4.bcbits.com/img/a0780740868_10.jpg"
+    },
+    {
+      "Name": "Dream to the East",
+      "Artist": "Taishi (compllege)",
+      "StreamUrl": "https://compllege.bandcamp.com/track/dream-to-the-east",
+      "Album": "Phant 2",
+      "ArtUrl": "https://f4.bcbits.com/img/a0780740868_10.jpg"
+    },
+    {
+      "Name": "Bird Eyes",
+      "Artist": "Nhato",
+      "StreamUrl": "https://compllege.bandcamp.com/track/bird-eyes",
+      "Album": "Phant 2",
+      "ArtUrl": "https://f4.bcbits.com/img/a0780740868_10.jpg"
+    },
+    {
+      "Name": "Telling the World",
+      "Artist": "Nhato",
+      "StreamUrl": "https://compllege.bandcamp.com/track/telling-the-world",
+      "Album": "Phant 2",
+      "ArtUrl": "https://f4.bcbits.com/img/a0780740868_10.jpg"
+    },
+    {
+      "Name": "Unterhimmel",
+      "Artist": "Taishi (compllege)",
+      "StreamUrl": "https://compllege.bandcamp.com/track/unterhimmel",
+      "Album": "Phant 3",
+      "ArtUrl": "https://f4.bcbits.com/img/a3138466225_10.jpg"
+    },
+    {
+      "Name": "Dear Eternity",
+      "Artist": "Nhato",
+      "StreamUrl": "https://compllege.bandcamp.com/track/dear-eternity",
+      "Album": "Phant 3",
+      "ArtUrl": "https://f4.bcbits.com/img/a3138466225_10.jpg"
+    },
+    {
+      "Name": "horizon effect",
+      "Artist": "zts",
+      "StreamUrl": "https://compllege.bandcamp.com/track/horizon-effect",
+      "Album": "Phant 3",
+      "ArtUrl": "https://f4.bcbits.com/img/a3138466225_10.jpg"
     }
   ]
 }
