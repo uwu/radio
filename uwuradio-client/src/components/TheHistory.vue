@@ -15,7 +15,7 @@ const reversed = computed(() => [...history].reverse());
       <li
         v-for="(song, index) in reversed"
         :key="index"
-        :style="{ opacity: history.length - index / history.length }">
+        :style="{ opacity: 1 - index / reversed.length }">
         <span class="display-none">{{ song.artist }} - </span>
         <a :href="song.sourceUrl" class="hover:underline">{{ song.name }}</a>
       </li>
