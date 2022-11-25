@@ -1,26 +1,32 @@
 <script setup lang="ts">
 import { history } from "@/audio";
+import { ref } from "vue";
+
+const visible = ref(false);
 </script>
 
 <template>
-  <ul class="display-none! md:display-block! absolute bottom-2 left-3">
-    <li
-      v-for="(song, index) in history"
-      :key="index"
-      :style="{ opacity: (index + 1) / history.length }">
-      <a :href="song.sourceUrl" class="hover:underline">{{ song.name }}</a>
-      <span class="display-none"> - {{ song.artist }}</span>
-    </li>
-  </ul>
+  <div class="display-none! md:display-block! absolute top-2 right-3 text-right">
+    <span :class="{ 'cursor-pointer': true, underline: visible }" @click="visible = !visible">history</span>
+    <ul v-if="visible">
+      <li v-for="(song, index) in history.reverse()" :key="index" :style="{ opacity: history.length - (index) / history.length }">
+        <span class="display-none">{{ song.artist }} - </span>
+        <a :href="song.sourceUrl" class="hover:underline">{{ song.name }}</a>
+      </li>
+    </ul>
+  </div>
 </template>
 
-<style>
-li:hover {
+<style scoped>
+li {
   background: black;
+}
+
+li:hover {
   opacity: 1 !important;
 }
 
-li:hover > span {
+li:hover>span {
   display: initial;
 }
 </style>
