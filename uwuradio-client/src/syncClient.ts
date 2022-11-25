@@ -86,7 +86,7 @@ export default class SyncClient {
         this.#nextStarts.value = undefined;
 
         const correction = Math.min(-(startTime - currentTimestamp()), 0);
-        play(this.#current.value!.dlUrl!, correction);
+        play(this.#current.value!, correction);
       }, 1000 * (startTime - currentTimestamp()));
     },
     ReceiveState: (
@@ -100,7 +100,7 @@ export default class SyncClient {
       this.#next.value = nextSong;
       this.#nextStarts.value = nextStart;
 
-      play(this.#current.value!.dlUrl!, this.seekPos.value!);
+      play(this.#current.value!, this.seekPos.value!);
     },
     ReceiveSeekPos: (currentStarted: number) => {
       // TODO: i guess emit events, like this should only really be used if we drop connection

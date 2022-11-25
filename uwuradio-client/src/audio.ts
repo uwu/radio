@@ -1,5 +1,6 @@
-import { ref, computed, watchEffect } from "vue";
+import { ref, reactive, computed, watchEffect } from "vue";
 import { setupMediaSession } from "./mediaSession";
+import type { Song } from "./syncClient";
 
 const audioCtx = new AudioContext();
 const audioGain = audioCtx.createGain();
@@ -9,6 +10,15 @@ let startTime: number;
 let startSeek: number;
 
 const songs: Record<string, Promise<AudioBuffer>> = {};
+
+export const history = reactive<
+  Array<
+    {
+      historyId: number;
+    } & Song
+  >
+>([]);
+let historyId = 0;
 
 export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? "1"));
 
@@ -45,16 +55,18 @@ async function loadAudio(url: string) {
 }
 
 export async function preload(url: string) {
-  songs[url] = loadAudio(url);
+  return (songs[url] = loadAudio(url));
 }
 
-export async function play(url: string, seek: number) {
-  setupMediaSession();
+export async function play(song: Song, seek: number) {
   const then = new Date();
+  setupMediaSession();
   audioSource?.stop();
 
+  const url = song.dlUrl!;
+
   audioSource = new AudioBufferSourceNode(audioCtx, {
-    buffer: await (songs[url] ?? loadAudio(url)),
+    buffer: await (songs[url] ?? preload(url)),
   });
 
   audioSource.connect(audioGain).connect(audioCtx.destination);
@@ -63,4 +75,7 @@ export async function play(url: string, seek: number) {
   startTime = audioCtx.currentTime;
   startSeek = seek;
   audioSource.start(0, seek);
+
+  history.push({ ...song, historyId: historyId++ });
+  if (history.length > 10) history.shift();
 }

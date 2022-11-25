@@ -1,6 +1,6 @@
 import magic from "@/assets/magic.mp3";
 import { watchEffect } from "vue";
-import { getDuration, seek, volume } from "./audio";
+import { getDuration, seek } from "./audio";
 import { getClient } from "./syncClient";
 
 export let initalized = false;
@@ -22,10 +22,11 @@ export function setupMediaSession() {
         title: client.currentSong?.name,
         artist: client.currentSong?.artist,
         album: client.currentSong?.album,
-        artwork: client.currentSong?.artUrl !== undefined ? [{ src: client.currentSong?.artUrl! }] : [],
+        artwork:
+          client.currentSong?.artUrl !== undefined ? [{ src: client.currentSong?.artUrl! }] : [],
       });
     });
-    
+
     // Seperate effect since this is called every second
     watchEffect(() => {
       if (!isNaN(seek.value ?? 0)) {

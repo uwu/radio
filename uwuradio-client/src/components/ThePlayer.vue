@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import RangeSlider from "./RangeSlider.vue";
+import TheHistory from "./TheHistory.vue";
 import { prettySeek, prettyDuration, volume, getDuration, seek } from "@/audio";
 import { getClient } from "@/syncClient";
 
@@ -15,7 +16,7 @@ const randomQuote = computed(() =>
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-between h-full w-full">
+  <div class="flex flex-col items-center justify-between h-full w-full relative">
     <span class="text-lg">RADIO.UWU.NETWORK</span>
     <div class="text-center w-70 md:w-100">
       <img class="w-70 h-70 pb-2 md:(w-100 h-100)" :src="client.currentSong?.artUrl" />
@@ -40,5 +41,6 @@ const randomQuote = computed(() =>
     <span class="text-center">
       {{ randomQuote }}
     </span>
+    <TheHistory />
   </div>
 </template>
