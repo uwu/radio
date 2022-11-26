@@ -86,6 +86,41 @@
       "StreamUrl": "https://youtu.be/ezPvIPFTXMA",
       "ArtUrl": "https://coverartarchive.org/release-group/923d5ba6-7eee-3bce-bcb2-c913b2bd69d4/front",
       "Album": "Weezer (Green)"
+    },
+    {
+      "Name": "Kodama",
+      "Artist": "20syl",
+      "StreamUrl": "https://youtu.be/Mqbw7CUVWhM"
+    },
+    {
+      "Name": "Helping Hands",
+      "Artist": "fizzd",
+      "StreamUrl": "https://youtu.be/13olG6ClJ6E",
+      "Album": "Rhythm Doctor OST"
+    },
+    {
+      "Name": "Sleeping Powder",
+      "Artist": "Gorillaz",
+      "StreamUrl": "https://youtu.be/z_jSUtov4Lk",
+      "Album": "Humanz"
+    },
+    {
+      "Name": "M1 A1",
+      "Artist": "Gorillaz",
+      "StreamUrl": "https://youtu.be/HWvPWQCWbsU",
+      "Album": "Gorillaz"
+    },
+    {
+      "Name": "5/4",
+      "Artist": "Gorillaz",
+      "StreamUrl": "https://youtu.be/SaqUBaD_nn4",
+      "Album": "Gorillaz"
+    },
+    {
+      "Name": "On Melancholy Hill",
+      "Artist": "Gorillaz",
+      "StreamUrl": "https://youtube.com/BGn2oo-0Dqc",
+      "Album": "Plastic Beach"
     }
   ]
 }
