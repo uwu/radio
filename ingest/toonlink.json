@@ -90,35 +90,41 @@
     {
       "Name": "Kodama",
       "Artist": "20syl",
+      "ArtUrl": "https://i.imgur.com/mrex6CP.png",
       "StreamUrl": "https://youtu.be/Mqbw7CUVWhM"
     },
     {
       "Name": "Helping Hands",
       "Artist": "fizzd",
+      "ArtUrl": "https://i.imgur.com/zisLKtS.png",
       "StreamUrl": "https://youtu.be/13olG6ClJ6E",
       "Album": "Rhythm Doctor OST"
     },
     {
       "Name": "Sleeping Powder",
       "Artist": "Gorillaz",
+      "ArtUrl": "https://i.imgur.com/UQi5YEI.png",
       "StreamUrl": "https://youtu.be/z_jSUtov4Lk",
       "Album": "Humanz"
     },
     {
       "Name": "M1 A1",
       "Artist": "Gorillaz",
+      "ArtUrl": "https://coverartarchive.org/release/63837159-c9c4-3940-9e76-99c8d32aaccc/20857813307.jpg",
       "StreamUrl": "https://youtu.be/HWvPWQCWbsU",
       "Album": "Gorillaz"
     },
     {
       "Name": "5/4",
       "Artist": "Gorillaz",
+      "ArtUrl": "https://coverartarchive.org/release/63837159-c9c4-3940-9e76-99c8d32aaccc/20857813307.jpg",
       "StreamUrl": "https://youtu.be/SaqUBaD_nn4",
       "Album": "Gorillaz"
     },
     {
       "Name": "On Melancholy Hill",
       "Artist": "Gorillaz",
+      "ArtUrl": "https://coverartarchive.org/release/a00fbef0-2a8f-4f68-b787-e8fe10517155/2562499864.jpg",
       "StreamUrl": "https://youtube.com/BGn2oo-0Dqc",
       "Album": "Plastic Beach"
     }
