@@ -127,6 +127,54 @@
       "ArtUrl": "https://coverartarchive.org/release/a00fbef0-2a8f-4f68-b787-e8fe10517155/2562499864.jpg",
       "StreamUrl": "https://youtube.com/BGn2oo-0Dqc",
       "Album": "Plastic Beach"
+    },
+    {
+      "Name": "Times Like These",
+      "Artist": "The Eden Project",
+      "ArtUrl": "https://i.imgur.com/PFi0UNM.png",
+      "StreamUrl": "https://youtu.be/efTEqGz863k"
+    },
+    {
+      "Name": "take care",
+      "Artist": "EDEN",
+      "ArtUrl": "https://coverartarchive.org/release/d7a8a387-54aa-4612-b978-80d3b135e9e8/26317817026.jpg",
+      "StreamUrl": "https://youtu.be/18DmCcVQhjE",
+      "Album": "vertigo"
+    },
+    {
+      "Name": "love; not wrong (brave)",
+      "Artist": "EDEN",
+      "ArtUrl": "https://coverartarchive.org/release/d7a8a387-54aa-4612-b978-80d3b135e9e8/26317817026.jpg",
+      "StreamUrl": "https://youtu.be/Zq-TCN3aQqM",
+      "Album": "vertigo"
+    },
+    {
+      "Name": "rock + roll",
+      "Artist": "EDEN",
+      "ArtUrl": "https://coverartarchive.org/release/f557723d-90a5-4fff-a1e3-91f7e5eec4a2/27632190965.jpg",
+      "StreamUrl": "https://youtu.be/dQLngV189IU",
+      "Album": "i think you think too much of me"
+    },
+    {
+      "Name": "xo",
+      "Artist": "EDEN",
+      "ArtUrl": "https://coverartarchive.org/release/f557723d-90a5-4fff-a1e3-91f7e5eec4a2/27632190965.jpg",
+      "StreamUrl": "https://youtu.be/tWHBaJHo5og",
+      "Album": "i think you think too much of me"
+    },
+    {
+      "Name": "End Credits",
+      "Artist": "EDEN",
+      "ArtUrl": "https://coverartarchive.org/release/31cd259b-f975-4f79-980f-babf1c87b5ec/27715045667.jpg",
+      "StreamUrl": "https://youtu.be/0pVABElms84",
+      "Album": "End Credits"
+    },
+    {
+      "Name": "Wake Up",
+      "Artist": "EDEN",
+      "ArtUrl": "https://coverartarchive.org/release/31cd259b-f975-4f79-980f-babf1c87b5ec/27715045667.jpg",
+      "StreamUrl": "https://youtu.be/YthChN1Wq8M",
+      "Album": "End Credits"
     }
   ]
 }
