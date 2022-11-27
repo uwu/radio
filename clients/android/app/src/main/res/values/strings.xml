@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Uwu Radio</string>
+
+    <string name="home_title">RADIO.UWU.NETWORK</string>
+    <string name="home_loading">Loading…</string>
+    <string name="home_song_name">%1$s</string>
+    <string name="home_song_artist">by %1$s</string>
+    <string name="home_song_submission">submitted by %1$s</string>
+    <string name="home_song_quote">\"%1$s\"</string>
+</resources>
