@@ -36,11 +36,13 @@ jobs:
         name: Sign the APK
         id: signing
         with:
-          releaseDirectory: clients/android/app/release
+          releaseDirectory: clients/android/app/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.KEYHASH }}
           alias: ${{ secrets.KEYALIAS }}
           keyStorePassword: ${{ secrets.KEYSTOREPASSWORD }}
           keyPassword: ${{ secrets.KEYPASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "33.0.0"
 
       - name: Upload the APK
         uses: actions/upload-artifact@v2
