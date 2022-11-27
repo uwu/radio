@@ -30,10 +30,20 @@ jobs:
         run: |
           cd clients/android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleRelease
+          
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign the APK
+        id: signing
+        with:
+          releaseDirectory: app/release
+          signingKeyBase64: ${{ secrets.KEYHASH }}
+          alias: ${{ secrets.KEYALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTOREPASSWORD }}
+          keyPassword: ${{ secrets.KEYPASSWORD }}
 
       - name: Upload the APK
         uses: actions/upload-artifact@v2
         with:
-          name: mauth
-          path: clients/android/app/build/outputs/apk/debug/app-debug.apk
+          name: uwuradio
+          path: ${{steps.signing.outputs.signedReleaseFile}}
