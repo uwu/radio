@@ -32,18 +32,19 @@ jobs:
           chmod +x gradlew
           ./gradlew assembleRelease
           
-      - uses: r0adkll/sign-android-release@v1
+      - uses: ilharp/sign-android-release@v1
         name: Sign the APK
         id: signing
         with:
-          releaseDirectory: clients/android/app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.KEYHASH }}
-          alias: ${{ secrets.KEYALIAS }}
+          releaseDir: clients/android/app/build/outputs/apk/release
+          signingKey: ${{ secrets.KEYHASH }}
+          keyAlias: ${{ secrets.KEYALIAS }}
           keyStorePassword: ${{ secrets.KEYSTOREPASSWORD }}
           keyPassword: ${{ secrets.KEYPASSWORD }}
+          buildToolsVersion: 33.0.0
 
       - name: Upload the APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: uwuradio
-          path: ${{steps.signing.outputs.signedReleaseFile}}
+          path: ${{steps.signing.outputs.signedFile}}
