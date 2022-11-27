@@ -15,10 +15,10 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.CachePolicy
 import coil.request.ImageRequest
+import network.uwu.radio.R
 import network.uwu.radio.ui.component.SeekBar
 import network.uwu.radio.ui.component.Text
 import network.uwu.radio.ui.theme.UwuRadioTheme
-import network.uwu.radio.R
 import network.uwu.radio.ui.viewmodel.HomeViewModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -35,16 +35,18 @@ fun HomeScreen(
         ) {
             Box(
                 modifier = Modifier
-										.fillMaxWidth()
-										.padding(12.dp),
+                    .fillMaxWidth()
+                    .padding(12.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(stringResource(R.string.home_title), style = UwuRadioTheme.typography.title)
             }
             val borderColor = UwuRadioTheme.colorScheme.onBackground
-            Canvas(modifier = Modifier
-                .fillMaxWidth()
-                .height(Dp.Hairline)) {
+            Canvas(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(Dp.Hairline)
+            ) {
                 drawLine(
                     color = borderColor,
                     start = Offset(0f, 0f),
@@ -61,7 +63,10 @@ fun HomeScreen(
         ) {
             when (viewModel.loading) {
                 true -> {
-                    Text(stringResource(id = R.string.home_loading), style = UwuRadioTheme.typography.title)
+                    Text(
+                        stringResource(id = R.string.home_loading),
+                        style = UwuRadioTheme.typography.title
+                    )
                 }
                 false -> {
                     Column(
@@ -79,10 +84,10 @@ fun HomeScreen(
                                     .aspectRatio(1f / 1f)
                                     .border(Dp.Hairline, UwuRadioTheme.colorScheme.onBackground),
                                 model = ImageRequest.Builder(LocalContext.current)
-																		.data(viewModel.artUrl)
-																		.diskCachePolicy(CachePolicy.ENABLED)
-																		.diskCacheKey(viewModel.artUrl)
-																		.build(),
+                                    .data(viewModel.artUrl)
+                                    .diskCachePolicy(CachePolicy.ENABLED)
+                                    .diskCacheKey(viewModel.artUrl)
+                                    .build(),
                                 contentDescription = null,
                             )
                             Column(
@@ -95,11 +100,17 @@ fun HomeScreen(
                                     style = UwuRadioTheme.typography.title.copy(textAlign = TextAlign.Center)
                                 )
                                 Text(
-                                    text = stringResource(R.string.home_song_artist, viewModel.artist),
+                                    text = stringResource(
+                                        R.string.home_song_artist,
+                                        viewModel.artist
+                                    ),
                                     style = UwuRadioTheme.typography.subtitle.copy(textAlign = TextAlign.Center)
                                 )
                                 Text(
-                                    text = stringResource(R.string.home_song_submission, viewModel.submitter),
+                                    text = stringResource(
+                                        R.string.home_song_submission,
+                                        viewModel.submitter
+                                    ),
                                     style = UwuRadioTheme.typography.label.copy(textAlign = TextAlign.Center)
                                 )
                             }

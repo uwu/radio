@@ -5,8 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel(
-) : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private var _totalTime: Long = 0
     private var _currentTime: Long = 0

@@ -79,7 +79,10 @@ class MainActivity : ComponentActivity() {
             mainRepository.observeSongData()
                 .onEach {
                     mediaController.addMediaItem(it.first.toMediaItem())
-                    mediaController.seekTo(0, (((System.currentTimeMillis() / 1000) - it.first.startTime) * 1000))
+                    mediaController.seekTo(
+                        0,
+                        (((System.currentTimeMillis() / 1000) - it.first.startTime) * 1000)
+                    )
                     mediaController.prepare()
                     mediaController.play()
 

@@ -122,9 +122,17 @@ class UwuRadioSyncServiceImpl(
             val subscription = hubConnection.on(
                 "ReceiveState",
                 { currentSong, currentStartTime, nextSong, nextStartTime ->
-                    trySend(ReceiveStateData(currentSong, currentStartTime, nextSong, nextStartTime))
+                    trySend(
+                        ReceiveStateData(
+                            currentSong,
+                            currentStartTime,
+                            nextSong,
+                            nextStartTime
+                        )
+                    )
                 },
-                ApiSong::class.java, Long::class.java, ApiSong::class.java, Long::class.java)
+                ApiSong::class.java, Long::class.java, ApiSong::class.java, Long::class.java
+            )
 
             awaitClose {
                 subscription.unsubscribe()
