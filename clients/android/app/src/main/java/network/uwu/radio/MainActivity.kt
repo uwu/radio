@@ -162,7 +162,7 @@ class MainActivity : ComponentActivity() {
                     .setTitle(songName)
                     .setExtras(Bundle().apply {
                         putString("SUBMITTER_NAME", submitterName)
-                        putString("SUBMITTER_QUOTE", submitterQuote ?: "")
+                        putString("SUBMITTER_QUOTE", submitterQuote)
                     })
                     .build()
             )
