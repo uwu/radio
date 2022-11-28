@@ -942,18 +942,130 @@
       "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/50/65/75/5065755b-b4c5-d094-ec15-92b475b0ec30/artwork.jpg/4096x4096bb.webp"
     },
     {
-      "Name": "Heal",
+      "Name": "heal",
       "Artist": "driftcat",
       "StreamUrl": "https://www.youtube.com/watch?v=0uEeW-svtK0",
       "Album": "All Nighter, Vol. 6",
       "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/f2/95/c8/f295c85b-e494-4d34-7554-ab5d8f03adb7/192650106994_cover.jpg/316x316bb.webp"
     },
     {
-      "Name": "Puzzle",
+      "Name": "puzzle",
       "Artist": "driftcat",
       "StreamUrl": "https://www.youtube.com/watch?v=DQSOvmx_Cco",
-      "Album": "Puzzle",
+      "Album": "puzzle",
       "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/29/b6/8d/29b68dc1-c09a-e443-80ed-ea3d2c0f2f86/artwork.jpg/316x316bb.webp"
+    },
+    {
+      "Name": "thē kĭñg",
+      "Artist": "Enter Shikari",
+      "StreamUrl": "https://www.youtube.com/watch?v=krKSt_4Vs1I",
+      "Album": "Nothing is True & Everything is Possible",
+      "ArtUrl": "https://coverartarchive.org/release/325f3271-69fe-483a-9a52-948b34c0d009/26050056765-500.jpg"
+    },
+    {
+      "Name": "Everybody",
+      "Artist": "DON BROCO",
+      "StreamUrl": "https://www.youtube.com/watch?v=O4nqsMk3HQc",
+      "Album": "Technology",
+      "ArtUrl": "https://coverartarchive.org/release/a6b318a1-dd8e-4119-a034-093d6b5eefa5/19016032913.jpg"
+    },
+    {
+      "Name": "I Am Truth - Remastered",
+      "Artist": "The Gentle Men",
+      "StreamUrl": "https://www.youtube.com/watch?v=E62e9KRhf04",
+      "Album": "The Evolution of Tears",
+      "ArtUrl": "https://coverartarchive.org/release-group/3c68709f-2acb-4a9c-9bd6-a12212d27ea2/front"
+    },
+    {
+      "Name": "Real to Me - Remastered",
+      "Artist": "The Gentle Men",
+      "StreamUrl": "https://www.youtube.com/watch?v=eqbaf0MQdoY",
+      "Album": "The Evolution of Tears",
+      "ArtUrl": "https://coverartarchive.org/release-group/3c68709f-2acb-4a9c-9bd6-a12212d27ea2/front"
+    },
+    {
+      "Name": "\"DEVILS NEVER CRY\"(スタッフロール)",
+      "Artist": "Capcom Sound Team",
+      "StreamUrl": "https://www.youtube.com/watch?v=xti_6Bzpa8A",
+      "Album": "デビル メイ クライ 3 オリジナル・サウンドトラック",
+      "ArtUrl": "https://coverartarchive.org/release/4b974c0c-a5ce-4942-a140-1a5971e908ea/27561819108.jpg"
+    },
+    {
+      "Name": "When Humanity Is Gone",
+      "Artist": "Veonity",
+      "StreamUrl": "https://www.youtube.com/watch?v=0flq02sD0_g",
+      "Album": "Into the Void",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music71/v4/ec/56/78/ec5678be-f504-3f67-f7a1-527ec83bef2d/760137970927.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Without You (The Rebirth) [feat. Totally Enormous Extinct Dinosaurs]",
+      "Artist": "Dillon Francis",
+      "StreamUrl": "https://www.youtube.com/watch?v=Y2ScWPLxkZA",
+      "Album": "Without You (Remixes)",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Features/v4/27/6a/18/276a18ea-7484-b2f2-0e2e-ce78b32286a2/dj.pxzxgsuj.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "The Distance",
+      "Artist": "Totally Enormous Extinct Dinosaurs",
+      "StreamUrl": "https://www.youtube.com/watch?v=FHCsgpaI7Bs",
+      "Album": "The Distance",
+      "ArtUrl": "https://is2-ssl.mzstatic.com/image/thumb/Music115/v4/50/f1/46/50f146be-f401-79b4-9359-7ec118167110/5060913705565.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "A Dream I have",
+      "Artist": "Totally Enormous Extinct Dinosaurs",
+      "StreamUrl": "https://www.youtube.com/watch?v=6oTApgJcwH8",
+      "Album": "The Distance",
+      "ArtUrl": "https://is2-ssl.mzstatic.com/image/thumb/Music115/v4/50/f1/46/50f146be-f401-79b4-9359-7ec118167110/5060913705565.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Blood In The Snow",
+      "Artist": "Totally Enormous Extinct Dinosaurs",
+      "StreamUrl": "https://www.youtube.com/watch?v=tmCpIGIRvzw",
+      "Album": "When the Lights Go",
+      "ArtUrl": "https://is2-ssl.mzstatic.com/image/thumb/Video122/v4/be/d0/de/bed0deb2-5b95-ebdd-8e0b-17eeb2ea8b84/Job52148891-e81a-42e1-949e-53909697dbfc-135981469-PreviewImage_preview_image_nonvideo_sdr-Time1662164212860.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Don't You Forget About Me",
+      "Artist": "Totally Enormous Extinct Dinosaurs",
+      "StreamUrl": "https://www.youtube.com/watch?v=aRkwl2d_0Bo",
+      "Album": "Don't You Forget About Me",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music115/v4/f1/cd/ce/f1cdcee1-6839-661e-bbab-162cc26c3523/5054526150522_1.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Household Goods",
+      "Artist": "Totally Enormous Extinct Dinosaurs",
+      "StreamUrl": "https://www.youtube.com/watch?v=A_asfZhfTBk",
+      "Album": "Trouble",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/07/af/36/07af36dc-ab41-2a55-6f48-ec4803c22e1a/00602527929484.rgb.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Your Love",
+      "Artist": "Totally Enormous Extinct Dinosaurs",
+      "StreamUrl": "https://www.youtube.com/watch?v=2wttcQKlI9I",
+      "Album": "Trouble",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/07/af/36/07af36dc-ab41-2a55-6f48-ec4803c22e1a/00602527929484.rgb.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Walking On Water (feat. Totally Enormous Extinct Dinosaurs)",
+      "Artist": "The Knocks, Totally Enormous Extinct Dinosaurs",
+      "StreamUrl": "https://www.youtube.com/watch?v=BsbAMyFJrKs",
+      "Album": "HISTORY",
+      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Video126/v4/69/b7/7a/69b77ab2-852c-58b2-1284-d9119e737081/Job854e8d41-c971-4b15-b87c-ccc59626eaec-131133459-PreviewImage_preview_image_nonvideo_sdr-Time1650649722887.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Reviver",
+      "Artist": "Lane 8",
+      "StreamUrl": "https://www.youtube.com/watch?v=wGLxgrxC5sg",
+      "Album": "Reviver",
+      "ArtUrl": "https://is2-ssl.mzstatic.com/image/thumb/Music116/v4/9d/b2/aa/9db2aa20-af7c-cb72-ca45-2f6a706e39fd/5039060702390.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Reviver - Totally Enormous Extinct Dinosaurs Remix",
+      "Artist": "Totally Enormous Extinct Dinosaurs",
+      "StreamUrl": "https://www.youtube.com/watch?v=yX4bGXAwsig",
+      "Album": "Reviver (Totally Enormous Extinct Dinosaurs Remix)",
+      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/70/cd/a2/70cda254-3671-0e34-70c2-2403b9efaa61/5039060816097.png/4096x4096bb.webp"
     }
   ]
 }
