@@ -933,6 +933,27 @@
       "StreamUrl": "https://compllege.bandcamp.com/track/entomind",
       "Album": "In the Usual Motion",
       "ArtUrl": "https://f4.bcbits.com/img/a3101056985_10.jpg"
+    },
+    {
+      "Name": "rolling girl",
+      "Artist": "driftcat",
+      "StreamUrl": "https://www.youtube.com/watch?v=rjwMB8XenlE",
+      "Album": "rolling girl",
+      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/50/65/75/5065755b-b4c5-d094-ec15-92b475b0ec30/artwork.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Heal",
+      "Artist": "driftcat",
+      "StreamUrl": "https://www.youtube.com/watch?v=0uEeW-svtK0",
+      "Album": "All Nighter, Vol. 6",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/f2/95/c8/f295c85b-e494-4d34-7554-ab5d8f03adb7/192650106994_cover.jpg/316x316bb.webp"
+    },
+    {
+      "Name": "Puzzle",
+      "Artist": "driftcat",
+      "StreamUrl": "https://www.youtube.com/watch?v=DQSOvmx_Cco",
+      "Album": "Puzzle",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/29/b6/8d/29b68dc1-c09a-e443-80ed-ea3d2c0f2f86/artwork.jpg/316x316bb.webp"
     }
   ]
 }
