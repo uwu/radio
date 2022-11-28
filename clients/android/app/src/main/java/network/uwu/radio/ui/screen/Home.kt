@@ -126,7 +126,7 @@ fun HomeScreen(
                             )
                         }
                         Text(
-                            text = stringResource(R.string.home_song_quote, viewModel.quote),
+                            text = viewModel.quote?.let { stringResource(R.string.home_song_quote, it) } ?: "",
                             style = UwuRadioTheme.typography.body.copy(textAlign = TextAlign.Center)
                         )
                     }

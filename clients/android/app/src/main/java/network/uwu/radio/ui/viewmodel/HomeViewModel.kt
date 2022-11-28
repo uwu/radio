@@ -22,7 +22,7 @@ class HomeViewModel : ViewModel() {
     var submitter by mutableStateOf("")
         private set
 
-    var quote by mutableStateOf("")
+    var quote by mutableStateOf<String?>(null)
         private set
 
     var totalTime by mutableStateOf("")
@@ -53,7 +53,7 @@ class HomeViewModel : ViewModel() {
         this.submitter = submitter
     }
 
-    fun updateQuote(quote: String) {
+    fun updateQuote(quote: String?) {
         this.quote = quote
     }
 

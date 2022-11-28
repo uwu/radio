@@ -19,3 +19,19 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# KotlinX Serialization
+-keepclasseswithmembers class **.*$Companion {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+-if class **.*$Companion {
+  kotlinx.serialization.KSerializer serializer(...);
+}
+-keepclassmembers class <1>.<2> {
+  <1>.<2>$Companion Companion;
+}
+
+# Microsoft SignalR Java API sucks
+-keep class network.uwu.radio.network.dto.ApiSong { *; }
+-keep class com.microsoft.signalr.** { *; }
+-keep interface com.microsoft.signalr.** { *; }

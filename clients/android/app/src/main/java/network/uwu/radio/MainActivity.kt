@@ -58,7 +58,7 @@ class MainActivity : ComponentActivity() {
                         homeViewModel.updateName(mediaItem.mediaMetadata.title.toString())
                         homeViewModel.updateArtworkUrl(mediaItem.mediaMetadata.artworkUri!!.toString())
                         homeViewModel.updateArtist(mediaItem.mediaMetadata.artist.toString())
-                        homeViewModel.updateQuote(mediaItem.mediaMetadata.extras!!.getString("SUBMITTER_QUOTE")!!)
+                        homeViewModel.updateQuote(mediaItem.mediaMetadata.extras!!.getString("SUBMITTER_QUOTE"))
                         homeViewModel.updateSubmitter(mediaItem.mediaMetadata.extras!!.getString("SUBMITTER_NAME")!!)
                     }
                 }
@@ -162,7 +162,7 @@ class MainActivity : ComponentActivity() {
                     .setTitle(songName)
                     .setExtras(Bundle().apply {
                         putString("SUBMITTER_NAME", submitterName)
-                        putString("SUBMITTER_QUOTE", submitterQuote ?: "")
+                        putString("SUBMITTER_QUOTE", submitterQuote)
                     })
                     .build()
             )
