@@ -12,7 +12,7 @@ let startSeek: number;
 const songs: Record<string, Promise<AudioBuffer>> = {};
 
 export const history = reactive<Array<Song>>([]);
-
+window.hist = history;
 export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? "1"));
 
 watchEffect(() => {
@@ -70,5 +70,5 @@ export async function play(song: Song, seek: number) {
   audioSource.start(0, seek);
 
   history.push(song);
-  if (history.length > 10) history.shift();
+  if (history.length > 25) history.shift();
 }

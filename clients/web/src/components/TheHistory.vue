@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { history } from "@/audio";
 import { computed, ref } from "vue";
+import { useMediaQuery } from "@vueuse/core";
 
 const visible = ref(false);
-const reversed = computed(() => [...history].reverse());
+const isDesktop = useMediaQuery("(min-width: 768px)");
+const reversed = computed(() => history.slice(isDesktop.value ? -10 : 0).reverse());
 
 const visibleClasses = computed(() => Object.fromEntries([
   "w-screen", "h-screen",
   "md:w-auto", "md:h-auto",
-  "bg-black", "md:bg-none",
+  "bg-black", "md:bg-transparent",
 ].map((e) => [e, visible.value])));
 </script>
 
