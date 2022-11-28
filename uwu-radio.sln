@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwuRadio.Server", "UwuRadio.Server\UwuRadio.Server.csproj", "{B4297D6C-CDF3-436B-8778-E65A18879C77}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "uwuradio-client", "uwuradio-client", "{0EF37811-4251-43EF-8D45-51CE1F53934E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "uwuradio-client", "clients\web", "{0EF37811-4251-43EF-8D45-51CE1F53934E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
