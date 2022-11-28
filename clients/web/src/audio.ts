@@ -12,7 +12,6 @@ let startSeek: number;
 const songs: Record<string, Promise<AudioBuffer>> = {};
 
 export const history = reactive<Array<Song>>([]);
-window.hist = history;
 export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? "1"));
 
 watchEffect(() => {
