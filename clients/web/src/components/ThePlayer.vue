@@ -19,7 +19,7 @@ const randomQuote = computed(() =>
 <template>
   <div class="flex flex-col items-center justify-between h-full w-full relative">
     <TheClients />
-    <span class="text-lg z-1">RADIO.UWU.NETWORK</span>
+    <span class="text-lg z-1 mt-2">RADIO.UWU.NETWORK</span>
     <div class="text-center w-70 md:w-100" id="player">
       <img class="w-70 h-70 pb-2 md:(w-100 h-100)" :src="client.currentSong?.artUrl" />
       <div class="md:text-xl">
