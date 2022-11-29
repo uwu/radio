@@ -978,6 +978,27 @@
       "Album": "Single",
       "StreamUrl": "https://youtu.be/z6sRV-xEZ0Q",
       "ArtUrl": "https://coverartarchive.org/release/3b842f84-0407-4a08-b303-2e6b1db8921c/31628613108-1200.jpg"
+    },
+    {
+      "Name": "Morphogenetic Sorrow",
+      "Artist": "Shinji Hosoe",
+      "Album": "9 Hours, 9 Persons, 9 Doors Soundtrack",
+      "StreamUrl": "https://youtu.be/U71iXAp0WRk",
+      "ArtUrl": "https://coverartarchive.org/release/147986a6-de52-4aaa-8cbb-d833f8e8f2b4/1772386629-1200.jpg"
+    },
+    {
+      "Name": "Shadow World",
+      "Artist": "Shihoko Hirata",
+      "Album": "Persona 4 Golden Soundtrack",
+      "StreamUrl": "https://youtu.be/-oIWGlbl92k",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/a9/22/52/a9225213-486e-4820-89b8-0c02c1247b6e/049648_J.jpg/1024x1024bf.webp"
+    },
+    {
+      "Name": "Pursuing My True Self",
+      "Artist": "Shihoko Hirata",
+      "Album": "Persona 4 Soundtrack",
+      "StreamUrl": "https://youtu.be/Ul0sp782hIQ",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e0290c2debb7c722be63a5eba40"
     }
   ]
 }
