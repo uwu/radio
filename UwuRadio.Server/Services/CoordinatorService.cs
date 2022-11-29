@@ -10,7 +10,7 @@ public class CoordinatorService : IDisposable
 {
 	private readonly DownloadService      _dlService;
 	private readonly IHubContext<SyncHub> _hubCtxt;
-	private readonly QueueService         _queueService;
+	private readonly PickerService         _pickerService;
 
 	private bool _haltThread;
 
@@ -19,14 +19,14 @@ public class CoordinatorService : IDisposable
 	public Instant CurrentStarted;
 	public Song    Next;
 
-	public CoordinatorService(IHubContext<SyncHub> hubCtxt, DownloadService dlService, QueueService queueService)
+	public CoordinatorService(IHubContext<SyncHub> hubCtxt, DownloadService dlService, PickerService pickerService)
 	{
 		_hubCtxt      = hubCtxt;
 		_dlService    = dlService;
-		_queueService = queueService;
+		_pickerService = pickerService;
 
-		Current = _queueService.SelectSong();
-		Next    = _queueService.SelectSong();
+		Current = _pickerService.SelectSong();
+		Next    = _pickerService.SelectSong();
 
 		// run this explicitly on another thread
 		Task.Run(StartBgThread);
@@ -70,7 +70,7 @@ public class CoordinatorService : IDisposable
 			{
 				Helpers.Log(nameof(CoordinatorService), "Encountered blacklisted song, skipping it!");
 
-				Next = _queueService.SelectSong();
+				Next = _pickerService.SelectSong();
 				_dlService.EnsureDownloaded(Next);
 
 				// wait for the song to either succeed or fail to download
@@ -98,7 +98,7 @@ public class CoordinatorService : IDisposable
 				CurrentEnds    = CurrentEnds.Plus(info.Length);
 
 				Current = Next;
-				Next    = _queueService.SelectSong();
+				Next    = _pickerService.SelectSong();
 
 				// clients are only told about the next when we need to handle preloading
 				// however we will *need* to know the length of the song and be able to serve it at preload time

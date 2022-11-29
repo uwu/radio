@@ -15,11 +15,11 @@ They are the beating heart of the backend and:
   * submitters
   * quotes
 
-## QueueService
+## PickerService
 
-The queue service has two jobs:
- - Keep track of the current randomised queue
- - Select songs from the queue when requested, and shuffle the queue once used
+The picker service has two jobs:
+ - Keep track of some historical data required for its algorithm
+ - Select songs (fake!) randomly when requested
 
 ## DownloadService
 

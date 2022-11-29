@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 
 // our own custom services
 builder.Services.AddSingleton<DataService>();
-builder.Services.AddSingleton<QueueService>();
+builder.Services.AddSingleton<PickerService>();
 builder.Services.AddSingleton<DownloadService>();
 builder.Services.AddSingleton<CoordinatorService>();
 
