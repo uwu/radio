@@ -51,6 +51,8 @@ export default class SyncClient {
   #currentStarted = ref<number>();
   #nextStarts = ref<number>();
 
+  #interval?: number;
+
   get currentSong() {
     return this.#current.value;
   }
@@ -76,19 +78,7 @@ export default class SyncClient {
     BroadcastNext: (nextSong: Song, startTime: number) => {
       this.#next.value = nextSong;
       this.#nextStarts.value = startTime;
-
-      preload(this.#next.value!.dlUrl!);
-      cacheImage(this.#next.value!.artUrl!);
-
-      setTimeout(() => {
-        this.#current.value = this.#next.value;
-        this.#currentStarted.value = this.#nextStarts.value;
-        this.#next.value = undefined;
-        this.#nextStarts.value = undefined;
-
-        const correction = Math.min(-(startTime - currentTimestamp()), 0);
-        play(this.#current.value!, correction);
-      }, 1000 * (startTime - currentTimestamp()));
+      this.#scheduleNext(startTime)
     },
     ReceiveState: (
       currentSong: Song,
@@ -102,6 +92,8 @@ export default class SyncClient {
       this.#nextStarts.value = nextStart;
 
       play(this.#current.value!, this.seekPos.value!);
+      if (this.#nextStarts.value! - currentTimestamp() < 30)
+        this.#scheduleNext(this.#nextStarts.value!);
     },
     ReceiveSeekPos: (currentStarted: number) => {
       // TODO: i guess emit events, like this should only really be used if we drop connection
@@ -144,6 +136,22 @@ export default class SyncClient {
 
   requestSeekPos() {
     this.#connection?.invoke("RequestSeekPos");
+  }
+
+  #scheduleNext(startTime: number) {
+    preload(this.#next.value!.dlUrl!);
+    cacheImage(this.#next.value!.artUrl!);
+
+    clearInterval(this.#interval);
+    this.#interval = setTimeout(() => {
+      this.#current.value = this.#next.value;
+      this.#currentStarted.value = this.#nextStarts.value;
+      this.#next.value = undefined;
+      this.#nextStarts.value = undefined;
+
+      const correction = Math.min(-(startTime - currentTimestamp()), 0);
+      play(this.#current.value!, correction);
+    }, 1000 * (startTime - currentTimestamp()));
   }
 }
 

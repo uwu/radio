@@ -47,7 +47,7 @@ async function loadAudio(url: string) {
 }
 
 export async function preload(url: string) {
-  return (songs[url] = loadAudio(url));
+  return (songs[url] ??= loadAudio(url));
 }
 
 export async function play(song: Song, seek: number) {
