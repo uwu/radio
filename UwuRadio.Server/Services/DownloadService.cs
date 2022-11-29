@@ -43,10 +43,6 @@ public class DownloadService : IDisposable
 
 	private async void StartDownloading()
 	{
-		// dont knock the excessive logging, this log right here (or absence thereof)
-		// found an issue where this loop would run once and once *only*
-		Helpers.Log(nameof(DownloadService), "Entered download loop");
-		
 		_isCurrentlyDownloading = true;
 		while (_downloadQueue.TryDequeue(out var song))
 		{
@@ -64,8 +60,6 @@ public class DownloadService : IDisposable
 		}
 
 		_isCurrentlyDownloading = false;
-		
-		Helpers.Log(nameof(DownloadService), "Finished download loop");
 	}
 
 	private static async Task<SongFileInfo> DownloadSong(string url)
@@ -97,12 +91,7 @@ public class DownloadService : IDisposable
 		};
 
 		var process = Process.Start(startOptions);
-		
-		// honest-to-god this caused the download to hang for some songs (solar system disco was one)
-		// reading the stream async to the end effectively does this anyway ;)
-		//await process!.WaitForExitAsync();
-		
-		var stdOut = (await process!.StandardOutput.ReadToEndAsync()).Split("\n");
+		var stdOut  = (await process!.StandardOutput.ReadToEndAsync()).Split("\n");
 
 		var jsonOut = stdOut[0];
 		var rawPath = stdOut[1];

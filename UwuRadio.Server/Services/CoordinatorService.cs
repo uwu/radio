@@ -58,7 +58,7 @@ public class CoordinatorService : IDisposable
 
 		var preloadHandled = false;
 
-		Helpers.Log(nameof(CoordinatorService), "Initial cache done, ready to serve clients, entering poll loop");
+		Helpers.Log(nameof(CoordinatorService), "Ready to serve clients");
 		
 		while (!_haltThread)
 		{
@@ -68,7 +68,7 @@ public class CoordinatorService : IDisposable
 			// if there is a blacklisted song, keep skipping until a song downloads
 			if (_dlService.IsBlacklisted(Next))
 			{
-				Helpers.Log(nameof(CoordinatorService), "Encountered download blacklisted song, skipping it!");
+				Helpers.Log(nameof(CoordinatorService), "Encountered blacklisted song, skipping it!");
 
 				Next = _queueService.SelectSong();
 				_dlService.EnsureDownloaded(Next);
@@ -107,7 +107,7 @@ public class CoordinatorService : IDisposable
 				_dlService.EnsureDownloaded(Next);
 
 				Helpers.Log(nameof(CoordinatorService),
-							$"loop: advanced queue, current song: {Current.Name}, next song: {Next.Name}");
+							$"Aadvanced queue, current song: {Current.Name}, next song: {Next.Name}");
 
 				continue;
 			}
@@ -120,7 +120,7 @@ public class CoordinatorService : IDisposable
 													 new TransitSong(Next),
 													 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 				
-				Helpers.Log(nameof(CoordinatorService), $"loop: broadcasted next song ({Next.Name}) to clients");
+				Helpers.Log(nameof(CoordinatorService), $"Broadcasted next song ({Next.Name}) to clients");
 				
 				continue;
 			}
