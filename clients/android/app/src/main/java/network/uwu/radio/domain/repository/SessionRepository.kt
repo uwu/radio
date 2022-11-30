@@ -8,7 +8,7 @@ import network.uwu.radio.network.service.ClientState
 import network.uwu.radio.network.service.UwuRadioApiService
 import network.uwu.radio.network.service.UwuRadioSyncService
 
-interface MainRepository {
+interface SessionRepository {
 
     suspend fun connectSyncClient()
 
@@ -24,10 +24,10 @@ interface MainRepository {
 
 }
 
-class MainRepositoryImpl(
+class SessionRepositoryImpl(
     private val uwuRadioSyncService: UwuRadioSyncService,
     private val uwuRadioApiService: UwuRadioApiService
-) : MainRepository {
+) : SessionRepository {
 
     override suspend fun connectSyncClient() {
         uwuRadioSyncService.connect()
