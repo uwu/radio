@@ -60,6 +60,8 @@ jobs:
           wget "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux_aarch64"
           
           mv yt-dlp_linux_aarch64 dist/yt-dlp
+          
+          sed -i "s/<RAND-KEY>/${{ secrets.RAND_ORG_KEY }}/" dist/constants.json
 
       - name: SCP dist to server
         uses: appleboy/scp-action@master

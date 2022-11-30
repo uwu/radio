@@ -5,5 +5,5 @@
   "YtDlpPath": "yt-dlp",
   "CacheFolder": "DL_CACHE",
   "IngestFolder": "ingest",
-  "RandomOrgApiKey": "<REPLACED_IN_CI>"
+  "RandomOrgApiKey": "<RAND-KEY>"
 }
