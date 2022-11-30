@@ -4,5 +4,6 @@
   "ServerDlUrl": "https://radio.alyxia.dev/api/file/",
   "YtDlpPath": "yt-dlp",
   "CacheFolder": "DL_CACHE",
-  "IngestFolder": "ingest"
+  "IngestFolder": "ingest",
+  "RandomOrgApiKey": "<REPLACED_IN_CI>"
 }

@@ -4,5 +4,6 @@
   "ServerDlUrl": "http://localhost:5002/api/file/",
   "YtDlpPath": "/usr/bin/yt-dlp",
   "CacheFolder": "DL_CACHE",
-  "IngestFolder": "../ingest"
+  "IngestFolder": "../ingest",
+  "RandomOrgApiKey": null
 }

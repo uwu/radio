@@ -14,7 +14,8 @@ public class Constants
 	private const string ConstantsPath = "constants.json";
 #endif
 
-	public static Constants C = JsonSerializer.Deserialize<Constants>(File.OpenRead(ConstantsPath))!;
+	public static Constants
+		C = JsonSerializer.Deserialize<Constants>(File.OpenRead(ConstantsPath))!;
 
 	/// <summary>
 	///     Time between this song ending and the next being queued to start
@@ -45,4 +46,9 @@ public class Constants
 	///     Where the raw data is stored
 	/// </summary>
 	public string IngestFolder { get; set; } = null!;
+
+	/// <summary>
+	///		API key for random.org
+	/// </summary>
+	public string? RandomOrgApiKey { get; set; }
 }
