@@ -23,7 +23,7 @@ jobs:
     - name: Publish
       run: |
         cd UwuRadio.Server
-        dotnet publish -r linux-arm64 --self-contained -c Release
+        dotnet publish -r linux-x64 --self-contained -c Release
         
         mkdir ../dist
         cp bin/Release/net*/*/publish/UwuRadio.Server ../dist
@@ -33,7 +33,7 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: linux-arm64-build
+        name: linux-x64-build
         path: dist
 
   deploy:
@@ -47,7 +47,7 @@ jobs:
         
       - uses: actions/download-artifact@v3
         with:
-          name: linux-arm64-build
+          name: linux-x64-build
           path: dotnet-dist
       
       - name: Prepare dist directory
@@ -57,9 +57,9 @@ jobs:
           
           cp dotnet-dist/* dist
           
-          wget "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux_aarch64"
+          wget "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux"
           
-          mv yt-dlp_linux_aarch64 dist/yt-dlp
+          mv yt-dlp_linux dist/yt-dlp
           
           sed -i "s/<RAND-KEY>/${{ secrets.RAND_ORG_KEY }}/" dist/constants.json
 
