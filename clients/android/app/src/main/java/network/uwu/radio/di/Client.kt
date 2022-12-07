@@ -18,7 +18,7 @@ import org.koin.dsl.module
 
 val clientModule = module {
     single {
-        HubConnectionBuilder.create("https://radio.alyxia.dev/sync")
+        HubConnectionBuilder.create("https://radio.k6.tf/sync")
             .build()
     }
     single {

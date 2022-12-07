@@ -31,7 +31,7 @@ class UwuRadioApiServiceImpl(
     }
 
     companion object {
-        private const val BASE_URL = "https://radio.alyxia.dev/api"
+        private const val BASE_URL = "https://radio.k6.tf/api"
 
         fun getDataUrl(): String {
             return "$BASE_URL/data"

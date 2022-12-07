@@ -1,1 +1,1 @@
-export const serverUrl = "https://radio.alyxia.dev/";
+export const serverUrl = "https://radio.k6.tf/";
