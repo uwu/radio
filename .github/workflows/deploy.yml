@@ -71,7 +71,7 @@ jobs:
           key: ${{ secrets.SSHPRIVKEY }}
           rm: true
           source: "dist/*"
-          target: "~/UWU_RADIO_SERVER_TMP"
+          target: "/tmp/uwuradio-tmp"
 
 
       - name: Restart instance on server
@@ -81,21 +81,15 @@ jobs:
           username: ${{ secrets.SSHUSER }}
           key: ${{ secrets.SSHPRIVKEY }}
           script: |
-            killall UwuRadio.Server -w || true
+            systemctl stop uwuradio-server.service
 
-            rm -rf ~/UWU_RADIO_SERVER
-            mv ~/UWU_RADIO_SERVER_TMP ~/UWU_RADIO_SERVER
-
-            mkdir ~/UWU_RADIO_LOGS || true
+            rm -rf ~/uwuradio-server
+            mv /tmp/uwuradio-tmp ~/uwuradio-server
             
-            cd ~/UWU_RADIO_SERVER
+            cd ~/uwuradio-server
             mv dist/* .
             rmdir dist
             chmod +x UwuRadio.Server
             chmod +x yt-dlp
             
-            LOGROOT="../UWU_RADIO_LOGS/LOG_$(date +'%Y-%m-%dT%H:%M:%SZ')"
-            LOGFILE=$LOGROOT.txt
-            LOGERR=$LOGROOT.err.txt
-            
-            nohup ./UwuRadio.Server > $LOGFILE 2> $LOGERR < /dev/null &
+            systemctl start uwuradio-server.service
