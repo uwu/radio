@@ -81,7 +81,7 @@ jobs:
           username: ${{ secrets.SSHUSER }}
           key: ${{ secrets.SSHPRIVKEY }}
           script: |
-            systemctl stop uwuradio-server.service
+            sudo systemctl stop uwuradio-server.service
 
             rm -rf ~/uwuradio-server
             mv /tmp/uwuradio-tmp ~/uwuradio-server
@@ -92,4 +92,4 @@ jobs:
             chmod +x UwuRadio.Server
             chmod +x yt-dlp
             
-            systemctl start uwuradio-server.service
+            sudo systemctl start uwuradio-server.service
