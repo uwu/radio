@@ -35,7 +35,9 @@ export default class SyncClient {
 
     const connection = new HubConnectionBuilder()
       .withUrl(this.#apiRes("/sync"))
-      .withAutomaticReconnect(new Array(10).fill(15000))
+      .withAutomaticReconnect({
+        nextRetryDelayInMilliseconds: () => 15000,
+      })
       .build();
 
     this.#connect(connection);
@@ -78,7 +80,7 @@ export default class SyncClient {
     BroadcastNext: (nextSong: Song, startTime: number) => {
       this.#next.value = nextSong;
       this.#nextStarts.value = startTime;
-      this.#scheduleNext(startTime)
+      this.#scheduleNext(startTime);
     },
     ReceiveState: (
       currentSong: Song,
@@ -109,7 +111,7 @@ export default class SyncClient {
     this.#connection = connection;
 
     connection.onclose(() => (this.#connection = undefined));
-    connection.onreconnected(this.updateState);
+    connection.onreconnected(() => this.updateState());
 
     await connection.start();
 
