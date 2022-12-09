@@ -935,27 +935,6 @@
       "ArtUrl": "https://f4.bcbits.com/img/a3101056985_10.jpg"
     },
     {
-      "Name": "rolling girl",
-      "Artist": "driftcat",
-      "StreamUrl": "https://www.youtube.com/watch?v=rjwMB8XenlE",
-      "Album": "rolling girl",
-      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/50/65/75/5065755b-b4c5-d094-ec15-92b475b0ec30/artwork.jpg/4096x4096bb.webp"
-    },
-    {
-      "Name": "heal",
-      "Artist": "driftcat",
-      "StreamUrl": "https://www.youtube.com/watch?v=0uEeW-svtK0",
-      "Album": "All Nighter, Vol. 6",
-      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/f2/95/c8/f295c85b-e494-4d34-7554-ab5d8f03adb7/192650106994_cover.jpg/316x316bb.webp"
-    },
-    {
-      "Name": "puzzle",
-      "Artist": "driftcat",
-      "StreamUrl": "https://www.youtube.com/watch?v=DQSOvmx_Cco",
-      "Album": "puzzle",
-      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/29/b6/8d/29b68dc1-c09a-e443-80ed-ea3d2c0f2f86/artwork.jpg/316x316bb.webp"
-    },
-    {
       "Name": "thē kĭñg",
       "Artist": "Enter Shikari",
       "StreamUrl": "https://www.youtube.com/watch?v=krKSt_4Vs1I",
@@ -1066,6 +1045,237 @@
       "StreamUrl": "https://www.youtube.com/watch?v=yX4bGXAwsig",
       "Album": "Reviver (Totally Enormous Extinct Dinosaurs Remix)",
       "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music112/v4/70/cd/a2/70cda254-3671-0e34-70c2-2403b9efaa61/5039060816097.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Ignite (cloudfield Edit)",
+      "Artist": "Zedd",
+      "StreamUrl": "https://soundcloud.com/cloudfieldmusic/zedd-ignite-cloudfield-bootleg",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000190120859-a6dokk-t500x500.jpg"
+    },
+    {
+      "Name": "Fantasy (ft. Reichuu)",
+      "Artist": "cloudfield",
+      "StreamUrl": "https://soundcloud.com/cloudfieldmusic/fantasy-ft-reichuu",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000306608463-kp3crm-t500x500.jpg"
+    },
+    {
+      "Name": "Dream (ft. Hiroto X Luna)",
+      "Artist": "cloudfield",
+      "StreamUrl": "https://soundcloud.com/cloudfieldmusic/dream-ft-hiroto-x-luna",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000306608532-ddjt9v-t500x500.jpg"
+    },
+    {
+      "Name": "Bloom (ft. Resting Tofu)",
+      "Artist": "cloudfield",
+      "StreamUrl": "https://soundcloud.com/cloudfieldmusic/bloom-ft-resting-tofu",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000310794507-nbsxng-t500x500.jpg"
+    },
+    {
+      "Name": "Artificial (ft. Reichuu)",
+      "Artist": "cloudfield",
+      "StreamUrl": "https://soundcloud.com/cloudfieldmusic/artificial-ft-reichuu",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000331248309-pdtapc-t500x500.jpg"
+    },
+    {
+      "Name": "Uncertainty",
+      "Artist": "CLOUD_",
+      "StreamUrl": "https://soundcloud.com/cloudunderscore/uncertainty",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000448519398-awy5ds-t500x500.jpg"
+    },
+    {
+      "Name": "Awaken (ft. Reichuu)",
+      "Artist": "CLOUD_",
+      "StreamUrl": "https://soundcloud.com/cloudunderscore/awaken",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000451004946-dx3mcz-t500x500.jpg"
+    },
+    {
+      "Name": "Awaken (ft. Reichuu) [Flay! Remix]",
+      "Artist": "CLOUD_",
+      "StreamUrl": "https://soundcloud.com/itsflay/echo-rmx",
+      "Album": "",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/92/69/65/926965ad-ebc9-6b8d-9437-ce9d98ae373b/193436082785_cover.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "I don't wanna change (CLOUD_ edit)",
+      "Artist": "senses.",
+      "StreamUrl": "https://soundcloud.com/cloudunderscore/senses-i-dont-wanna-change-cloud_edit",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-mr6XcngQyJYT794v-hxVe1A-t500x500.jpg"
+    },
+    {
+      "Name": "Fantasy",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/cloudiermusic/fantasy",
+      "Album": "Cloudier's Legacy",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000475035297-jeh4yy-t500x500.jpg"
+    },
+    {
+      "Name": "A Centimetre Apart",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/cloudiermusic/a-centimetre-apart",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000475034487-s3f7dn-t500x500.jpg"
+    },
+    {
+      "Name": "A Centimetre Apart (Sylrica Remix)",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/sylrica/cloudier-a-centimetre-apart-sylrica-remix-1",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-wdHKMAidWy030eqd-qdyzTw-t500x500.jpg"
+    },
+    {
+      "Name": "A Centimetre Apart (blindboy Remix)",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/imblindboy/acentimetreapart",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000655804576-o98oit-t500x500.jpg"
+    },
+    {
+      "Name": "A Centimetre Apart (Winterberry Remix)",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://www.youtube.com/watch?v=dmK2zM9S_To",
+      "Album": "",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music113/v4/82/c1/65/82c16517-1398-db0c-c17f-816cb6f6e934/053000214359_cover.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Our Story",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/cloudiermusic/our-story",
+      "Album": "Cloudier's Legacy",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000506740182-wj173z-t500x500.jpg"
+    },
+    {
+      "Name": "FEAR;life",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/cloudiermusic/fearlife",
+      "Album": "Cloudier's Legacy",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000537686553-czjnjq-t500x500.jpg"
+    },
+    {
+      "Name": "Daydream",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/cloudiermusic/cloudier-daydream",
+      "Album": "Cloudier's Legacy",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-M69lFdPkrcebUKx7-7lgIzg-t500x500.jpg"
+    },
+    {
+      "Name": "Warm",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/cloudiermusic/warm",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-HoQAv1vEYhqHMzYe-gEUG0g-t500x500.jpg"
+    },
+    {
+      "Name": "Set Free",
+      "Artist": "Cloudier",
+      "StreamUrl": "https://soundcloud.com/cloudiermusic/set-free",
+      "Album": "Cloudier's Legacy",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-M69lFdPkrcebUKx7-7lgIzg-t500x500.jpg"
+    },
+    {
+      "Name": "Blooming Day (ft. Cloudier)",
+      "Artist": "Alyx",
+      "StreamUrl": "https://www.youtube.com/watch?v=uSNxn_eBLrA",
+      "Album": "Blooming Day",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/6b/4a/35/6b4a3584-c4f2-0fcd-c453-1717d7dd5ffb/5059033758650_cover.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Journey",
+      "Artist": "Moon Jelly",
+      "StreamUrl": "https://www.youtube.com/watch?v=5xTU7B4WRYg",
+      "Album": "",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/7b/71/d8/7b71d82d-38c3-3c63-e26d-a7cf2d32b555/artwork.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Positions",
+      "Artist": "Ariana Grande",
+      "StreamUrl": "https://soundcloud.com/mididuck/positions-sofuu-cover",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-QIijrw5Jt6Y40kTA-nWG4yQ-t500x500.jpg"
+    },
+    {
+      "Name": "echo",
+      "Artist": "driftcat",
+      "StreamUrl": "https://soundcloud.com/driftcat/echo",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-RI2C8oVwpSJSLzTP-pjZp4g-t500x500.jpg"
+    },
+    {
+      "Name": "abyss",
+      "Artist": "driftcat",
+      "StreamUrl": "https://soundcloud.com/driftcat/abyss",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-wvDeV9yqgPRPlM42-ty4tdQ-t500x500.jpg"
+    },
+    {
+      "Name": "heal",
+      "Artist": "driftcat",
+      "StreamUrl": "https://www.youtube.com/watch?v=0uEeW-svtK0",
+      "Album": "All Nighter, Vol. 6",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/f2/95/c8/f295c85b-e494-4d34-7554-ab5d8f03adb7/192650106994_cover.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Into the Light (driftcat Remix)",
+      "Artist": "Skybreak & Ehallz ft. ALLEYCVT",
+      "StreamUrl": "https://soundcloud.com/skybreakofficial/itl-driftcat",
+      "Album": "Unity (Remixes)",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-e54eIfcgP2Qj7Ben-jCkitA-t500x500.jpg"
+    },
+    {
+      "Name": "rolling girl",
+      "Artist": "driftcat",
+      "StreamUrl": "https://www.youtube.com/watch?v=rjwMB8XenlE",
+      "Album": "rolling girl",
+      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/50/65/75/5065755b-b4c5-d094-ec15-92b475b0ec30/artwork.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "puzzle",
+      "Artist": "driftcat",
+      "StreamUrl": "https://www.youtube.com/watch?v=DQSOvmx_Cco",
+      "Album": "puzzle",
+      "ArtUrl": "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/29/b6/8d/29b68dc1-c09a-e443-80ed-ea3d2c0f2f86/artwork.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "story (unreleased)",
+      "Artist": "driftcat",
+      "StreamUrl": "https://soundcloud.com/mchawaii/driftcat-story-unreleased",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-z3uzlGqXx7pgJZr3-zgjvPw-t500x500.jpg"
+    },
+    {
+      "Name": "Kokoronashi (driftcat cover)",
+      "Artist": "Tyoutyou-P",
+      "StreamUrl": "https://soundcloud.com/mchawaii/kokoronashi-driftcat-cover",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-LDisg7WrvduLVdKr-d2Nrtg-t500x500.jpg"
+    },
+    {
+      "Name": "Irreplaceable",
+      "Artist": "blindboy, mididuck & Sofuu",
+      "StreamUrl": "https://soundcloud.com/mididuck/blindboy-mididuck-sofuu-irreplaceable",
+      "Album": "",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music116/v4/30/07/52/300752d5-e763-ea4b-7c7c-6205e3a56831/artwork.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "DEAD 「 CRT Avenue 」",
+      "Artist": "blindboy",
+      "StreamUrl": "https://soundcloud.com/imblindboy/dead",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-QieGlbGUvc96Q7j4-NefdaA-t500x500.jpg"
+    },
+    {
+      "Name": "find my way 「 vagabond 」 (ft. mididuck & Sofuu)",
+      "Artist": "blindboy",
+      "StreamUrl": "https://soundcloud.com/imblindboy/findmyway",
+      "Album": "",
+      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music122/v4/cd/7e/bd/cd7ebdea-0b0e-9b4d-6d05-44c85b5aaf6c/artwork.jpg/4096x4096bb.webp"
     }
   ]
 }
