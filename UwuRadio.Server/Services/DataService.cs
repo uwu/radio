@@ -41,7 +41,10 @@ public class DataService
 							   .Select(file =>
 								{
 									var txt      = File.ReadAllText(file);
-									var ingested = JsonSerializer.Deserialize<Ingest>(txt);
+									var ingested = JsonSerializer.Deserialize<Ingest>(txt, new JsonSerializerOptions
+									{
+										ReadCommentHandling = JsonCommentHandling.Skip
+									});
 									if (ingested == null || IngestInvalid(ingested))
 										throw new
 											InvalidDataException($"Failure ingesting {file}, ingest did not pass validation.");
