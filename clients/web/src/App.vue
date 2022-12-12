@@ -20,7 +20,9 @@ canAutoplay.audio().then(({ result }: CanAutoplay) => {
   <div class="w-full h-full flex justify-between">
     <template v-if="clicked">
       <TheSidebar />
-      <ThePlayer />
+      <Suspense>
+        <ThePlayer />
+      </Suspense>
     </template>
     <template v-else>
       <div class="grid place-items-center w-full h-full">

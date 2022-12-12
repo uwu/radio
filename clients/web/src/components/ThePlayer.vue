@@ -7,8 +7,7 @@ import { getClient } from "@/syncClient";
 import TheClients from "./TheClients.vue";
 import { timePromise } from "@/util";
 
-await timePromise;
-const client = getClient();
+const client = await timePromise.then(() => getClient());
 
 // @ts-expect-error IT IS COMPLETELY FINE IF UNDEFINED GETS RETURNED, OPTIONAL CHAINING EXISTS PLEASE SHUT THE FUCK UP.
 const quotes = computed(() => client.submitters.get(client.currentSong?.submitter)?.quotes);
