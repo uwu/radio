@@ -68,17 +68,14 @@ public static class Helpers
 
 	private static char[] base60Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx".ToCharArray();
 	private static string ToBase60(this ulong num) {
-		var i = 32;
-		char[] buffer = new char[i];
+		var i = 11; // Hash is garuanteed to always be the same size.
+		char[] result = new char[i];
 		do
 		{
-			buffer[--i] = base60Chars[num % 60];
+			result[--i] = base60Chars[num % 60];
 			num = num / 60;
 		}
 		while (num > 0);
-
-        char[] result = new char[32 - i];
-        Array.Copy(buffer, i, result, 0, 32 - i);
         return new string(result);
 	}
 
