@@ -5,7 +5,9 @@ import TheHistory from "./TheHistory.vue";
 import { prettySeek, prettyDuration, volume, getDuration, seek } from "@/audio";
 import { getClient } from "@/syncClient";
 import TheClients from "./TheClients.vue";
+import { timePromise } from "@/util";
 
+await timePromise;
 const client = getClient();
 
 // @ts-expect-error IT IS COMPLETELY FINE IF UNDEFINED GETS RETURNED, OPTIONAL CHAINING EXISTS PLEASE SHUT THE FUCK UP.
