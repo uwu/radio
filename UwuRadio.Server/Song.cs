@@ -2,7 +2,8 @@ namespace UwuRadio.Server;
 
 public record Song(string Name, string Artist, string StreamUrl, string? ArtUrl, string? Album, string Submitter)
 {
-	public string Id => Name.ToLowerInvariant() + "|" + Artist.ToLowerInvariant();
+	private string? _Id;
+	public string Id => _Id ??= Helpers.ComputeSongId(this);
 }
 
 public record TransitSong(string Name, string Artist, string? DlUrl, string? SourceUrl, string? ArtUrl, string? Album, string Submitter)

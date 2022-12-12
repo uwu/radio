@@ -1,5 +1,7 @@
 using System.Text;
 using NodaTime;
+using HashDepot;
+
 
 namespace UwuRadio.Server;
 
@@ -62,5 +64,27 @@ public static class Helpers
 			Console.Write(p.ToString());
 
 		Console.WriteLine();
+	}
+
+	private static char[] base60Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx".ToCharArray();
+	private static string ToBase60(this ulong num) {
+		var i = 32;
+		char[] buffer = new char[i];
+		do
+		{
+			buffer[--i] = base60Chars[num % 60];
+			num = num / 60;
+		}
+		while (num > 0);
+
+        char[] result = new char[32 - i];
+        Array.Copy(buffer, i, result, 0, 32 - i);
+        return new string(result);
+	}
+
+	public static string ComputeSongId(Song song) {
+		var buffer = Encoding.UTF8.GetBytes(song.Name.ToLowerInvariant() + "|" + song.Artist.ToLowerInvariant());
+		var hash = XXHash.Hash64(buffer);
+		return hash.ToBase60();
 	}
 }
