@@ -18,6 +18,9 @@ public class ApiController : Controller
 	// /api/ping
 	public IActionResult Ping() => Ok("Pong!");
 
+	// /api/time
+	public IActionResult Time() => Json(Helpers.Now().ToUnixTimeSeconds());
+
 	// /api/data
 	public IActionResult Data() => Json(new
 	{

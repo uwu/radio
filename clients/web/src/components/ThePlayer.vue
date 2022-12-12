@@ -18,6 +18,11 @@ const randomQuote = computed(() =>
 
 <template>
   <div class="flex flex-col items-center justify-between h-full w-full relative">
+    <div
+      v-if="client.reconnecting"
+      class="absolute w-full min-h-8 bg-#fedc6c color-black z-2 text-center grid content-center">
+      reconnecting...
+    </div>
     <TheClients />
     <span class="text-lg z-1 mt-2">RADIO.UWU.NETWORK</span>
     <div class="text-center w-70 md:w-100" id="player">

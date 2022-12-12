@@ -1,6 +1,7 @@
 import { ref, reactive, computed, watchEffect } from "vue";
 import { setupMediaSession } from "./mediaSession";
 import type { Song } from "./syncClient";
+import { currentTimestamp } from "./util";
 
 const audioCtx = new AudioContext();
 const audioGain = audioCtx.createGain();
@@ -51,7 +52,7 @@ export async function preload(url: string) {
 }
 
 export async function play(song: Song, seek: number) {
-  const then = new Date();
+  const then = currentTimestamp();
   setupMediaSession();
   audioSource?.stop();
 
@@ -63,7 +64,7 @@ export async function play(song: Song, seek: number) {
 
   audioSource.connect(audioGain).connect(audioCtx.destination);
 
-  seek = seek + (new Date().getTime() - then.getTime()) / 1000;
+  seek = seek + currentTimestamp() - then;
   startTime = audioCtx.currentTime;
   startSeek = seek;
   audioSource.start(0, seek);

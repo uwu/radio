@@ -55,6 +55,8 @@ export default class SyncClient {
 
   #interval?: number;
 
+  reconnecting = false;
+
   get currentSong() {
     return this.#current.value;
   }
@@ -111,7 +113,12 @@ export default class SyncClient {
     this.#connection = connection;
 
     connection.onclose(() => (this.#connection = undefined));
-    connection.onreconnected(() => this.updateState());
+
+    connection.onreconnecting(() => (this.reconnecting = true));
+    connection.onreconnected(() => {
+      this.updateState();
+      this.reconnecting = false;
+    });
 
     await connection.start();
 

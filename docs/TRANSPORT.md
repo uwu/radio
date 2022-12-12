@@ -13,6 +13,7 @@ Object:
 - string name
 - string artist
 - string? dlUrl
+- string? sourceUrl
 - string? artUrl
 - string? album
 - string submitter
@@ -27,6 +28,7 @@ THIS IS IN UTC.
 | Method | Endpoint        | Purpose                   | Resp (success)      | Resp (err)              |
 |--------|-----------------|---------------------------|---------------------|-------------------------|
 | GET    | `/api/ping`     | Debugging                 | `200`: "Pong!"      | N/A                     |
+| GET    | `/api/time`     | Syncing time              | `200`: Timestamp    | N/A                     |
 | GET    | `/api/data`     | Sending ingest to client  | `200`: JSON         | N/A                     |
 | GET    | `/api/file/:id` | Clients downloading songs | `200`: [audio/mpeg] | 503 service unavailable |
 
