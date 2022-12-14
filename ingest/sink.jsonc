@@ -10,28 +10,28 @@
     "I fart in your general direction! Your mother was a hamster and your father smelt of elderberries!",
     "Now, go away, or I shall taunt you a second time!",
 
-		// -- Edsger Dijkstra
+    // -- Edsger Dijkstra
     "Object-oriented programs are offered as alternatives to correct ones.",
 
-		// -- unknown
+    // -- unknown
     "Saying Java is good because it works on all platforms is like saying anal sex is good because it works on all genders.",
 
-		// -- Porter Robinson (Nurture & Spitfire)
+    // -- Porter Robinson (Nurture & Spitfire)
     "It's not the voice of all the others; You've only said it to yourself.",
     "They come to feel like things we're saying to ourselves.",
     "It's so holy, it's so ho—, so holy, so holy-",
     "You're fucking in for it now bitch",
 
-		// -- Mori Calliope
+    // -- Mori Calliope
     "If you quit when you suck, you'll suck forever.",
     "We never forget the fallen, but we move on.",
     "Guh!",
 
-		// -- Ninomae Ina'nis
+    // -- Ninomae Ina'nis
     "Time is also a limited resource, you can't even buy that with money.",
     "<long pause> Tomorrow!",
 
-		// -- Gawr Gura
+    // -- Gawr Gura
     "Oh nyo.",
     "You can't be mad at me... I'm cute!"
   ],
@@ -691,6 +691,83 @@
       "StreamUrl": "https://youtu.be/mcIX5ps6RaA",
       "Album": "Kasai Harcores 2 - All Stars",
       "ArtUrl": "https://coverartarchive.org/release/02e1803c-2cd2-477c-8ad2-d2bdda08e884/27374673794-500.jpg"
+    },
+    {
+      "Name": "Phantom",
+      "Artist": "Justice",
+      "StreamUrl": "https://youtu.be/LoZ8l40RpeE",
+      "Album": "Cross",
+      "ArtUrl": "https://coverartarchive.org/release/9da1a863-f3f2-4618-bdce-f0c88c055ba5/8201721911-500.jpg"
+    },
+    {
+      "Name": "One Minute to Midnight",
+      "Artist": "Justice",
+      "StreamUrl": "https://youtu.be/wXp1C6Byd2E",
+      "Album": "Cross",
+      "ArtUrl": "https://coverartarchive.org/release/9da1a863-f3f2-4618-bdce-f0c88c055ba5/8201721911-500.jpg"
+    },
+    {
+      "Name": "Genesis",
+      "Artist": "Justice",
+      "StreamUrl": "https://youtu.be/VKzWLUQizz8",
+      "Album": "Cross",
+      "ArtUrl": "https://coverartarchive.org/release/9da1a863-f3f2-4618-bdce-f0c88c055ba5/8201721911-500.jpg"
+    },
+    {
+      "Name": "Waters of Nazareth",
+      "Artist": "Justice",
+      "StreamUrl": "https://youtu.be/1SEgoi7kjw8",
+      "Album": "Cross",
+      "ArtUrl": "https://coverartarchive.org/release/9da1a863-f3f2-4618-bdce-f0c88c055ba5/8201721911-500.jpg"
+    },
+    {
+      "Name": "Ok",
+      "Artist": "Madeon",
+      "StreamUrl": "https://youtu.be/PgDMeLEqvYY",
+      "Album": "Adventure",
+      "ArtUrl": "https://coverartarchive.org/release/0c946c9e-33c3-4b75-9ac5-6fd8f8fc56ad/11968625141-500.jpg"
+    },
+    {
+      "Name": "La Lune (feat. Dan Smith)",
+      "Artist": "Madeon",
+      "StreamUrl": "https://youtu.be/g1zQD73w84U",
+      "Album": "Adventure",
+      "ArtUrl": "https://coverartarchive.org/release/0c946c9e-33c3-4b75-9ac5-6fd8f8fc56ad/11968625141-500.jpg"
+    },
+    {
+      "Name": "Imperium",
+      "Artist": "Madeon",
+      "StreamUrl": "https://youtu.be/ng4291cptOk",
+      "Album": "Adventure",
+      "ArtUrl": "https://coverartarchive.org/release/0c946c9e-33c3-4b75-9ac5-6fd8f8fc56ad/11968625141-500.jpg"
+    },
+    {
+      "Name": "Zephyr",
+      "Artist": "Madeon",
+      "StreamUrl": "https://youtu.be/2HZNUMyzhA8",
+      "Album": "Adventure",
+      "ArtUrl": "https://coverartarchive.org/release/0c946c9e-33c3-4b75-9ac5-6fd8f8fc56ad/11968625141-500.jpg"
+    },
+    {
+      "Name": "Home",
+      "Artist": "Madeon",
+      "StreamUrl": "https://youtu.be/c37QGKpouZA",
+      "Album": "Adventure",
+      "ArtUrl": "https://coverartarchive.org/release/0c946c9e-33c3-4b75-9ac5-6fd8f8fc56ad/11968625141-500.jpg"
+    },
+    {
+      "Name": "Icarus",
+      "Artist": "Madeon",
+      "StreamUrl": "https://youtu.be/6WjkO6rOncg",
+      "Album": "Adventure (Deluxe)",
+      "ArtUrl": "https://coverartarchive.org/release/84ed7be8-9892-4379-93a9-452068c1363a/10045529637-500.jpg"
+    },
+    {
+      "Name": "Finale (feat. Nicholas Petricca)",
+      "Artist": "Madeon",
+      "StreamUrl": "https://youtu.be/j0h2u87JwyA",
+      "Album": "Adventure (Deluxe)",
+      "ArtUrl": "https://coverartarchive.org/release/84ed7be8-9892-4379-93a9-452068c1363a/10045529637-500.jpg"
     }
   ]
 }
