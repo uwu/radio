@@ -22,8 +22,9 @@ input {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 1px;
-  background: white;
+  height: 25px;
+  padding: 12px 0;
+  background: white content-box;
 }
 
 input::-webkit-slider-thumb {
