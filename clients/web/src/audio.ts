@@ -69,6 +69,7 @@ export async function play(song: Song, seek: number) {
   startSeek = seek;
   audioSource.start(0, seek);
 
-  history.push(song);
+  // not having .at(-1) makes me sad
+  if (history[history.length - 1] !== song) history.push(song);
   if (history.length > 25) history.shift();
 }
