@@ -148,8 +148,9 @@ export default class SyncClient {
   }
 
   #scheduleNext(startTime: number) {
-    preload(this.#next.value!.dlUrl!);
-    cacheImage(this.#next.value!.artUrl!);
+    if (this.#next.value === undefined) return;
+    preload(this.#next.value.dlUrl!);
+    cacheImage(this.#next.value.artUrl!);
 
     clearInterval(this.#interval);
     this.#interval = setTimeout(() => {
