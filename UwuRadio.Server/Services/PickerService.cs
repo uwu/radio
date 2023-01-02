@@ -9,25 +9,42 @@ public class PickerService
 	private readonly RandomService _randomService;
 	private readonly string?[]     _recentArtists    = new string[5];
 	private readonly string?[]     _recentSubmitters = new string[2];
+
+	public string? Channel;
 	
+	private string PrettyOwnName => nameof(PickerService) + " - " + (Channel ?? "<global>");
+
 	public PickerService(DataService dataService, RandomService randomService)
 	{
-		_dataService        = dataService;
+		_dataService   = dataService;
 		_randomService = randomService;
 	}
 
 	public Song SelectSong()
 	{
+		var failsafe = 0;
+		
 		Song picked;
+
+		bool FailsafeCheck()     => failsafe++ < 1000;
+		bool ChannelCheck()      => Channel != null && picked.Submitter != Channel;
+		bool RecentArtistCheck() => _recentArtists.Contains(picked.Artist);
+
+		bool RecentSubmitterCheck()
+			=> Channel == null && _recentSubmitters.Contains(picked.Submitter);
+
 		do
 		{
 			picked = _dataService.Songs[_randomService.Next(_dataService.Songs.Length)];
 			// These darn humans are too good at spotting patterns where there are none!
-		} while (_recentArtists.Contains(picked.Artist) || _recentSubmitters.Contains(picked.Submitter));
+		} while ((ChannelCheck() || RecentArtistCheck() || RecentSubmitterCheck()) && FailsafeCheck());
 
+		if (failsafe > 1000)
+			Helpers.Log(PrettyOwnName, "hit infinite loop failsafe! Make sure the submitter has enough songs.");
+		
 		Shift(_recentArtists,    picked.Artist);
 		Shift(_recentSubmitters, picked.Submitter);
-		
+
 		return picked;
 	}
 

@@ -18,8 +18,9 @@ internal class Ingest
 /// </summary>
 public class DataService
 {
-	public          Song[]                        Songs   = Array.Empty<Song>();
-	public readonly Dictionary<string, Submitter> Submitters = new();
+	public          Dictionary<string, Song[]>    ChannelsSongs = new();
+	public          Song[]                        Songs         = Array.Empty<Song>();
+	public readonly Dictionary<string, Submitter> Submitters    = new();
 
 	public DataService()
 	{
@@ -52,9 +53,17 @@ public class DataService
 								})
 							   .ToArray();
 
-		Songs = ingests.SelectMany(ingest => ingest.Songs.Select(s => s with { Submitter = ingest.Name })).ToArray();
-
+		ChannelsSongs = new();
+		
 		foreach (var ingest in ingests)
+		{
+			ChannelsSongs[ingest.Name] = ingest.Songs
+											   .Select(s => s with { Submitter = ingest.Name })
+											   .ToArray();
+			
 			Submitters[ingest.Name] = new Submitter(ingest.Name, ingest.PfpUrl, ingest.Quotes);
+		}
+
+		Songs = ChannelsSongs.Values.SelectMany(v => v).ToArray();
 	}
 }

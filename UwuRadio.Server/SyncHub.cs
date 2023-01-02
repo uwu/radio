@@ -10,18 +10,25 @@ namespace UwuRadio.Server;
 /// </summary>
 public class SyncHub : Hub
 {
-	private readonly CoordinatorService _coordinatorService;
+	private readonly CoordServOwnerService _ownerService;
 
-	public SyncHub(CoordinatorService cServ) { _coordinatorService = cServ; }
+	public SyncHub(CoordServOwnerService cServ) => _ownerService = cServ;
 
-	public async Task RequestState() => await Clients.Caller.SendAsync("ReceiveState",
-																	   new TransitSong(_coordinatorService.Current),
-																	   _coordinatorService.CurrentStarted
-																		  .ToUnixTimeSeconds(),
-																	   new TransitSong(_coordinatorService.Next),
-																	   _coordinatorService.CurrentEnds
-																		  .ToUnixTimeSeconds() + Constants.C.BufferTime);
+	public async Task RequestState()
+	{
+		// TODO: support channels correctly
+		var service = _ownerService.GetServiceByChannel();
+		
+		await Clients.Caller.SendAsync("ReceiveState",
+									   new TransitSong(service.Current),
+									   service.CurrentStarted.ToUnixTimeSeconds(),
+									   new TransitSong(service.Next),
+									   service.CurrentEnds.ToUnixTimeSeconds()
+									 + Constants.C.BufferTime);
+	}
 
-	public async Task RequestSeekPos()
-		=> await Clients.Caller.SendAsync("ReceiveSeekPos", _coordinatorService.CurrentStarted.ToUnixTimeSeconds());
+	public async Task RequestSeekPos() => await Clients.Caller.SendAsync("ReceiveSeekPos",
+											  _ownerService.GetServiceByChannel()
+														   .CurrentStarted
+														   .ToUnixTimeSeconds());
 }

@@ -23,39 +23,49 @@ public class DownloadService : IDisposable
 	public void Dispose() => Directory.Delete(Constants.C.CacheFolder, true);
 
 	public bool IsBlacklisted(Song song) => _downloadBlacklist.Contains(song.Id);
-	
+
 	public void EnsureDownloaded(Song song)
 	{
 		if (IsDownloaded(song)) return;
 		if (IsBlacklisted(song)) return;
-		
+		if (IsDownloading(song)) return;
+
 		Helpers.Log(nameof(DownloadService), $"Queued {song.Name} for DL");
 
-		_downloadQueue.Enqueue(song);
-		if (!_isCurrentlyDownloading) StartDownloading();
+		lock (_downloadQueue)
+		{
+			_downloadQueue.Enqueue(song);
+			if (_isCurrentlyDownloading) return;
+			_isCurrentlyDownloading = true;
+		}
+
+		// this is structured weirdly but I want this to be outside of the lock
+		// and the _isCurrentlyDownloading stuff to be inside the lock
+		StartDownloading();
 	}
 
 	public bool IsDownloaded(string id)   => _fileInfos.ContainsKey(id);
 	public bool IsDownloaded(Song   song) => IsDownloaded(song.Id);
+
+	private bool IsDownloading(Song song) => _downloadQueue.Contains(song);
 
 	public SongFileInfo GetFileInfo(string id)   => _fileInfos[id];
 	public SongFileInfo GetFileInfo(Song   song) => GetFileInfo(song.Id);
 
 	private async void StartDownloading()
 	{
-		_isCurrentlyDownloading = true;
 		while (_downloadQueue.TryDequeue(out var song))
 		{
 			try { _fileInfos[song.Id] = await DownloadSong(song.StreamUrl); }
 			catch (Exception e)
 			{
 				Helpers.Log(nameof(DownloadService),
-							$"Caught exception while downloading {song.Name}! Blacklisting from future download attempts.\n"
+						    $"Caught exception while downloading {song.Name}! Blacklisting from future download attempts.\n"
 						  + e);
 				_downloadBlacklist.Add(song.Id);
 				continue;
 			}
-			
+
 			Helpers.Log(nameof(DownloadService), $"Downloaded and cached {song.Name}");
 		}
 
@@ -73,7 +83,7 @@ public class DownloadService : IDisposable
 
 		if (ext != ".mp3")
 			throw new Exception("Incorrect extension after yt-dlp invocation");
-		
+
 		var hash = Helpers.MD5(await File.ReadAllBytesAsync(rawPath));
 
 		var cachePath = Path.Combine(Constants.C.CacheFolder, hash);
