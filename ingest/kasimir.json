@@ -999,6 +999,41 @@
       "Album": "Persona 4 Soundtrack",
       "StreamUrl": "https://youtu.be/Ul0sp782hIQ",
       "ArtUrl": "https://i.scdn.co/image/ab67616d00001e0290c2debb7c722be63a5eba40"
+    },
+    {
+      "Name": "Duvet",
+      "Artist": "bôa",
+      "Album": "Twilight",
+      "StreamUrl": "https://youtu.be/Uoox9fpmDP0",
+      "ArtUrl": "https://coverartarchive.org/release/311ad921-98dc-43d5-ad37-ceba57618f52/882950171-1200.jpg"
+    },
+    {
+      "Name": "Voices of the Chord",
+      "Artist": "Hiroyuki Sawano",
+      "Album": "EIGHTY-SIX ORIGINAL SOUNDTRACK",
+      "StreamUrl": "https://youtu.be/Cxz-W6rNscM",
+      "ArtUrl": "https://coverartarchive.org/release/c4c05d4f-dabb-40b4-84ee-30fc088f2582/29818061815-1200.jpg"
+    },
+    {
+      "Name": "sustain++;",
+      "Artist": "Mili",
+      "Album": "Intrauterine Education",
+      "StreamUrl": "https://youtu.be/CBYxqFR63BQ",
+      "ArtUrl": "https://coverartarchive.org/release/8d00dcc3-e57d-4b06-af39-a066b916042b/26425010692-1200.jpg"
+    },
+    {
+      "Name": "End Like This",
+      "Artist": "Steve Aoki & Yellow Claw ft. RUNN",
+      "Album": "End Like This",
+      "StreamUrl": "https://youtu.be/yk18LbDnDQU",
+      "ArtUrl": "https://coverartarchive.org/release/d7b7b15a-7fe9-46bd-92af-806bc4c616d8/31168341200-1200.jpg"
+    },
+    {
+      "Name": "Immutable",
+      "Artist": "塞壬唱片-MSR, Melissa Kaplan, Robert Wolf",
+      "Album": "Immutable",
+      "ArtUrl": "https://web.hycdn.cn/siren/pic/20210501/01bdad2a0a6876eaee3c23bf0812a73a.png",
+      "StreamUrl": "https://youtu.be/gXhIPGIMK_Q"
     }
   ]
 }
