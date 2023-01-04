@@ -29,15 +29,4 @@ public class SyncHub : Hub
 			service.Channel
 		);
 	}
-
-	public async Task RequestSeekPos(string? channel = null)
-	{
-		var service = _ownerService.GetServiceByChannel(channel);
-
-		await Clients.Caller.SendAsync(
-			"ReceiveSeekPos",
-			service.CurrentStarted.ToUnixTimeSeconds(),
-			service.Channel
-		);
-	}
 }

@@ -155,10 +155,12 @@ public class CoordinatorService : IDisposable
 			 >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
-				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
-													 new TransitSong(Next),
-													 CurrentEnds.ToUnixTimeSeconds()
-												   + Constants.C.BufferTime);
+				await _hubCtxt.Clients.All.SendAsync(
+					"BroadcastNext",
+					new TransitSong(Next),
+					CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime,
+					Channel
+				);
 
 				Helpers.Log(PrettyOwnName, $"Broadcasted next song ({Next.Name}) to clients");
 

@@ -11,9 +11,9 @@ They are the beating heart of the backend and:
 ## DataService
 
 - Load all data off of the disk and be the central source of it
-  * songs
+  * global songs
   * submitters
-  * quotes
+  * channels
 
 ## PickerService
 
@@ -30,7 +30,7 @@ The download service is in charge of:
 
 ## CoordinatorService
 
-This is the big one - it, well, coordinates the entire server.
+This is the big one - it, well, coordinates everything for one channel.
 
 Its jobs:
  - Keep track of the current and upcoming song
@@ -41,5 +41,13 @@ Its jobs:
 
 To do its job, it fires off a background thread that loops in a CPU-efficient manner.
 
-This is the only service that does this as everything it does is in response
-to certain points in time being hit.
+Do not request a CoordinatorService via DI, see the next service ;)
+
+## CoordServOwnerService
+
+In order to deal with requiring a coordinator service per channel,
+this service is setup once from Program.cs.
+
+It does a weird init dance of sorts with coordinatorservice to set them up.
+
+If you need a coordinatorservice, DI this service and ask it for the channel you want.

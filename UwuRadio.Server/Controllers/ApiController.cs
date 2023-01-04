@@ -23,7 +23,9 @@ public class ApiController : Controller
 		new
 		{
 			Submitters = _dataService.Submitters.Values.ToArray(),
-			Channels   = _dataService.Channels.Values.ToArray(),
+			Channels = _dataService.Channels.Values
+				.Select(c => c with { Songs = Array.Empty<Song>() })
+				.ToArray(),
 		}
 	);
 
