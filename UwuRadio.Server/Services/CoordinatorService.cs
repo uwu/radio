@@ -14,9 +14,9 @@ public class CoordinatorService : IDisposable
 
 	private bool _haltThread;
 
-	private string? _channel;
+	public string? Channel;
 
-	private string PrettyOwnName => nameof(CoordinatorService) + " - " + (_channel ?? "<global>");
+	private string PrettyOwnName => nameof(CoordinatorService) + " - " + (Channel ?? "<global>");
 	
 	public Song    Current = null!;
 	public Instant CurrentEnds;
@@ -70,8 +70,8 @@ public class CoordinatorService : IDisposable
 
 	private void InitSongs(CoordServOwnerService owner)
 	{
-		_channel = owner.GetOwnChannel(this);
-		_pickerService.Channel = _channel;
+		Channel = owner.GetOwnChannel(this);
+		_pickerService.Channel = Channel;
 
 		Current = _pickerService.SelectSong();
 		Next    = _pickerService.SelectSong();

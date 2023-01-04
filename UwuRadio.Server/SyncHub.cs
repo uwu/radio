@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.SignalR;
 using UwuRadio.Server.Services;
 
@@ -8,27 +9,35 @@ namespace UwuRadio.Server;
 ///     <c>BroadcastNext</c> is sent over this connection
 ///     from <see cref="CoordinatorService" />, so check there.
 /// </summary>
+[SuppressMessage("ReSharper", "UnusedMember.Global")]
 public class SyncHub : Hub
 {
 	private readonly CoordServOwnerService _ownerService;
 
 	public SyncHub(CoordServOwnerService cServ) => _ownerService = cServ;
 
-	public async Task RequestState()
+	public async Task RequestState(string? channel = null)
 	{
-		// TODO: support channels correctly
-		var service = _ownerService.GetServiceByChannel();
-		
-		await Clients.Caller.SendAsync("ReceiveState",
-									   new TransitSong(service.Current),
-									   service.CurrentStarted.ToUnixTimeSeconds(),
-									   new TransitSong(service.Next),
-									   service.CurrentEnds.ToUnixTimeSeconds()
-									 + Constants.C.BufferTime);
+		var service = _ownerService.GetServiceByChannel(channel);
+
+		await Clients.Caller.SendAsync(
+			"ReceiveState",
+			new TransitSong(service.Current),
+			service.CurrentStarted.ToUnixTimeSeconds(),
+			new TransitSong(service.Next),
+			service.CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime,
+			service.Channel
+		);
 	}
 
-	public async Task RequestSeekPos() => await Clients.Caller.SendAsync("ReceiveSeekPos",
-											  _ownerService.GetServiceByChannel()
-														   .CurrentStarted
-														   .ToUnixTimeSeconds());
+	public async Task RequestSeekPos(string? channel = null)
+	{
+		var service = _ownerService.GetServiceByChannel(channel);
+
+		await Clients.Caller.SendAsync(
+			"ReceiveSeekPos",
+			service.CurrentStarted.ToUnixTimeSeconds(),
+			service.Channel
+		);
+	}
 }

@@ -15,18 +15,17 @@ public class ApiController : Controller
 		_downloadService = downloadService;
 	}
 
-	// /api/ping
-	public IActionResult Ping() => Ok("Pong!");
-
 	// /api/time
-	public IActionResult Time() => Json(Helpers.Now().ToUnixTimeSeconds());
+	public IActionResult Time() => Ok(Helpers.Now().ToUnixTimeSeconds());
 
 	// /api/data
-	public IActionResult Data() => Json(new
-	{
-		//Songs      = _dataService.AllSongs,
-		Submitters = _dataService.Submitters.Values.ToArray()
-	});
+	public IActionResult Data() => Json(
+		new
+		{
+			Submitters = _dataService.Submitters.Values.ToArray(),
+			Channels   = _dataService.Channels.Values.ToArray(),
+		}
+	);
 
 	// /api/file/id
 	public IActionResult File(string id)
