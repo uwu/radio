@@ -15,6 +15,9 @@ public class ApiController : Controller
 		_downloadService = downloadService;
 	}
 
+	// /api/ping
+	public IActionResult Ping() => Ok("Pong!");
+
 	// /api/time
 	public IActionResult Time() => Ok(Helpers.Now().ToUnixTimeSeconds());
 
