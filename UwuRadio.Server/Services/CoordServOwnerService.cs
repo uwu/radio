@@ -16,7 +16,7 @@ public class CoordServOwnerService
 	{
 		_globalChannel = providerService.GetService<CoordinatorService>();
 		
-		foreach (var chan in _dataService.ChannelsSongs.Keys)
+		foreach (var chan in _dataService.Channels.Keys)
 			_channels[chan] = providerService.GetService<CoordinatorService>()
 						   ?? throw new InvalidOperationException();
 

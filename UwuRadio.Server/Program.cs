@@ -32,6 +32,4 @@ app.MapDefaultControllerRoute();
 // managed and disposed correctly
 app.Services.GetService<CoordServOwnerService>()!.StartCoordinators(app.Services);
 
-Helpers.Log(null, "Kickstarted services successfully, starting web server now");
-
 app.Run();

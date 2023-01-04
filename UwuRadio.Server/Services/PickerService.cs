@@ -22,12 +22,15 @@ public class PickerService
 
 	public Song SelectSong()
 	{
+		var pool = Channel == null
+					   ? _dataService.GlobalSongs
+					   : _dataService.Channels[Channel].Songs;
+		
 		var failsafe = 0;
 		
 		Song picked;
 
 		bool FailsafeCheck()     => failsafe++ < 1000;
-		bool ChannelCheck()      => Channel != null && picked.Submitter != Channel;
 		bool RecentArtistCheck() => _recentArtists.Contains(picked.Artist);
 
 		bool RecentSubmitterCheck()
@@ -35,12 +38,12 @@ public class PickerService
 
 		do
 		{
-			picked = _dataService.Songs[_randomService.Next(_dataService.Songs.Length)];
+			picked = pool[_randomService.Next(pool.Length)];
 			// These darn humans are too good at spotting patterns where there are none!
-		} while ((ChannelCheck() || RecentArtistCheck() || RecentSubmitterCheck()) && FailsafeCheck());
+		} while ((RecentArtistCheck() || RecentSubmitterCheck()) && FailsafeCheck());
 
 		if (failsafe > 1000)
-			Helpers.Log(PrettyOwnName, "hit infinite loop failsafe! Make sure the submitter has enough songs.");
+			Helpers.Log(PrettyOwnName, "hit infinite loop failsafe!");
 		
 		Shift(_recentArtists,    picked.Artist);
 		Shift(_recentSubmitters, picked.Submitter);
