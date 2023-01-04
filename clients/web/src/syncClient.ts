@@ -45,6 +45,8 @@ export default class SyncClient {
 
   #connection: undefined | HubConnection;
 
+  #channel = ref<string | undefined>();
+
   #current = ref<Song | undefined>(loadingSong);
   #next = ref<Song>();
 
@@ -56,6 +58,10 @@ export default class SyncClient {
   #interval?: number;
 
   reconnecting = false;
+
+  get channel() {
+    return this.#channel.value;
+  }
 
   get currentSong() {
     return this.#current.value;
@@ -79,7 +85,10 @@ export default class SyncClient {
   });
 
   #handlers = {
-    BroadcastNext: (nextSong: Song, startTime: number) => {
+    BroadcastNext: (nextSong: Song, startTime: number, channel: string | undefined) => {
+      // TODO: we really should handle this better
+      if (this.channel != channel) return;
+
       this.#next.value = nextSong;
       this.#nextStarts.value = startTime;
       this.#scheduleNext(startTime);
@@ -89,7 +98,11 @@ export default class SyncClient {
       currentStarted: number,
       nextSong: Song,
       nextStart: number,
+      channel: string | undefined,
     ) => {
+      // TODO: we really should handle this better
+      if (this.channel != channel) return;
+
       this.#current.value = currentSong;
       this.#currentStarted.value = currentStarted;
       this.#next.value = nextSong;
@@ -98,13 +111,6 @@ export default class SyncClient {
       play(this.#current.value!, this.seekPos.value!);
       if (this.#nextStarts.value! - currentTimestamp() < 30)
         this.#scheduleNext(this.#nextStarts.value!);
-    },
-    ReceiveSeekPos: (currentStarted: number) => {
-      // TODO: i guess emit events, like this should only really be used if we drop connection
-      //       but even shouldn't we just call ReceiveState
-      this.#currentStarted.value = currentStarted;
-
-      seekTo(this.seekPos.value!);
     },
   };
 
@@ -124,7 +130,6 @@ export default class SyncClient {
 
     connection.on("BroadcastNext", this.#handlers.BroadcastNext);
     connection.on("ReceiveState", this.#handlers.ReceiveState);
-    connection.on("ReceiveSeekPos", this.#handlers.ReceiveSeekPos);
 
     this.updateState();
   }
@@ -140,11 +145,7 @@ export default class SyncClient {
   }
 
   requestState() {
-    this.#connection?.invoke("RequestState");
-  }
-
-  requestSeekPos() {
-    this.#connection?.invoke("RequestSeekPos");
+    this.#connection?.invoke("RequestState", this.channel);
   }
 
   #scheduleNext(startTime: number) {
