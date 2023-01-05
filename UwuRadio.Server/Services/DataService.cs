@@ -87,6 +87,6 @@ public class DataService
 		foreach (var ingest in ingests)
 			Channels[ingest.Name] = ingest;
 
-		GlobalSongs = Channels.Values.Where(c => c.NoGlobal).SelectMany(c => c.Songs).ToArray();
+		GlobalSongs = Channels.Values.Where(c => !c.NoGlobal).SelectMany(c => c.Songs).ToArray();
 	}
 }
