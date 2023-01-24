@@ -68,10 +68,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <canvas ref="canvas" :width="width" :height="height" class="absolute"></canvas>
-  <button
-    class="absolute bottom-3 right-3 bg-black border border-white p-1"
-    @click="visualizerEnabled = false">
-    stop visualizer
-  </button>
+  <div class="z-100">
+    <canvas ref="canvas" :width="width" :height="height" class="absolute"></canvas>
+    <button
+      class="absolute bottom-3 right-3 bg-black border border-white p-1"
+      @click="visualizerEnabled = false">
+      stop visualizer
+    </button>
+  </div>
 </template>

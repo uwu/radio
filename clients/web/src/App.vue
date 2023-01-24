@@ -24,12 +24,10 @@ canAutoplay.audio().then(({ result }: CanAutoplay) => {
       <Suspense v-if="visualizerEnabled">
         <TheChurner />
       </Suspense>
-      <template v-else>
-        <TheSidebar />
-        <Suspense>
-          <ThePlayer />
-        </Suspense>
-      </template>
+      <TheSidebar />
+      <Suspense>
+        <ThePlayer />
+      </Suspense>
     </template>
     <template v-else>
       <div class="grid place-items-center w-full h-full">
