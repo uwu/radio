@@ -68,7 +68,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="z-100">
+  <div class="z-4">
     <canvas ref="canvas" :width="width" :height="height" class="absolute"></canvas>
     <button
       class="absolute bottom-3 right-3 bg-black border border-white p-1"

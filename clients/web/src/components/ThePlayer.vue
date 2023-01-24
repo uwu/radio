@@ -25,7 +25,7 @@ const randomQuote = computed(() =>
   <div class="flex flex-col items-center justify-between h-full w-full relative">
     <div
       v-if="client.reconnecting"
-      class="absolute w-full min-h-8 bg-#fedc6c color-black z-2 text-center grid content-center">
+      class="absolute w-full min-h-8 bg-#fedc6c color-black z-5 text-center grid content-center">
       reconnecting...
     </div>
     <TheClients />
