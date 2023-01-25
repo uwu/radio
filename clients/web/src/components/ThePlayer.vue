@@ -56,7 +56,7 @@ const randomQuote = computed(() =>
     <TheHistory />
     <button
       v-if="visualizerSupported"
-      class="absolute bottom-3 right-3 bg-black border border-white p-1"
+      class="absolute bottom-2 right-2 h-8 bg-black border border-white p-1"
       @click="visualizerEnabled = true">
       enable visualizer
     </button>
