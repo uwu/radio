@@ -54,7 +54,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     var loading by mutableStateOf(true)
         private set
 
-    fun updateArtworkUrl(url: String) {
+    fun updateArtworkUrl(url: String?) {
         artUrl = url
     }
 
@@ -121,7 +121,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private fun updateUi(mediaItem: MediaItem?) {
         if (mediaItem != null) {
             updateName(mediaItem.mediaMetadata.title.toString())
-            updateArtworkUrl(mediaItem.mediaMetadata.artworkUri!!.toString())
+            updateArtworkUrl(mediaItem.mediaMetadata.artworkUri?.toString())
             updateArtist(mediaItem.mediaMetadata.artist.toString())
             updateQuote(mediaItem.mediaMetadata.extras!!.getString("SUBMITTER_QUOTE"))
             updateSubmitter(mediaItem.mediaMetadata.extras!!.getString("SUBMITTER_NAME")!!)
