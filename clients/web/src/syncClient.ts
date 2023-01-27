@@ -45,9 +45,8 @@ export default class SyncClient {
 
   #connection: undefined | HubConnection;
 
-  #channel = ref<string | undefined>();
-
-  #current = ref<Song | undefined>(loadingSong);
+  // this desperately needs a rewrite (when i do channels i'll redo all the sync and audio logic)
+  current = ref<Song | undefined>(loadingSong);
   #next = ref<Song>();
 
   submitters = reactive(new Map<string, Submitter>());
@@ -64,7 +63,7 @@ export default class SyncClient {
   }
 
   get currentSong() {
-    return this.#current.value;
+    return this.current.value;
   }
   get nextSong() {
     return this.#next.value;
@@ -100,15 +99,12 @@ export default class SyncClient {
       nextStart: number,
       channel: string | undefined,
     ) => {
-      // TODO: we really should handle this better
-      if (this.channel != channel) return;
-
-      this.#current.value = currentSong;
+      this.current.value = currentSong;
       this.#currentStarted.value = currentStarted;
       this.#next.value = nextSong;
       this.#nextStarts.value = nextStart;
 
-      play(this.#current.value!, this.seekPos.value!);
+      play(this.current.value!, this.seekPos.value!);
       if (this.#nextStarts.value! - currentTimestamp() < 30)
         this.#scheduleNext(this.#nextStarts.value!);
     },
@@ -155,13 +151,13 @@ export default class SyncClient {
 
     clearInterval(this.#interval);
     this.#interval = setTimeout(() => {
-      this.#current.value = this.#next.value;
+      this.current.value = this.#next.value;
       this.#currentStarted.value = this.#nextStarts.value;
       this.#next.value = undefined;
       this.#nextStarts.value = undefined;
 
       const correction = Math.min(-(startTime - currentTimestamp()), 0);
-      play(this.#current.value!, correction);
+      play(this.current.value!, correction);
     }, 1000 * (startTime - currentTimestamp()));
   }
 }

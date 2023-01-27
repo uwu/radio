@@ -3,7 +3,8 @@ import { setupMediaSession } from "./mediaSession";
 import type { Song } from "./syncClient";
 import { currentTimestamp } from "./util";
 
-const audioCtx = new AudioContext();
+export const audioCtx = new AudioContext();
+export const audioAnalyser = new AnalyserNode(audioCtx);
 const audioGain = audioCtx.createGain();
 let audioSource: AudioBufferSourceNode;
 
@@ -62,7 +63,7 @@ export async function play(song: Song, seek: number) {
     buffer: await (songs[url] ?? preload(url)),
   });
 
-  audioSource.connect(audioGain).connect(audioCtx.destination);
+  audioSource.connect(audioAnalyser).connect(audioGain).connect(audioCtx.destination);
 
   seek = seek + currentTimestamp() - then;
   startTime = audioCtx.currentTime;

@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import isButterchurnSupported from "butterchurn/lib/isSupported.min";
 import RangeSlider from "./RangeSlider.vue";
 import TheHistory from "./TheHistory.vue";
 import { prettySeek, prettyDuration, volume, getDuration, seek } from "@/audio";
 import { getClient } from "@/syncClient";
 import TheClients from "./TheClients.vue";
 import { timePromise } from "@/util";
+import { visualizerEnabled } from "@/visualizer";
+
+const visualizerSupported = isButterchurnSupported();
 
 const client = await timePromise.then(() => getClient());
 
@@ -21,7 +25,7 @@ const randomQuote = computed(() =>
   <div class="flex flex-col items-center justify-between h-full w-full relative">
     <div
       v-if="client.reconnecting"
-      class="absolute w-full min-h-8 bg-#fedc6c color-black z-2 text-center grid content-center">
+      class="absolute w-full min-h-8 bg-#fedc6c color-black z-5 text-center grid content-center">
       reconnecting...
     </div>
     <TheClients />
@@ -50,5 +54,11 @@ const randomQuote = computed(() =>
       {{ randomQuote }}
     </span>
     <TheHistory />
+    <button
+      v-if="visualizerSupported"
+      class="absolute bottom-2 right-2 h-8 bg-black border border-white p-1"
+      @click="visualizerEnabled = true">
+      enable visualizer
+    </button>
   </div>
 </template>

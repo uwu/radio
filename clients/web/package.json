@@ -10,9 +10,12 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.7",
     "@microsoft/signalr": "^7.0.0",
     "@unocss/reset": "^0.46.5",
     "@vueuse/core": "^9.6.0",
+    "butterchurn": "^2.6.7",
+    "butterchurn-presets": "^2.4.7",
     "can-autoplay": "^3.0.2",
     "unocss": "^0.46.5",
     "vue": "^3.2.41"

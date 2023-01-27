@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import TheSidebar from "./components/TheSidebar.vue";
 import ThePlayer from "./components/ThePlayer.vue";
-import { ref } from "vue";
+import { defineAsyncComponent, ref } from "vue";
 // @ts-expect-error this lib is not typed lol
 import canAutoplay from "can-autoplay";
+import { visualizerEnabled } from "./visualizer";
+const TheChurner = defineAsyncComponent(() => import("./components/TheChurner.vue"));
 
 interface CanAutoplay {
   result: boolean;
@@ -19,6 +21,9 @@ canAutoplay.audio().then(({ result }: CanAutoplay) => {
 <template>
   <div class="w-full h-full flex justify-between">
     <template v-if="clicked">
+      <Suspense v-if="visualizerEnabled">
+        <TheChurner />
+      </Suspense>
       <TheSidebar />
       <Suspense>
         <ThePlayer />
