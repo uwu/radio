@@ -38,8 +38,8 @@ String or Null.
 The data returned looks like
 ```ts
 {
-	Submitters: { Name: string; PfpUrl: string; Quotes: string[] }[],
-  Channels: { Name: string; Submitter: string; Category?: string; NoGlobal?: boolean }[]
+	submitters: { name: string; pfpUrl: string; quotes: string[] }[],
+  channels: { name: string; submitter: string; category?: string; noGlobal?: boolean }[]
 }
 ```
 
