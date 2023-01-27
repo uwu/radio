@@ -4,6 +4,5 @@
   "ServerDlUrl": "https://radio.k6.tf/api/file/",
   "YtDlpPath": "yt-dlp",
   "CacheFolder": "DL_CACHE",
-  "IngestFolder": "ingest",
-  "RandomOrgApiKey": "<RAND-KEY>"
+  "IngestFolder": "ingest"
 }

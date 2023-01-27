@@ -5,15 +5,13 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class PickerService
 {
-	private readonly DataService   _dataService;
-	private readonly RandomService _randomService;
-	private readonly string?[]     _recentArtists    = new string[5];
-	private readonly string?[]     _recentSubmitters = new string[2];
+	private readonly DataService _dataService;
+	private readonly string?[]   _recentArtists    = new string[5];
+	private readonly string?[]   _recentSubmitters = new string[2];
 	
-	public PickerService(DataService dataService, RandomService randomService)
+	public PickerService(DataService dataService)
 	{
 		_dataService        = dataService;
-		_randomService = randomService;
 	}
 
 	public Song SelectSong()
@@ -21,7 +19,7 @@ public class PickerService
 		Song picked;
 		do
 		{
-			picked = _dataService.Songs[_randomService.Next(_dataService.Songs.Length)];
+			picked = _dataService.Songs[Random.Shared.Next(_dataService.Songs.Length)];
 			// These darn humans are too good at spotting patterns where there are none!
 		} while (_recentArtists.Contains(picked.Artist) || _recentSubmitters.Contains(picked.Submitter));
 

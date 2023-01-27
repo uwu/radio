@@ -46,9 +46,4 @@ public class Constants
 	///     Where the raw data is stored
 	/// </summary>
 	public string IngestFolder { get; set; } = null!;
-
-	/// <summary>
-	///		API key for random.org
-	/// </summary>
-	public string? RandomOrgApiKey { get; set; }
 }
