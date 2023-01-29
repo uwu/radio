@@ -24,8 +24,8 @@ import network.uwu.radio.ui.viewmodel.HomeViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen() { 
-		val viewModel: HomeViewModel = koinViewModel()
+fun HomeScreen() {
+    val viewModel: HomeViewModel = koinViewModel()
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -35,8 +35,8 @@ fun HomeScreen() {
         ) {
             Box(
                 modifier = Modifier
-										.fillMaxWidth()
-										.padding(12.dp),
+                    .fillMaxWidth()
+                    .padding(12.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(stringResource(R.string.home_title), style = UwuRadioTheme.typography.title)
@@ -44,8 +44,8 @@ fun HomeScreen() {
             val borderColor = UwuRadioTheme.colorScheme.onBackground
             Canvas(
                 modifier = Modifier
-										.fillMaxWidth()
-										.height(Dp.Hairline)
+                    .fillMaxWidth()
+                    .height(Dp.Hairline)
             ) {
                 drawLine(
                     color = borderColor,
@@ -56,9 +56,9 @@ fun HomeScreen() {
         }
         Box(
             modifier = Modifier
-								.fillMaxWidth()
-								.weight(1f)
-								.padding(16.dp),
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(16.dp),
             contentAlignment = Alignment.Center
         ) {
             when (viewModel.loading) {
@@ -78,7 +78,7 @@ fun HomeScreen() {
                             verticalArrangement = Arrangement.spacedBy(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-														Artwork(viewModel.artUrl)
+                            Artwork(viewModel.artUrl)
                             Column(
                                 modifier = Modifier.fillMaxWidth(),
                                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -115,7 +115,12 @@ fun HomeScreen() {
                             )
                         }
                         Text(
-                            text = viewModel.quote?.let { stringResource(R.string.home_song_quote, it) } ?: "",
+                            text = viewModel.quote?.let {
+                                stringResource(
+                                    R.string.home_song_quote,
+                                    it
+                                )
+                            } ?: "",
                             style = UwuRadioTheme.typography.body.copy(textAlign = TextAlign.Center)
                         )
                     }
@@ -127,23 +132,23 @@ fun HomeScreen() {
 
 @Composable
 private fun Artwork(
-		url: String?,
-		modifier: Modifier = Modifier
+    url: String?,
+    modifier: Modifier = Modifier
 ) {
-		val context = LocalContext.current
-		val image = remember(context, url) {
-				ImageRequest.Builder(context)
-						.data(url)
-						.diskCachePolicy(CachePolicy.ENABLED)
-						.diskCacheKey(url)
-						.build()
-		}
-		AsyncImage(
-				modifier = modifier
-						.fillMaxWidth()
-						.aspectRatio(1f / 1f)
-						.border(Dp.Hairline, UwuRadioTheme.colorScheme.onBackground),
-				model = image,
-				contentDescription = null,
-		)
+    val context = LocalContext.current
+    val image = remember(context, url) {
+        ImageRequest.Builder(context)
+            .data(url)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .diskCacheKey(url)
+            .build()
+    }
+    AsyncImage(
+        modifier = modifier
+            .fillMaxWidth()
+            .aspectRatio(1f / 1f)
+            .border(Dp.Hairline, UwuRadioTheme.colorScheme.onBackground),
+        model = image,
+        contentDescription = null,
+    )
 }
