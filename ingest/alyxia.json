@@ -102,8 +102,8 @@
       "ArtUrl": "https://coverartarchive.org/release/331230be-6cc7-4c83-9ab2-e12dcd7a10e8/22473181916.jpg"
     },
     {
-      "Name": "3R2 & Ice",
-      "Artist": "Sarasvati",
+      "Name": "Sarasvati",
+      "Artist": "3R2 & Ice",
       "StreamUrl": "https://www.youtube.com/watch?v=ZwJrlyDxPUc",
       "Album": "Sounds of Ecstasy",
       "ArtUrl": "https://coverartarchive.org/release-group/facc0c6e-5670-4b37-b836-f0af66f34bd5/front"
@@ -254,6 +254,20 @@
       "StreamUrl": "https://public.alyxia.dev/uwuradio/Unfold-Nurture-Live.mp3",
       "Album": "Nurture Live",
       "ArtUrl": "https://public.alyxia.dev/uwuradio/Second-Sky-cover.png"
+    },
+    {
+      "Name": "A Sound For Lonely People",
+      "Artist": "VDG",
+      "StreamUrl": "https://www.youtube.com/watch?v=Mn1bQ8aWqZ0",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-A3Uf48OJJ8cedEBf-R5RrOg-t500x500.jpg"
+    },
+    {
+      "Name": "Song For You",
+      "Artist": "VDG",
+      "StreamUrl": "https://www.youtube.com/watch?v=TMGP3b9qC3M",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-A3Uf48OJJ8cedEBf-R5RrOg-t500x500.jpg"
     },
     {
       "Name": "fullmoon lullaby",
@@ -527,6 +541,13 @@
       "StreamUrl": "https://soundcloud.com/user-658062794/kanzaki-hiro-feat-himemori-luna-lunar-light-extended-mix",
       "Album": "",
       "ArtUrl": "https://i1.sndcdn.com/artworks-7Cfw8bsgLNWRTzJy-sKTw6A-t500x500.jpg"
+    },
+    {
+      "Name": "Moonlit Night",
+      "Artist": "Kanzaki Hiro",
+      "StreamUrl": "https://soundcloud.com/user-658062794/kanzaki-hiro-feat-himemori-luna-moonlit-night-extended-mix",
+      "Album": "",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-qsWlPjFRGXTzCzEO-gQfXCg-t500x500.jpg"
     },
     {
       "Name": "んなっ",
@@ -1276,6 +1297,62 @@
       "StreamUrl": "https://soundcloud.com/imblindboy/findmyway",
       "Album": "",
       "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music122/v4/cd/7e/bd/cd7ebdea-0b0e-9b4d-6d05-44c85b5aaf6c/artwork.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Joy",
+      "Artist": "salute",
+      "StreamUrl": "https://www.youtube.com/watch?v=YckWk_WFSHs",
+      "Album": "Joy",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/55/69/b3/5569b315-dae2-2a5d-dc54-eba862a56efb/190296455070.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Particle Arts",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=b06pKMxF6h8&list=OLAK5uy_mvDmPc6xhsOD8ZsY-FsKLO-d4LlWFRWe0",
+      "Album": "Virtual Self",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/f9/d6/5d/f9d65dc2-b909-319d-ba21-8233a4af2536/653738093723.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Ghost Voices",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=HPc8QMycGno&list=OLAK5uy_mvDmPc6xhsOD8ZsY-FsKLO-d4LlWFRWe0",
+      "Album": "Virtual Self",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/f9/d6/5d/f9d65dc2-b909-319d-ba21-8233a4af2536/653738093723.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "a.i.ngel (Become God)",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=c2t0UljO_AY&list=OLAK5uy_mvDmPc6xhsOD8ZsY-FsKLO-d4LlWFRWe0",
+      "Album": "Virtual Self",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/f9/d6/5d/f9d65dc2-b909-319d-ba21-8233a4af2536/653738093723.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Key",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=zdLhJ9lB5x0&list=OLAK5uy_mvDmPc6xhsOD8ZsY-FsKLO-d4LlWFRWe0",
+      "Album": "Virtual Self",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/f9/d6/5d/f9d65dc2-b909-319d-ba21-8233a4af2536/653738093723.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Eon Break",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=HDShJCX1iWA&list=OLAK5uy_mvDmPc6xhsOD8ZsY-FsKLO-d4LlWFRWe0",
+      "Album": "Virtual Self",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/f9/d6/5d/f9d65dc2-b909-319d-ba21-8233a4af2536/653738093723.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "ANGEL VOICES",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=hfPnq3i4Udw",
+      "Album": "ANGEL VOICES",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d0/80/54/d08054e0-ea6f-6286-d3c4-a4b500dfe909/653738394226.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "ID (Dry Your Eyes) (Mixed with \"That Look in Your Eye\")",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=wsoc0gr_mUM",
+      "Album": "Second Sky 2022 (DJ Mix)",
+      "ArtUrl": "https://is2-ssl.mzstatic.com/image/thumb/Music113/v4/d4/c7/ae/d4c7ae14-3470-c93a-f48b-94b06cc70cab/dj.ockwfwqr.jpg/4096x4096bb.webp"
     }
   ]
 }
