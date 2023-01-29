@@ -61,7 +61,8 @@ public class CoordinatorService : IDisposable
 											 CurrentStarted.ToUnixTimeSeconds(),
 											 new TransitSong(Next),
 											 CurrentEnds.ToUnixTimeSeconds()
-										   + Constants.C.BufferTime);
+										   + Constants.C.BufferTime,
+										   Channel);
 
 		Helpers.Log(PrettyOwnName, "Ready to serve clients");
 

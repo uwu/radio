@@ -29,3 +29,7 @@ declare module "butterchurn-presets" {
 declare module "butterchurn/lib/isSupported.min" {
   export default function isButterchurnSupported(): boolean;
 }
+
+declare module "can-autoplay" {
+  function audio(): Promise<{ result: boolean }>;
+}
