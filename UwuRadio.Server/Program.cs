@@ -35,3 +35,10 @@ app.Services.GetService<CoordinatorService>();
 Helpers.Log(null, "Kickstarted services successfully, starting web server now");
 
 app.Run();
+
+/*var pickerService = app.Services.GetService<PickerService>();
+for (var i = 0; i < 10_000; i++)
+{
+	var song = pickerService.SelectSong();
+	Console.WriteLine($"{song.Artist,-30} | {song.Submitter,-15} | {song.Album,-30} | {song.Name}");
+}*/
