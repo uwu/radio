@@ -11,7 +11,6 @@ import ChannelLink from "./ChannelLink.vue";
     </div>
     <ChannelLink name="yellowsink" />
     <ChannelLink name="toonlink" />
-    <ChannelLink name="alyxia" />
     <ChannelLink name="redstonekasi" />
     <ChannelLink name="xirreal" />
     <ChannelLink name="phorcys" />
