@@ -1034,6 +1034,90 @@
       "Album": "Immutable",
       "ArtUrl": "https://web.hycdn.cn/siren/pic/20210501/01bdad2a0a6876eaee3c23bf0812a73a.png",
       "StreamUrl": "https://youtu.be/gXhIPGIMK_Q"
+    },
+    {
+      "Name": "Turnstile Jumper",
+      "Artist": "Frums",
+      "StreamUrl": "https://soundcloud.com/frums/turnstile-jumper",
+      "Album": "Turnstile Jumper",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000374198934-8uqm0o-t500x500.jpg"
+    },
+    {
+      "Name": "チューリングの跡",
+      "Artist": "Frums",
+      "StreamUrl": "https://soundcloud.com/frums/remnants-of-turing",
+      "Album": "チューリングの跡",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-7x2jVCbgIkzvfRtp-HuO2WQ-t500x500.jpg"
+    },
+    {
+      "Name": "VIS::CRACKED",
+      "Artist": "Frums",
+      "StreamUrl": "https://soundcloud.com/frums/viscracked",
+      "Album": "VIS::CRACKED",
+      "ArtUrl": "https://i1.sndcdn.com/artworks-000498879012-5kfi1e-t500x500.jpg"
+    },
+    {
+      "Name": "Kneading",
+      "Artist": "Frums",
+      "StreamUrl": "https://diversesystem.bandcamp.com/track/kneading",
+      "Album": "ADvantage",
+      "ArtUrl": "https://coverartarchive.org/release-group/b3155d4f-8cc8-4ffa-96be-9b54c11a282a/front"
+    },
+    {
+      "Name": "Operation Pyrite",
+      "Artist": "塞壬唱片-MSR",
+      "StreamUrl": "https://www.youtube.com/watch?v=saOnB_CRG9Y",
+      "Album": "危機合約 黃鐵·利刃·燃灰 (Original Soundtrack)",
+      "ArtUrl": "https://coverartarchive.org/release/ae215b48-de63-4a70-b1f6-f66b38949cf9/31673950816.png"
+    },
+    {
+      "Name": "Operation Blade",
+      "Artist": "塞壬唱片-MSR",
+      "StreamUrl": "https://www.youtube.com/watch?v=hpI5vMxYJ_k",
+      "Album": "危機合約 黃鐵·利刃·燃灰 (Original Soundtrack)",
+      "ArtUrl": "https://coverartarchive.org/release/ae215b48-de63-4a70-b1f6-f66b38949cf9/31673950816.png"
+    },
+    {
+      "Name": "ALIVE",
+      "Artist": "塞壬唱片-MSR",
+      "StreamUrl": "https://www.youtube.com/watch?v=KDM3kzZK7Ys",
+      "Album": "ALIVE",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/05/a2/e5/05a2e58d-002c-6c9c-dcbc-a2b00793658a/4711099660605.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Shelter",
+      "Artist": "Porter Robinson & Madeon",
+      "StreamUrl": "https://www.youtube.com/watch?v=fzQ6gRAEoy0",
+      "Album": "Shelter",
+      "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music125/v4/a9/aa/a8/a9aaa8cb-708c-899e-b968-22304e720edb/SHELTER.jpg/4096x4096bb.webp"
+    },
+    {
+      "Name": "Look at the Sky",
+      "Artist": "Porter Robinson",
+      "StreamUrl": "https://www.youtube.com/watch?v=PuMz4v5PYKc",
+      "Album": "Nurture",
+      "ArtUrl": "https://coverartarchive.org/release/e601587e-047b-4cc6-80f7-8f44d21cd7a4/29158737458.jpg"
+    },
+    {
+      "Name": "Magic",
+      "Artist": "Nhato",
+      "StreamUrl": "https://www.youtube.com/watch?v=vlzo7RLXgS8",
+      "Album": "Voodooism",
+      "ArtUrl": "https://coverartarchive.org/release-group/56d875e0-59c2-4293-a784-411952f9f191/front"
+    },
+    {
+      "Name": "Particle Arts",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=b06pKMxF6h8",
+      "Album": "Virtual Self",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/f9/d6/5d/f9d65dc2-b909-319d-ba21-8233a4af2536/653738093723.png/4096x4096bb.webp"
+    },
+    {
+      "Name": "Ghost Voices",
+      "Artist": "Virtual Self",
+      "StreamUrl": "https://www.youtube.com/watch?v=HPc8QMycGno",
+      "Album": "Virtual Self",
+      "ArtUrl": "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/f9/d6/5d/f9d65dc2-b909-319d-ba21-8233a4af2536/653738093723.png/4096x4096bb.webp"
     }
   ]
 }
