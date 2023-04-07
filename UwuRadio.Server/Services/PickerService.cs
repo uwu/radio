@@ -34,25 +34,35 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class PickerService
 {
-	private Song[] _queue;
-	private Song[] _unpickedSongs;
+	private DataService _dataService;
+
+	private Song[] _queue = Array.Empty<Song>();
+	private Song[] _unpickedSongs = Array.Empty<Song>();
 
 	private int _queuePos;
 
 	public string? Channel;
-	
+
 	private string PrettyOwnName => nameof(PickerService) + " - " + (Channel ?? "<global>");
 
-	public PickerService(DataService dataService)
+	public PickerService(DataService dataService) => _dataService = dataService;
+
+	private bool _inited = false;
+
+	// we need our channel set before we can actually init
+	private void LateInit()
 	{
-		var allSongs = SpotifyShuffle(dataService.Songs).ToArray();
+		if (_inited) return;
+		_inited = true;
+
+		var allSongs = SpotifyShuffle(_dataService.Channels[Channel!].Songs).ToArray();
 
 		var queueSize = 2 * (allSongs.Length / 3);
 
-		_queue         = new Song[queueSize];
+		_queue = new Song[queueSize];
 		_unpickedSongs = new Song[allSongs.Length - queueSize];
 
-		MemCopy(allSongs, _queue,         0,         0);
+		MemCopy(allSongs, _queue, 0, 0);
 		MemCopy(allSongs, _unpickedSongs, queueSize, 0);
 
 		ShuffleQueue();
@@ -60,6 +70,8 @@ public class PickerService
 
 	public Song SelectSong()
 	{
+		LateInit();
+
 		_queuePos++;
 
 		if (_queuePos >= _queue.Length)
@@ -104,7 +116,7 @@ public class PickerService
 		    {
 			    var groupArr = group.ToArray();
 			    FisherYatesShuffle(groupArr);
-				
+
 				var groupOset = Random.Shared.NextDouble() * (1.0 / groupArr.Length);
 
 			    return groupArr.Select((song, idx) =>
@@ -113,7 +125,7 @@ public class PickerService
 								 - (0.1 / groupArr.Length);
 
 					var pos = (double) idx / groupArr.Length + groupOset + songOset;
-					
+
 					return (song, pos);
 				});
 			})
