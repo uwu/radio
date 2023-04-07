@@ -1,7 +1,7 @@
 import magic from "@/assets/magic.mp3";
 import { watchEffect } from "vue";
 import { getDuration, seek } from "./audio";
-import { getClient } from "./syncClient";
+import { currentSong } from "./syncClient";
 
 export let initalized = false;
 
@@ -13,7 +13,6 @@ export function setupMediaSession() {
   if (initalized) return;
   initalized = true;
 
-  const client = getClient();
   audio.play();
 
   // Polyfill Media Session API so it can still be a data source even if it
@@ -35,15 +34,14 @@ export function setupMediaSession() {
       this.artwork = data.artwork ?? [];
       this.title = data.title ?? "";
     }
-  }
+  };
 
   watchEffect(() => {
     navigator.mediaSession.metadata = new MediaMetadata({
-      title: client.currentSong?.name,
-      artist: client.currentSong?.artist,
-      album: client.currentSong?.album,
-      artwork:
-        client.currentSong?.artUrl !== undefined ? [{ src: client.currentSong?.artUrl! }] : [],
+      title: currentSong.value.name,
+      artist: currentSong.value.artist,
+      album: currentSong.value.album ?? "",
+      artwork: currentSong.value.artUrl !== undefined ? [{ src: currentSong.value.artUrl! }] : [],
     });
   });
 

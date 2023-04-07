@@ -1,41 +1,7 @@
 {
-	"Name": "Yellowsink",
-	"PfpUrl": "https://gravatar.com/avatar/07c71710cff6bc1bd3ef089a2530cc82",
-	"Quotes": [
-		// -- Monty Python
-		"We interrupt this program to annoy you and make things generally more irritating.",
-		"He's not the Messiah—he's a very naughty boy!",
-		"Let's not bicker and argue over who killed who.",
-		"Are you suggesting that coconuts migrate?",
-		"I fart in your general direction! Your mother was a hamster and your father smelt of elderberries!",
-		"Now, go away, or I shall taunt you a second time!",
-
-		// -- Edsger Dijkstra
-		"Object-oriented programs are offered as alternatives to correct ones.",
-
-		// -- unknown
-		"Saying Java is good because it works on all platforms is like saying anal sex is good because it works on all genders.",
-
-		// -- Porter Robinson (Nurture & Spitfire)
-		"It's not the voice of all the others; You've only said it to yourself.",
-		"They come to feel like things we're saying to ourselves.",
-		"It's so holy, it's so ho—, so holy, so holy-",
-		"You're fucking in for it now bitch",
-
-		// -- Mori Calliope
-		"If you quit when you suck, you'll suck forever.",
-		"We never forget the fallen, but we move on.",
-		"Guh!",
-
-		// -- Ninomae Ina'nis
-		"Time is also a limited resource, you can't even buy that with money.",
-		"<long pause> Tomorrow!",
-
-		// -- Gawr Gura
-		"Oh nyo.",
-		"You can't be mad at me... I'm cute!"
-	],
-	"Songs": [
+  "Submitter": "Yellowsink",
+  "Name": "yellowsink",
+  "Songs": [
 		{
 			"Name": "Pascal Beats",
 			"Artist": "inabakumori",

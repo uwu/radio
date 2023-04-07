@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ChannelLink from "./ChannelLink.vue";
+import { channels } from "@/syncClient";
 </script>
 
 <template>
@@ -9,11 +10,7 @@ import ChannelLink from "./ChannelLink.vue";
     <div class="border-b border-white">
       <ChannelLink name="global" />
     </div>
-    <ChannelLink name="yellowsink" />
-    <ChannelLink name="toonlink" />
-    <ChannelLink name="redstonekasi" />
-    <ChannelLink name="xirreal" />
-    <ChannelLink name="phorcys" />
+    <ChannelLink v-for="channel in channels" :key="channel.name" :name="channel.name" />
   </div>
 </template>
 

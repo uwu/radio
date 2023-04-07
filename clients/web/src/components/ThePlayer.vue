@@ -4,17 +4,16 @@ import isButterchurnSupported from "butterchurn/lib/isSupported.min";
 import RangeSlider from "./RangeSlider.vue";
 import TheHistory from "./TheHistory.vue";
 import { prettySeek, prettyDuration, volume, getDuration, seek } from "@/audio";
-import { getClient } from "@/syncClient";
 import TheClients from "./TheClients.vue";
 import { timePromise } from "@/util";
 import { visualizerEnabled } from "@/visualizer";
+import { startSyncClient, currentSong, submitters, reconnecting } from "@/syncClient";
 
 const visualizerSupported = isButterchurnSupported();
 
-const client = await timePromise.then(() => getClient());
+await timePromise.then(startSyncClient);
 
-// @ts-expect-error IT IS COMPLETELY FINE IF UNDEFINED GETS RETURNED, OPTIONAL CHAINING EXISTS PLEASE SHUT THE FUCK UP.
-const quotes = computed(() => client.submitters.get(client.currentSong?.submitter)?.quotes);
+const quotes = computed(() => submitters.get(currentSong.value.submitter)?.quotes);
 
 const randomQuote = computed(() =>
   quotes.value?.length ? `"${quotes.value[~~(Math.random() * quotes.value.length)]}"` : "",
@@ -24,19 +23,19 @@ const randomQuote = computed(() =>
 <template>
   <div class="flex flex-col items-center justify-between h-full w-full relative">
     <div
-      v-if="client.reconnecting"
+      v-if="reconnecting"
       class="absolute w-full min-h-8 bg-#fedc6c color-black z-5 text-center grid content-center">
       reconnecting...
     </div>
     <TheClients />
     <span class="text-lg z-1 mt-2">RADIO.UWU.NETWORK</span>
     <div class="text-center w-70 md:w-100" id="player">
-      <img class="w-70 h-70 pb-2 md:(w-100 h-100)" :src="client.currentSong?.artUrl" />
+      <img class="w-70 h-70 pb-2 md:(w-100 h-100)" :src="currentSong.artUrl" />
       <div class="md:text-xl">
-        <div>{{ client.currentSong?.name }}</div>
-        <div>by {{ client.currentSong?.artist }}</div>
+        <div>{{ currentSong.name }}</div>
+        <div>by {{ currentSong.artist }}</div>
       </div>
-      <div class="text-sm">submitted by {{ client.currentSong?.submitter }}</div>
+      <div class="text-sm">submitted by {{ currentSong.submitter }}</div>
       <div class="p-5 w-full">
         <div class="flex justify-between w-full">
           <span>{{ prettySeek }}</span>

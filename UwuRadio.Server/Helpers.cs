@@ -38,32 +38,37 @@ public static class Helpers
 		return parsed;
 	}
 
+	private static readonly object LogLock = new();
+	
 	public static void Log(string? subSeg, params object[] payload)
 	{
-		var segments = subSeg == null
-						   ? new[] { ("uwu radio", ConsoleColor.Green) }
-						   : new[]
-						   {
-							   ("uwu radio", ConsoleColor.Green),
-							   (subSeg, ConsoleColor.Blue)
-						   };
-
-		foreach (var (seg, col) in segments)
+		lock (LogLock)
 		{
-			Console.Write("⸨");
+			var segments = subSeg == null
+							   ? new[] { ("uwu radio", ConsoleColor.Green) }
+							   : new[]
+							   {
+								   ("uwu radio", ConsoleColor.Green),
+								   (subSeg, ConsoleColor.Blue)
+							   };
 
-			var origCol = Console.ForegroundColor;
-			Console.ForegroundColor = col;
-			Console.Write(seg);
-			Console.ForegroundColor = origCol;
+			foreach (var (seg, col) in segments)
+			{
+				Console.Write("⸨");
 
-			Console.Write("⸩ ");
+				var origCol = Console.ForegroundColor;
+				Console.ForegroundColor = col;
+				Console.Write(seg);
+				Console.ForegroundColor = origCol;
+
+				Console.Write("⸩ ");
+			}
+
+			foreach (var p in payload)
+				Console.Write(p.ToString());
+
+			Console.WriteLine();
 		}
-
-		foreach (var p in payload)
-			Console.Write(p.ToString());
-
-		Console.WriteLine();
 	}
 
 	private static char[] base60Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx".ToCharArray();
@@ -87,4 +92,7 @@ public static class Helpers
 		var hash = XXHash.Hash64(buffer);
 		return hash.ToBase60();
 	}
+
+	public static TV? GetOrDefault<TK, TV>(this IDictionary<TK, TV> dict, TK k)
+		=> dict.TryGetValue(k, out var val) ? val : default;
 }

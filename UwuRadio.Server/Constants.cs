@@ -46,4 +46,8 @@ public class Constants
 	///     Where the raw data is stored
 	/// </summary>
 	public string IngestFolder { get; set; } = null!;
+	
+	// these two are not in the JSON but are here for convenience
+	public string IngestSubmittersFolder => Path.Combine(IngestFolder, "submitters");
+	public string IngestChannelsFolder => Path.Combine(IngestFolder, "channels");
 }
