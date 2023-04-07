@@ -58,6 +58,13 @@
 			"ArtUrl": "https://coverartarchive.org/release/17acaf9c-39ac-4eb7-90c8-856d26e8a8ad/31623866010-500.jpg"
 		},
 		{
+			"Name": "Haru no Sekibaku",
+			"Artist": "inabakumori",
+			"StreamUrl": "https://www.youtube.com/watch?v=mFih47l1pVI",
+			"Album": "WEATHER STATION",
+			"ArtUrl": "https://coverartarchive.org/release/0003a1ef-d574-4b04-a4cf-f37b7212d47c/32044134254-500.jpg"
+		},
+		{
 			"Name": "Arguing with Thermometers",
 			"Artist": "Enter Shikari",
 			"StreamUrl": "https://youtu.be/s02Md_3b1G8",
@@ -282,6 +289,13 @@
 			"ArtUrl": "https://coverartarchive.org/release/55d5f8ac-69f5-491b-b1c2-5ad54aafd697/32230240085-500.jpg"
 		},
 		{
+			"Name": "Get Back to 64bit Cities",
+			"Artist": "Camellia",
+			"StreamUrl": "https://diversesystem.bandcamp.com/track/get-back-to-64bit-cities",
+			"Album": "fig. 4 -Adolescence-",
+			"ArtUrl": "https://f4.bcbits.com/img/a1863291669_16.jpg"
+		},
+		{
 			"Name": "Loyal",
 			"Artist": "ODESZA",
 			"StreamUrl": "https://youtu.be/Sz_YPczxzZc",
@@ -390,6 +404,12 @@
 			"Artist": "No Mana",
 			"StreamUrl": "https://youtu.be/HXYINVEp5h8",
 			"ArtUrl": "https://coverartarchive.org/release/3e8e382e-3552-4b4d-9689-398370af0908/33727463014-500.jpg"
+		},
+		{
+			"Name": "Space",
+			"Artist": "No Mana",
+			"StreamUrl": "https://www.youtube.com/watch?v=ajfcfLC7m8k",
+			"ArtUrl": "https://coverartarchive.org/release/4ff9660a-833e-4ded-8eb1-999b5b4a9978/34153825113-500.jpg"
 		},
 		{
 			"Name": "Contact",
@@ -537,6 +557,12 @@
 			"StreamUrl": "https://youtu.be/MCYY9ZLLg1w",
 			"Album": "CH4NGE - Single",
 			"ArtUrl": "https://coverartarchive.org/release/d49cc4ce-44aa-4d9a-a5a3-5a05d19c49e2/32664198858-500.jpg"
+		},
+		{
+			"Name": "Gimme×Gimme",
+			"Artist": "Hachioji-P, Giga",
+			"StreamUrl": "https://www.youtube.com/watch?v=ERo-sPa1a5g",
+			"ArtUrl": "https://static.wikia.nocookie.net/vocaloid/images/c/cf/Games_-_Project_SEKAI_-_GimmexGimme.png"
 		},
 		{
 			"Name": "MONSTER",
@@ -836,29 +862,50 @@
 			"Name": "Phantom",
 			"Artist": "Justice",
 			"StreamUrl": "https://youtu.be/LoZ8l40RpeE",
-			"Album": "Cross",
+			"Album": "†",
 			"ArtUrl": "https://coverartarchive.org/release/9da1a863-f3f2-4618-bdce-f0c88c055ba5/8201721911-500.jpg"
 		},
 		{
 			"Name": "One Minute to Midnight",
 			"Artist": "Justice",
 			"StreamUrl": "https://youtu.be/wXp1C6Byd2E",
-			"Album": "Cross",
+			"Album": "†",
 			"ArtUrl": "https://coverartarchive.org/release/9da1a863-f3f2-4618-bdce-f0c88c055ba5/8201721911-500.jpg"
 		},
 		{
 			"Name": "Genesis",
 			"Artist": "Justice",
 			"StreamUrl": "https://youtu.be/VKzWLUQizz8",
-			"Album": "Cross",
+			"Album": "†",
 			"ArtUrl": "https://coverartarchive.org/release/9da1a863-f3f2-4618-bdce-f0c88c055ba5/8201721911-500.jpg"
 		},
 		{
 			"Name": "Waters of Nazareth",
 			"Artist": "Justice",
 			"StreamUrl": "https://youtu.be/1SEgoi7kjw8",
-			"Album": "Cross",
+			"Album": "†",
 			"ArtUrl": "https://coverartarchive.org/release/9da1a863-f3f2-4618-bdce-f0c88c055ba5/8201721911-500.jpg"
+		},
+		{
+			"Name": "Horespower",
+			"Artist": "Justice",
+			"StreamUrl": "https://www.youtube.com/watch?v=brEhzIOznMw",
+			"Album": "Audio, Video, Disco",
+			"ArtUrl": "https://coverartarchive.org/release/5b52b9d5-1056-4a95-9cc8-5c7ce5c66ee1/31009408411-500.jpg"
+		},
+		{
+			"Name": "Civilization",
+			"Artist": "Justice",
+			"StreamUrl": "https://www.youtube.com/watch?v=RKsL90gkbNY",
+			"Album": "Audio, Video, Disco",
+			"ArtUrl": "https://coverartarchive.org/release/5b52b9d5-1056-4a95-9cc8-5c7ce5c66ee1/31009408411-500.jpg"
+		},
+		{
+			"Name": "New Lands",
+			"Artist": "Justice",
+			"StreamUrl": "https://www.youtube.com/watch?v=-ecNe7eS-F8",
+			"Album": "Audio, Video, Disco",
+			"ArtUrl": "https://coverartarchive.org/release/5b52b9d5-1056-4a95-9cc8-5c7ce5c66ee1/31009408411-500.jpg"
 		},
 		{
 			"Name": "Ok",
@@ -1043,6 +1090,30 @@
 			"StreamUrl": "https://www.youtube.com/watch?v=88qd8FxS3AM",
 			"Album": "Nemophore",
 			"ArtUrl": "https://coverartarchive.org/release/6a84e38a-1a5e-4479-b464-d38e5e95f756/29346344770.jpg"
+		},
+		{
+			"Name": "Harder, Better, Faster, Stronger vs. D.A.N.C.E.",
+			"Artist": "SiIvaGunner (Daft Punk, Justice)",
+			"StreamUrl": "https://www.youtube.com/watch?v=VRfHavAy-ko",
+			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
+		},
+		{
+			"Name": "Fox",
+			"Artist": "SiIvaGunner (Shirobon)",
+			"StreamUrl": "https://www.youtube.com/watch?v=D_vaXkEmlrw",
+			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
+		},
+		{
+			"Name": "Final Boss",
+			"Artist": "SiIvaGunner (Nitro Fun)",
+			"StreamUrl": "https://www.youtube.com/watch?v=qn5MZWIlF5c",
+			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
+		},
+		{
+			"Name": "Cheat Codes",
+			"Artist": "SiIvaGunner (Nitro Fun)",
+			"StreamUrl": "https://www.youtube.com/watch?v=RRjHp9ZqDgM",
+			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
 		}
 	]
 }
