@@ -1,41 +1,41 @@
 {
-  "Name": "Yellowsink",
-  "PfpUrl": "https://gravatar.com/avatar/07c71710cff6bc1bd3ef089a2530cc82",
-  "Quotes": [
-    // -- Monty Python
-    "We interrupt this program to annoy you and make things generally more irritating.",
-    "He's not the Messiah—he's a very naughty boy!",
-    "Let's not bicker and argue over who killed who.",
-    "Are you suggesting that coconuts migrate?",
-    "I fart in your general direction! Your mother was a hamster and your father smelt of elderberries!",
-    "Now, go away, or I shall taunt you a second time!",
+	"Name": "Yellowsink",
+	"PfpUrl": "https://gravatar.com/avatar/07c71710cff6bc1bd3ef089a2530cc82",
+	"Quotes": [
+		// -- Monty Python
+		"We interrupt this program to annoy you and make things generally more irritating.",
+		"He's not the Messiah—he's a very naughty boy!",
+		"Let's not bicker and argue over who killed who.",
+		"Are you suggesting that coconuts migrate?",
+		"I fart in your general direction! Your mother was a hamster and your father smelt of elderberries!",
+		"Now, go away, or I shall taunt you a second time!",
 
-    // -- Edsger Dijkstra
-    "Object-oriented programs are offered as alternatives to correct ones.",
+		// -- Edsger Dijkstra
+		"Object-oriented programs are offered as alternatives to correct ones.",
 
-    // -- unknown
-    "Saying Java is good because it works on all platforms is like saying anal sex is good because it works on all genders.",
+		// -- unknown
+		"Saying Java is good because it works on all platforms is like saying anal sex is good because it works on all genders.",
 
-    // -- Porter Robinson (Nurture & Spitfire)
-    "It's not the voice of all the others; You've only said it to yourself.",
-    "They come to feel like things we're saying to ourselves.",
-    "It's so holy, it's so ho—, so holy, so holy-",
-    "You're fucking in for it now bitch",
+		// -- Porter Robinson (Nurture & Spitfire)
+		"It's not the voice of all the others; You've only said it to yourself.",
+		"They come to feel like things we're saying to ourselves.",
+		"It's so holy, it's so ho—, so holy, so holy-",
+		"You're fucking in for it now bitch",
 
-    // -- Mori Calliope
-    "If you quit when you suck, you'll suck forever.",
-    "We never forget the fallen, but we move on.",
-    "Guh!",
+		// -- Mori Calliope
+		"If you quit when you suck, you'll suck forever.",
+		"We never forget the fallen, but we move on.",
+		"Guh!",
 
-    // -- Ninomae Ina'nis
-    "Time is also a limited resource, you can't even buy that with money.",
-    "<long pause> Tomorrow!",
+		// -- Ninomae Ina'nis
+		"Time is also a limited resource, you can't even buy that with money.",
+		"<long pause> Tomorrow!",
 
-    // -- Gawr Gura
-    "Oh nyo.",
-    "You can't be mad at me... I'm cute!"
-  ],
-  "Songs": [
+		// -- Gawr Gura
+		"Oh nyo.",
+		"You can't be mad at me... I'm cute!"
+	],
+	"Songs": [
 		{
 			"Name": "Pascal Beats",
 			"Artist": "inabakumori",
@@ -190,48 +190,48 @@
 			"Album": "Escapism",
 			"ArtUrl": "https://coverartarchive.org/release/489cd61a-b01c-4c10-aaac-3de23de75d26/27227081867-500.jpg"
 		},
-    {
-      "Name": "Haunted House",
-      "Artist": "cYsmix",
-      "StreamUrl": "https://www.youtube.com/watch?v=gfjGG9r3fSM",
-      "Album": "Haunted House",
-      "ArtUrl": "https://coverartarchive.org/release/fe4782f6-b2fe-43ed-b799-94c4da641414/12166047209-500.jpg"
-    },
-    {
-      "Name": "The Ballad of a Mindless Girl",
-      "Artist": "cYsmix",
-      "StreamUrl": "https://cysmix.bandcamp.com/track/the-ballad-of-a-mindless-girl-2",
-      "Album": "Haunted House",
-      "ArtUrl": "https://coverartarchive.org/release/fe4782f6-b2fe-43ed-b799-94c4da641414/12166047209-500.jpg"
-    },
-    {
-      "Name": "Aumetra the Witch",
-      "Artist": "cYsmix",
-      "StreamUrl": "https://cysmix.bandcamp.com/track/aumetra-the-witch",
-      "Album": "Voodooism",
-      "ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
-    },
-    {
-      "Name": "Misty Woods",
-      "Artist": "cYsmix",
-      "StreamUrl": "https://cysmix.bandcamp.com/track/misty-woods",
-      "Album": "Voodooism",
-      "ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
-    },
-    {
-      "Name": "Dzjin",
-      "Artist": "cYsmix",
-      "StreamUrl": "https://cysmix.bandcamp.com/track/dzjin",
-      "Album": "Voodooism",
-      "ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
-    },
-    {
-      "Name": "Souls of the Forest",
-      "Artist": "cYsmix",
-      "StreamUrl": "https://cysmix.bandcamp.com/track/souls-of-the-forest",
-      "Album": "Voodooism",
-      "ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
-    },
+		{
+			"Name": "Haunted House",
+			"Artist": "cYsmix",
+			"StreamUrl": "https://www.youtube.com/watch?v=gfjGG9r3fSM",
+			"Album": "Haunted House",
+			"ArtUrl": "https://coverartarchive.org/release/fe4782f6-b2fe-43ed-b799-94c4da641414/12166047209-500.jpg"
+		},
+		{
+			"Name": "The Ballad of a Mindless Girl",
+			"Artist": "cYsmix",
+			"StreamUrl": "https://cysmix.bandcamp.com/track/the-ballad-of-a-mindless-girl-2",
+			"Album": "Haunted House",
+			"ArtUrl": "https://coverartarchive.org/release/fe4782f6-b2fe-43ed-b799-94c4da641414/12166047209-500.jpg"
+		},
+		{
+			"Name": "Aumetra the Witch",
+			"Artist": "cYsmix",
+			"StreamUrl": "https://cysmix.bandcamp.com/track/aumetra-the-witch",
+			"Album": "Voodooism",
+			"ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
+		},
+		{
+			"Name": "Misty Woods",
+			"Artist": "cYsmix",
+			"StreamUrl": "https://cysmix.bandcamp.com/track/misty-woods",
+			"Album": "Voodooism",
+			"ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
+		},
+		{
+			"Name": "Dzjin",
+			"Artist": "cYsmix",
+			"StreamUrl": "https://cysmix.bandcamp.com/track/dzjin",
+			"Album": "Voodooism",
+			"ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
+		},
+		{
+			"Name": "Souls of the Forest",
+			"Artist": "cYsmix",
+			"StreamUrl": "https://cysmix.bandcamp.com/track/souls-of-the-forest",
+			"Album": "Voodooism",
+			"ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
+		},
 		{
 			"Name": "Stellar Wind",
 			"Artist": "Davz",
@@ -344,13 +344,13 @@
 			"Album": "Nurture",
 			"ArtUrl": "https://coverartarchive.org/release/a368a283-c070-42a0-bdd5-7974a7df1b9a/28425120907-500.jpg"
 		},
-    {
-      "Name": "dullscythe",
-      "Artist": "Porter Robinson",
-      "StreamUrl": "https://youtu.be/fu-heL_K14k",
-      "Album": "Nurture",
-      "ArtUrl": "https://coverartarchive.org/release/a368a283-c070-42a0-bdd5-7974a7df1b9a/28425120907-500.jpg"
-    },
+		{
+			"Name": "dullscythe",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://youtu.be/fu-heL_K14k",
+			"Album": "Nurture",
+			"ArtUrl": "https://coverartarchive.org/release/a368a283-c070-42a0-bdd5-7974a7df1b9a/28425120907-500.jpg"
+		},
 		{
 			"Name": "Vandalism",
 			"Artist": "Porter Robinson",
@@ -372,12 +372,12 @@
 			"Album": "Worlds",
 			"ArtUrl": "https://coverartarchive.org/release/eaacccdc-3c35-4f18-8b73-f4e1bfc403f0/8005829059-500.jpg"
 		},
-    {
-      "Name": "Language",
-      "Artist": "Porter Robinson",
-      "StreamUrl": "https://youtu.be/Vsy1URDYK88",
-      "ArtUrl": "https://coverartarchive.org/release/cca170bb-b8a8-4382-9a20-03e9c4887e04/22558971521-500.jpg"
-    },
+		{
+			"Name": "Language",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://youtu.be/Vsy1URDYK88",
+			"ArtUrl": "https://coverartarchive.org/release/cca170bb-b8a8-4382-9a20-03e9c4887e04/22558971521-500.jpg"
+		},
 		{
 			"Name": "Time to Pretend",
 			"Artist": "MGMT",
@@ -475,13 +475,13 @@
 			"Album": "Trace of Will",
 			"ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
 		},
-    {
-      "Name": "Remind the Souls",
-      "Artist": "Nhato",
-      "StreamUrl": "https://youtu.be/Y31C7GOtLGc",
-      "Album": "Trace of Will",
-      "ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
-    },
+		{
+			"Name": "Remind the Souls",
+			"Artist": "Nhato",
+			"StreamUrl": "https://youtu.be/Y31C7GOtLGc",
+			"Album": "Trace of Will",
+			"ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
+		},
 		{
 			"Name": "Eligo",
 			"Artist": "Nhato",
@@ -489,41 +489,41 @@
 			"Album": "Trace of Will",
 			"ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
 		},
-    {
-      "Name": "Filum",
-      "Artist": "Nhato",
-      "StreamUrl": "https://youtu.be/eTET5p2RZRY",
-      "Album": "Trace of Will",
-      "ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
-    },
-    {
-      "Name": "Summer Waves",
-      "Artist": "Nhato",
-      "StreamUrl": "https://youtu.be/nSOKHLhMaTI",
-      "Album": "Trace of Will",
-      "ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
-    },
-    {
-      "Name": "Oblivio",
-      "Artist": "Nhato",
-      "StreamUrl": "https://youtu.be/QU_IS0VMOzE",
-      "Album": "Trace of Will",
-      "ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
-    },
-    {
-    	"Name": "Paledrop",
-    	"Artist": "Tomohiko Togashi",
-    	"StreamUrl": "https://compllege.bandcamp.com/track/paledrop",
-    	"Album": "In the Unusual Emotion",
-    	"ArtUrl": "https://coverartarchive.org/release/1c7d5b67-b93d-49c6-bf4d-4a190e0e86ca/33860084439-500.jpg"
-    },
-    {
-      "Name": "Radiative Cooling",
+		{
+			"Name": "Filum",
+			"Artist": "Nhato",
+			"StreamUrl": "https://youtu.be/eTET5p2RZRY",
+			"Album": "Trace of Will",
+			"ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
+		},
+		{
+			"Name": "Summer Waves",
+			"Artist": "Nhato",
+			"StreamUrl": "https://youtu.be/nSOKHLhMaTI",
+			"Album": "Trace of Will",
+			"ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
+		},
+		{
+			"Name": "Oblivio",
+			"Artist": "Nhato",
+			"StreamUrl": "https://youtu.be/QU_IS0VMOzE",
+			"Album": "Trace of Will",
+			"ArtUrl": "https://coverartarchive.org/release/de8a4982-2a4f-4023-bdce-6eaaab7b13f0/25333121965-500.jpg"
+		},
+		{
+			"Name": "Paledrop",
+			"Artist": "Tomohiko Togashi",
+			"StreamUrl": "https://compllege.bandcamp.com/track/paledrop",
+			"Album": "In the Unusual Emotion",
+			"ArtUrl": "https://coverartarchive.org/release/1c7d5b67-b93d-49c6-bf4d-4a190e0e86ca/33860084439-500.jpg"
+		},
+		{
+			"Name": "Radiative Cooling",
 			"Artist": "MK (JPN)",
 			"StreamUrl": "https://compllege.bandcamp.com/track/radiative-cooling",
 			"Album": "In the Usual Motion",
 			"ArtUrl": "https://coverartarchive.org/release/e08c268f-1c51-41e1-aa07-1c26a8085930/33860070995-500.jpg"
-    },
+		},
 		{
 			"Name": "Without Me",
 			"Artist": "Eminem",
@@ -769,21 +769,21 @@
 			"Album": "FEVER DREAM",
 			"ArtUrl": "https://f4.bcbits.com/img/a0930597781_16.jpg"
 		},
-    // Yeah, I used the SFW album art, so what?
-    {
-      "Name": "Yandere Complex",
-      "Artist": "Sewerslvt",
-      "StreamUrl": "https://sewerslvt.bandcamp.com/track/yandere-complex",
-      "Album": "Draining Love Story",
-      "ArtUrl": "https://coverartarchive.org/release/b8fd6f7f-496d-41bc-a05b-c0ea3fce81c7/27065541713-500.jpg"
-    },
-    {
-      "Name": "Mr. Kill Myself",
-      "Artist": "Sewerslvt",
-      "StreamUrl": "https://sewerslvt.bandcamp.com/track/mr-kill-myself-2",
-      "Album": "Draining Love Story",
-      "ArtUrl": "https://coverartarchive.org/release/b8fd6f7f-496d-41bc-a05b-c0ea3fce81c7/27065541713-500.jpg"
-    },
+		// Yeah, I used the SFW album art, so what?
+		{
+			"Name": "Yandere Complex",
+			"Artist": "Sewerslvt",
+			"StreamUrl": "https://sewerslvt.bandcamp.com/track/yandere-complex",
+			"Album": "Draining Love Story",
+			"ArtUrl": "https://coverartarchive.org/release/b8fd6f7f-496d-41bc-a05b-c0ea3fce81c7/27065541713-500.jpg"
+		},
+		{
+			"Name": "Mr. Kill Myself",
+			"Artist": "Sewerslvt",
+			"StreamUrl": "https://sewerslvt.bandcamp.com/track/mr-kill-myself-2",
+			"Album": "Draining Love Story",
+			"ArtUrl": "https://coverartarchive.org/release/b8fd6f7f-496d-41bc-a05b-c0ea3fce81c7/27065541713-500.jpg"
+		},
 		{
 			"Name": "4BLOOD (cover)",
 			"Artist": "Takanashi Kiara & KIRA",
@@ -1030,19 +1030,19 @@
 			"StreamUrl": "https://www.youtube.com/watch?v=JtXlqCVhURk",
 			"ArtUrl": "https://coverartarchive.org/release/fca45907-2dfa-4184-9977-9779ee6fb0f5/34619760103-500.jpg"
 		},
-	  {
-      "Name": "Challenger",
-      "Artist": "Creo",
-      "StreamUrl": "https://www.youtube.com/watch?v=liGys7AFPJY",
-      "Album": "Nemophore",
-      "ArtUrl": "https://coverartarchive.org/release/6a84e38a-1a5e-4479-b464-d38e5e95f756/29346344770.jpg"
-    },
-    {
+		{
+			"Name": "Challenger",
+			"Artist": "Creo",
+			"StreamUrl": "https://www.youtube.com/watch?v=liGys7AFPJY",
+			"Album": "Nemophore",
+			"ArtUrl": "https://coverartarchive.org/release/6a84e38a-1a5e-4479-b464-d38e5e95f756/29346344770.jpg"
+		},
+		{
 			"Name": "Rivals",
 			"Artist": "Creo",
 			"StreamUrl": "https://www.youtube.com/watch?v=88qd8FxS3AM",
 			"Album": "Nemophore",
 			"ArtUrl": "https://coverartarchive.org/release/6a84e38a-1a5e-4479-b464-d38e5e95f756/29346344770.jpg"
 		}
-  ]
+	]
 }
