@@ -11,7 +11,6 @@ builder.Services.AddRouting();
 builder.Services.AddControllers();
 
 // our own custom services
-builder.Services.AddSingleton<RandomService>();
 builder.Services.AddSingleton<DataService>();
 builder.Services.AddTransient<PickerService>();
 builder.Services.AddSingleton<DownloadService>();

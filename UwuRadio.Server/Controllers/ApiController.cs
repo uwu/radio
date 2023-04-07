@@ -1,5 +1,7 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
+using Microsoft.Net.Http.Headers;
 using UwuRadio.Server.Services;
 
 namespace UwuRadio.Server.Controllers;
@@ -40,7 +42,16 @@ public class ApiController : Controller
 
 		var fileInfo = _downloadService.GetFileInfo(id);
 
+		// check ETag to facilitate caching
+		if (Request.Headers.IfNoneMatch.FirstOrDefault() == ('"' + fileInfo.Md5 + '"'))
+			return StatusCode(StatusCodes.Status304NotModified);
+
 		// if range processing is enabled it makes the client get very angy
-		return File(fileInfo.File.OpenRead(), "audio/mpeg", false);
+		return File(
+				    fileInfo.File.OpenRead(),
+				    "audio/mpeg",
+				    null,
+				    new EntityTagHeaderValue(new StringSegment('"' + fileInfo.Md5 + '"')),
+				    false);
 	}
 }

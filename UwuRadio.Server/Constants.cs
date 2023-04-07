@@ -50,9 +50,4 @@ public class Constants
 	// these two are not in the JSON but are here for convenience
 	public string IngestSubmittersFolder => Path.Combine(IngestFolder, "submitters");
 	public string IngestChannelsFolder => Path.Combine(IngestFolder, "channels");
-
-	/// <summary>
-	///		API key for random.org
-	/// </summary>
-	public string? RandomOrgApiKey { get; set; }
 }

@@ -1,68 +1,131 @@
 namespace UwuRadio.Server.Services;
 
+/*
+ * Take the list of songs and split it into three
+ * Make your queue consist of a randomly picked 2/3 of that
+ * Run through the queue as normal, and when you reach the end:
+ *
+ * | former queue half : latter queue half |  | unpicked songs |
+ *
+ * Form a new queue of the former third and unpicked songs:
+ *
+ * | former queue half : unpicked songs |  | latter queue half |
+ *
+ * And shuffle the full queue:
+ *
+ * |      queue      | | unpicked songs |
+ *
+ *
+ * This system gives a bias against recent songs, but it avoids the drawback
+ * of just excluding the most recent half of the queue, in which the queue is
+ * consisted of the full ingest:
+ * the problem that that would essentially split the ingest into two halves,
+ * where we alternate between them, albeit randomly within each half.
+ *
+ * This is non-ideal, and this thirds system allows songs to move around the queue
+ * and intermingle over time.
+ *
+ * Hopefully this should lead to better shuffling? let's see!
+ *  -- Yellowsink
+ */
+
 /// <summary>
 ///     Selects new songs
 /// </summary>
 public class PickerService
 {
-	private readonly DataService   _dataService;
-	private readonly RandomService _randomService;
-	private readonly string?[]     _recentArtists    = new string[5];
-	private readonly string?[]     _recentSubmitters = new string[2];
+	private Song[] _queue;
+	private Song[] _unpickedSongs;
+
+	private int _queuePos;
 
 	public string? Channel;
 	
 	private string PrettyOwnName => nameof(PickerService) + " - " + (Channel ?? "<global>");
 
-	public PickerService(DataService dataService, RandomService randomService)
+	public PickerService(DataService dataService)
 	{
-		_dataService   = dataService;
-		_randomService = randomService;
+		var allSongs = SpotifyShuffle(dataService.Songs).ToArray();
+
+		var queueSize = 2 * (allSongs.Length / 3);
+
+		_queue         = new Song[queueSize];
+		_unpickedSongs = new Song[allSongs.Length - queueSize];
+
+		MemCopy(allSongs, _queue,         0,         0);
+		MemCopy(allSongs, _unpickedSongs, queueSize, 0);
+
+		ShuffleQueue();
 	}
 
 	public Song SelectSong()
 	{
-		var pool = Channel == null
-					   ? _dataService.GlobalSongs
-					   : _dataService.Channels[Channel].Songs;
-		
-		var failsafe = 0;
-		
-		Song picked;
+		_queuePos++;
 
-		bool FailsafeCheck()     => failsafe++ < 1000;
-		bool RecentArtistCheck() => _recentArtists.Contains(picked.Artist);
-
-		bool RecentSubmitterCheck()
-			=> Channel == null && _recentSubmitters.Contains(picked.Submitter);
-
-		do
+		if (_queuePos >= _queue.Length)
 		{
-			picked = pool[_randomService.Next(pool.Length)];
-			// These darn humans are too good at spotting patterns where there are none!
-		} while ((RecentArtistCheck() || RecentSubmitterCheck()) && FailsafeCheck());
+			_queuePos -= _queue.Length;
+			ShuffleQueue();
+		}
 
-		if (failsafe > 1000)
-			Helpers.Log(PrettyOwnName, "hit infinite loop failsafe!");
-		
-		Shift(_recentArtists,    picked.Artist);
-		Shift(_recentSubmitters, picked.Submitter);
-
-		return picked;
+		return _queue[_queuePos];
 	}
 
-	private static void Shift<T>(IList<T?> arr, T item)
+	private void ShuffleQueue()
 	{
-		for (var i = 0; i < arr.Count; i++)
-			if (arr[i] == null)
-			{
-				arr[i] = item;
-				return;
-			}
+		var halfQueueSize    = _queue.Length / 2;
+		var newUnpickedSongs = new Song[halfQueueSize];
+		var newQueue         = new Song[halfQueueSize + _unpickedSongs.Length];
 
-		for (var i = 0; i < arr.Count - 1; i++)
-			arr[i] = arr[i + 1];
+		MemCopy(_queue,         newUnpickedSongs, halfQueueSize, 0);
+		MemCopy(_queue,         newQueue,         0,             0, halfQueueSize);
+		MemCopy(_unpickedSongs, newQueue,         0,             halfQueueSize);
 
-		arr[^1] = item;
+		_unpickedSongs = newUnpickedSongs;
+
+		_queue = SpotifyShuffle(newQueue).ToArray();
+	}
+
+	private static void FisherYatesShuffle<T>(IList<T> arr)
+	{
+		for (var i = arr.Count - 1; i >= 1; i--)
+		{
+			var j = Random.Shared.Next(i);
+			(arr[i], arr[j]) = (arr[j], arr[i]);
+		}
+	}
+
+	// https://engineering.atspotify.com/2014/02/how-to-shuffle-songs
+	// https://codegolf.stackexchange.com/questions/198094
+	private static IEnumerable<Song> SpotifyShuffle(IEnumerable<Song> arr) => arr
+		.GroupBy(song => song.Submitter + song.Artist)
+		.SelectMany(
+		    group =>
+		    {
+			    var groupArr = group.ToArray();
+			    FisherYatesShuffle(groupArr);
+				
+				var groupOset = Random.Shared.NextDouble() * (1.0 / groupArr.Length);
+
+			    return groupArr.Select((song, idx) =>
+				{
+					var songOset = Random.Shared.NextDouble() * (0.2 / groupArr.Length)
+								 - (0.1 / groupArr.Length);
+
+					var pos = (double) idx / groupArr.Length + groupOset + songOset;
+					
+					return (song, pos);
+				});
+			})
+		.OrderBy(t => t.Item2)
+		.Select(t => t.Item1);
+
+	private static void MemCopy<T>(T[] src, T[] dest, int srcIdx, int destIdx, int count = -1)
+	{
+		if (count == -1) count = dest.Length - destIdx;
+
+		var destSpan = new Span<T>(dest, destIdx, count);
+		var srcSpan  = new ReadOnlySpan<T>(src, srcIdx, count);
+		srcSpan.CopyTo(destSpan);
 	}
 }

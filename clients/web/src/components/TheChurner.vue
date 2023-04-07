@@ -80,7 +80,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="z-4">
+  <div :class="'z-4' + (showMenu ? '' : ' cursor-none')">
     <canvas ref="canvas" :width="width" :height="height" class="absolute"></canvas>
     <Transition>
       <div ref="menu" v-if="showMenu" class="absolute h-12 bottom-0 right-0 p-2 flex gap-1">

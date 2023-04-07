@@ -4,6 +4,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -23,9 +24,8 @@ import network.uwu.radio.ui.viewmodel.HomeViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun HomeScreen(
-    viewModel: HomeViewModel = koinViewModel()
-) {
+fun HomeScreen() {
+    val viewModel: HomeViewModel = koinViewModel()
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -78,18 +78,7 @@ fun HomeScreen(
                             verticalArrangement = Arrangement.spacedBy(16.dp),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
-                            AsyncImage(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .aspectRatio(1f / 1f)
-                                    .border(Dp.Hairline, UwuRadioTheme.colorScheme.onBackground),
-                                model = ImageRequest.Builder(LocalContext.current)
-                                    .data(viewModel.artUrl)
-                                    .diskCachePolicy(CachePolicy.ENABLED)
-                                    .diskCacheKey(viewModel.artUrl)
-                                    .build(),
-                                contentDescription = null,
-                            )
+                            Artwork(viewModel.artUrl)
                             Column(
                                 modifier = Modifier.fillMaxWidth(),
                                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -126,7 +115,12 @@ fun HomeScreen(
                             )
                         }
                         Text(
-                            text = viewModel.quote?.let { stringResource(R.string.home_song_quote, it) } ?: "",
+                            text = viewModel.quote?.let {
+                                stringResource(
+                                    R.string.home_song_quote,
+                                    it
+                                )
+                            } ?: "",
                             style = UwuRadioTheme.typography.body.copy(textAlign = TextAlign.Center)
                         )
                     }
@@ -134,4 +128,27 @@ fun HomeScreen(
             }
         }
     }
+}
+
+@Composable
+private fun Artwork(
+    url: String?,
+    modifier: Modifier = Modifier
+) {
+    val context = LocalContext.current
+    val image = remember(context, url) {
+        ImageRequest.Builder(context)
+            .data(url)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .diskCacheKey(url)
+            .build()
+    }
+    AsyncImage(
+        modifier = modifier
+            .fillMaxWidth()
+            .aspectRatio(1f / 1f)
+            .border(Dp.Hairline, UwuRadioTheme.colorScheme.onBackground),
+        model = image,
+        contentDescription = null,
+    )
 }
