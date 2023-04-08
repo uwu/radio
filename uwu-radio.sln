@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwuRadio.Server", "UwuRadio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "uwuradio-client", "clients\web", "{0EF37811-4251-43EF-8D45-51CE1F53934E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwuRadio.Server.Tests", "UwuRadio.Server.Tests\UwuRadio.Server.Tests.csproj", "{1A4A129A-CF8E-4428-9064-94634B894AAB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,5 +22,9 @@ Global
 		{B4297D6C-CDF3-436B-8778-E65A18879C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4297D6C-CDF3-436B-8778-E65A18879C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4297D6C-CDF3-436B-8778-E65A18879C77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A4A129A-CF8E-4428-9064-94634B894AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A4A129A-CF8E-4428-9064-94634B894AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A4A129A-CF8E-4428-9064-94634B894AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A4A129A-CF8E-4428-9064-94634B894AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

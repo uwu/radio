@@ -7,6 +7,7 @@ on:
     paths:
     - ingest/**
     - UwuRadio.Server/**
+    - UwuRadio.Server.Tests/**
     - uwu-radio.sln
     
   workflow_dispatch:
@@ -24,6 +25,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
+    
+    - name: Test ingests are valid
+      run: dotnet test
     
     - name: Publish
       run: |
