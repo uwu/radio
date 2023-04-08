@@ -43,11 +43,13 @@ public class PickerService
 
 	public string? Channel;
 
+/*
 	private string PrettyOwnName => nameof(PickerService) + " - " + (Channel ?? "<global>");
+*/
 
 	public PickerService(DataService dataService) => _dataService = dataService;
 
-	private bool _inited = false;
+	private bool _inited;
 
 	// we need our channel set before we can actually init
 	private void LateInit()
