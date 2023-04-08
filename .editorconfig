@@ -110,5 +110,5 @@ resharper_web_config_wrong_module_highlighting = warning
 tab_width = 4
 
 [*.{js,ts,jsx,tsx,json,vue}]
-indent_style = spaces
+indent_style = space
 indent_size = 2
