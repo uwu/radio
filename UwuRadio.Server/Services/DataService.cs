@@ -11,7 +11,7 @@ public class DataService
 	public IImmutableDictionary<string, Channel> Channels;
 
 	public IImmutableDictionary<string, Submitter> Submitters;
-	//public Song[]                                  GlobalSongs = Array.Empty<Song>();
+	public Song[]                                  GlobalSongs = Array.Empty<Song>();
 
 	private static readonly JsonSerializerOptions JsonOpts = new()
 	{
@@ -103,7 +103,7 @@ public class DataService
 	private void PostProcessIngests(Dictionary<string, IngestChannel>   rawChannels,
 									Dictionary<string, IngestSubmitter> rawSubmitters)
 	{
-		//var globalSongs  = new List<Song>();
+		var globalSongs  = new List<Song>();
 		var channelSongs = new Dictionary<string, List<Song>>();
 
 		foreach (var submitter in rawSubmitters.Values)
@@ -118,14 +118,14 @@ public class DataService
 					if (song.IncludeInGlobal == false)
 						throw new Exception("song passed validation but should not have, bailing");
 
-					//globalSongs.Add(song);
+					globalSongs.Add(song);
 					channelSongs[submitter.Name].Add(song);
 				}
 				else
 				{
 					if (song.IncludeInGlobal == true)
 					{
-						//globalSongs.Add(song);
+						globalSongs.Add(song);
 						channelSongs[submitter.Name].Add(song);
 					}
 
@@ -137,7 +137,7 @@ public class DataService
 			}
 		}
 
-		//GlobalSongs = globalSongs.ToArray();
+		GlobalSongs = globalSongs.ToArray();
 
 		Channels = rawChannels
 				  .Select(

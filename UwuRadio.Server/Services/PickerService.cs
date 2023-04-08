@@ -36,16 +36,14 @@ public class PickerService
 {
 	private DataService _dataService;
 
-	private Song[] _queue = Array.Empty<Song>();
+	private Song[] _queue         = Array.Empty<Song>();
 	private Song[] _unpickedSongs = Array.Empty<Song>();
 
 	private int _queuePos;
 
 	public string? Channel;
 
-/*
-	private string PrettyOwnName => nameof(PickerService) + " - " + (Channel ?? "<global>");
-*/
+	//private string PrettyOwnName => nameof(PickerService) + " - " + (Channel ?? "<global>");
 
 	public PickerService(DataService dataService) => _dataService = dataService;
 
@@ -57,14 +55,17 @@ public class PickerService
 		if (_inited) return;
 		_inited = true;
 
-		var allSongs = SpotifyShuffle(_dataService.Channels[Channel!].Songs).ToArray();
+		var allSongs = SpotifyShuffle(
+				Channel == null ? _dataService.GlobalSongs : _dataService.Channels[Channel!].Songs
+			)
+			.ToArray();
 
 		var queueSize = 2 * (allSongs.Length / 3);
 
-		_queue = new Song[queueSize];
+		_queue         = new Song[queueSize];
 		_unpickedSongs = new Song[allSongs.Length - queueSize];
 
-		MemCopy(allSongs, _queue, 0, 0);
+		MemCopy(allSongs, _queue,         0,         0);
 		MemCopy(allSongs, _unpickedSongs, queueSize, 0);
 
 		ShuffleQueue();
@@ -112,27 +113,30 @@ public class PickerService
 	// https://engineering.atspotify.com/2014/02/how-to-shuffle-songs
 	// https://codegolf.stackexchange.com/questions/198094
 	private static IEnumerable<Song> SpotifyShuffle(IEnumerable<Song> arr) => arr
-		.GroupBy(song => song.Submitter + song.Artist)
-		.SelectMany(
-		    group =>
-		    {
-			    var groupArr = group.ToArray();
-			    FisherYatesShuffle(groupArr);
+.GroupBy(song => song.Submitter + song.Artist)
+.SelectMany(
+			group =>
+			{
+				var groupArr = group.ToArray();
+				FisherYatesShuffle(groupArr);
 
 				var groupOset = Random.Shared.NextDouble() * (1.0 / groupArr.Length);
 
-			    return groupArr.Select((song, idx) =>
-				{
-					var songOset = Random.Shared.NextDouble() * (0.2 / groupArr.Length)
-								 - (0.1 / groupArr.Length);
+				return groupArr.Select(
+					(song, idx) =>
+					{
+						var songOset = Random.Shared.NextDouble() * (0.2 / groupArr.Length)
+									 - (0.1 / groupArr.Length);
 
-					var pos = (double) idx / groupArr.Length + groupOset + songOset;
+						var pos = (double) idx / groupArr.Length + groupOset + songOset;
 
-					return (song, pos);
-				});
-			})
-		.OrderBy(t => t.Item2)
-		.Select(t => t.Item1);
+						return (song, pos);
+					}
+				);
+			}
+		)
+.OrderBy(t => t.Item2)
+.Select(t => t.Item1);
 
 	private static void MemCopy<T>(T[] src, T[] dest, int srcIdx, int destIdx, int count = -1)
 	{
