@@ -4,6 +4,11 @@ on:
   push:
     branches: [master]
     #tags: ["**"]
+    paths:
+    - ingest/**
+    - UwuRadio.Server/**
+    - uwu-radio.sln
+    
   workflow_dispatch:
 
 

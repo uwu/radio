@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - '*'
-    paths-ignore:
-      - '**.md'
+    paths: ["clients/android/**"]
+    
   pull_request:
     branches:
       - '*'
-    paths-ignore:
-      - '**.md'
+    paths: ["clients/android/**"]
+    
   workflow_dispatch:
 
 jobs:
