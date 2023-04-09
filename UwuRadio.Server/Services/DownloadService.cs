@@ -12,13 +12,18 @@ public record SongFileInfo(FileInfo File, string Md5, Duration Length);
 /// </summary>
 public class DownloadService : IDisposable
 {
+	private readonly ILogger<DownloadService>         _logger;
 	private readonly Queue<Song>                      _downloadQueue     = new();
 	private readonly Dictionary<string, SongFileInfo> _fileInfos         = new();
 	private readonly HashSet<string>                  _downloadBlacklist = new();
 
 	private bool _isCurrentlyDownloading;
 
-	public DownloadService() { Directory.CreateDirectory(Constants.C.CacheFolder); }
+	public DownloadService(ILogger<DownloadService> logger)
+	{
+		_logger = logger;
+		Directory.CreateDirectory(Constants.C.CacheFolder);
+	}
 
 	public void Dispose() => Directory.Delete(Constants.C.CacheFolder, true);
 
@@ -30,7 +35,7 @@ public class DownloadService : IDisposable
 		if (IsBlacklisted(song)) return;
 		if (IsDownloading(song)) return;
 
-		Helpers.Log(nameof(DownloadService), $"Queued {song.Name} for DL");
+		_logger.LogDebug("Queued {SongName} for DL", song.Name);
 
 		lock (_downloadQueue)
 		{
@@ -59,14 +64,16 @@ public class DownloadService : IDisposable
 			try { _fileInfos[song.Id] = await DownloadSong(song.StreamUrl); }
 			catch (Exception e)
 			{
-				Helpers.Log(nameof(DownloadService),
-						    $"Caught exception while downloading {song.Name}! Blacklisting from future download attempts.\n"
-						  + e);
+				_logger.LogError(
+					e,
+					"Caught exception while downloading {SongName}! Blacklisting from future download attempts",
+					song.Name
+				);
 				_downloadBlacklist.Add(song.Id);
 				continue;
 			}
 
-			Helpers.Log(nameof(DownloadService), $"Downloaded and cached {song.Name}");
+			_logger.LogDebug("Downloaded and cached {SongName}", song.Name);
 		}
 
 		_isCurrentlyDownloading = false;

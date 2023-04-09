@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace UwuRadio.Server.Services;
@@ -8,7 +9,7 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class DataService
 {
-	public IImmutableDictionary<string, Channel> Channels;
+	public           IImmutableDictionary<string, Channel> Channels;
 
 	public IImmutableDictionary<string, Submitter> Submitters;
 	public Song[]                                  GlobalSongs = Array.Empty<Song>();
@@ -18,18 +19,21 @@ public class DataService
 		ReadCommentHandling = JsonCommentHandling.Skip
 	};
 
-	public DataService()
+	// ReSharper disable once SuggestBaseTypeForParameterInConstructor
+	public DataService(ILogger<DataService> logger)
 	{
-		var rawChannels   = IngestChannels();
-		var rawSubmitters = IngestSubmitters();
+		var                  rawChannels   = IngestChannels();
+		var                  rawSubmitters = IngestSubmitters();
 		PostProcessIngests(rawChannels, rawSubmitters);
 
-		Helpers.Log(
-			nameof(DataService),
-			$@"Ingest successful:
-  - {Channels!.Values.Sum(c => c.Songs.Length)} total songs
-  - {Channels.Count} channels
-  - {Submitters!.Count} submitters"
+		logger.LogInformation(
+			@"Ingest successful:
+  - {Sum} total songs
+  - {ChannelCount} channels
+  - {SubmitterCount} submitters",
+			Channels!.Values.Sum(c => c.Songs.Length),
+			Channels.Count,
+			Submitters!.Count
 		);
 	}
 

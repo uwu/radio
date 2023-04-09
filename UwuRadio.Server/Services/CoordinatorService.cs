@@ -8,9 +8,10 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class CoordinatorService : IDisposable
 {
-	private readonly DownloadService      _dlService;
-	private readonly IHubContext<SyncHub> _hubContext;
-	private readonly PickerService        _pickerService;
+	private readonly ILogger<CoordinatorService> _logger;
+	private readonly DownloadService             _dlService;
+	private readonly IHubContext<SyncHub>        _hubContext;
+	private readonly PickerService               _pickerService;
 
 	private bool _haltThread;
 
@@ -23,12 +24,13 @@ public class CoordinatorService : IDisposable
 	public Instant CurrentStarted;
 	public Song    Next = null!;
 
-	public CoordinatorService(IHubContext<SyncHub> hubContext,       DownloadService       dlService,
-							  PickerService        pickerService, CoordServOwnerService owner)
+	public CoordinatorService(IHubContext<SyncHub> hubContext,    DownloadService       dlService,
+							  PickerService        pickerService, CoordServOwnerService owner, ILogger<CoordinatorService> logger)
 	{
 		_hubContext    = hubContext;
 		_dlService     = dlService;
 		_pickerService = pickerService;
+		_logger   = logger;
 
 		// run this explicitly on another thread
 		Task.Run(() => StartBgThread(owner));
@@ -37,7 +39,7 @@ public class CoordinatorService : IDisposable
 	public void Dispose()
 	{
 		_haltThread = true;
-		Helpers.Log(PrettyOwnName, "Disposed");
+		_logger.LogDebug("Disposed");
 	}
 
 	private async Task StartBgThread(CoordServOwnerService owner)
@@ -65,7 +67,7 @@ public class CoordinatorService : IDisposable
 			Channel
 		);
 
-		Helpers.Log(PrettyOwnName, "Ready to serve clients");
+		_logger.LogInformation("Ready to serve clients");
 
 		await MainLoop();
 	}
@@ -108,7 +110,10 @@ public class CoordinatorService : IDisposable
 			// if there is a blacklisted song, keep skipping until a song downloads
 			if (_dlService.IsBlacklisted(Next))
 			{
-				Helpers.Log(PrettyOwnName, "Encountered blacklisted song, skipping it!");
+				_logger.LogWarning(
+					"Encountered blacklisted song {SongName}, skipping it!",
+					Next.Name
+				);
 
 				Next = _pickerService.SelectSong();
 				_dlService.EnsureDownloaded(Next);
@@ -146,8 +151,11 @@ public class CoordinatorService : IDisposable
 				// also makes it feasible to use really really slow hosts such as NicoNico
 				_dlService.EnsureDownloaded(Next);
 
-				Helpers.Log(PrettyOwnName,
-						    $"Advanced queue, current song: {Current.Name}, next song: {Next.Name}");
+				_logger.LogInformation(
+					"Advanced queue, current song: {CurrentName}, next song: {NextName}",
+					Current.Name,
+					Next.Name
+				);
 
 				continue;
 			}
@@ -165,7 +173,7 @@ public class CoordinatorService : IDisposable
 					Channel
 				);
 
-				Helpers.Log(PrettyOwnName, $"Broadcast next song ({Next.Name}) to clients");
+				_logger.LogInformation("Broadcast next song ({Name}) to clients", Next.Name);
 
 				// ReSharper disable once RedundantJumpStatement
 				continue;

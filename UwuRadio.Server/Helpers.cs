@@ -40,39 +40,6 @@ public static class Helpers
 		return parsed;
 	}
 
-	private static readonly object LogLock = new();
-	
-	public static void Log(string? subSeg, params object[] payload)
-	{
-		lock (LogLock)
-		{
-			var segments = subSeg == null
-							   ? new[] { ("uwu radio", ConsoleColor.Green) }
-							   : new[]
-							   {
-								   ("uwu radio", ConsoleColor.Green),
-								   (subSeg, ConsoleColor.Blue)
-							   };
-
-			foreach (var (seg, col) in segments)
-			{
-				Console.Write("⸨");
-
-				var origCol = Console.ForegroundColor;
-				Console.ForegroundColor = col;
-				Console.Write(seg);
-				Console.ForegroundColor = origCol;
-
-				Console.Write("⸩ ");
-			}
-
-			foreach (var p in payload)
-				Console.Write(p.ToString());
-
-			Console.WriteLine();
-		}
-	}
-
 	private static readonly char[] Base60Chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx".ToCharArray();
 	private static string ToBase60(this ulong num) {
 		var i = 32;

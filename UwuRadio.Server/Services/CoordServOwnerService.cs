@@ -5,11 +5,16 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class CoordServOwnerService
 {
+	private readonly ILogger<CoordServOwnerService>            _logger;
 	private readonly DataService                            _dataService;
 	private readonly Dictionary<string, CoordinatorService> _channels = new();
 	private          CoordinatorService?                    _globalChannel;
 
-	public CoordServOwnerService(DataService dataService) => _dataService = dataService;
+	public CoordServOwnerService(DataService dataService, ILogger<CoordServOwnerService> logger)
+	{
+		_dataService = dataService;
+		_logger = logger;
+	}
 
 	public void StartCoordinators(IServiceProvider providerService)
 	{
@@ -19,7 +24,7 @@ public class CoordServOwnerService
 			_channels[chan] = providerService.GetService<CoordinatorService>()
 						   ?? throw new InvalidOperationException();
 
-		Helpers.Log(nameof(CoordServOwnerService), $"Successfully instantiated {_channels.Count + 1} services");
+		_logger.LogInformation("Successfully instantiated {ChannelCount} services", _channels.Count + 1);
 	}
 
 	public CoordinatorService GetServiceByChannel(string? channel = null)

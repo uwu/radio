@@ -1,9 +1,21 @@
+using Serilog;
 using UwuRadio.Server;
 using UwuRadio.Server.Services;
 
-Helpers.Log(null, "Hello, world!");
+Log.Logger = new LoggerConfiguration()
+#if DEBUG
+			.MinimumLevel.Debug()
+#else
+			.MinimumLevel.Information()
+#endif
+			.WriteTo.Console()
+			.CreateLogger();
+
+Log.Information("Hello, world!");
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog();
 
 builder.Services.AddSignalR();
 builder.Services.AddCors();
@@ -20,7 +32,9 @@ builder.Services.AddSingleton<CoordServOwnerService>();
 var app = builder.Build();
 
 // https://stackoverflow.com/a/66240442/8388655
-app.UseCors(cors => cors.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(_ => true).AllowCredentials());
+app.UseCors(
+	cors => cors.AllowAnyHeader().AllowAnyMethod().SetIsOriginAllowed(_ => true).AllowCredentials()
+);
 
 
 app.MapHub<SyncHub>("/sync");
@@ -32,3 +46,5 @@ app.MapDefaultControllerRoute();
 app.Services.GetService<CoordServOwnerService>()!.StartCoordinators(app.Services);
 
 app.Run();
+
+Log.CloseAndFlush();
