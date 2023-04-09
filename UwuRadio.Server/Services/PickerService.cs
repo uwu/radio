@@ -34,7 +34,7 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class PickerService
 {
-	private DataService _dataService;
+	private readonly DataService _dataService;
 
 	private Song[] _queue         = Array.Empty<Song>();
 	private Song[] _unpickedSongs = Array.Empty<Song>();
@@ -77,6 +77,7 @@ public class PickerService
 
 		_queuePos++;
 
+		// ReSharper disable once InvertIf
 		if (_queuePos >= _queue.Length)
 		{
 			_queuePos -= _queue.Length;
@@ -125,6 +126,7 @@ public class PickerService
 				return groupArr.Select(
 					(song, idx) =>
 					{
+						// ReSharper disable once ArrangeRedundantParentheses
 						var songOset = Random.Shared.NextDouble() * (0.2 / groupArr.Length)
 									 - (0.1 / groupArr.Length);
 

@@ -1,6 +1,5 @@
 namespace UwuRadio.Server.Services;
 
-// classname go brrrr
 /// <summary>
 /// Controls all of the Coordinator Services
 /// </summary>

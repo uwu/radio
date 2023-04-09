@@ -5,6 +5,9 @@ namespace UwuRadio.Server;
 
 [SuppressMessage("ReSharper", "UnassignedField.Global")]
 [SuppressMessage("ReSharper", "FieldCanBeMadeReadOnly.Global")]
+[SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
+[SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Global")]
+[SuppressMessage("ReSharper", "MemberCanBePrivate.Global")]
 // ReSharper disable once ClassNeverInstantiated.Global
 public class Constants
 {
@@ -23,7 +26,7 @@ public class Constants
 	public int BufferTime { get; set; }
 
 	/// <summary>
-	///     Time remaining when the next song should be broadcasted for preloading
+	///     Time remaining when the next song should be broadcast for preloading
 	/// </summary>
 	public int PreloadTime { get; set; }
 

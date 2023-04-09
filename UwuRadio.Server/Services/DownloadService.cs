@@ -74,6 +74,7 @@ public class DownloadService : IDisposable
 
 	private static async Task<SongFileInfo> DownloadSong(string url)
 	{
+		// ReSharper disable once StringLiteralTypo
 		var args
 			= $"\"{url}\" -O after_move:filepath --quiet --print-json -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0";
 
@@ -111,9 +112,11 @@ public class DownloadService : IDisposable
 		return (rawPath, durationStr);
 	}
 
+	// ReSharper disable once CommentTypo
 	/// <summary>
 	///     Please ignore outside of DownloadService: exists to read the output of YTDL
 	/// </summary>
+	// ReSharper disable once IdentifierTypo
 	public class YtdlOutputObject
 	{
 		[JsonPropertyName("duration_string")]

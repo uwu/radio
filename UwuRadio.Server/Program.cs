@@ -27,7 +27,7 @@ app.MapHub<SyncHub>("/sync");
 app.MapDefaultControllerRoute();
 
 // start the services before a web req so that it starts downloading songs instantly
-// we need to pass this service our serviceprovider so it can instantiate services that are
+// we need to pass this service our service provider so it can instantiate services that are
 // managed and disposed correctly
 app.Services.GetService<CoordServOwnerService>()!.StartCoordinators(app.Services);
 

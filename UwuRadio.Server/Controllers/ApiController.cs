@@ -30,7 +30,7 @@ public class ApiController : Controller
 			Submitters = _dataService.Submitters.Values.ToArray(),
 			Channels = _dataService.Channels.Values
 				.Select(c => c with { Songs = Array.Empty<Song>() })
-				.ToArray(),
+				.ToArray()
 		}
 	);
 
@@ -43,7 +43,7 @@ public class ApiController : Controller
 		var fileInfo = _downloadService.GetFileInfo(id);
 
 		// check ETag to facilitate caching
-		if (Request.Headers.IfNoneMatch.FirstOrDefault() == ('"' + fileInfo.Md5 + '"'))
+		if (Request.Headers.IfNoneMatch.FirstOrDefault() == '"' + fileInfo.Md5 + '"')
 			return StatusCode(StatusCodes.Status304NotModified);
 
 		// if range processing is enabled it makes the client get very angy

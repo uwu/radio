@@ -9,7 +9,7 @@ namespace UwuRadio.Server.Services;
 public class CoordinatorService : IDisposable
 {
 	private readonly DownloadService      _dlService;
-	private readonly IHubContext<SyncHub> _hubCtxt;
+	private readonly IHubContext<SyncHub> _hubContext;
 	private readonly PickerService        _pickerService;
 
 	private bool _haltThread;
@@ -23,10 +23,10 @@ public class CoordinatorService : IDisposable
 	public Instant CurrentStarted;
 	public Song    Next = null!;
 
-	public CoordinatorService(IHubContext<SyncHub> hubCtxt,       DownloadService       dlService,
+	public CoordinatorService(IHubContext<SyncHub> hubContext,       DownloadService       dlService,
 							  PickerService        pickerService, CoordServOwnerService owner)
 	{
-		_hubCtxt       = hubCtxt;
+		_hubContext    = hubContext;
 		_dlService     = dlService;
 		_pickerService = pickerService;
 
@@ -56,13 +56,14 @@ public class CoordinatorService : IDisposable
 		CurrentStarted = Helpers.Now();
 		CurrentEnds    = CurrentStarted + _dlService.GetFileInfo(Current).Length;
 
-		await _hubCtxt.Clients.All.SendAsync("ReceiveState",
-											 new TransitSong(Current),
-											 CurrentStarted.ToUnixTimeSeconds(),
-											 new TransitSong(Next),
-											 CurrentEnds.ToUnixTimeSeconds()
-										   + Constants.C.BufferTime,
-										   Channel);
+		await _hubContext.Clients.All.SendAsync(
+			"ReceiveState",
+			new TransitSong(Current),
+			CurrentStarted.ToUnixTimeSeconds(),
+			new TransitSong(Next),
+			CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime,
+			Channel
+		);
 
 		Helpers.Log(PrettyOwnName, "Ready to serve clients");
 
@@ -114,7 +115,7 @@ public class CoordinatorService : IDisposable
 
 				// wait for the song to either succeed or fail to download
 				// the loop *probably* shouldn't be blocked for this but its an unlikely code path
-				// and the state to mutex this isnt worth it
+				// and the state to mutex this isn't worth it
 				while (!_dlService.IsDownloaded(Next) && !_dlService.IsBlacklisted(Next))
 					await Task.Delay(100);
 
@@ -142,29 +143,31 @@ public class CoordinatorService : IDisposable
 				// clients are only told about the next when we need to handle preloading
 				// however we will *need* to know the length of the song and be able to serve it at preload time
 				// so its good for us to get a healthy head start - most likely 3-5 minutes!
-				// also makes it feasible to use really really slow hosts such as niconico
+				// also makes it feasible to use really really slow hosts such as NicoNico
 				_dlService.EnsureDownloaded(Next);
 
 				Helpers.Log(PrettyOwnName,
-						    $"Aadvanced queue, current song: {Current.Name}, next song: {Next.Name}");
+						    $"Advanced queue, current song: {Current.Name}, next song: {Next.Name}");
 
 				continue;
 			}
 
 			// handle preloading
+			// ReSharper disable once InvertIf
 			if (!preloadHandled && Helpers.Now()
 			 >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
-				await _hubCtxt.Clients.All.SendAsync(
+				await _hubContext.Clients.All.SendAsync(
 					"BroadcastNext",
 					new TransitSong(Next),
 					CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime,
 					Channel
 				);
 
-				Helpers.Log(PrettyOwnName, $"Broadcasted next song ({Next.Name}) to clients");
+				Helpers.Log(PrettyOwnName, $"Broadcast next song ({Next.Name}) to clients");
 
+				// ReSharper disable once RedundantJumpStatement
 				continue;
 			}
 		}
