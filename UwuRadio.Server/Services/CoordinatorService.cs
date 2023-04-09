@@ -6,31 +6,32 @@ namespace UwuRadio.Server.Services;
 /// <summary>
 ///     Keeps track of state and controls the queue advancing, starting downloads, etc.
 /// </summary>
-public class CoordinatorService : IDisposable
+public class CoordinatorService : IDisposable, IPrettyNamed
 {
-	private readonly ILogger<CoordinatorService> _logger;
-	private readonly DownloadService             _dlService;
-	private readonly IHubContext<SyncHub>        _hubContext;
-	private readonly PickerService               _pickerService;
+	private readonly PrettyLogger<CoordinatorService> _logger;
+	private readonly DownloadService                  _dlService;
+	private readonly IHubContext<SyncHub>             _hubContext;
+	private readonly PickerService                    _pickerService;
 
 	private bool _haltThread;
 
 	public string? Channel;
 
-	private string PrettyOwnName => nameof(CoordinatorService) + " - " + (Channel ?? "<global>");
-	
+	public string PrettyName => nameof(CoordinatorService) + " - " + (Channel ?? "<global>");
+
 	public Song    Current = null!;
 	public Instant CurrentEnds;
 	public Instant CurrentStarted;
 	public Song    Next = null!;
 
-	public CoordinatorService(IHubContext<SyncHub> hubContext,    DownloadService       dlService,
-							  PickerService        pickerService, CoordServOwnerService owner, ILogger<CoordinatorService> logger)
+	public CoordinatorService(IHubContext<SyncHub> hubContext, DownloadService dlService,
+							  PickerService pickerService, CoordServOwnerService owner,
+							  ILogger<CoordinatorService> logger)
 	{
 		_hubContext    = hubContext;
 		_dlService     = dlService;
 		_pickerService = pickerService;
-		_logger   = logger;
+		_logger        = logger.PrettyNamed(this);
 
 		// run this explicitly on another thread
 		Task.Run(() => StartBgThread(owner));
@@ -54,7 +55,7 @@ public class CoordinatorService : IDisposable
 		await WaitForReady();
 
 		if (_haltThread) return;
-		
+
 		CurrentStarted = Helpers.Now();
 		CurrentEnds    = CurrentStarted + _dlService.GetFileInfo(Current).Length;
 
@@ -74,7 +75,7 @@ public class CoordinatorService : IDisposable
 
 	private void InitSongs(CoordServOwnerService owner)
 	{
-		Channel = owner.GetOwnChannel(this);
+		Channel                = owner.GetOwnChannel(this);
 		_pickerService.Channel = Channel;
 
 		Current = _pickerService.SelectSong();
@@ -83,10 +84,11 @@ public class CoordinatorService : IDisposable
 		_dlService.EnsureDownloaded(Current);
 		_dlService.EnsureDownloaded(Next);
 	}
-	
+
 	private async Task WaitForReady()
 	{
-		while (!_haltThread && !(_dlService.IsDownloaded(Current) || _dlService.IsBlacklisted(Current)))
+		while (!_haltThread
+			&& !(_dlService.IsDownloaded(Current) || _dlService.IsBlacklisted(Current)))
 		{
 			if (_dlService.IsBlacklisted(Current))
 			{

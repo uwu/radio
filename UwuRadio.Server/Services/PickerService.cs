@@ -32,7 +32,7 @@ namespace UwuRadio.Server.Services;
 /// <summary>
 ///     Selects new songs
 /// </summary>
-public class PickerService
+public class PickerService /* : IPrettyNamed*/
 {
 	private readonly DataService _dataService;
 
@@ -43,7 +43,7 @@ public class PickerService
 
 	public string? Channel;
 
-	//private string PrettyOwnName => nameof(PickerService) + " - " + (Channel ?? "<global>");
+	//public string PrettyName => nameof(PickerService) + " - " + (Channel ?? "<global>");
 
 	public PickerService(DataService dataService) => _dataService = dataService;
 

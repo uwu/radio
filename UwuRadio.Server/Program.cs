@@ -1,21 +1,16 @@
 using Serilog;
+using Serilog.Events;
 using UwuRadio.Server;
 using UwuRadio.Server.Services;
 
-Log.Logger = new LoggerConfiguration()
-#if DEBUG
-			.MinimumLevel.Debug()
-#else
-			.MinimumLevel.Information()
-#endif
-			.WriteTo.Console()
-			.CreateLogger();
+Log.Logger = new LoggerConfiguration().MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+									  .MinimumLevel.Debug()
+									  .WriteTo.Console()
+									  .CreateBootstrapLogger();
 
 Log.Information("Hello, world!");
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Host.UseSerilog();
 
 builder.Services.AddSignalR();
 builder.Services.AddCors();
@@ -28,6 +23,22 @@ builder.Services.AddTransient<PickerService>();
 builder.Services.AddSingleton<DownloadService>();
 builder.Services.AddTransient<CoordinatorService>();
 builder.Services.AddSingleton<CoordServOwnerService>();
+
+builder.Host.UseSerilog(
+	(ctxt, services, cfg) => cfg.ReadFrom.Configuration(ctxt.Configuration)
+								.ReadFrom.Services(services)
+								.Enrich.FromLogContext()
+								.Enrich.With<SourceContextEnricher>()
+#if DEBUG
+								.MinimumLevel.Debug()
+#else
+								.MinimumLevel.Information()
+#endif
+								.WriteTo.Console(
+									 outputTemplate:
+									 "[{Timestamp:HH:mm:ss} {Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}"
+								 )
+);
 
 var app = builder.Build();
 

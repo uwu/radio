@@ -64,4 +64,8 @@ public static class Helpers
 
 	public static TV? GetOrDefault<TK, TV>(this IDictionary<TK, TV> dict, TK k)
 		=> dict.TryGetValue(k, out var val) ? val : default;
+
+	public static PrettyLogger<T> PrettyNamed<T>(this ILogger<T> logger, T self)
+		where T : IPrettyNamed
+		=> new(logger, self);
 }
