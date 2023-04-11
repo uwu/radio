@@ -115,7 +115,6 @@ public class DataService
 			channelSongs[submitter.Name] = new List<Song>();
 
 			foreach (var song in submitter.Songs)
-			{
 				if (song.Channels == null || song.Channels.Length == 0)
 				{
 					// not in any explicit channels
@@ -138,7 +137,6 @@ public class DataService
 							cSongs.Add(song);
 						else channelSongs[chan] = new List<Song> { song };
 				}
-			}
 		}
 
 		GlobalSongs = globalSongs.ToArray();

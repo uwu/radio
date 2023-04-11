@@ -46,13 +46,11 @@ export async function play(song: Song, seek: number) {
   const then = currentTimestamp();
   setupMediaSession();
 
-  audioSource?.stop();
-  // some browsers don't stop properly, so try this!
-  audioSource?.disconnect();
+  const buffer = await loadCached(song.dlUrl!);
 
-  audioSource = new AudioBufferSourceNode(audioCtx, {
-    buffer: await loadCached(song.dlUrl!),
-  });
+  audioSource?.stop();
+
+  audioSource = new AudioBufferSourceNode(audioCtx, { buffer });
 
   audioSource.connect(audioAnalyser).connect(audioGain).connect(audioCtx.destination);
 
