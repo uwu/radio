@@ -45,17 +45,18 @@ export const loadCached = (url: string) => (songs[url] ??= loadAudio(url));
 export async function play(song: Song, seek: number) {
   const then = currentTimestamp();
   setupMediaSession();
-  audioSource?.stop();
 
-  const url = song.dlUrl!;
+  audioSource?.stop();
+  // some browsers don't stop properly, so try this!
+  audioSource?.disconnect();
 
   audioSource = new AudioBufferSourceNode(audioCtx, {
-    buffer: await loadCached(url),
+    buffer: await loadCached(song.dlUrl!),
   });
 
   audioSource.connect(audioAnalyser).connect(audioGain).connect(audioCtx.destination);
 
-  seek = seek + currentTimestamp() - then;
+  seek += currentTimestamp() - then;
   startTime = audioCtx.currentTime;
   startSeek = seek;
   audioSource.start(0, seek);
