@@ -121,7 +121,7 @@ export async function startSyncClient() {
       .then((r) => r.json())
       .then((r) => {
         for (const submitter of r.submitters) submitters.set(submitter.name, submitter);
-        channels.value.push(...r.channels);
+        channels.value = r.channels;
       });
 
     await hub.invoke("RequestState", null);
