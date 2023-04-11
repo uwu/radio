@@ -1,4 +1,4 @@
-import { ref, reactive, computed, watchEffect } from "vue";
+import { computed, reactive, ref, watchEffect } from "vue";
 import { setupMediaSession } from "./mediaSession";
 import type { Song } from "./syncClient";
 import { currentTimestamp } from "./util";
@@ -24,8 +24,7 @@ watchEffect(() => {
 const prettyFormatTime = (time: number) =>
   `${~~(time / 60)}:${(~~(time % 60)).toString().padStart(2, "0")}`;
 
-const seek = ref<number>();
-export { seek };
+export const seek = ref<number>();
 export const prettySeek = computed(() => prettyFormatTime(seek.value!));
 
 setInterval(
@@ -33,24 +32,15 @@ setInterval(
   100,
 );
 
-export const seekTo = (seek: number) => {
-  startSeek = seek;
-  audioSource?.start(0, seek);
-};
-
 export const getDuration = () => audioSource?.buffer?.duration ?? 0;
 export const prettyDuration = () => prettyFormatTime(getDuration());
 
-async function loadAudio(url: string) {
-  const response = await fetch(url);
-  const arrayBuffer = await response.arrayBuffer();
-  const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-  return audioBuffer;
-}
+const loadAudio = (url: string) =>
+  fetch(url)
+    .then((r) => r.arrayBuffer())
+    .then((buf) => audioCtx.decodeAudioData(buf));
 
-export async function preload(url: string) {
-  return (songs[url] ??= loadAudio(url));
-}
+export const loadCached = (url: string) => (songs[url] ??= loadAudio(url));
 
 export async function play(song: Song, seek: number) {
   const then = currentTimestamp();
@@ -60,7 +50,7 @@ export async function play(song: Song, seek: number) {
   const url = song.dlUrl!;
 
   audioSource = new AudioBufferSourceNode(audioCtx, {
-    buffer: await (songs[url] ?? preload(url)),
+    buffer: await loadCached(url),
   });
 
   audioSource.connect(audioAnalyser).connect(audioGain).connect(audioCtx.destination);

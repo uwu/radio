@@ -1,8 +1,9 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import { computed, ref } from "vue";
-import { play, preload } from "./audio";
+import { play, loadCached } from "./audio";
 import { serverUrl } from "./constants";
 import { currentTimestamp } from "./util";
+import { cacheImage } from "./imgCache";
 
 export interface Song {
   name: string;
@@ -70,7 +71,9 @@ export async function startSyncClient() {
   function scheduleNext(startTime: number) {
     if (nextSong.value === undefined) return;
 
-    preload(nextSong.value.dlUrl);
+    loadCached(nextSong.value.dlUrl);
+
+    if (nextSong.value?.artUrl) cacheImage(nextSong.value.artUrl);
 
     setTimeout(() => {
       currentSong.value = nextSong.value!;
