@@ -37,9 +37,21 @@ String or Null.
 
 The data returned looks like
 ```ts
-{
-	submitters: { name: string; pfpUrl: string; quotes: string[] }[],
-  channels: { name: string; submitter: string; category?: string; noGlobal?: boolean }[]
+interface Submitter {
+  name: string;
+  pfpUrl: string;
+  quotes: string[];
+}
+
+interface Channel {
+  name: string;
+  category: string | null;
+  songs: [];
+}
+
+interface IngestData {
+  submitters: Submitter[],
+  channels: Record<string, Channel>;
 }
 ```
 
