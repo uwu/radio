@@ -59,13 +59,13 @@ public class CoordinatorService : IDisposable, IPrettyNamed
 		CurrentStarted = Helpers.Now();
 		CurrentEnds    = CurrentStarted + _dlService.GetFileInfo(Current).Length;
 
-		await _hubContext.Clients.All.SendAsync(
-			"ReceiveState",
-			new TransitSong(Current),
-			CurrentStarted.ToUnixTimeSeconds(),
-			new TransitSong(Next),
-			CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime,
-			Channel
+		await _hubContext.Clients.All.SendAsync("ReceiveState",
+												new TransitSong(Current),
+												CurrentStarted.ToUnixTimeSeconds(),
+												new TransitSong(Next),
+												CurrentEnds.ToUnixTimeSeconds()
+											  + Constants.C.BufferTime,
+												Channel
 		);
 
 		_logger.LogInformation("Ready to serve clients");
@@ -112,9 +112,8 @@ public class CoordinatorService : IDisposable, IPrettyNamed
 			// if there is a blacklisted song, keep skipping until a song downloads
 			if (_dlService.IsBlacklisted(Next))
 			{
-				_logger.LogWarning(
-					"Encountered blacklisted song {SongName}, skipping it!",
-					Next.Name
+				_logger.LogWarning("Encountered blacklisted song {SongName}, skipping it!",
+								   Next.Name
 				);
 
 				Next = _pickerService.SelectSong();
@@ -168,11 +167,11 @@ public class CoordinatorService : IDisposable, IPrettyNamed
 			 >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
-				await _hubContext.Clients.All.SendAsync(
-					"BroadcastNext",
-					new TransitSong(Next),
-					CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime,
-					Channel
+				await _hubContext.Clients.All.SendAsync("BroadcastNext",
+														new TransitSong(Next),
+														CurrentEnds.ToUnixTimeSeconds()
+													  + Constants.C.BufferTime,
+														Channel
 				);
 
 				_logger.LogInformation("Broadcast next song ({Name}) to clients", Next.Name);

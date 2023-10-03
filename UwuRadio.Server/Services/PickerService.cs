@@ -55,18 +55,25 @@ public class PickerService /* : IPrettyNamed*/
 		if (_inited) return;
 		_inited = true;
 
-		var allSongs = SpotifyShuffle(
-				Channel == null ? _dataService.GlobalSongs : _dataService.Channels[Channel!].Songs
-			)
-			.ToArray();
+		var songs = Channel == null
+						? _dataService.GlobalSongs
+						: _dataService.Channels[Channel!].Songs;
 
-		var queueSize = 2 * (allSongs.Length / 3);
+		if (songs.Length < 3)
+		{
+			_queue = songs;
+			return;
+		}
+
+		var shuffledSongs = SpotifyShuffle(songs).ToArray();
+
+		var queueSize = 2 * (shuffledSongs.Length / 3);
 
 		_queue         = new Song[queueSize];
-		_unpickedSongs = new Song[allSongs.Length - queueSize];
+		_unpickedSongs = new Song[shuffledSongs.Length - queueSize];
 
-		MemCopy(allSongs, _queue,         0,         0);
-		MemCopy(allSongs, _unpickedSongs, queueSize, 0);
+		MemCopy(shuffledSongs, _queue,         0,         0);
+		MemCopy(shuffledSongs, _unpickedSongs, queueSize, 0);
 
 		ShuffleQueue();
 	}
@@ -74,6 +81,13 @@ public class PickerService /* : IPrettyNamed*/
 	public Song SelectSong()
 	{
 		LateInit();
+
+		if (_queue.Length < 3 && _unpickedSongs.Length == 0)
+		{
+			var song = _queue[_queuePos++];
+			_queuePos %= _queue.Length;
+			return song;
+		}
 
 		_queuePos++;
 
@@ -114,17 +128,15 @@ public class PickerService /* : IPrettyNamed*/
 	// https://engineering.atspotify.com/2014/02/how-to-shuffle-songs
 	// https://codegolf.stackexchange.com/questions/198094
 	private static IEnumerable<Song> SpotifyShuffle(IEnumerable<Song> arr) => arr
-.GroupBy(song => song.Submitter + song.Artist)
-.SelectMany(
-			group =>
+	   .GroupBy(song => song.Submitter + song.Artist)
+	   .SelectMany(group =>
 			{
 				var groupArr = group.ToArray();
 				FisherYatesShuffle(groupArr);
 
 				var groupOset = Random.Shared.NextDouble() * (1.0 / groupArr.Length);
 
-				return groupArr.Select(
-					(song, idx) =>
+				return groupArr.Select((song, idx) =>
 					{
 						// ReSharper disable once ArrangeRedundantParentheses
 						var songOset = Random.Shared.NextDouble() * (0.2 / groupArr.Length)
@@ -137,8 +149,8 @@ public class PickerService /* : IPrettyNamed*/
 				);
 			}
 		)
-.OrderBy(t => t.Item2)
-.Select(t => t.Item1);
+	   .OrderBy(t => t.Item2)
+	   .Select(t => t.Item1);
 
 	private static void MemCopy<T>(T[] src, T[] dest, int srcIdx, int destIdx, int count = -1)
 	{

@@ -34,7 +34,6 @@ public class DownloadService : IDisposable
 		if (IsDownloaded(song)) return;
 		if (IsBlacklisted(song)) return;
 		if (IsDownloading(song)) return;
-
 		_logger.LogDebug("Queued {SongName} for DL", song.Name);
 
 		lock (_downloadQueue)
@@ -64,10 +63,9 @@ public class DownloadService : IDisposable
 			try { _fileInfos[song.Id] = await DownloadSong(song.StreamUrl); }
 			catch (Exception e)
 			{
-				_logger.LogError(
-					e,
-					"Caught exception while downloading {SongName}! Blacklisting from future download attempts",
-					song.Name
+				_logger.LogError(e,
+								 "Caught exception while downloading {SongName}! Blacklisting from future download attempts",
+								 song.Name
 				);
 				_downloadBlacklist.Add(song.Id);
 				continue;
