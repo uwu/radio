@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
@@ -24,13 +25,16 @@ public class ApiController : Controller
 	public IActionResult Time() => Ok(Helpers.Now().ToUnixTimeSeconds());
 
 	// /api/data
-	public IActionResult Data() => Json(
-		new
+	public IActionResult Data() => Json(new
 		{
 			Submitters = _dataService.Submitters.Values.ToArray(),
-			Channels = _dataService.Channels.Values
-				.Select(c => c with { Songs = Array.Empty<Song>() })
-				.ToArray()
+			Channels = _dataService.Channels
+								   .Select(c => new KeyValuePair<string, Channel>(
+											   c.Key,
+											   c.Value with { Songs = Array.Empty<Song>() }
+										   )
+									)
+								   .ToImmutableSortedDictionary()
 		}
 	);
 
@@ -38,7 +42,9 @@ public class ApiController : Controller
 	public IActionResult File(string id)
 	{
 		if (!_downloadService.IsDownloaded(id))
-			return StatusCode((int) HttpStatusCode.ServiceUnavailable, "The server does not have this file cached");
+			return StatusCode((int) HttpStatusCode.ServiceUnavailable,
+							  "The server does not have this file cached"
+			);
 
 		var fileInfo = _downloadService.GetFileInfo(id);
 
@@ -47,11 +53,11 @@ public class ApiController : Controller
 			return StatusCode(StatusCodes.Status304NotModified);
 
 		// if range processing is enabled it makes the client get very angy
-		return File(
-				    fileInfo.File.OpenRead(),
-				    "audio/mpeg",
-				    null,
-				    new EntityTagHeaderValue(new StringSegment('"' + fileInfo.Md5 + '"')),
-				    false);
+		return File(fileInfo.File.OpenRead(),
+					"audio/mpeg",
+					null,
+					new EntityTagHeaderValue(new StringSegment('"' + fileInfo.Md5 + '"')),
+					false
+		);
 	}
 }

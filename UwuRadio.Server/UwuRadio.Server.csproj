@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <PublishSingleFile>true</PublishSingleFile>
+<!--        <PublishSingleFile>true</PublishSingleFile>-->
         <!-- this causes issues with aspnet etc -->
         <!--<PublishTrimmed>true</PublishTrimmed>-->
     </PropertyGroup>
