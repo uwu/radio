@@ -145,7 +145,7 @@ public class DataService
 				  .Concat(rawSubmitters.Select(
 							  pair => new KeyValuePair<string, Channel>(
 								  pair.Key,
-								  new Channel(pair.Key, channelSongs[pair.Key].ToArray())
+								  new Channel(pair.Key, channelSongs[pair.Key].ToArray(), "submitters")
 							  )
 						  )
 				   )
