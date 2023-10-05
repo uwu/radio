@@ -42,6 +42,8 @@ public class ApiController : Controller
 		if (Request.Headers.IfNoneMatch.FirstOrDefault() == ('"' + fileInfo.Md5 + '"'))
 			return StatusCode(StatusCodes.Status304NotModified);
 
+		Response.Headers.CacheControl = $"public, max-age={1 * 7 * 24 * 60 * 60}, immutable";
+		
 		// if range processing is enabled it makes the client get very angy
 		return File(
 				    fileInfo.File.OpenRead(),
