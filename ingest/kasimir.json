@@ -1061,21 +1061,28 @@
       "Artist": "Frums",
       "StreamUrl": "https://diversesystem.bandcamp.com/track/kneading",
       "Album": "ADvantage",
-      "ArtUrl": "https://coverartarchive.org/release-group/b3155d4f-8cc8-4ffa-96be-9b54c11a282a/front"
+      "ArtUrl": "https://coverartarchive.org/release/a21a1ceb-9e16-40cd-8e51-71ec7e2fc66a/35414388053-500.jpg"
     },
     {
       "Name": "Operation Pyrite",
       "Artist": "塞壬唱片-MSR",
       "StreamUrl": "https://www.youtube.com/watch?v=saOnB_CRG9Y",
       "Album": "危機合約 黃鐵·利刃·燃灰 (Original Soundtrack)",
-      "ArtUrl": "https://coverartarchive.org/release/ae215b48-de63-4a70-b1f6-f66b38949cf9/31673950816.png"
+      "ArtUrl": "https://coverartarchive.org/release/ae215b48-de63-4a70-b1f6-f66b38949cf9/31673950816-500.jpg"
     },
     {
       "Name": "Operation Blade",
       "Artist": "塞壬唱片-MSR",
       "StreamUrl": "https://www.youtube.com/watch?v=hpI5vMxYJ_k",
       "Album": "危機合約 黃鐵·利刃·燃灰 (Original Soundtrack)",
-      "ArtUrl": "https://coverartarchive.org/release/ae215b48-de63-4a70-b1f6-f66b38949cf9/31673950816.png"
+      "ArtUrl": "https://coverartarchive.org/release/ae215b48-de63-4a70-b1f6-f66b38949cf9/31673950816-500.jpg"
+    },
+    {
+      "Name": "Operation Lead Seal",
+      "Artist": "塞壬唱片-MSR",
+      "StreamUrl": "https://www.youtube.com/watch?v=fxQ5H8NMLtg",
+      "Album": "危机合约铅封·光谱·蛮鳞 (Original Soundtrack)",
+      "ArtUrl": "https://web.hycdn.cn/siren/pic/20211109/e72022facca61c0ddfb0ab82c8e515b7.jpg"
     },
     {
       "Name": "ALIVE",
@@ -1629,6 +1636,114 @@
       "StreamUrl": "https://cutegirlsdoingcutethings.bandcamp.com/track/cozy",
       "Album": "cutie jams vol. 2",
       "ArtUrl": "https://f4.bcbits.com/img/a2419295874_10.jpg"
-    }
+    },
+    {
+      "Name": "OCEAN EYES",
+      "Artist": "NOXATRA, KVLTURE & Victor Borba",
+      "StreamUrl": "https://youtu.be/nA5_ISi8Yuo",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/10/fd/ed/10fdede1-7c63-1678-413d-45e02ac85237/artwork.jpg/500x500bb.webp"
+    },
+    {
+      "Name": "BANG!",
+      "Artist": "cute girls doing cute things",
+      "StreamUrl": "https://youtu.be/hk5GdjsSqqM",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/25/16/45/251645c0-7cb3-2f1a-77b2-0098c7e16e60/artwork.jpg/500x500bb.webp"
+    },
+    {
+      "Name": "CHARM",
+      "Artist": "cute girls doing cute things",
+      "StreamUrl": "https://youtu.be/c2mbThe-AtA",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/46/40/6a/46406ad6-3234-f854-ec9d-cd555e813a23/artwork.jpg/500x500bb.webp"
+    },
+    {
+      "Name": "IRIS",
+      "Artist": "cute girls doing cute things",
+      "StreamUrl": "https://youtu.be/cOBhJCzk95Q",
+      "ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/21/75/05/2175059e-cb48-65f4-388c-bb73919abafa/artwork.jpg/500x500bb.webp"
+    },
+    {
+      "Name": "A Turtle's Heart",
+      "Artist": "Mili",
+      "StreamUrl": "https://project-mili.bandcamp.com/track/a-turtles-heart-2",
+      "Album": "Key Ingredient",
+      "ArtUrl": "https://f4.bcbits.com/img/a3483076607_10.jpg"
+    },
+    {
+      "Name": "world.execute(me);",
+      "Artist": "Mili",
+      "StreamUrl": "https://project-mili.bandcamp.com/track/world-execute-me",
+      "Album": "Key Ingredient",
+      "ArtUrl": "https://f4.bcbits.com/img/a3483076607_10.jpg"
+    },
+    {
+      "Name": "Iron Lotus",
+      "Artist": "Mili",
+      "StreamUrl": "https://project-mili.bandcamp.com/track/iron-lotus-2",
+      "Album": "Key Ingredient",
+      "ArtUrl": "https://f4.bcbits.com/img/a3483076607_10.jpg"
+    },
+    {
+      "Name": "RTRT",
+      "Artist": "Mili",
+      "StreamUrl": "https://project-mili.bandcamp.com/track/rtrt",
+      "Album": "Key Ingredient",
+      "ArtUrl": "https://f4.bcbits.com/img/a3483076607_10.jpg"
+    },
+    {
+      "Name": "TOKYO NEON",
+      "Artist": "Mili",
+      "StreamUrl": "https://project-mili.bandcamp.com/track/tokyo-neon",
+      "Album": "Key Ingredient",
+      "ArtUrl": "https://f4.bcbits.com/img/a3483076607_10.jpg"
+    },
+    {
+      "Name": "String Theocracy",
+      "Artist": "Mili",
+      "StreamUrl": "https://project-mili.bandcamp.com/track/string-theocracy-2",
+      "Album": "Key Ingredient",
+      "ArtUrl": "https://f4.bcbits.com/img/a3483076607_10.jpg"
+    },
+    {
+      "Name": "Ga1ahad and Scientific Witchery",
+      "Artist": "Mili",
+      "StreamUrl": "https://project-mili.bandcamp.com/track/ga1ahad-and-scientific-witchery",
+      "Album": "Key Ingredient",
+      "ArtUrl": "https://f4.bcbits.com/img/a3483076607_10.jpg"
+    },
+    {
+      "Name": "From a Place of Love",
+      "Artist": "Mili",
+      "StreamUrl": "https://project-mili.bandcamp.com/track/from-a-place-of-love-2",
+      "Album": "Key Ingredient",
+      "ArtUrl": "https://f4.bcbits.com/img/a3483076607_10.jpg"
+    },
+    {
+      "Name": "RTRT",
+      "Artist": "Mili",
+      "StreamUrl": "https://youtu.be/IcpzqZrpLVM",
+      "Album": "Miracle Milk",
+      "ArtUrl": "https://coverartarchive.org/release/761d27c0-7ff4-4a80-baee-23c7c7898071/28092421333-500.jpg"
+    },
+    {
+      "Name": "world.execute(me);",
+      "Artist": "Mili",
+      "StreamUrl": "https://youtu.be/ESx_hy1n7HA",
+      "Album": "Miracle Milk",
+      "ArtUrl": "https://coverartarchive.org/release/761d27c0-7ff4-4a80-baee-23c7c7898071/28092421333-500.jpg"
+    },
+    {
+      "Name": "Space Colony",
+      "Artist": "Mili",
+      "StreamUrl": "https://youtu.be/0cvCwHXgyeI",
+      "Album": "Miracle Milk",
+      "ArtUrl": "https://coverartarchive.org/release/761d27c0-7ff4-4a80-baee-23c7c7898071/28092421333-500.jpg"
+    },
+    {
+      "Name": "Ga1ahad and Scientific Witchery",
+      "Artist": "Mili",
+      "StreamUrl": "https://youtu.be/d-nxW9qBtxQ",
+      "Album": "Miracle Milk",
+      "ArtUrl": "https://coverartarchive.org/release/761d27c0-7ff4-4a80-baee-23c7c7898071/28092421333-500.jpg"
+    }      
   ]
 }
