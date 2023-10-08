@@ -5,7 +5,8 @@
 		"I joined the cult just to add this song.",
 		"Call me conspiracyala, the way I eat that apocalyptus.",
 		"What comes intense must come outtense.",
-		"I'm not gonna waste this quote with some nonsonse."
+		"I'm not gonna waste this quote with some nonsonse.",
+		"[object Object]"
 	],
 	"Songs": [
 		{
@@ -13,6 +14,136 @@
 			"Artist": "Seven Lions, Myon & Shane 54, Tove Lo",
 			"StreamUrl": "https://soundcloud.com/hundaes/seven-lions-myon-and-shane-54-tove-lo-strangers-hundaes-edit",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-9IPMXDJsRaNWSX1m-tcBY5A-t500x500.jpg"
+		},
+		{
+			"Name": "repent motherfucker (dossyx remix)",
+			"Artist": "onumi & creep-p",
+			"StreamUrl": "https://soundcloud.com/dossyx/repentmotherfucker",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-RR1rBijmKXErqUUs-VMxHCw-t500x500.jpg"
+		},
+		{
+			"Name": "We Are Never Getting Back Together (Hundaes Edit)",
+			"Artist": "Taylor Swift",
+			"StreamUrl": "https://soundcloud.com/hundaes/taylor-swift-we-are-never-getting-back-together-hundaes-edit",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-TBXyWTGvZQSlM2vs-mCNJ7g-t500x500.jpg"
+		},
+		{
+			"Name": "Strangers (Hundaes Edit)",
+			"Artist": "Seven Lions, Myon and Shane 54 & Tove Lo",
+			"StreamUrl": "https://soundcloud.com/hundaes/seven-lions-myon-and-shane-54-tove-lo-strangers-hundaes-edit",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-9IPMXDJsRaNWSX1m-tcBY5A-t500x500.jpg"
+		},
+		{
+			"Name": "EON BREAK (4AM Remix by MANIFOLD HOME)",
+			"Artist": "Virtual Self",
+			"StreamUrl": "https://soundcloud.com/manifoldhome/eon-break",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-000248982860-nywoq3-t500x500.jpg"
+		},
+		{
+			"Name": "dullscythe w/ tropes & heartstopmiami (saoirse dream remix)",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/saoirsedream/dullscythe",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-nXEPFVup4btXPRA4-UyCcUg-t500x500.jpg"
+		},
+		{
+			"Name": "plea for forgiveness",
+			"Artist": "N33T, phritz, Marcix & Kosakii",
+			"StreamUrl": "https://soundcloud.com/artbyform/n33t-phritz-marcix-kosakii",
+			"Album": "All Nighter 7",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-yDJ5VK1UxnpueLVD-8IJb5w-t500x500.jpg"
+		},
+		{
+			"Name": "Conversations (torr remix)",
+			"Artist": "Aries",
+			"StreamUrl": "https://soundcloud.com/t0rr/aries-conversations-torr-remix",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-Gfo7ifCvwhiEfFBo-qnFuFg-t500x500.jpg"
+		},
+		{
+			"Name": "assistance",
+			"Artist": "senses",
+			"StreamUrl": "https://soundcloud.com/7senss/assistance",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-S0oW3UygtzbemSW2-njxt9Q-t500x500.jpg"
+		},
+		{
+			"Name": "Ultraviolet",
+			"Artist": "Fred V & Grafix",
+			"StreamUrl": "https://soundcloud.com/fredvgrafix/ultraviolet",
+			"Album": "Oxygen",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-Se86oTTxKVJm-0-t500x500.jpg"
+		},
+		{
+			"Name": "scared in my dreams",
+			"Artist": "hundaes",
+			"StreamUrl": "https://soundcloud.com/hundaes/scared-in-my-dreams",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-qEC8oq4g9zNY-0-t500x500.png"
+		},
+		{
+			"Name": "eyesore",
+			"Artist": "glaive",
+			"StreamUrl": "https://soundcloud.com/1glaive/eyesore",
+			"Album": "cypress grove",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-kWKYfxupk6Vp-0-t500x500.jpg"
+		},
+		{
+			"Name": "Jaded",
+			"Artist": "yitaku",
+			"StreamUrl": "https://soundcloud.com/yitakulxiv/jaded",
+			"Album": "Petal Blizzard",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-0aRSydcCusVwUixt-hMBj0Q-t500x500.jpg"
+		},
+		{
+			"Name": "optimist (w/ Bkode)",
+			"Artist": "voxkai",
+			"StreamUrl": "https://soundcloud.com/voxkai/optimist-w-bkode",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-0aRSydcCusVwUixt-hMBj0Q-t500x500.jpg"
+		},
+		{
+			"Name": "he'll hide behind SAD furry .jpegs! :3 +nerootter",
+			"Artist": "cronge",
+			"StreamUrl": "https://soundcloud.com/user-982565807/hell-hide-behind-sad-furry-jpegs-3-nerootter",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-IpMNLDPSzzhQz04G-vq4Plg-t500x500.jpg"
+		},
+		{
+			"Name": "Don't be too soft on me (ft. Jozzy)",
+			"Artist": "SOPHIE",
+			"StreamUrl": "https://soundcloud.com/infraliminal/sophie-ft-jozzy-dont-be-too",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-UPP6JhJw1p397E79-BzL2og-t500x500.jpg"
+		},
+		{
+			"Name": "this will surely put an end to my abuse of underscores acapellas 2",
+			"Artist": "user-177606669",
+			"StreamUrl": "https://soundcloud.com/user-177606669/this-will-surely-put-an-end-to-my-abuse-of-underscores-acapellas-2",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-4egezumNhHmry0fe-7SVtfw-t500x500.jpg"
+		},
+		{
+			"Name": "something has to change",
+			"Artist": "bh",
+			"StreamUrl": "https://soundcloud.com/bhproducer/something-has-to-change",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-TmxaHiwahocmGb3R-yDbH8A-t500x500.jpg"
+		},
+		{
+			"Name": "...looks like black magic!",
+			"Artist": "Felimos 2",
+			"StreamUrl": "https://soundcloud.com/felimosmusic/black-magic",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-bnIEF9dBA0xbziSl-sgTlIQ-t500x500.jpg"
+		},
+		{
+			"Name": "claws (Hundaes 'scared in my dreams' Edit)",
+			"Artist": "Charli XCX",
+			"StreamUrl": "https://soundcloud.com/hundaes/charli-xcx-claws-hundaes-edit-2",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-enmZcUGGpc266Vcb-z3GuHw-t500x500.jpg"
+		},
+		{
+			"Name": "✨i got a glock in my rawri✨",
+			"Artist": "randy",
+			"StreamUrl": "https://soundcloud.com/rand0ll/i-got-a-glock-in-my-rawri",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-imFXCLtiIBondLpk-En0lLA-t500x500.jpg"
+		},
+		{
+			"Name": "Leave Me Like This (Wherefore Edit)",
+			"Artist": "Skrillex",
+			"StreamUrl": "https://soundcloud.com/whereforetunes/skrillex-leave-me-like-this-wherefore-edit",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-vFqejDc9ybbzqbmS-oS5SHQ-t500x500.jpg"
 		}
 	]
 }
