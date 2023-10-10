@@ -240,6 +240,12 @@
 			"ArtUrl": "https://coverartarchive.org/release/0f060fda-3f4d-457c-b3da-53aab738c835/27226987085-500.jpg"
 		},
 		{
+			"Name": "Phone Me First",
+			"Artist": "cYsmix",
+			"StreamUrl": "https://www.youtube.com/watch?v=uDYdecWY85w&pp=ygUOcGhvbmUgbWUgZmlyc3Q%3D",
+			"ArtUrl": "https://coverartarchive.org/release/12cb0279-5c75-4469-90ad-8da520cbafe7/35303143364-500.jpg"
+		},
+		{
 			"Name": "Stellar Wind",
 			"Artist": "Davz",
 			"StreamUrl": "https://youtu.be/uc89_ZsNVIw",
@@ -964,6 +970,33 @@
 			"ArtUrl": "https://coverartarchive.org/release/84ed7be8-9892-4379-93a9-452068c1363a/10045529637-500.jpg"
 		},
 		{
+			"Name": "Pop Culture",
+			"Artist": "Madeon",
+			"StreamUrl": "https://www.youtube.com/watch?v=lTx3G6h2xyA",
+			"ArtUrl": "https://coverartarchive.org/release/a7f9f8e9-e679-4b09-882e-4075ca7ea105/7027578826-500.jpg"
+		},
+		{
+			"Name": "All My Friends",
+			"Artist": "Madeon",
+			"StreamUrl": "https://www.youtube.com/watch?v=_qYyU019PbI&pp=ygUPYWxsIG15IGZyaWVuZHMg",
+			"Album": "Good Faith",
+			"ArtUrl": "https://coverartarchive.org/release/5c846b93-1ca9-46b3-9139-2f12d341074a/24626624042-500.jpg"
+		},
+		{
+			"Name": "No Fear No More",
+			"Artist": "Madeon",
+			"StreamUrl": "https://www.youtube.com/watch?v=D_EnyikMsEU&pp=ygUPbm8gZmVhciBubyBtb3Jl",
+			"Album": "Good Faith",
+			"ArtUrl": "https://coverartarchive.org/release/5c846b93-1ca9-46b3-9139-2f12d341074a/24626624042-500.jpg"
+		},
+		{
+			"Name": "Nirvana",
+			"Artist": "Madeon",
+			"StreamUrl": "https://www.youtube.com/watch?v=SUgAJXBAK5s&pp=ygUObmlydmFuYSBtYWRlb24%3D",
+			"Album": "Good Faith",
+			"ArtUrl": "https://coverartarchive.org/release/5c846b93-1ca9-46b3-9139-2f12d341074a/24626624042-500.jpg"
+		},
+		{
 			"Name": "United (L.A.O.S Remix)",
 			"Artist": "Our Stolen Theory",
 			"StreamUrl": "https://www.youtube.com/watch?v=rnWXN8m6drc",
@@ -975,12 +1008,6 @@
 			"StreamUrl": "https://www.youtube.com/watch?v=SvBtu6aLa9k",
 			"Album": "beatmania IIDX 27 HEROIC VERSE",
 			"ArtUrl": "https://coverartarchive.org/release/0fd3b70f-1860-473d-bb50-38273de3e00b/25861487861-500.jpg"
-		},
-		{
-			"Name": "Pop Culture",
-			"Artist": "Madeon",
-			"StreamUrl": "https://www.youtube.com/watch?v=lTx3G6h2xyA",
-			"ArtUrl": "https://coverartarchive.org/release/a7f9f8e9-e679-4b09-882e-4075ca7ea105/7027578826-500.jpg"
 		},
 		{
 			"Name": "Why We Lose",
@@ -1121,6 +1148,222 @@
 			"Artist": "SiIvaGunner (Nitro Fun)",
 			"StreamUrl": "https://www.youtube.com/watch?v=RRjHp9ZqDgM",
 			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
+		},
+		{
+			"Name": "White Spirit",
+			"Artist": "Feed Me",
+			"StreamUrl": "https://www.youtube.com/watch?v=tfcCgoH00DA&pp=ygUUZmVlZCBtZSB3aGl0ZSBzcHJpdCA%3D",
+			"Album": "Feed Me's Big Adventure",
+			"ArtUrl": "https://coverartarchive.org/release/9ae944c5-a6ac-461f-8312-2aa660e04268/25589367642-500.jpg"
+		},
+		{
+			"Name": "I Disagree",
+			"Artist": "Poppy",
+			"StreamUrl": "https://www.youtube.com/watch?v=6gmswmbosYo&pp=ygUKaSBkaXNhZ3JlZQ%3D%3D",
+			"Album": "I Disagree",
+			"ArtUrl": "https://coverartarchive.org/release/19ca283e-5078-4de5-bdcb-b037953364e6/24267329945-500.jpg"
+		},
+		{
+			"Name": "BLOODMONEY",
+			"Artist": "Poppy",
+			"StreamUrl": "https://www.youtube.com/watch?v=fJlDyRbUtxI&pp=ygUKYmxvb2Rtb25leQ%3D%3D",
+			"Album": "I Disagree",
+			"ArtUrl": "https://coverartarchive.org/release/19ca283e-5078-4de5-bdcb-b037953364e6/24267329945-500.jpg"
+		},
+		{
+			"Name": "Propane Nightmares",
+			"Artist": "Pendulum",
+			"StreamUrl": "https://www.youtube.com/watch?v=WPbeEtjo70g&pp=ygUScHJvcGFuZSBuaWdodG1hcmVz",
+			"Album": "In Silico",
+			"ArtUrl": "https://coverartarchive.org/release/2aec46ce-485d-4dcf-8035-e6a869991530/20183198758-500.jpg"
+		},
+		{
+			"Name": "The Other Side",
+			"Artist": "Pendulum",
+			"StreamUrl": "https://www.youtube.com/watch?v=zENtEumtyBI&pp=ygUXdGhlIG90aGVyIHNpZGUgcGVuZHVsdW0%3D",
+			"Album": "In Silico",
+			"ArtUrl": "https://coverartarchive.org/release/2aec46ce-485d-4dcf-8035-e6a869991530/20183198758-500.jpg"
+		},
+		{
+			"Name": "The Tempest",
+			"Artist": "Pendulum",
+			"StreamUrl": "https://www.youtube.com/watch?v=bwX_zWjaFtE&pp=ygUUdGhlIHRlbXBlc3QgcGVuZHVsdW0%3D",
+			"Album": "In Silico",
+			"ArtUrl": "https://coverartarchive.org/release/2aec46ce-485d-4dcf-8035-e6a869991530/20183198758-500.jpg"
+		},
+		{
+			"Name": "burn this moment into the retina of my eye",
+			"Artist": "goreshit",
+			"StreamUrl": "https://www.youtube.com/watch?v=tNkh4zkUWEs&pp=ygUQYnVybiB0aGlzIG1vbWVudA%3D%3D",
+			"Album": "semantics: the benzo chronicles",
+			"ArtUrl": "https://coverartarchive.org/release/8ddd19de-296f-48e9-8fd1-0a48c4a998cf/15285410142-500.jpg"
+		},
+		{
+			"Name": "one way to hannover",
+			"Artist": "goreshit",
+			"StreamUrl": "https://www.youtube.com/watch?v=7LBOKPWQjqg&pp=ygUTb25lIHdheSB0byBoYW5ub3Zlcg%3D%3D",
+			"Album": "semantics: the benzo chronicles",
+			"ArtUrl": "https://coverartarchive.org/release/8ddd19de-296f-48e9-8fd1-0a48c4a998cf/15285410142-500.jpg"
+		},
+		{
+			"Name": "Szerencsétlen",
+			"Artist": "Venetian Snares",
+			"StreamUrl": "https://venetiansnares.bandcamp.com/track/szerencs-tlen",
+			"Album": "Rossz Csillag Alatt Született",
+			"ArtUrl": "https://coverartarchive.org/release/dc350920-b1fd-4b70-b2c5-96fc8eba944a/27705688047-500.jpg"
+		},
+		{
+			"Name": "Hajnal",
+			"Artist": "Venetian Snares",
+			"StreamUrl": "https://venetiansnares.bandcamp.com/track/hajnal",
+			"Album": "Rossz Csillag Alatt Született",
+			"ArtUrl": "https://coverartarchive.org/release/dc350920-b1fd-4b70-b2c5-96fc8eba944a/27705688047-500.jpg"
+		},
+		{
+			"Name": "Get Em Up",
+			"Artist": "UNDEAD CORPORATION",
+			"StreamUrl": "https://www.youtube.com/watch?v=0TeXG1UGZUU&pp=ygUcZ2V0IGVtIHVwIHVuZGVhZCBjb3Jwb3JhdGlvbg%3D%3D",
+			"Album": "No Antidote",
+			"ArtUrl": "https://coverartarchive.org/release/65759017-5f59-406c-8e07-c5d3ae0f9d61/26150500053-500.jpg"
+		},
+		{
+			"Name": "Shiver",
+			"Artist": "False Noise",
+			"StreamUrl": "https://www.youtube.com/watch?v=LD7cQX41Xls&pp=ygUSc2hpdmVyIGZhbHNlIG5vaXNl",
+			"ArtUrl": "https://coverartarchive.org/release/d1745b91-b296-41d2-8b20-aad9fc8a8b16/27014433747-500.jpg"
+		},
+		{
+			"Name": "Serpentine",
+			"Artist": "False Noise",
+			"StreamUrl": "https://upscalehq.bandcamp.com/track/serpentine",
+			"Album": "Emerald Green",
+			"ArtUrl": "https://coverartarchive.org/release/ced90b71-eed1-4e30-acea-89d8b41b1ec1/27014047744-500.jpg"
+		},
+		{
+			"Name": "The Brightest Days",
+			"Artist": "Origami Angel",
+			"StreamUrl": "https://www.youtube.com/watch?v=XYBy2JS_tV4&pp=ygUSdGhlIGJyaWdodGVzdCBkYXlz",
+			"Album": "The Brightest Days",
+			"ArtUrl": "https://coverartarchive.org/release/e2cc17b8-2890-47aa-8213-3e0b65580f46/35944190901-500.jpg"
+		},
+		{
+			"Name": "Picture Frame",
+			"Artist": "Origami Angel",
+			"StreamUrl": "https://www.youtube.com/watch?v=fznxes4BRzs&pp=ygUbcGljdHVyZSBmcmFtZSBvcmlnYW1pIGFuZ2Vs",
+			"Album": "The Brightest Days",
+			"ArtUrl": "https://coverartarchive.org/release/e2cc17b8-2890-47aa-8213-3e0b65580f46/35944190901-500.jpg"
+		},
+		{
+			"Name": "My PG County Summer",
+			"Artist": "Origami Angel",
+			"StreamUrl": "https://www.youtube.com/watch?v=b2285I3x6EE&pp=ygUecGcgY291bnR5IHN1bW1lciBvcmlnYW1pIGFuZ2Vs",
+			"Album": "The Brightest Days",
+			"ArtUrl": "https://coverartarchive.org/release/e2cc17b8-2890-47aa-8213-3e0b65580f46/35944190901-500.jpg"
+		},
+		{
+			"Name": "Burn",
+			"Artist": "Three Days Grace",
+			"StreamUrl": "https://www.youtube.com/watch?v=_x-C7wvD0M4&pp=ygUPYnVybiB0aHJlZSBkYXlz",
+			"Album": "Three Days Grace",
+			"ArtUrl": "https://coverartarchive.org/release/c2d441bc-b803-4d43-bc40-6f9d142de81f/24388974969-500.jpg"
+		},
+		{
+			"Name": "I Hate Everything About You",
+			"Artist": "Three Days Grace",
+			"StreamUrl": "https://www.youtube.com/watch?v=d8ekz_CSBVg&pp=ygUcaSBoYXRlIGV2ZXJ5dGhpbmcgYWJvdXQgeW91IA%3D%3D",
+			"Album": "Three Days Grace",
+			"ArtUrl": "https://coverartarchive.org/release/c2d441bc-b803-4d43-bc40-6f9d142de81f/24388974969-500.jpg"
+		},
+		{
+			"Name": "Company",
+			"Artist": "Maduk feat. Juul",
+			"StreamUrl": "https://www.youtube.com/watch?v=CN4mFOwtBwQ&pp=ygUMY29tcGFueSBqdXVs",
+			"Album": "Transformations",
+			"ArtUrl": "https://coverartarchive.org/release/9f95a231-1529-4036-8c5b-d3b844e9fb80/34974711498-500.jpg"
+		},
+		{
+			"Name": "Touch Off",
+			"Artist": "UVERworld",
+			"StreamUrl": "https://www.youtube.com/watch?v=GA9Yw5t-Mto&pp=ygUJdG91Y2ggb2Zm",
+			"Album": "UNSER",
+			"ArtUrl": "https://coverartarchive.org/release/396db25f-f7ac-4333-a0ed-a7a59570cc31/24822270687-500.jpg"
+		},
+		{
+			"Name": "Kyoukai",
+			"Artist": "UVERworld",
+			"StreamUrl": "https://www.youtube.com/watch?v=DEh6Ck4TSL8&pp=ygURa3lvdWthaSB1dmVyd29ybGQ%3D",
+			"Album": "UNSER",
+			"ArtUrl": "https://coverartarchive.org/release/396db25f-f7ac-4333-a0ed-a7a59570cc31/24822270687-500.jpg"
+		},
+		{
+			"Name": "Odd future",
+			"Artist": "UVERworld",
+			"StreamUrl": "https://www.youtube.com/watch?v=0zLxFAlS29A&pp=ygUUb2RkIGZ1dHVyZSB1dmVyd29ybGQ%3D",
+			"Album": "UNSER",
+			"ArtUrl": "https://coverartarchive.org/release/396db25f-f7ac-4333-a0ed-a7a59570cc31/24822270687-500.jpg"
+		},
+		{
+			"Name": "Archangel",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/archangel",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "Near Dark",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/near-dark",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "Ghost Hardware",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/ghost-hardware",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "Endorphin",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/endorphin",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "Etched Headplate",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/etched-headplate",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "Untrue",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/untrue",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "Shell of Light",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/shell-of-light",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "Homeless",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/homeless",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "UK",
+			"Artist": "Burial",
+			"StreamUrl": "https://burial.bandcamp.com/track/uk",
+			"Album": "Untrue.",
+			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
 		}
 	]
 }
