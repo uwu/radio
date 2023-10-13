@@ -6,7 +6,8 @@
 		"Call me conspiracyala, the way I eat that apocalyptus.",
 		"What comes intense must come outtense.",
 		"I'm not gonna waste this quote with some nonsonse.",
-		"[object Object]"
+		"[object Object]",
+		"undefined"
 	],
 	"Songs": [
 		{
@@ -144,6 +145,42 @@
 			"Artist": "Skrillex",
 			"StreamUrl": "https://soundcloud.com/whereforetunes/skrillex-leave-me-like-this-wherefore-edit",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-vFqejDc9ybbzqbmS-oS5SHQ-t500x500.jpg"
+		},
+		{
+			"Name": "Intermolecular Lullaby",
+			"Artist": "Chime",
+			"StreamUrl": "https://soundcloud.com/chimetunes/intermolecular-lullaby",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-0xrWVOB7g3FYpHwH-ROTu2w-t500x500.jpg"
+		},
+		{
+			"Name": "Hard Times (Hundaes Edit)",
+			"Artist": "Duskus",
+			"StreamUrl": "https://soundcloud.com/hundaes/duskus-hard-times-hundaes-edit",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-Dk81FUMCMhnIyE1t-mLRyEg-t500x500.jpg"
+		},
+		{
+			"Name": "Something Comforting ft. Lil B (Hundaes Edit)",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/hundaes/porter-robinson-something-comforting-ft-lil-b-hundaes-edit",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-vCMgKd6y9Up0eUL1-Lccf8Q-t500x500.jpg"
+		},
+		{
+			"Name": "free car download [legit] (WORKING)",
+			"Artist": "randy",
+			"StreamUrl": "https://soundcloud.com/rand0ll/u-wouldnt-download-a-car",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-pR1izdwT8vzvndF5-EKxQqg-t500x500.jpg"
+		},
+		{
+			"Name": "22 (Jukaa Bootleg) [Bass Edit]",
+			"Artist": "Taylor Swift",
+			"StreamUrl": "https://soundcloud.com/jukaamusic/22-bootleg-bass-edit",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-jky7xHy9UYaYxQx7-BfsSgg-t500x500.jpg"
+		},
+		{
+			"Name": "taylor swift listened to dariabounce this friday",
+			"Artist": "lucasu09",
+			"StreamUrl": "https://soundcloud.com/lucasu09/taylorswift",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-rdbj1zVurgMSElbg-A5hPLA-t500x500.jpg"
 		}
 	]
 }
