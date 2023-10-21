@@ -83,7 +83,7 @@ public static class Helpers
 	}
 
 	public static string ComputeSongId(Song song) {
-		var buffer = Encoding.UTF8.GetBytes(song.Name.ToLowerInvariant() + "|" + song.Artist.ToLowerInvariant());
+		var buffer = Encoding.UTF8.GetBytes(song.StreamUrl);
 		var hash = XXHash.Hash64(buffer);
 		return hash.ToBase60();
 	}
