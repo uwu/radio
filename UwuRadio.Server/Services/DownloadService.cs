@@ -81,7 +81,7 @@ public class DownloadService : IDisposable
 		
 		File.Delete(rawPath);
 
-		return new SongFileInfo(new FileInfo(tmpCachePath), tmpHash, Helpers.ParseDuration(durationStr));
+		return new SongFileInfo(new FileInfo(realCachePath), realHash, Helpers.ParseDuration(durationStr));
 	}
 
 	private static async Task<(string, string)> InvokeYtDlp(string args)
