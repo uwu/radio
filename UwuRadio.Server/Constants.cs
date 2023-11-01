@@ -46,4 +46,24 @@ public class Constants
 	///     Where the raw data is stored
 	/// </summary>
 	public string IngestFolder { get; set; } = null!;
+
+	/// <summary>
+	/// The ffmpeg `-f:a` flag
+	/// </summary>
+	public string AudioFormat { get; set; } = null!;
+
+	/// <summary>
+	/// The ffmpeg `-q:a` flag
+	/// </summary>
+	public string AudioQScale { get; set; } = null!;
+
+	/// <summary>
+	/// The ffmpeg `-b:a` flag
+	/// </summary>
+	public string AudioBitrate { get; set; } = null!;
+
+	/// <summary>
+	/// The target Integrated LUFS
+	/// </summary>
+	public string AudioNormIntegrated { get; set; } = null!;
 }

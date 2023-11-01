@@ -4,5 +4,8 @@
   "ServerDlUrl": "http://localhost:5002/api/file/",
   "YtDlpPath": "/usr/bin/yt-dlp",
   "CacheFolder": "DL_CACHE",
-  "IngestFolder": "../ingest"
+  "IngestFolder": "../ingest",
+  "AudioFormat": "mp3",
+  "AudioQScale": "6",
+  "AudioNormIntegrated": "-16"
 }

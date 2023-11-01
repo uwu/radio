@@ -65,21 +65,23 @@ public class DownloadService : IDisposable
 	private static async Task<SongFileInfo> DownloadSong(string url)
 	{
 		var args
-			= $"\"{url}\" -O after_move:filepath --quiet --print-json -f bestaudio --extract-audio --audio-format mp3 --audio-quality 0";
+			= $"\"{url}\" -O after_move:filepath --quiet --print-json -f bestaudio --extract-audio --audio-quality 0";
 
 		var (rawPath, durationStr) = await InvokeYtDlp(args);
 
-		var ext = new FileInfo(rawPath).Extension;
-
-		if (ext != ".mp3")
-			throw new Exception("Incorrect extension after yt-dlp invocation");
+		var tmpHash      = Helpers.MD5(await File.ReadAllBytesAsync(rawPath));
+		var tmpCachePath = Path.Combine(Constants.C.CacheFolder, tmpHash);
 		
-		var hash = Helpers.MD5(await File.ReadAllBytesAsync(rawPath));
+		var loudness = await DSP.MeasureLoudness(rawPath);
+		await DSP.Normalize(rawPath, tmpCachePath, loudness);
 
-		var cachePath = Path.Combine(Constants.C.CacheFolder, hash);
-		File.Move(rawPath, cachePath, true);
+		var realHash      = Helpers.MD5(await File.ReadAllBytesAsync(tmpCachePath));
+		var realCachePath = Path.Combine(Constants.C.CacheFolder, realHash);
+		File.Move(tmpCachePath, realCachePath, true);
+		
+		File.Delete(rawPath);
 
-		return new SongFileInfo(new FileInfo(cachePath), hash, Helpers.ParseDuration(durationStr));
+		return new SongFileInfo(new FileInfo(tmpCachePath), tmpHash, Helpers.ParseDuration(durationStr));
 	}
 
 	private static async Task<(string, string)> InvokeYtDlp(string args)

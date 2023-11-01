@@ -4,5 +4,8 @@
   "ServerDlUrl": "https://radio.k6.tf/api/file/",
   "YtDlpPath": "yt-dlp",
   "CacheFolder": "DL_CACHE",
-  "IngestFolder": "ingest"
+  "IngestFolder": "ingest",
+  "AudioFormat": "mp3",
+  "AudioQScale": "6",
+  "AudioNormIntegrated": "-16"
 }
