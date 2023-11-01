@@ -28,7 +28,7 @@ public static class DSP
 				"-i",
 				path,
 				"-filter:a",
-				"ebur128=framelog=quiet:peak=true",
+				"ebur128=peak=true",
 				"-f",
 				"null",
 				"-"
