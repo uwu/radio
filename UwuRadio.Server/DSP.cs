@@ -51,8 +51,11 @@ public static class DSP
 
 	public static async Task Normalize(string inPath, string outPath, LoudnessMeasurement measurement)
 	{
+		var lufsLoudnessChange = Constants.C.AudioNormIntegrated - measurement.IntegratedLoudness;
+		var clampedLoudnessChange = Math.Min(lufsLoudnessChange, -measurement.TruePeak);
+		
 		var args = new List<string> { "-nostdin", "-i", inPath, "-filter:a",
-			$"loudnorm=measured_i={measurement.IntegratedLoudness}:measured_thresh={measurement.IntegratedThreshold}:measured_lra={measurement.LoudnessRange}:measured_tp={measurement.TruePeak}:i={Constants.C.AudioNormIntegrated}",
+			$"volume={clampedLoudnessChange}dB",
 			"-f", Constants.C.AudioFormat
 		};
 		

@@ -65,5 +65,5 @@ public class Constants
 	/// <summary>
 	/// The target Integrated LUFS
 	/// </summary>
-	public string AudioNormIntegrated { get; set; } = null!;
+	public double AudioNormIntegrated { get; set; }
 }
