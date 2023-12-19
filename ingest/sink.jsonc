@@ -135,6 +135,20 @@
 			"ArtUrl": "https://coverartarchive.org/release/dbb4902e-ddc0-42e2-a272-f1dbca25bd0f/17988484614-500.jpg"
 		},
 		{
+			"Name": "Leap into the Lightning",
+			"Artist": "Enter Shikari",
+			"StreamUrl": "https://www.youtube.com/watch?v=5VPU3TSUTlo",
+			"Album": "A Kiss for the Whole World",
+			"ArtUrl": "https://coverartarchive.org/release/0bf0f440-a00d-464e-94c9-54fc0868172d/35498629565-500.jpg"
+		},
+		{
+			"Name": "Jailbreak",
+			"Artist": "Enter Shikari",
+			"StreamUrl": "https://www.youtube.com/watch?v=Kjgk-ycb7JY",
+			"Album": "A Kiss for the Whole World",
+			"ArtUrl": "https://coverartarchive.org/release/0bf0f440-a00d-464e-94c9-54fc0868172d/35498629565-500.jpg"
+		},
+		{
 			"Name": "Take me to the Top",
 			"Artist": "ONE OK ROCK",
 			"StreamUrl": "https://youtu.be/_O5bwj-8XfU",
@@ -184,6 +198,20 @@
 			"ArtUrl": "https://coverartarchive.org/release/bbf5c04a-8d41-4c8a-8ae9-0b06fa2e0a79/25290569114-500.jpg"
 		},
 		{
+			"Name": "Manifest",
+			"Artist": "STARSET",
+			"StreamUrl": "https://www.youtube.com/watch?v=0JLARWxmOaE",
+			"Album": "Divisions",
+			"ArtUrl": "https://coverartarchive.org/release/bbf5c04a-8d41-4c8a-8ae9-0b06fa2e0a79/25290569114-500.jpg"
+		},
+		{
+			"Name": "Bringing It Down",
+			"Artist": "STARSET",
+			"StreamUrl": "https://www.youtube.com/watch?v=MZcuRa8Z4fU",
+			"Album": "Vessels",
+			"ArtUrl": "https://coverartarchive.org/release/9e3cc623-5c7e-455e-8276-cca18b96a793/15597131690-500.jpg"
+		},
+		{
 			"Name": "House With Legs",
 			"Artist": "cYsmix",
 			"StreamUrl": "https://youtu.be/wrGFTi3tjHg",
@@ -201,6 +229,20 @@
 			"Name": "Haunted House",
 			"Artist": "cYsmix",
 			"StreamUrl": "https://www.youtube.com/watch?v=gfjGG9r3fSM",
+			"Album": "Haunted House",
+			"ArtUrl": "https://coverartarchive.org/release/fe4782f6-b2fe-43ed-b799-94c4da641414/12166047209-500.jpg"
+		},
+		{
+			"Name": "Abandoned Shrine Party",
+			"Artist": "cYsmix",
+			"StreamUrl": "https://cysmix.bandcamp.com/track/abandoned-shrine-party",
+			"Album": "Ghost Party!",
+			"ArtUrl": "https://f4.bcbits.com/img/a2963339262_10.jpg"
+		},
+		{
+			"Name": "Randomly True Administrator",
+			"Artist": "typeMARS",
+			"StreamUrl": "https://cysmix.bandcamp.com/track/randomly-true-administrator",
 			"Album": "Haunted House",
 			"ArtUrl": "https://coverartarchive.org/release/fe4782f6-b2fe-43ed-b799-94c4da641414/12166047209-500.jpg"
 		},
@@ -505,6 +547,13 @@
 			"Name": "Check the Lock",
 			"Artist": "clipping.",
 			"StreamUrl": "https://soundcloud.com/clppng/check-the-lock",
+			"Album": "Visions of Bodies Being Burned",
+			"ArtUrl": "https://coverartarchive.org/release/99dfae16-464c-49fb-95da-d83bf836a3be/28091078161-500.jpg"
+		},
+		{
+			"Name": "Pain Everyday",
+			"Artist": "clipping.",
+			"StreamUrl": "https://soundcloud.com/clppng/pain-everyday",
 			"Album": "Visions of Bodies Being Burned",
 			"ArtUrl": "https://coverartarchive.org/release/99dfae16-464c-49fb-95da-d83bf836a3be/28091078161-500.jpg"
 		},
@@ -1220,6 +1269,13 @@
 			"ArtUrl": "https://coverartarchive.org/release/dc350920-b1fd-4b70-b2c5-96fc8eba944a/27705688047-500.jpg"
 		},
 		{
+			"Name": "anybody can find love (except you.)",
+			"Artist": "hkmori",
+			"StreamUrl": "https://hkmori.bandcamp.com/track/anybody-can-find-love-except-you",
+			"Album": "unrequited love",
+			"ArtUrl": "https://f4.bcbits.com/img/a4159720140_10.jpg"
+		},
+		{
 			"Name": "Get Em Up",
 			"Artist": "UNDEAD CORPORATION",
 			"StreamUrl": "https://www.youtube.com/watch?v=0TeXG1UGZUU&pp=ygUcZ2V0IGVtIHVwIHVuZGVhZCBjb3Jwb3JhdGlvbg%3D%3D",
@@ -1364,6 +1420,48 @@
 			"StreamUrl": "https://burial.bandcamp.com/track/uk",
 			"Album": "Untrue.",
 			"ArtUrl": "https://coverartarchive.org/release/d84892a9-0b1d-3694-a2a1-f19ddb7d0c53/1001014314-500.jpg"
+		},
+		{
+			"Name": "SONECHKA",
+			"Artist": "ANDREISIMONOVA",
+			"StreamUrl": "https://andreisimonova.bandcamp.com/track/sonechka",
+			"Album": "INTIMISSIMIH",
+			"ArtUrl": "https://f4.bcbits.com/img/a0520852359_10.jpg"
+		},
+		{
+			"Name": "ASSUMPTIONS",
+			"Artist": "ANDREISIMONOVA",
+			"StreamUrl": "https://andreisimonova.bandcamp.com/track/assumptions",
+			"Album": "INTIMISSIMIH",
+			"ArtUrl": "https://f4.bcbits.com/img/a0520852359_10.jpg"
+		},
+		{
+			"Name": "sauceintherough",
+			"Artist": "brakence",
+			"StreamUrl": "https://on.soundcloud.com/Pywyu",
+			"Album": "punk2",
+			"ArtUrl": "https://coverartarchive.org/release/d49e6c36-c205-4412-bed0-6ab87fd3b325/35110780731-500.jpg"
+		},
+		{
+			"Name": "dropout",
+			"Artist": "brakence",
+			"StreamUrl": "https://on.soundcloud.com/Pywyu",
+			"Album": "punk2",
+			"ArtUrl": "https://coverartarchive.org/release/d49e6c36-c205-4412-bed0-6ab87fd3b325/35110780731-500.jpg"
+		},
+		{
+			"Name": "fuckboy",
+			"Artist": "brakence",
+			"StreamUrl": "https://on.soundcloud.com/Pywyu",
+			"Album": "punk2",
+			"ArtUrl": "https://coverartarchive.org/release/d49e6c36-c205-4412-bed0-6ab87fd3b325/35110780731-500.jpg"
+		},
+		{
+			"Name": "Pieces",
+			"Artist": "Icon For Hire",
+			"StreamUrl": "https://www.youtube.com/watch?v=1W_nU-pNy1E",
+			"Album": "Scripted",
+			"ArtUrl": "https://coverartarchive.org/release/68906d17-4942-4640-a9b6-b6a9218f988b/8544882179-500.jpg"
 		}
 	]
 }
