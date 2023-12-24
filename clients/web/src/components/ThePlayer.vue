@@ -32,7 +32,11 @@ const randomQuote = computed(() =>
     <TheClients />
     <span class="text-lg z-1 mt-2">RADIO.UWU.NETWORK</span>
     <div class="text-center w-70 md:w-100" id="player">
-      <img class="w-70 h-70 mb-2 md:(w-100 h-100)" :src="client.currentSong?.artUrl ?? fallbackart" />
+      <div
+        class="w-70 h-70 mb-2 md:(w-100 h-100)"
+        :style="{ background: `center / contain no-repeat url(${client.currentSong?.artUrl ?? fallbackart})` }"
+      />
+
       <div class="md:text-xl">
         <div>{{ client.currentSong?.name }}</div>
         <div>by {{ client.currentSong?.artist }}</div>
