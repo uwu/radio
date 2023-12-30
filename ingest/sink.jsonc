@@ -1269,6 +1269,20 @@
 			"ArtUrl": "https://coverartarchive.org/release/dc350920-b1fd-4b70-b2c5-96fc8eba944a/27705688047-500.jpg"
 		},
 		{
+			"Name": "Langside",
+			"Artist": "Venetian Snares",
+			"StreamUrl": "https://venetiansnares.bandcamp.com/track/langside",
+			"Album": "The Chocolate Wheelchair Album",
+			"ArtUrl": "https://f4.bcbits.com/img/a0160247312_10.jpg"
+		},
+		{
+			"Name": "Einstein-Rosen Bridge",
+			"Artist": "Venetian Snares",
+			"StreamUrl": "https://venetiansnares.bandcamp.com/track/einstein-rosen-bridge-2",
+			"Album": "The Chocolate Wheelchair Album",
+			"ArtUrl": "https://f4.bcbits.com/img/a0160247312_10.jpg"
+		},
+		{
 			"Name": "anybody can find love (except you.)",
 			"Artist": "hkmori",
 			"StreamUrl": "https://hkmori.bandcamp.com/track/anybody-can-find-love-except-you",
@@ -1445,16 +1459,44 @@
 		{
 			"Name": "dropout",
 			"Artist": "brakence",
-			"StreamUrl": "https://on.soundcloud.com/Pywyu",
+			"StreamUrl": "https://on.soundcloud.com/fuVze",
 			"Album": "punk2",
 			"ArtUrl": "https://coverartarchive.org/release/d49e6c36-c205-4412-bed0-6ab87fd3b325/35110780731-500.jpg"
 		},
 		{
 			"Name": "fuckboy",
 			"Artist": "brakence",
-			"StreamUrl": "https://on.soundcloud.com/Pywyu",
+			"StreamUrl": "https://on.soundcloud.com/t5pDH",
 			"Album": "punk2",
 			"ArtUrl": "https://coverartarchive.org/release/d49e6c36-c205-4412-bed0-6ab87fd3b325/35110780731-500.jpg"
+		},
+		{
+			"Name": "caffeine",
+			"Artist": "brakence",
+			"StreamUrl": "https://on.soundcloud.com/becpV",
+			"Album": "hypochrondriac",
+			"ArtUrl": "https://coverartarchive.org/release/b4795ae4-0d6d-4f46-bc1d-2801d6799244/34247295308-500.jpg"
+		},
+		{
+			"Name": "teeth",
+			"Artist": "brakence",
+			"StreamUrl": "https://on.soundcloud.com/99p5D",
+			"Album": "hypochrondriac",
+			"ArtUrl": "https://coverartarchive.org/release/b4795ae4-0d6d-4f46-bc1d-2801d6799244/34247295308-500.jpg"
+		},
+		{
+			"Name": "stung",
+			"Artist": "brakence",
+			"StreamUrl": "https://on.soundcloud.com/ZhEdj",
+			"Album": "hypochrondriac",
+			"ArtUrl": "https://coverartarchive.org/release/b4795ae4-0d6d-4f46-bc1d-2801d6799244/34247295308-500.jpg"
+		},
+		{
+			"Name": "deepfake",
+			"Artist": "brakence",
+			"StreamUrl": "https://on.soundcloud.com/9Zjza",
+			"Album": "hypochrondriac",
+			"ArtUrl": "https://coverartarchive.org/release/b4795ae4-0d6d-4f46-bc1d-2801d6799244/34247295308-500.jpg"
 		},
 		{
 			"Name": "Pieces",
