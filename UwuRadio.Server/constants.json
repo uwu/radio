@@ -6,6 +6,6 @@
   "CacheFolder": "DL_CACHE",
   "IngestFolder": "ingest",
   "AudioFormat": "mp3",
-  "AudioQScale": "6",
+  "AudioQScale": "4",
   "AudioNormIntegrated": -16
 }
