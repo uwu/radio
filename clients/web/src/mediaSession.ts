@@ -35,13 +35,13 @@ export function setupMediaSession() {
       this.artwork = data.artwork ?? [];
       this.title = data.title ?? "";
     }
-  }
+  };
 
   watchEffect(() => {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: client.currentSong?.name,
       artist: client.currentSong?.artist,
-      album: client.currentSong?.album,
+      album: client.currentSong?.album ?? undefined,
       artwork:
         client.currentSong?.artUrl !== undefined ? [{ src: client.currentSong?.artUrl! }] : [],
     });

@@ -14,10 +14,10 @@ const loadingSong: Song = {
 export interface Song {
   name: string;
   artist: string;
-  dlUrl?: string;
-  sourceUrl?: string;
-  artUrl?: string;
-  album?: string;
+  dlUrl?: string | null;
+  sourceUrl?: string | null;
+  artUrl?: string | null;
+  album?: string | null;
   submitter: string;
 }
 
