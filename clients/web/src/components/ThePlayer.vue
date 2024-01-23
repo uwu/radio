@@ -3,7 +3,7 @@ import { computed } from "vue";
 import isButterchurnSupported from "butterchurn/lib/isSupported.min";
 import RangeSlider from "./RangeSlider.vue";
 import TheHistory from "./TheHistory.vue";
-import { prettySeek, prettyDuration, volume, getDuration, seek } from "@/audio";
+import { prettySeek, prettyDuration, volumeDbfs, getDuration, seek } from "@/audio";
 import { getClient } from "@/syncClient";
 import TheClients from "./TheClients.vue";
 import { timePromise } from "@/util";
@@ -52,7 +52,7 @@ const randomQuote = computed(() =>
             class="h-px bg-white"
             :style="{ width: (100 * (seek ?? 0)) / getDuration() + '%' }" />
         </div>
-        <div class="flex items-center gap-3">VOL <RangeSlider v-model="volume" /></div>
+        <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-20" :max="0" /></div>
       </div>
     </div>
     <span class="text-center">

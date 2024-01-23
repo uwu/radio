@@ -2,7 +2,7 @@
 // @ts-nocheck TypeScript is actually wrong. I'm not joking.
 import { computed } from "vue";
 
-const props = defineProps(["modelValue"]);
+const props = defineProps(["modelValue", "min", "max"]);
 defineEmits(["update:modelValue"]);
 const vol = computed(() => parseFloat(props.modelValue));
 </script>
@@ -12,8 +12,8 @@ const vol = computed(() => parseFloat(props.modelValue));
     :value="vol"
     @input="$emit('update:modelValue', $event?.target?.value?.toString?.())"
     type="range"
-    min="0"
-    max="1"
+    :min="props.min ?? 0"
+    :max="props.max ?? 1"
     step="0.01" />
 </template>
 

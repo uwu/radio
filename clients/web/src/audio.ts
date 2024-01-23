@@ -16,6 +16,11 @@ const songs: Record<string, Promise<AudioBuffer>> = {};
 export const history = reactive<Array<Song>>([]);
 export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? "1"));
 
+export const volumeDbfs = computed({
+	get: () => 20 * Math.log10(volume.value),
+	set: (dbfs) => { volume.value = 10 ** (dbfs / 20); }
+});
+
 watchEffect(() => {
   audioGain.gain.value = volume.value;
   localStorage.setItem("volume", volume.value.toString());
