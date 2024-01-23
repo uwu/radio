@@ -14,11 +14,14 @@ let startSeek: number;
 const songs: Record<string, Promise<AudioBuffer>> = {};
 
 export const history = reactive<Array<Song>>([]);
-export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? "1"));
+export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? (10 ** (-10/20) + "")));
+// default volume of -10dBFS is approximately 0.31 linearly (or exactly 1/sqrt(10)!)
 
 export const volumeDbfs = computed({
-	get: () => 20 * Math.log10(volume.value),
-	set: (dbfs) => { volume.value = 10 ** (dbfs / 20); }
+  get: () => 20 * Math.log10(volume.value),
+  set: (dbfs) => {
+    volume.value = 10 ** (dbfs / 20);
+  },
 });
 
 watchEffect(() => {

@@ -52,7 +52,7 @@ const randomQuote = computed(() =>
             class="h-px bg-white"
             :style="{ width: (100 * (seek ?? 0)) / getDuration() + '%' }" />
         </div>
-        <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-20" :max="0" /></div>
+        <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-60" :max="0" /></div>
       </div>
     </div>
     <span class="text-center">
