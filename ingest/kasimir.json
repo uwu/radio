@@ -4,7 +4,8 @@
   "Quotes": [
     "I hope you explode",
     "@everyone",
-    "<img src='' onerror='alert(1)'"
+    "<img src='' onerror='alert(1)'",
+    "oh, now there is no sound"
   ],
   "Songs": [
     {
@@ -1744,6 +1745,54 @@
       "StreamUrl": "https://youtu.be/d-nxW9qBtxQ",
       "Album": "Miracle Milk",
       "ArtUrl": "https://coverartarchive.org/release/761d27c0-7ff4-4a80-baee-23c7c7898071/28092421333-500.jpg"
-    }      
+    },
+    {
+      "Name": "Simple Folds",
+      "Artist": "Pretty Patterns",
+      "StreamUrl": "https://youtu.be/LTBznnebJNA",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02524f691903ad2fa2f6c8b020"
+    },
+    {
+      "Name": "VON",
+      "Artist": "Pretty Patterns (feat. Emi Evans)",
+      "StreamUrl": "https://youtu.be/AztZcoLdwNI",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e0231644b1cadc47e71d6d23367"
+    },
+    {
+      "Name": "Ataraxia",
+      "Artist": "Pretty Patterns",
+      "StreamUrl": "https://youtu.be/bUh2W3jjapA",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02ee1e1390604c5624e610cf48"
+    },
+    {
+      "Name": "Proxima",
+      "Artist": "Pretty Patterns (feat. Kazari Tayu & Enna Alouette)",
+      "StreamUrl": "https://youtu.be/55bTe56pQPA",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02c99ee02580aef321f7fa6ac0"
+    },
+    {
+      "Name": "Voids",
+      "Artist": "Pretty Patterns (feat. vally.exe)",
+      "StreamUrl": "https://youtu.be/B0uSLgW9o7E",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02497b462a7102966d379425e5"
+    },
+    {
+      "Name": "Home",
+      "Artist": "Pretty Patterns (feat. Wisteria Iroha)",
+      "StreamUrl": "https://youtu.be/MSPIamUH6Hs",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02d361de68b7f14398b5d6afcc"
+    },
+    {
+      "Name": "SPLEENPOP",
+      "Artist": "Pretty Patterns (feat. vally.exe)",
+      "StreamUrl": "https://youtu.be/OxvuS-r6Apo",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02146f8087d5ca31605c75389b"
+    },
+    {
+      "Name": "Blue",
+      "Artist": "Pretty Patterns",
+      "StreamUrl": "https://youtu.be/QuuOe3ECIoI",
+      "ArtUrl": "https://i.scdn.co/image/ab67616d00001e0255ea0c6243fa953137dffb75"
+    }
   ]
 }
