@@ -1,18 +1,7 @@
 {
 	"Name": "ioj4",
 	"PfpUrl": "https://avatars.githubusercontent.com/u/69911332",
-	"Quotes": [
-		"I joined the cult just to add this song.",
-		"Call me conspiracyala, the way I eat that apocalyptus.",
-		"What comes intense must come outtense.",
-		"I'm not gonna waste this quote with some nonsonse.",
-		"[object Object]",
-		"undefined",
-		"yipee",
-
-		// Porter Robinson
-		"hotel cleaning lady just barged in and saw me nakie. that shit ain't free"
-	],
+	"Quotes": ["✩°｡ ⋆⸜ 🎧✮"],
 	"Songs": [
 		{
 			"Name": "Strangers (Hundaes Edit)",
@@ -262,7 +251,8 @@
 			"Name": "Spoiled little brat",
 			"Artist": "underscores",
 			"StreamUrl": "https://soundcloud.com/underscores/slb",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-BiRH5ElHSzrW3bRY-ZhNMiw-t500x500.jpg"
+			"ArtUrl": "https://i1.sndcdn.com/artworks-BiRH5ElHSzrW3bRY-ZhNMiw-t500x500.jpg",
+			"Album": "fishmonger"
 		},
 		{
 			"Name": "del mar county fair 2008 (Cavetown cover)",
@@ -298,7 +288,8 @@
 			"Name": "huh",
 			"Artist": "glaive",
 			"StreamUrl": "https://soundcloud.com/1glaive/huh",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-5Sia68wBvokYFWO5-Av0lmw-t500x500.jpg"
+			"ArtUrl": "https://i1.sndcdn.com/artworks-5Sia68wBvokYFWO5-Av0lmw-t500x500.jpg",
+			"Album": "a bit of a mad one"
 		},
 		{
 			"Name": "let them know they're on your mind",
@@ -310,13 +301,15 @@
 			"Name": "You're So Pretty",
 			"Artist": "Petal Supply",
 			"StreamUrl": "https://soundcloud.com/aqnb/petal-supply-youre-so-pretty-2020-courtesy-song-music-llc",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-GrwKzw73LPZz9SPx-Xfs2sQ-t500x500.jpg"
+			"ArtUrl": "https://i1.sndcdn.com/artworks-GrwKzw73LPZz9SPx-Xfs2sQ-t500x500.jpg",
+			"Album": "Hey"
 		},
 		{
 			"Name": "Highest Building (feat. Oklou)",
 			"Artist": "Flume",
 			"StreamUrl": "https://soundcloud.com/flume/highest-building-feat-oklou",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-slygos8yd1y1HqMS-9m2Xzg-t500x500.jpg"
+			"ArtUrl": "https://i1.sndcdn.com/artworks-slygos8yd1y1HqMS-9m2Xzg-t500x500.jpg",
+			"Album": "Palaces"
 		},
 		{
 			"Name": "1000 Missed Calls (Mausipop Version)",
@@ -340,7 +333,8 @@
 			"Name": "Car Keys",
 			"Artist": "A.G. Cook",
 			"StreamUrl": "https://soundcloud.com/agcook/car-keys",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-WeBkYNTpI9t6-0-t500x500.jpg"
+			"ArtUrl": "https://i1.sndcdn.com/artworks-WeBkYNTpI9t6-0-t500x500.jpg",
+			"Album": "7G"
 		},
 		{
 			"Name": "so stupid",
@@ -358,7 +352,228 @@
 			"Name": "Locals (Girls like us) [with gabby start]",
 			"Artist": "underscores",
 			"StreamUrl": "https://soundcloud.com/underscores/l-glu",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-6rUkdHLvSur3ELui-XH6ZrQ-t500x500.jpg"
+			"ArtUrl": "https://i1.sndcdn.com/artworks-6rUkdHLvSur3ELui-XH6ZrQ-t500x500.jpg",
+			"Album": "Wallsocket"
+		},
+		{
+			"Name": "saturn",
+			"Artist": "Madge",
+			"StreamUrl": "https://soundcloud.com/madgetunes/saturn",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-LIGhZ58cCMVR-0-t500x500.jpg"
+		},
+		{
+			"Name": "Howl",
+			"Artist": "CHUU",
+			"StreamUrl": "https://soundcloud.com/chuu-77809751/howl",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-M5TPqRzzpYJ49tlU-ZxrpdA-t500x500.jpg"
+		},
+		{
+			"Name": "ALL I GOT",
+			"Artist": "Frost Children",
+			"StreamUrl": "https://soundcloud.com/frostchildren/all-i-got",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-eBAh7dWjz4C9-0-t500x500.jpg",
+			"Album": "SPEED RUN"
+		},
+		{
+			"Name": "fallin (OrangeTone Remix)",
+			"Artist": "diana starshine",
+			"StreamUrl": "https://soundcloud.com/dianastarshine-music/fallin-orangetone-remix",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-eKxhOE1QKnzR-0-t500x500.jpg"
+		},
+		{
+			"Name": "sky.bound :: trans pride war dub",
+			"Artist": "nuphory",
+			"StreamUrl": "https://soundcloud.com/nuphory/skybound",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-TfjIJR3LqPOSDchS-H8N1Zw-t500x500.jpg"
+		},
+		{
+			"Name": "cyber meat",
+			"Artist": "yeule",
+			"StreamUrl": "https://soundcloud.com/yeule/cyber-meat",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-fUyJ9U5FN9ym-0-t500x500.png",
+			"Album": "softscars"
+		},
+		{
+			"Name": "Without",
+			"Artist": "A. G. Cook",
+			"StreamUrl": "https://soundcloud.com/agcook/a-g-cook-without-1",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-YPjHri7Bpol5-0-t500x500.jpg",
+			"Album": "Britpop"
+		},
+		{
+			"Name": "Durch den Monsun",
+			"Artist": "Tokio Hotel",
+			"StreamUrl": "https://www.youtube.com/watch?v=S_Sy5-sOodA",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-jvkJTo3W1dtd-0-t500x500.jpg"
+		},
+		{
+			"Name": "Crescendolls",
+			"Artist": "Daft Punk",
+			"StreamUrl": "https://www.youtube.com/watch?v=oor2uIqys8M",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-3Qh15mrZNcn0-0-t500x500.jpg",
+			"Album": "Discovery"
+		},
+		{
+			"Name": "burbank house",
+			"Artist": "tsubi club",
+			"StreamUrl": "https://soundcloud.com/tsunamibitchclub/burbank-house",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-vcz0anY1NMd9lcEI-6boZUA-t500x500.jpg"
+		},
+		{
+			"Name": "Dark Blue",
+			"Artist": "User2222",
+			"StreamUrl": "https://soundcloud.com/user-22222222222222222/dark-blue",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-7uYdAp0JKqrNPz2y-bQ0yjw-t500x500.jpg"
+		},
+		{
+			"Name": "Cut",
+			"Artist": "wylie hopkins",
+			"StreamUrl": "https://soundcloud.com/wsoju/cut",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-CYyyBQ3qGaTaq9CD-ctT76A-t500x500.jpg"
+		},
+		{
+			"Name": "A Moment Apart (camoufly Remix)",
+			"Artist": "ODESZA",
+			"StreamUrl": "https://soundcloud.com/odesza/a-moment-apart-camoufly-remix",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-75Ut1kGc5loA-0-t500x500.png"
+		},
+		{
+			"Name": "Lisztomania",
+			"Artist": "Phoenix",
+			"StreamUrl": "https://soundcloud.com/phoenix/lisztomania",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-eIBgAGrT7LVT-0-t500x500.jpg"
+		},
+		{
+			"Name": "Yeah Right",
+			"Artist": "Vince Staples",
+			"StreamUrl": "https://soundcloud.com/vince-staples-official/track-7",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-EUky9QdnboMr-0-t500x500.jpg"
+		},
+		{
+			"Name": "the light refuses to fade (feat. adri)",
+			"Artist": "slphr",
+			"StreamUrl": "https://soundcloud.com/artbyform/slphr-the-light-refuses-to",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-4dvRACiqAyVYDoFu-SZUZIw-t500x500.jpg",
+			"Album": "any%"
+		},
+		{
+			"Name": "tijuana freestyle",
+			"Artist": "glaive",
+			"StreamUrl": "https://www.youtube.com/watch?v=Kom4KRSKWxc",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-AjZzj1XyiaQG3M7x-OYEV9g-t500x500.jpg"
+		},
+		{
+			"Name": "OG!",
+			"Artist": "JPEGMAFIA",
+			"StreamUrl": "https://soundcloud.com/jpegmafia/jpegmafia-elpee-12-og",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-brzBonZuRhUzGxYz-pIs0vQ-t500x500.jpg"
+		},
+		{
+			"Name": "dancing while the world burns",
+			"Artist": "adore",
+			"StreamUrl": "https://soundcloud.com/whodoyouadore/dancing-while-the-world-burns",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-1d066At2Ov4Qsymd-yfwsig-t500x500.jpg"
+		},
+		{
+			"Name": "doing it wrong w/ @dreamcache",
+			"Artist": "oaf1",
+			"StreamUrl": "https://soundcloud.com/oaf1/wrong",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-000665034100-na7ri1-t500x500.jpg"
+		},
+		{
+			"Name": "Knock Yourself Out XD",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/knock-yourself-out-xd",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-nb4aQTlS4Kd5-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "SPINNING",
+			"Artist": "jaron",
+			"StreamUrl": "https://soundcloud.com/jaronsteele/spinning",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-RgCXd4RgGF8e8wc6-diZWZw-t500x500.jpg"
+		},
+		{
+			"Name": "Royal Blue Walls",
+			"Artist": "Jane Remover",
+			"StreamUrl": "https://soundcloud.com/janeremover/royal-blue-walls",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-16yv50piovGnUvs6-Aebu6g-t500x500.jpg"
+		},
+		{
+			"Name": "stay awake",
+			"Artist": "dossyx",
+			"StreamUrl": "https://soundcloud.com/bitbird/dossyx-stay-awake",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-VysSrl5bMz96liFA-LGCR6g-t500x500.jpg"
+		},
+		{
+			"Name": "Anthems For A Seventeen Year-Old Girl",
+			"Artist": "yeule",
+			"StreamUrl": "https://soundcloud.com/yeule/anthems-for-a-seventeen-year",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-10uUjytDnnTe-0-t500x500.jpg"
+		},
+		{
+			"Name": "stranger",
+			"Artist": "Perto",
+			"StreamUrl": "https://soundcloud.com/iamperto/stranger",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-x8L6xCT4GjXyw7aX-0Myciw-t500x500.jpg",
+			"Album": "bozo"
+		},
+		{
+			"Name": "i wanna be the guy",
+			"Artist": "twikipedia",
+			"StreamUrl": "https://soundcloud.com/twikipedia/iwbtg",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-TzCICAG61J2GmCna-R6borA-t500x500.jpg"
+		},
+		{
+			"Name": "She's Always Dancing",
+			"Artist": "Bladee",
+			"StreamUrl": "https://soundcloud.com/bladee1000/shes-always-dancing",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-X6WAOvkz2Edx-0-t500x500.png",
+			"Album": "Spiderr"
+		},
+		{
+			"Name": "lifeline",
+			"Artist": "ericdoa",
+			"StreamUrl": "https://soundcloud.com/ericdoa/lifeline",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-6uPl05WQ0Gdw-0-t500x500.jpg",
+			"Album": "things with wings"
+		},
+		{
+			"Name": "Switch",
+			"Artist": "Biig Piig",
+			"StreamUrl": "https://soundcloud.com/biiggpiigg/switch",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-efgvBo7bKKdi-0-t500x500.jpg"
+		},
+		{
+			"Name": "Fast",
+			"Artist": "Juice WRLD",
+			"StreamUrl": "https://soundcloud.com/uiceheidd/fast",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-000500685327-v0d2rf-t500x500.jpg",
+			"Album": "Death Race For Love"
+		},
+		{
+			"Name": "stuck (p. michael warren)",
+			"Artist": "numl6ck",
+			"StreamUrl": "https://soundcloud.com/numl6ck/stuck",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-01GfZYChnQWdAr29-LKTWHA-t500x500.jpg"
+		},
+		{
+			"Name": "forget—me—not! (feat. Instupendo)",
+			"Artist": "MISOGI",
+			"StreamUrl": "https://soundcloud.com/misogi/forget-me-not-feat-instupendo",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-dIUHUJE1C8DX-0-t500x500.png"
+		},
+		{
+			"Name": "Live 4ever",
+			"Artist": "MAGDALENA BAY",
+			"StreamUrl": "https://soundcloud.com/magbae/live-4ever-1",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-G2QHX498w9GT-0-t500x500.jpg"
+		},
+		{
+			"Name": "No Trace",
+			"Artist": "midwxst",
+			"StreamUrl": "https://soundcloud.com/midwxst/no-trace",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-xZoYpdo9ra42-0-t500x500.jpg"
 		}
 	]
 }
