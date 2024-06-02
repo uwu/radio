@@ -82,7 +82,7 @@
     // in this moment
     "My roots run deep into the hollow.",
 
-    // my a level mechanics teacher 
+    // my a level mechanics teacher
     "If you throw someone out of a high window, they will realize their true potential.",
 
     // ...you know who you are
@@ -515,6 +515,30 @@
 			"Artist": "No Mana",
 			"StreamUrl": "https://www.youtube.com/watch?v=ajfcfLC7m8k",
 			"ArtUrl": "https://coverartarchive.org/release/4ff9660a-833e-4ded-8eb1-999b5b4a9978/34153825113-500.jpg"
+		},
+		{
+			"Name": "Solarpunk",
+			"Artist": "No Mana",
+			"StreamUrl": "https://on.soundcloud.com/yUSfVYvAnCi4grmS6",
+			"ArtUrl": "https://coverartarchive.org/release/4b19872b-76d5-419c-8c99-555d10d79534/38945910212.png"
+		},
+		{
+			"Name": "Digital Friends",
+			"Artist": "No Mana x SOFI",
+			"StreamUrl": "https://on.soundcloud.com/Cutc5sm2z9dDB3XFA",
+			"ArtUrl": "https://coverartarchive.org/release/4b19872b-76d5-419c-8c99-555d10d79534/38945910212.png"
+		},
+		{
+			"Name": "Hopeless",
+			"Artist": "No Mana, Feed Me feat. Bertie Scott",
+			"StreamUrl": "https://on.soundcloud.com/BnNxDgAmaYNXM9GX7",
+			"ArtUrl": "https://coverartarchive.org/release/4b19872b-76d5-419c-8c99-555d10d79534/38945910212.png"
+		},
+		{
+			"Name": "Everlasting",
+			"Artist": "No Mana, EMSKI",
+			"StreamUrl": "https://on.soundcloud.com/Cs4SXMN4D9kuHVAEA",
+			"ArtUrl": "https://coverartarchive.org/release/4b19872b-76d5-419c-8c99-555d10d79534/38945910212.png"
 		},
 		{
 			"Name": "Contact",
