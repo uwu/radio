@@ -750,6 +750,13 @@
 			"ArtUrl": "https://coverartarchive.org/release/b96c12c8-ab67-490a-b5ff-49bb37f3b040/21006186849-500.jpg"
 		},
 		{
+			"Name": "NICE TYPE",
+			"Artist": "KIRA & Johnny R feat. monii",
+			"SortArtist": "KIRA",
+			"StreamUrl": "https://www.youtube.com/watch?v=2IfcEzhG8rI&pp=ygUKbmljZSB0eXBlIA%3D%3D",
+			"ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/32/2e/10/322e10f9-072e-6475-918c-a2667a0edfcb/artwork.jpg/1080x1080bb.webp"
+		},
+		{
 			"Name": "Kan Saete Kuyaishiiwa",
 			"Artist": "ZUTOMAYO",
 			"StreamUrl": "https://youtu.be/4QePrv24TBU",
@@ -975,7 +982,6 @@
 			"Album": "FEVER DREAM",
 			"ArtUrl": "https://f4.bcbits.com/img/a0930597781_16.jpg"
 		},
-		// Yeah, I used the SFW album art, so what?
 		{
 			"Name": "Yandere Complex",
 			"Artist": "Sewerslvt",
@@ -1090,8 +1096,9 @@
 			"ArtUrl": "https://coverartarchive.org/release/0c946c9e-33c3-4b75-9ac5-6fd8f8fc56ad/11968625141-500.jpg"
 		},
 		{
-			"Name": "La Lune (feat. Dan Smith)",
-			"Artist": "Madeon",
+			"Name": "La Lune",
+			"Artist": "Madeon feat. Dan Smith",
+			"SortArtist": "Madeon",
 			"StreamUrl": "https://youtu.be/g1zQD73w84U",
 			"Album": "Adventure",
 			"ArtUrl": "https://coverartarchive.org/release/0c946c9e-33c3-4b75-9ac5-6fd8f8fc56ad/11968625141-500.jpg"
@@ -1125,8 +1132,9 @@
 			"ArtUrl": "https://coverartarchive.org/release/84ed7be8-9892-4379-93a9-452068c1363a/10045529637-500.jpg"
 		},
 		{
-			"Name": "Finale (feat. Nicholas Petricca)",
-			"Artist": "Madeon",
+			"Name": "Finale",
+			"Artist": "Madeon feat. Nicholas Petricca",
+			"SortArtist": "Madeon",
 			"StreamUrl": "https://youtu.be/j0h2u87JwyA",
 			"Album": "Adventure (Deluxe)",
 			"ArtUrl": "https://coverartarchive.org/release/84ed7be8-9892-4379-93a9-452068c1363a/10045529637-500.jpg"
@@ -1613,11 +1621,86 @@
 			"ArtUrl": "https://coverartarchive.org/release/b4795ae4-0d6d-4f46-bc1d-2801d6799244/34247295308-500.jpg"
 		},
 		{
+			"Name": "gloves",
+			"Artist": "kmoe",
+			"StreamUrl": "https://on.soundcloud.com/1gjTjeegJEnpbfsm6",
+			"ArtUrl": "https://coverartarchive.org/release/16a01325-f112-4fb6-8e95-fb8102910a42/33315532686-1200.jpg"
+		},
+		{
+			"Name": "crush",
+			"Artist": "kmoe",
+			"StreamUrl": "https://on.soundcloud.com/ywaCgBL9dPn2ppCXA",
+			"ArtUrl": "https://coverartarchive.org/release/d41f21b5-a92c-4641-92c6-90e7ec7f1c13/34835132147-1200.jpg"
+		},
+		{
+			"Name": "nerve",
+			"Artist": "kmoe",
+			"StreamUrl": "https://on.soundcloud.com/2tLKQ6tvsbJcFhGq5",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-bOI2xkFBBBFMkScF-yXR9lg-t500x500.jpg"
+		},
+		{
+			"Name": "wide eyes",
+			"Artist": "kmoe feat. Jane Remover & juno",
+			"SortArtist": "kmoe",
+			"StreamUrl": "https://on.soundcloud.com/akRumvw5hVPPPBENA",
+			"ArtUrl": "https://coverartarchive.org/release/cc8a6fb3-c2e5-411a-b08f-babad5a75e41/38847929936-1200.jpg"
+		},
+		{
 			"Name": "Pieces",
 			"Artist": "Icon For Hire",
 			"StreamUrl": "https://www.youtube.com/watch?v=1W_nU-pNy1E",
 			"Album": "Scripted",
 			"ArtUrl": "https://coverartarchive.org/release/68906d17-4942-4640-a9b6-b6a9218f988b/8544882179-500.jpg"
+		},
+		{
+			"Name": "b Alright!",
+			"Artist": "Wavedash, Anamanaguchi & Cayenne",
+			"SortArtist": "Wavedash",
+			"StreamUrl": "https://on.soundcloud.com/yQrVGNX2kJC5U7JY6",
+			"Album": "Tempo",
+			"ArtUrl": "https://coverartarchive.org/release/327ad2d8-d434-4591-918a-7a7399635a3f/38723455129-1200.jpg"
+		},
+		{
+			"Name": "MOVE",
+			"Artist": "cute girls doing cute things",
+			"StreamUrl": "https://cutegirlsdoingcutethings.bandcamp.com/track/move",
+			"Album": "LOVE​·​ME",
+			"ArtUrl": "https://coverartarchive.org/release/7a991e76-abf4-4007-b8f0-f0e9238116a4/38628526699-1200.jpg"
+		},
+		{
+			"Name": "ATTENTION",
+			"Artist": "cute girls doing cute things",
+			"StreamUrl": "https://cutegirlsdoingcutethings.bandcamp.com/track/attention",
+			"Album": "LOVE​·​ME",
+			"ArtUrl": "https://coverartarchive.org/release/7a991e76-abf4-4007-b8f0-f0e9238116a4/38628526699-1200.jpg"
+		},
+		{
+			"Name": "MANIPULATION",
+			"Artist": "cute girls doing cute things",
+			"StreamUrl": "https://cutegirlsdoingcutethings.bandcamp.com/track/manipulation",
+			"Album": "LOVE​·​ME",
+			"ArtUrl": "https://coverartarchive.org/release/7a991e76-abf4-4007-b8f0-f0e9238116a4/38628526699-1200.jpg"
+		},
+		{
+			"Name": "ALL MY PALS",
+			"Artist": "cute girls doing cute things",
+			"StreamUrl": "https://cutegirlsdoingcutethings.bandcamp.com/track/all-my-pals",
+			"Album": "LOVE​·​ME",
+			"ArtUrl": "https://coverartarchive.org/release/7a991e76-abf4-4007-b8f0-f0e9238116a4/38628526699-1200.jpg"
+		},
+		{
+			"Name": "Birdsong (Extended Edit)",
+			"Artist": "Kabuki & James Landino",
+			"SortArtist": "James Landino",
+			"StreamUrl": "https://www.youtube.com/watch?v=7cPbMufmv7I&pp=ygUWYmlyZHNvbmcgamFtZXMgbGFuZGlvbg%3D%3D",
+			"ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/27/88/32/27883202-091c-b1ad-483c-fcf0ff34813d/71224876-0fd8-4fcc-82b9-7a1f5bb9daef.jpg/1080x1080bb.webp"
+		},
+		{
+			"Name": "Down Low",
+			"Artist": "James Landino ft. Raj Ramayya",
+			"SortArtist": "James Landino",
+			"StreamUrl": "https://www.youtube.com/watch?v=m8QhhiYCC9Q&pp=ygUWamFtZXMgbGFuZGlubyBkb3duIGxvdw%3D%3D",
+			"ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/95/57/7c/95577c13-5abd-37f6-61ef-7dfb5921d519/197077666939_cover.jpg/1080x1080bb.webp"
 		}
 	]
 }
