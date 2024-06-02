@@ -6,6 +6,7 @@
 		{
 			"Name": "Strangers (Hundaes Edit)",
 			"Artist": "Seven Lions, Myon & Shane 54, Tove Lo",
+			"SortArtist": "hundaes",
 			"StreamUrl": "https://soundcloud.com/hundaes/seven-lions-myon-and-shane-54-tove-lo-strangers-hundaes-edit",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-9IPMXDJsRaNWSX1m-tcBY5A-t500x500.jpg"
 		},
@@ -18,14 +19,9 @@
 		{
 			"Name": "We Are Never Getting Back Together (Hundaes Edit)",
 			"Artist": "Taylor Swift",
+			"SortArtist": "hundaes",
 			"StreamUrl": "https://soundcloud.com/hundaes/taylor-swift-we-are-never-getting-back-together-hundaes-edit",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-TBXyWTGvZQSlM2vs-mCNJ7g-t500x500.jpg"
-		},
-		{
-			"Name": "Strangers (Hundaes Edit)",
-			"Artist": "Seven Lions, Myon and Shane 54 & Tove Lo",
-			"StreamUrl": "https://soundcloud.com/hundaes/seven-lions-myon-and-shane-54-tove-lo-strangers-hundaes-edit",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-9IPMXDJsRaNWSX1m-tcBY5A-t500x500.jpg"
 		},
 		{
 			"Name": "EON BREAK (4AM Remix by MANIFOLD HOME)",
@@ -124,6 +120,7 @@
 		{
 			"Name": "claws (Hundaes 'scared in my dreams' Edit)",
 			"Artist": "Charli XCX",
+			"SortArtist": "hundaes",
 			"StreamUrl": "https://soundcloud.com/hundaes/charli-xcx-claws-hundaes-edit-2",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-enmZcUGGpc266Vcb-z3GuHw-t500x500.jpg"
 		},
@@ -148,12 +145,14 @@
 		{
 			"Name": "Hard Times (Hundaes Edit)",
 			"Artist": "Duskus",
+			"SortArtist": "hundaes",
 			"StreamUrl": "https://soundcloud.com/hundaes/duskus-hard-times-hundaes-edit",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-Dk81FUMCMhnIyE1t-mLRyEg-t500x500.jpg"
 		},
 		{
 			"Name": "Something Comforting ft. Lil B (Hundaes Edit)",
 			"Artist": "Porter Robinson",
+			"SortArtist": "hundaes",
 			"StreamUrl": "https://soundcloud.com/hundaes/porter-robinson-something-comforting-ft-lil-b-hundaes-edit",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-vCMgKd6y9Up0eUL1-Lccf8Q-t500x500.jpg"
 		},
@@ -208,6 +207,7 @@
 		{
 			"Name": "class of 2021",
 			"Artist": "dobi but its a second account",
+			"SortArtist": "dobi",
 			"StreamUrl": "https://soundcloud.com/dobitwo/class-of-2021",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-nOAjfSSWXZbL0fZh-T3iNkw-t500x500.jpg"
 		},

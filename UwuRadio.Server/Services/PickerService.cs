@@ -94,7 +94,7 @@ public class PickerService
 	// https://engineering.atspotify.com/2014/02/how-to-shuffle-songs
 	// https://codegolf.stackexchange.com/questions/198094
 	private static IEnumerable<Song> SpotifyShuffle(IEnumerable<Song> arr) => arr
-		.GroupBy(song => song.Submitter + song.Artist)
+		.GroupBy(song => song.SortOrArtist.ToLowerInvariant())
 		.SelectMany(
 		    group =>
 		    {

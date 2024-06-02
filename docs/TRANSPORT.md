@@ -12,6 +12,7 @@ Object:
 
 - string name
 - string artist
+- string? sortArtist
 - string? dlUrl
 - string? sourceUrl
 - string? artUrl

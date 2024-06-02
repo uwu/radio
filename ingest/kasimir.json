@@ -11,6 +11,7 @@
     {
       "Name": "Doublet",
       "Artist": "Eve, Numa",
+      "SortArtist": "Eve",
       "Album": "Smile",
       "StreamUrl": "https://youtu.be/uNgzQmoqjAg",
       "ArtUrl": "https://coverartarchive.org/release/5124f1e9-c1ab-4406-b42c-114c5ab5930c/25897204854-1200.jpg"
@@ -88,6 +89,7 @@
     {
       "Name": "Ognanje",
       "Artist": "Eve, Numa",
+      "SortArtist": "Eve",
       "Album": "Smile",
       "StreamUrl": "https://youtu.be/ZCgj1jBAaZE",
       "ArtUrl": "https://coverartarchive.org/release/5124f1e9-c1ab-4406-b42c-114c5ab5930c/25897204854-1200.jpg"
@@ -158,6 +160,7 @@
     {
       "Name": "UnAlive",
       "Artist": "Mori Calliope, Elliot Hsu",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/IGv9EPBvfCc",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -165,6 +168,7 @@
     {
       "Name": "Q",
       "Artist": "Mori Calliope, Gawr Gura, DECO*27, Rockwell",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/B0K18JoMhXg",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -172,6 +176,7 @@
     {
       "Name": "Dead On Arrival",
       "Artist": "Mori Calliope, Camellia",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/SwOat0JYPAY",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -179,6 +184,7 @@
     {
       "Name": "Graveyard Shift",
       "Artist": "Mori Calliope, BOOGEY VOXX, The Herb Shop",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/YYxGyh4_90U",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -186,6 +192,7 @@
     {
       "Name": "Lose-Lose Days",
       "Artist": "Mori Calliope, seibin (ESTIMATE)",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/Lq0xVtTr5a0",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -193,6 +200,7 @@
     {
       "Name": "HUGE W",
       "Artist": "Mori Calliope, Camellia",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/tuTSmrDwyLw",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -200,6 +208,7 @@
     {
       "Name": "Resting Power",
       "Artist": "Mori Calliope, Pretty Patterns",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/Hve3-Uum7dk",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -207,6 +216,7 @@
     {
       "Name": "Scuffed Up Age",
       "Artist": "Mori Calliope, Camellia",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/sEtUyl7Ryu4",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -214,6 +224,7 @@
     {
       "Name": "Ouroboros",
       "Artist": "Mori Calliope, Elliot Hsu",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/r1Iq738NU5o",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -221,6 +232,7 @@
     {
       "Name": "UnAlive (Japanese Version)",
       "Artist": "Mori Calliope, Elliot Hsu",
+      "SortArtist": "Mori Calliope",
       "Album": "UnAlive",
       "StreamUrl": "https://youtu.be/57ytHNCSTNY",
       "ArtUrl": "https://coverartarchive.org/release/af12c3c0-2188-41d3-8d9f-c99820bd33d6/32028021422-1200.jpg"
@@ -753,6 +765,7 @@
     {
       "Name": "Arena Lobby",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/l-tJtnnsghw",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -760,6 +773,7 @@
     {
       "Name": "Boss Rush",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/UOKwr4Gmvww",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -767,6 +781,7 @@
     {
       "Name": "Glitch",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/blWbf2Xp4G8",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -774,6 +789,7 @@
     {
       "Name": "S-Rank Battle",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/qPrwfLDYB8U",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -781,6 +797,7 @@
     {
       "Name": "Azure Archipelago",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/nmy4bAR_b6c",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -788,6 +805,7 @@
     {
       "Name": "Temple of the Crater",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/2tTNU-hgVmE",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -795,6 +813,7 @@
     {
       "Name": "One Last Trial",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/pw7cLP4EP94",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -802,6 +821,7 @@
     {
       "Name": "Unknown (Unused)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/Fwd0CfgNQq4",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -809,6 +829,7 @@
     {
       "Name": "Title (Early-Access, 2015)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/WwDNDzj3fPA",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -816,6 +837,7 @@
     {
       "Name": "P.G. Dungeon (Early-Access, 2015)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/V0etOSSKK5U",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -823,6 +845,7 @@
     {
       "Name": "M.S. Solar (Early-Access, 2015)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/AqNIm5k7Yo4",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -830,6 +853,7 @@
     {
       "Name": "Welcome to CrossWorlds (Unused, 2015)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/7XNMy9tvyHU",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -837,6 +861,7 @@
     {
       "Name": "Challenge (Early-Access, 2015)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/ihUnfyHhrrc",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -844,6 +869,7 @@
     {
       "Name": "Autumn's Rise (Early-Access, 2015)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/Cm8zIClSmj4",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -851,6 +877,7 @@
     {
       "Name": "Title (Techdemo++, 2013)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/UTEF3VjgOYk",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -858,6 +885,7 @@
     {
       "Name": "Awakened (Techdemo++, 2013)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/Vd8KJ-qOzW4",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -865,6 +893,7 @@
     {
       "Name": "Cargoship (Techdemo++, 2013)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/SRFWuIAQ6uo",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -872,6 +901,7 @@
     {
       "Name": "Battle (Techdemo++, 2013)",
       "Artist": "Deniz Akbulut, Hagane",
+      "SortArtist": "Deniz Akbulut",
       "Album": "CrossCode (Original Game Soundtrack EX)",
       "StreamUrl": "https://youtu.be/BwR1qgt0UUc",
       "ArtUrl": "https://coverartarchive.org/release/6ae34593-6432-4994-a47b-ce1ec765fa20/28978295953-1200.jpg"
@@ -921,6 +951,7 @@
     {
       "Name": "Bubble (feat. Uta)",
       "Artist": "Eve, Uta",
+      "SortArtist": "Eve",
       "Album": "Bubble (feat. Uta)",
       "StreamUrl": "https://youtu.be/KDXsZbsrHWo",
       "ArtUrl": "https://coverartarchive.org/release/62e026ae-381b-4526-8340-e4402aa0e1c3/32434489541-1200.jpg"
@@ -942,6 +973,7 @@
     {
       "Name": "Ghost City Tokyo",
       "Artist": "Ayase ft. Hatsune Miku",
+      "SortArtist": "Ayase",
       "StreamUrl": "https://youtu.be/lWl5viCqGSc",
       "ArtUrl": "https://assets.audiomack.com/memezilla/61ac925dea0f2f5d6b106b82e65e6efb93a1877ac8cb2ec00f85eddcfdf8b7ef.jpeg?width=750&height=750&max=true"
     },
@@ -976,6 +1008,7 @@
     {
       "Name": "I Need Air",
       "Artist": "Magnetic Man feat. Angela Hunte",
+      "SortArtist": "Magnetic Man",
       "Album": "Single",
       "StreamUrl": "https://youtu.be/z6sRV-xEZ0Q",
       "ArtUrl": "https://coverartarchive.org/release/3b842f84-0407-4a08-b303-2e6b1db8921c/31628613108-1200.jpg"
@@ -1032,6 +1065,7 @@
     {
       "Name": "Immutable",
       "Artist": "塞壬唱片-MSR, Melissa Kaplan, Robert Wolf",
+      "SortArtist": "塞壬唱片-MSR",
       "Album": "Immutable",
       "ArtUrl": "https://web.hycdn.cn/siren/pic/20210501/01bdad2a0a6876eaee3c23bf0812a73a.png",
       "StreamUrl": "https://youtu.be/gXhIPGIMK_Q"
@@ -1095,6 +1129,7 @@
     {
       "Name": "Shelter",
       "Artist": "Porter Robinson & Madeon",
+      "SortArtist": "Porter Robinson",
       "StreamUrl": "https://www.youtube.com/watch?v=fzQ6gRAEoy0",
       "Album": "Shelter",
       "ArtUrl": "https://is3-ssl.mzstatic.com/image/thumb/Music125/v4/a9/aa/a8/a9aaa8cb-708c-899e-b968-22304e720edb/SHELTER.jpg/4096x4096bb.webp"
@@ -1755,6 +1790,7 @@
     {
       "Name": "VON",
       "Artist": "Pretty Patterns (feat. Emi Evans)",
+      "SortArtist": "Pretty Patterns",
       "StreamUrl": "https://youtu.be/AztZcoLdwNI",
       "ArtUrl": "https://i.scdn.co/image/ab67616d00001e0231644b1cadc47e71d6d23367"
     },
@@ -1767,24 +1803,28 @@
     {
       "Name": "Proxima",
       "Artist": "Pretty Patterns (feat. Kazari Tayu & Enna Alouette)",
+      "SortArtist": "Pretty Patterns",
       "StreamUrl": "https://youtu.be/55bTe56pQPA",
       "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02c99ee02580aef321f7fa6ac0"
     },
     {
       "Name": "Voids",
       "Artist": "Pretty Patterns (feat. vally.exe)",
+      "SortArtist": "Pretty Patterns",
       "StreamUrl": "https://youtu.be/B0uSLgW9o7E",
       "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02497b462a7102966d379425e5"
     },
     {
       "Name": "Home",
       "Artist": "Pretty Patterns (feat. Wisteria Iroha)",
+      "SortArtist": "Pretty Patterns",
       "StreamUrl": "https://youtu.be/MSPIamUH6Hs",
       "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02d361de68b7f14398b5d6afcc"
     },
     {
       "Name": "SPLEENPOP",
       "Artist": "Pretty Patterns (feat. vally.exe)",
+      "SortArtist": "Pretty Patterns",
       "StreamUrl": "https://youtu.be/OxvuS-r6Apo",
       "ArtUrl": "https://i.scdn.co/image/ab67616d00001e02146f8087d5ca31605c75389b"
     },

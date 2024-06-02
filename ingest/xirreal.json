@@ -333,6 +333,7 @@
     {
       "Name": "Lost Umbrella",
       "Artist": "稲葉曇",
+      "SortArtist": "inabakumori",
       "StreamUrl": "https://youtu.be/Yvs7gfWqNSE",
       "ArtUrl": "https://i.scdn.co/image/ab67616d0000b27325c2a3af824b7dd8cafae97e",
       "Album": "ANTICYCLONE"
@@ -1369,6 +1370,7 @@
     {
       "Name": "ラグトレイン",
       "Artist": "稲葉曇",
+      "SortArtist": "inabakumori",
       "StreamUrl": "https://youtu.be/UnIhRpIT7nc",
       "ArtUrl": "https://i.scdn.co/image/ab67616d0000b273a2e19e90170fd6cece34d2d9",
       "Album": "ウェザーステーション"

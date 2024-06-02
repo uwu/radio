@@ -424,6 +424,7 @@
 		{
 			"Name": "10.8",
 			"Artist": "deadmau5 & Mr. Bill",
+			"SortArtist": "deadmau5",
 			"StreamUrl": "https://youtu.be/lp2g0VWdlps",
 			"Album": "mau5ville: Level 2",
 			"ArtUrl": "https://coverartarchive.org/release/a399b763-1b49-4091-8548-50496b5d4486/32338868136-500.jpg"
@@ -525,36 +526,42 @@
 		{
 			"Name": "Digital Friends",
 			"Artist": "No Mana x SOFI",
+			"SortArtist": "No Mana",
 			"StreamUrl": "https://on.soundcloud.com/Cutc5sm2z9dDB3XFA",
 			"ArtUrl": "https://coverartarchive.org/release/4b19872b-76d5-419c-8c99-555d10d79534/38945910212.png"
 		},
 		{
 			"Name": "Hopeless",
 			"Artist": "No Mana, Feed Me feat. Bertie Scott",
+			"SortArtist": "No Mana",
 			"StreamUrl": "https://on.soundcloud.com/BnNxDgAmaYNXM9GX7",
 			"ArtUrl": "https://coverartarchive.org/release/4b19872b-76d5-419c-8c99-555d10d79534/38945910212.png"
 		},
 		{
 			"Name": "Everlasting",
 			"Artist": "No Mana, EMSKI",
+			"SortArtist": "No Mana",
 			"StreamUrl": "https://on.soundcloud.com/Cs4SXMN4D9kuHVAEA",
 			"ArtUrl": "https://coverartarchive.org/release/4b19872b-76d5-419c-8c99-555d10d79534/38945910212.png"
 		},
 		{
 			"Name": "The Original x Illegal Screenshots (Gravity Bootleg)",
 			"Artist": "No Mana x Wolfgang Gartner",
+			"SortArtist": "No Mana",
 			"StreamUrl": "https://cdn.hyrule.pics/d13278580.oga",
 			"ArtUrl": "https://cdn.hyrule.pics/07b6fb403.png"
 		},
 		{
 			"Name": "Toys of Violence x Le Disko (Gravity Bootleg)",
 			"Artist": "No Mana x Shiny Toy Guns",
+			"SortArtist": "No Mana",
 			"StreamUrl": "https://cdn.hyrule.pics/7468ca146.oga",
 			"ArtUrl": "https://cdn.hyrule.pics/07b6fb403.png"
 		},
 		{
 			"Name": "Special Move x When The Summer Dies (Gravity Bootleg)",
 			"Artist": "No Mana x deadmau5 feat. Lights",
+			"SortArtist": "No Mana",
 			"StreamUrl": "https://cdn.hyrule.pics/ebb22feba.oga",
 			"ArtUrl": "https://cdn.hyrule.pics/07b6fb403.png"
 		},
@@ -575,6 +582,7 @@
 		{
 			"Name": "Lose Yourself to Dance",
 			"Artist": "Daft Punk feat. Pharrell Williams",
+			"SortArtist": "Daft Punk",
 			"StreamUrl": "https://youtu.be/NF-kLy44Hls",
 			"Album": "Random Access Memories",
 			"ArtUrl": "https://coverartarchive.org/release/ec116461-5b0d-4c98-bb44-a4de5de63076/12639807914-500.jpg"
@@ -582,6 +590,7 @@
 		{
 			"Name": "Doin' it Right",
 			"Artist": "Daft Punk feat. Panda Bear",
+			"SortArtist": "Daft Punk",
 			"StreamUrl": "https://youtu.be/LL-gyhZVvx0",
 			"Album": "Random Access Memories",
 			"ArtUrl": "https://coverartarchive.org/release/ec116461-5b0d-4c98-bb44-a4de5de63076/12639807914-500.jpg"
@@ -729,6 +738,7 @@
 		{
 			"Name": "Gimme×Gimme",
 			"Artist": "Hachioji-P, Giga",
+			"SortArtist": "Hachioji-P",
 			"StreamUrl": "https://www.youtube.com/watch?v=ERo-sPa1a5g",
 			"ArtUrl": "https://static.wikia.nocookie.net/vocaloid/images/c/cf/Games_-_Project_SEKAI_-_GimmexGimme.png"
 		},
@@ -842,6 +852,7 @@
 		{
 			"Name": "Kanalumi",
 			"Artist": "Ninomae Ina'nis & Camellia",
+			"SortArtist": "Ninomae Ina'nis",
 			"StreamUrl": "https://youtu.be/mRmNPlrUAh4",
 			"Album": "hololive English -Myth- Image Soundtrack",
 			"ArtUrl": "https://coverartarchive.org/release/fb61ea83-5643-4cbe-834c-a6814dbfe31b/28812620662-500.jpg"
@@ -861,6 +872,7 @@
 		{
 			"Name": "Newton Dance",
 			"Artist": "Haikyu Koyori, Takanashi Kiara",
+			"SortArtist": "Takanashi Kiara",
 			"StreamUrl": "https://youtu.be/X8NiwUykf8U"
 		},
 		{
@@ -981,12 +993,14 @@
 		{
 			"Name": "4BLOOD (cover)",
 			"Artist": "Takanashi Kiara & KIRA",
+			"SortArtist": "KIRA",
 			"StreamUrl": "https://youtu.be/Fwc-LH8IGj8",
 			"ArtUrl": "https://coverartarchive.org/release/d2a3493f-35ea-453f-b136-993035ecb8fc/31053271032-500.jpg"
 		},
 		{
 			"Name": "Candy Kids",
 			"Artist": "Barely Alive & Datsik",
+			"SortArtist": "Barely Alive",
 			"StreamUrl": "https://youtu.be/lefGSuNSZ1U",
 			"Album": "Internet Streets EP",
 			"ArtUrl": "https://coverartarchive.org/release/bbcefc4f-12c9-4fda-8fd5-c53d778ad9a6/16290178291-500.jpg"
@@ -1160,12 +1174,14 @@
 		{
 			"Name": "Why We Lose",
 			"Artist": "Cartoon ft. Coleman Trapp",
+			"SortArtist": "Cartoon",
 			"StreamUrl": "https://www.youtube.com/watch?v=zyXmsVwZqX4",
 			"ArtUrl": "https://coverartarchive.org/release/d0c33e42-756b-447b-97f5-b9b5f24cd0af/32273362891-500.jpg"
 		},
 		{
 			"Name": "By your side",
 			"Artist": "WISE ft. Kana Nishino",
+			"SortArtist": "WISE",
 			"StreamUrl": "https://www.youtube.com/watch?v=GXEBNc2udDE",
 			"ArtUrl": "https://i.scdn.co/image/ab67616d00001e025b2b6ab3d4d5160452ab7c81"
 		},
@@ -1230,6 +1246,7 @@
 		{
 			"Name": "Strangers",
 			"Artist": "No Mana ft. Jantine",
+			"SortArtist": "No Mana",
 			"StreamUrl": "https://www.youtube.com/watch?v=vbrJHNKc3Jo",
 			"Album": "Secret Level",
 			"ArtUrl": "https://coverartarchive.org/release/b0b4a951-bcbe-4bb7-8b3a-fa3042a0d5d9/27115813108-500.jpg"
@@ -1269,24 +1286,28 @@
 		{
 			"Name": "Harder, Better, Faster, Stronger vs. D.A.N.C.E.",
 			"Artist": "SiIvaGunner (Daft Punk, Justice)",
+			"SortArtist": "SiIvaGunner",
 			"StreamUrl": "https://www.youtube.com/watch?v=VRfHavAy-ko",
 			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
 		},
 		{
 			"Name": "Fox",
 			"Artist": "SiIvaGunner (Shirobon)",
+			"SortArtist": "SiIvaGunner",
 			"StreamUrl": "https://www.youtube.com/watch?v=D_vaXkEmlrw",
 			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
 		},
 		{
 			"Name": "Final Boss",
 			"Artist": "SiIvaGunner (Nitro Fun)",
+			"SortArtist": "SiIvaGunner",
 			"StreamUrl": "https://www.youtube.com/watch?v=qn5MZWIlF5c",
 			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
 		},
 		{
 			"Name": "Cheat Codes",
 			"Artist": "SiIvaGunner (Nitro Fun)",
+			"SortArtist": "SiIvaGunner",
 			"StreamUrl": "https://www.youtube.com/watch?v=RRjHp9ZqDgM",
 			"ArtUrl": "https://static.wikia.nocookie.net/siivagunner/images/e/e9/SiivaGunner_post-strike.png"
 		},
@@ -1439,6 +1460,7 @@
 		{
 			"Name": "Company",
 			"Artist": "Maduk feat. Juul",
+			"SortArtist": "Maduk",
 			"StreamUrl": "https://www.youtube.com/watch?v=CN4mFOwtBwQ&pp=ygUMY29tcGFueSBqdXVs",
 			"Album": "Transformations",
 			"ArtUrl": "https://coverartarchive.org/release/9f95a231-1529-4036-8c5b-d3b844e9fb80/34974711498-500.jpg"
