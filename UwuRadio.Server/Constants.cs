@@ -66,4 +66,9 @@ public class Constants
 	/// The target Integrated LUFS
 	/// </summary>
 	public double AudioNormIntegrated { get; set; }
+	
+	/// <summary>
+	/// Allow to clip the audio by at most this much dB True Peak
+	/// </summary>
+	public double AudioNormMaxClip { get; set; }
 }

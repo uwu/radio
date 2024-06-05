@@ -35,7 +35,7 @@ if (args.Contains("--cache-all"))
 			// lol this makes the entire program wrapped in an async state machine in debug builds :)
 			await Task.Delay(100);
 		
-		Helpers.Log("debug cache-all", $"downloaded: {idx} of {dataSrv.Songs.Length}");
+		Helpers.Log("debug cache-all", $"downloaded: {idx + 1} of {dataSrv.Songs.Length}");
 	}
 	
 	Helpers.Log("debug cache-all", "successfully downloaded all songs");
