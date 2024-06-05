@@ -481,13 +481,6 @@
 			"ArtUrl": "https://i1.sndcdn.com/artworks-000665034100-na7ri1-t500x500.jpg"
 		},
 		{
-			"Name": "Knock Yourself Out XD",
-			"Artist": "Porter Robinson",
-			"StreamUrl": "https://soundcloud.com/porter-robinson/knock-yourself-out-xd",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-nb4aQTlS4Kd5-0-t500x500.png",
-			"Album": "SMILE! :D"
-		},
-		{
 			"Name": "SPINNING",
 			"Artist": "jaron",
 			"StreamUrl": "https://soundcloud.com/jaronsteele/spinning",
@@ -574,13 +567,28 @@
 			"Artist": "midwxst",
 			"StreamUrl": "https://soundcloud.com/midwxst/no-trace",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-xZoYpdo9ra42-0-t500x500.jpg"
-		},
-		{
-			"Name": "Russian Roulette",
-			"Artist": "Porter Robinson",
-			"StreamUrl": "https://soundcloud.com/porter-robinson/russian-roulette",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-iIcm49tQqYKd-0-t500x500.png",
-			"Album": "SMILE! :D"
 		}
+		// Uncomment these when the album drops
+		// {
+		// 	"Name": "Russian Roulette",
+		// 	"Artist": "Porter Robinson",
+		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/russian-roulette",
+		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-iIcm49tQqYKd-0-t500x500.png",
+		// 	"Album": "SMILE! :D"
+		// },
+		// {
+		// 	"Name": "Knock Yourself Out XD",
+		// 	"Artist": "Porter Robinson",
+		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/knock-yourself-out-xd",
+		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-nb4aQTlS4Kd5-0-t500x500.png",
+		// 	"Album": "SMILE! :D"
+		// },
+		// {
+		// 	"Name": "Cheerleader",
+		// 	"Artist": "Porter Robinson",
+		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/cheerleader",
+		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-4T3V7000PPI2-0-t500x500.png",
+		// 	"Album": "SMILE! :D"
+		// }
 	]
 }
