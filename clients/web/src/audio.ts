@@ -2,6 +2,7 @@ import { ref, reactive, computed, watchEffect } from "vue";
 import { setupMediaSession } from "./mediaSession";
 import type { Song } from "./syncClient";
 import { currentTimestamp } from "./util";
+import { setAnalysisBuf } from "./analysis";
 
 export const audioCtx = new AudioContext();
 export const audioAnalyser = new AnalyserNode(audioCtx);
@@ -70,6 +71,7 @@ export async function play(song: Song, seek: number) {
   audioSource = new AudioBufferSourceNode(audioCtx, {
     buffer: await (songs[url] ?? preload(url)),
   });
+  setAnalysisBuf(audioSource.buffer!);
 
   audioSource.connect(audioAnalyser).connect(audioGain).connect(audioCtx.destination);
 
