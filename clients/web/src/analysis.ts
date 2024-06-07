@@ -49,6 +49,7 @@ export const wavePath = ref<string>();
 
 watchEffect(async () => {
   if (enableAnalysis.value && buf.value) {
+    wavePath.value = undefined;
     wavePath.value = await downscale(buf.value.getChannelData(0), 10000).then(waveformToPath);
   } else {
     wavePath.value = undefined;

@@ -2,11 +2,23 @@
  * @param {number} size
  * @returns Float32Array */
 function downscale(buf, size) {
-  const res = new Float32Array(size);
-  const scale = buf.length / size;
+  // size of each chunk
+  const chunkSz = Math.ceil(buf.length / size);
+  const nChunks = Math.ceil(buf.length / chunkSz);
 
-  for (let i = 0; i < size; i++) {
-    res[i] = buf[~~(i * scale)];
+  // this is at LEAST size, rounded up as necessary
+  const res = new Float32Array(nChunks);
+
+  for (let ci = 0; ci < nChunks; ci++) {
+    const chunk = buf.slice(ci * chunkSz, (ci + 1) * chunkSz);
+
+    let max = chunk[0]; /*, min = chunk[0]*/
+    for (let i = 1; i < chunk.length; i++) {
+      max = Math.max(chunk[i], max);
+      //min = Math.min(chunk[i], min);
+    }
+
+    res[ci] = max;
   }
 
   return res;
@@ -21,14 +33,23 @@ function downscale(buf, size) {
 function waveformToPath(buf, startX, startY, dx, scaleY) {
   let path = `M${startX} ${startY}`;
 
-  let pY = startY;
+  let pY = 0;
   for (const v of buf) {
-    let y = startY + v * scaleY;
+    let y = -v * scaleY;
     path += `l${dx} ${y - pY}`;
     pY = y;
   }
 
-  return path;
+  path += `l0 ${2 * buf[buf.length - 1] * scaleY}`;
+
+  // flip it over!
+  for (let i = buf.length - 1; i >= 0; i--) {
+    let y = buf[i] * scaleY;
+    path += `l${-dx} ${y - pY}`;
+    pY = y;
+  }
+
+  return path + `Z`;
 }
 
 onmessage = (e) => {

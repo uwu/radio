@@ -6,7 +6,7 @@ enableAnalysis.value = true;
 
 <template>
   <svg viewBox="0 0 10000 2000">
-    <path stroke="white" :d="wavePath" />
+    <path fill="white" :d="wavePath" />
   </svg>
 </template>
 
