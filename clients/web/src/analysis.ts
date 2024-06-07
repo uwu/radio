@@ -35,12 +35,16 @@ function callWorker<T = unknown>(cmd: string, args: unknown[]): Promise<T> {
 
 // === BINDINGS ===
 
+// sets the current worker's default buffer to this one
+// this avoids unnecessarily sending the same buffer multiple times
+const uploadBuffer = (buf: Float32Array) => callWorker("uploadBuffer", [buf]);
+
 // downscales buf to size, using naive sampling
-const downscale = (buf: Float32Array, size: number) =>
+const downscale = (buf: undefined | Float32Array, size: number) =>
   callWorker<Float32Array>("downscale", [buf, size]);
 
 // assumes input is in the range [-1 ; 1]
-const waveformToPath = (buf: Float32Array, startX = 0, startY = 1000, dx = 1, scaleY = 1000) =>
+const waveformToPath = (buf: undefined | Float32Array, startX = 0, startY = 1000, dx = 1, scaleY = 1000) =>
   callWorker<string>("waveformToPath", [buf, startX, startY, dx, scaleY]);
 
 // === USEFUL REACTIVE STUFF ===
@@ -50,7 +54,8 @@ export const wavePath = ref<string>();
 watchEffect(async () => {
   if (enableAnalysis.value && buf.value) {
     wavePath.value = undefined;
-    wavePath.value = await downscale(buf.value.getChannelData(0), 10000).then(waveformToPath);
+    await uploadBuffer(buf.value.getChannelData(0));
+    wavePath.value = await downscale(undefined, 10000).then(waveformToPath);
   } else {
     wavePath.value = undefined;
   }

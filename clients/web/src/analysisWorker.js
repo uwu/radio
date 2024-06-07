@@ -1,7 +1,17 @@
+// avoid uploading the same buffer a ton of times
+let currentBuffer = new Float32Array(0);
+
+/** @pararm {Float32Array{ buf */
+function uploadBuffer(buf) {
+  currentBuffer = buf;
+}
+
 /** @param {Float32Array} buf
  * @param {number} size
  * @returns Float32Array */
 function downscale(buf, size) {
+  buf ??= currentBuffer;
+
   // size of each chunk
   const chunkSz = Math.ceil(buf.length / size);
   const nChunks = Math.ceil(buf.length / chunkSz);
@@ -31,6 +41,8 @@ function downscale(buf, size) {
  * @param {number} scaleY
  * @returns string */
 function waveformToPath(buf, startX, startY, dx, scaleY) {
+  buf ??= currentBuffer;
+
   let path = `M${startX} ${startY}`;
 
   let pY = 0;
@@ -54,7 +66,7 @@ function waveformToPath(buf, startX, startY, dx, scaleY) {
 
 onmessage = (e) => {
   // rip type safety
-  const func = { downscale, waveformToPath }[e.data[0]];
+  const func = { uploadBuffer, downscale, waveformToPath }[e.data[0]];
   if (!func) postMessage(["ERR", `${e.data[0]} is not a command`]);
 
   postMessage([e.data[1], func(...e.data.slice(2))]);
