@@ -4,7 +4,7 @@ import { enableAnalysis } from "@/analysis";
 
 enableAnalysis.value = true;
 
-const props = defineProps<{ waveform: Float32Array | undefined, fill: boolean }>();
+const props = defineProps<{ waveform: Float32Array | undefined; fill: boolean }>();
 
 onMounted(() => {
   const ctx = (document.getElementById("wfcanvas") as HTMLCanvasElement).getContext("2d")!;

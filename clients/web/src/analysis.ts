@@ -1,6 +1,6 @@
 import { watchEffect, ref, type WatchStopHandle } from "vue";
 import WORKER from "./analysisWorker.js?worker";
-import {seek} from "./audio"
+import { seek } from "./audio";
 
 // audio analyzers for people who need constant visual stimulation :D
 
@@ -59,17 +59,23 @@ const maxAbsPeakOf = (bufs: Float32Array[]) => callWorker<Float32Array>(3, [bufs
 const sbcMax = (buf: undefined | Float32Array, start?: number, end?: number) =>
   callWorker<Float32Array>(5, [buf, start, end]);
 
+// computes the FFT of the buffer in the range
+const fft = (buf: undefined | Float32Array, start?: number, end?: number, pad?: number) =>
+  callWorker<Float32Array>(6, [buf, start, end, pad]);
+
 // === USEFUL REACTIVE STUFF ===
 
 export const downscaled = ref<Float32Array>();
 
 export const singlePeriod = ref<Float32Array>();
 
+export const fftd = ref<Float32Array>();
+
 const innerCleanups: WatchStopHandle[] = [];
 watchEffect(async () => {
   if (enableAnalysis.value && buf.value) {
-    innerCleanups.forEach(c => c());
-    
+    innerCleanups.forEach((c) => c());
+
     downscaled.value = undefined;
     await uploadBuffer(buf.value.getChannelData(0));
     downscaled.value = await downscale(undefined, 1000);
@@ -79,9 +85,11 @@ watchEffect(async () => {
         // 2 crossings for a full waveform
         if (seek.value === undefined) return;
         const seekSamples = seek.value * buf.value!.sampleRate;
-        // seek updates every 100ms
-        const seekEndSamples = (seek.value + 0.1) * buf.value!.sampleRate;
-        
+        // more samples = more accuracy, more padding = smoother plot
+        const seekEndSamples = seekSamples + 5000;
+        const pad = 0;
+
+        fftd.value = (await fft(undefined, seekSamples, seekEndSamples, pad)).map(Math.abs);
         singlePeriod.value = await sbcMax(undefined, seekSamples, seekEndSamples);
       }),
     );

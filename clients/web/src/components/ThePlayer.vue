@@ -11,7 +11,8 @@ import { visualizerEnabled } from "@/visualizer";
 import fallbackart from "@/assets/fallbackart_10x.png";
 
 import WaveForm from "./WaveForm.vue";
-import { downscaled, singlePeriod } from "@/analysis";
+import AudioSpectrum from "@/components/AudioSpectrum.vue";
+import { downscaled, singlePeriod, fftd } from "@/analysis";
 
 const visualizerSupported = isButterchurnSupported();
 
@@ -55,7 +56,7 @@ const randomQuote = computed(() =>
             class="h-px bg-white"
             :style="{ width: (100 * (seek ?? 0)) / getDuration() + '%' }" />
         </div>
-        <WaveForm :waveform="singlePeriod" :fill="false" />
+        <AudioSpectrum :waveform="fftd" />
 
         <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-60" :max="0" /></div>
       </div>

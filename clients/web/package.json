@@ -17,6 +17,7 @@
     "butterchurn": "^2.6.7",
     "butterchurn-presets": "^2.4.7",
     "can-autoplay": "^3.0.2",
+    "fft.js": "^4.0.4",
     "unocss": "^0.57.1",
     "vue": "^3.3.7"
   },

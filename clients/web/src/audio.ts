@@ -39,7 +39,7 @@ export const prettySeek = computed(() => prettyFormatTime(seek.value!));
 
 setInterval(
   () => (seek.value = Math.min(audioCtx.currentTime - startTime + startSeek, getDuration())),
-  100,
+  50,
 );
 
 export const seekTo = (seek: number) => {

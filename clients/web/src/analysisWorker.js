@@ -1,3 +1,5 @@
+import FFT from "fft.js";
+
 // avoid uploading the same buffer a ton of times
 let currentBuffer = new Float32Array(0);
 
@@ -108,9 +110,40 @@ function sbcMax(buf, start, end) {
   return maxAbsPeakOf(sliceByCrossings(buf, start, end));
 }
 
+/** @param {Float32Array} buf
+ * @param {number} start
+ * @param {number} end
+ * @param {number} pad
+ * @returns {Float32Array} */
+function fft(buf, start, end, pad) {
+  buf ??= currentBuffer;
+  start ??= 0;
+  end ??= buf.length;
+  pad ??= 0;
+
+  // min power of 2 that is <= buf.length
+  const size = Math.pow(2, Math.ceil(Math.log2(pad + end - start)));
+  
+  buf = [...buf.slice(start, end), ...Array(size - (end - start)).fill(0)];
+
+  const fft = new FFT(size);
+  const output = fft.createComplexArray();
+  fft.realTransform(output, buf);
+
+  return new Float32Array(output.slice(0, size));
+}
+
 onmessage = (e) => {
   // rip type safety
-  const func = [uploadBuffer, downscale, /*getNCrossings*/, /*maxAbsPeakOf*/, /*sliceByCrossings*/, sbcMax][e.data[0]];
+  const func = [
+    uploadBuffer,
+    downscale,
+    /*getNCrossings*/ undefined,
+    /*maxAbsPeakOf*/ undefined,
+    /*sliceByCrossings*/ undefined,
+    sbcMax,
+    fft,
+  ][e.data[0]];
   if (!func) postMessage(["ERR", `${e.data[0]} is not a command`]);
 
   postMessage([e.data[1], func(...e.data.slice(2))]);
