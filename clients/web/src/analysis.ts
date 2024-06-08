@@ -43,20 +43,16 @@ const uploadBuffer = (buf: Float32Array) => callWorker("uploadBuffer", [buf]);
 const downscale = (buf: undefined | Float32Array, size: number) =>
   callWorker<Float32Array>("downscale", [buf, size]);
 
-// assumes input is in the range [-1 ; 1]
-const waveformToPath = (buf: undefined | Float32Array, startX = 0, startY = 1000, dx = 1, scaleY = 1000) =>
-  callWorker<string>("waveformToPath", [buf, startX, startY, dx, scaleY]);
-
 // === USEFUL REACTIVE STUFF ===
 
-export const wavePath = ref<string>();
+export const downscaled = ref<Float32Array>();
 
 watchEffect(async () => {
   if (enableAnalysis.value && buf.value) {
-    wavePath.value = undefined;
+    downscaled.value = undefined;
     await uploadBuffer(buf.value.getChannelData(0));
-    wavePath.value = await downscale(undefined, 10000).then(waveformToPath);
+    downscaled.value = await downscale(undefined, 1000);
   } else {
-    wavePath.value = undefined;
+    downscaled.value = undefined;
   }
 });

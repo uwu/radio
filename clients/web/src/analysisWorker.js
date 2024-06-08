@@ -34,39 +34,9 @@ function downscale(buf, size) {
   return res;
 }
 
-/** @param {Float32Array} buf
- * @param {number} startX
- * @param {number} startY
- * @param {number} dx
- * @param {number} scaleY
- * @returns string */
-function waveformToPath(buf, startX, startY, dx, scaleY) {
-  buf ??= currentBuffer;
-
-  let path = `M${startX} ${startY}`;
-
-  let pY = 0;
-  for (const v of buf) {
-    let y = -v * scaleY;
-    path += `l${dx} ${y - pY}`;
-    pY = y;
-  }
-
-  path += `l0 ${2 * buf[buf.length - 1] * scaleY}`;
-
-  // flip it over!
-  for (let i = buf.length - 1; i >= 0; i--) {
-    let y = buf[i] * scaleY;
-    path += `l${-dx} ${y - pY}`;
-    pY = y;
-  }
-
-  return path + `Z`;
-}
-
 onmessage = (e) => {
   // rip type safety
-  const func = { uploadBuffer, downscale, waveformToPath }[e.data[0]];
+  const func = { uploadBuffer, downscale }[e.data[0]];
   if (!func) postMessage(["ERR", `${e.data[0]} is not a command`]);
 
   postMessage([e.data[1], func(...e.data.slice(2))]);
