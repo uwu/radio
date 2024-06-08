@@ -1,5 +1,6 @@
-import { watchEffect, ref } from "vue";
+import { watchEffect, ref, type WatchStopHandle } from "vue";
 import WORKER from "./analysisWorker.js?worker";
+import {seek} from "./audio"
 
 // audio analyzers for people who need constant visual stimulation :D
 
@@ -26,7 +27,7 @@ worker.onmessage = (e) => {
   delete pendingRequests[e.data[0]];
 };
 
-function callWorker<T = unknown>(cmd: string, args: unknown[]): Promise<T> {
+function callWorker<T = unknown>(cmd: number, args: unknown[]): Promise<T> {
   const id = Math.random().toString(16);
 
   worker.postMessage([cmd, id, ...args]);
@@ -37,21 +38,53 @@ function callWorker<T = unknown>(cmd: string, args: unknown[]): Promise<T> {
 
 // sets the current worker's default buffer to this one
 // this avoids unnecessarily sending the same buffer multiple times
-const uploadBuffer = (buf: Float32Array) => callWorker("uploadBuffer", [buf]);
+const uploadBuffer = (buf: Float32Array) => callWorker(0, [buf]);
 
 // downscales buf to size, using naive sampling
 const downscale = (buf: undefined | Float32Array, size: number) =>
-  callWorker<Float32Array>("downscale", [buf, size]);
+  callWorker<Float32Array>(1, [buf, size]);
+
+/*// trims a buffer down to get only the next n zero-crossings
+const getNCrossings = (buf: undefined | Float32Array, start: number, n: number) =>
+  callWorker<Float32Array>(2, [buf, start, n]);*/
+
+/*// slice a buffer at the zero crossings
+const sliceByCrossings = (buf: undefined | Float32Array, start?: number, end?: number) =>
+  callWorker<Float32Array[]>(4, [buf, start, end]);*/
+
+/*// gets the buffer from the array with the maximum peak
+const maxAbsPeakOf = (bufs: Float32Array[]) => callWorker<Float32Array>(3, [bufs]);*/
+
+// sliceByCrossings >> maxAbsPeakOf, saves copying unnecessary bufs
+const sbcMax = (buf: undefined | Float32Array, start?: number, end?: number) =>
+  callWorker<Float32Array>(5, [buf, start, end]);
 
 // === USEFUL REACTIVE STUFF ===
 
 export const downscaled = ref<Float32Array>();
 
+export const singlePeriod = ref<Float32Array>();
+
+const innerCleanups: WatchStopHandle[] = [];
 watchEffect(async () => {
   if (enableAnalysis.value && buf.value) {
+    innerCleanups.forEach(c => c());
+    
     downscaled.value = undefined;
     await uploadBuffer(buf.value.getChannelData(0));
     downscaled.value = await downscale(undefined, 1000);
+
+    innerCleanups.push(
+      watchEffect(async () => {
+        // 2 crossings for a full waveform
+        if (seek.value === undefined) return;
+        const seekSamples = seek.value * buf.value!.sampleRate;
+        // seek updates every 100ms
+        const seekEndSamples = (seek.value + 0.1) * buf.value!.sampleRate;
+        
+        singlePeriod.value = await sbcMax(undefined, seekSamples, seekEndSamples);
+      }),
+    );
   } else {
     downscaled.value = undefined;
   }

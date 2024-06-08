@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { onMounted, watchEffect } from "vue";
-import { downscaled, enableAnalysis } from "@/analysis";
+import { enableAnalysis } from "@/analysis";
 
 enableAnalysis.value = true;
+
+const props = defineProps<{ waveform: Float32Array | undefined, fill: boolean }>();
 
 onMounted(() => {
   const ctx = (document.getElementById("wfcanvas") as HTMLCanvasElement).getContext("2d")!;
@@ -13,9 +15,10 @@ onMounted(() => {
   ctx.canvas.height = H;
 
   ctx.fillStyle = "#fff";
+  ctx.strokeStyle = "#fff";
 
   watchEffect(() => {
-    const buffer = downscaled.value;
+    const buffer = props.waveform;
     if (!buffer) return;
     const len = buffer.length;
 
@@ -32,13 +35,18 @@ onMounted(() => {
       x += dx;
     }
 
-    // draw bottom half, a mirror of the top half
-    for (let i = len - 1; i >= 0; i--) {
-      ctx.lineTo(x, (H / 2) * (1 + buffer[i]));
-      x -= dx;
+    if (props.fill) {
+      // draw bottom half, a mirror of the top half
+      for (let i = len - 1; i >= 0; i--) {
+        ctx.lineTo(x, (H / 2) * (1 + buffer[i]));
+        x -= dx;
+      }
+      ctx.closePath();
+      ctx.fill();
     }
-    ctx.closePath();
-    ctx.fill();
+    else {
+      ctx.stroke();
+    }
   });
 });
 </script>

@@ -10,7 +10,8 @@ import { timePromise } from "@/util";
 import { visualizerEnabled } from "@/visualizer";
 import fallbackart from "@/assets/fallbackart_10x.png";
 
-import TheWaveform from "./TheWaveform.vue";
+import WaveForm from "./WaveForm.vue";
+import { downscaled, singlePeriod } from "@/analysis";
 
 const visualizerSupported = isButterchurnSupported();
 
@@ -54,7 +55,7 @@ const randomQuote = computed(() =>
             class="h-px bg-white"
             :style="{ width: (100 * (seek ?? 0)) / getDuration() + '%' }" />
         </div>
-        <TheWaveform />
+        <WaveForm :waveform="singlePeriod" :fill="false" />
 
         <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-60" :max="0" /></div>
       </div>
