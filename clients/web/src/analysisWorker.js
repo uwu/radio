@@ -1,5 +1,4 @@
-import { downscale as wasmDS } from "./dsp-asm/assembly/index";
-import FFT from "fft.js";
+import { downscale as wasmDS, fft as wasmFFT } from "./dsp-asm/assembly/index";
 
 // avoid uploading the same buffer a ton of times
 let currentBuffer = new Float32Array(0);
@@ -120,20 +119,11 @@ function sbcMax(buf, start, end) {
  * @returns {Float32Array} */
 function fft(buf, start, end, pad) {
   buf ??= currentBuffer;
-  start ??= 0;
-  end ??= buf.length;
-  pad ??= 0;
+  start ??= -1;
+  end ??= -1;
+  pad ??= -1;
 
-  // min power of 2 that is <= buf.length
-  const size = Math.pow(2, Math.ceil(Math.log2(pad + end - start)));
-
-  buf = [...buf.slice(start, end), ...Array(size - (end - start)).fill(0)];
-
-  const fft = new FFT(size);
-  const output = fft.createComplexArray();
-  fft.realTransform(output, buf);
-
-  return new Float32Array(output.slice(0, size));
+  return wasmFFT(buf, start, end, pad);
 }
 
 onmessage = (e) => {

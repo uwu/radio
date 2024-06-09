@@ -26,9 +26,6 @@ dependencies:
   can-autoplay:
     specifier: ^3.0.2
     version: 3.0.2
-  fft.js:
-    specifier: ^4.0.4
-    version: 4.0.4
   unocss:
     specifier: ^0.57.1
     version: 0.57.1(postcss@8.4.31)(vite@4.5.0)
@@ -1991,10 +1988,6 @@ packages:
     dependencies:
       set-cookie-parser: 2.6.0
       tough-cookie: 4.1.3
-    dev: false
-
-  /fft.js@4.0.4:
-    resolution: {integrity: sha512-f9c00hphOgeQTlDyavwTtu6RiK8AIFjD6+jvXkNkpeQ7rirK3uFWVpalkoS4LAwbdX7mfZ8aoBfFVQX1Re/8aw==}
     dev: false
 
   /file-entry-cache@6.0.1:

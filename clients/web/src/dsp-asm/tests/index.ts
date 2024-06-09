@@ -1,42 +1,35 @@
 // @ts-ignore lol IDE doesnt like deno
 
-import { assertEquals, assertThrows } from "https://deno.land/std@0.224.0/assert/mod.ts";
-import { fromComplexArray, toComplexArray } from "../build/release.js";
+import { assertAlmostEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
+import FFT from "npm:fft.js";
+import { fft } from "../build/release.js";
 
-Deno.test("SIMD FFT", async (t) => {
-  await t.step("#fromComplexArray", async (t) => {
-    await t.step("should work for %4 length arrays", () => {
-      const input = new Float32Array([1, 6, 7, 4, 8, 5, 8, 4, 2, 8, 5, 8]);
-      const expectedOut = [1, 7, 8, 8, 2, 5];
-      assertEquals([...fromComplexArray(input)], expectedOut);
-    });
+function jsfft(buf: Float32Array) {
+  const end = buf.length;
+  const start = 0;
 
-    await t.step("should work for %2 but not %4 length arrays", () => {
-      const input = new Float32Array([1, 6, 7, 4, 8, 5, 8, 4, 2, 8]);
-      const expectedOut = [1, 7, 8, 8, 2];
-      assertEquals([...fromComplexArray(input)], expectedOut);
-    });
+  const size = Math.pow(2, Math.ceil(Math.log2(end - start)));
 
-    await t.step("should throw on odd input size", () => {
-      assertThrows(() => fromComplexArray(new Float32Array([1, 2, 3])));
-    });
-    
-    await t.step("should throw on empty array", () => {
-      assertThrows(() => fromComplexArray(new Float32Array([])));
-    })
-  });
-  
-  await t.step("#toComplexArray", async (t) => {
-    await t.step("should work for %2 arrays", () => {
-      const input = new Float32Array([1, 2, 3, 4]);
-      const expectedOut = [1, 0, 2, 0, 3, 0, 4, 0];
-      assertEquals([...toComplexArray(input)], expectedOut);
-    })
+  const input = [
+    ...buf.slice(start, end),
+    ...Array(size - (end - start)).fill(0),
+  ];
+  const fft = new FFT(size);
+  const output = fft.createComplexArray();
+  fft.realTransform(output, input);
 
-    await t.step("should work for not-%2 arrays", () => {
-      const input = new Float32Array([1, 2, 3, 4, 5]);
-      const expectedOut = [1, 0, 2, 0, 3, 0, 4, 0, 5, 0];
-      assertEquals([...toComplexArray(input)], expectedOut);
-    })
-  })
+  return new Float32Array(output.slice(0, size));
+}
+
+Deno.test("FFT", () => {
+  const input = new Float32Array(100);
+  for (let i = 0; i < input.length; i++) input[i] = Math.random();
+
+  const expected = jsfft(input);
+  const actual = fft(input, -1, -1, -1);
+
+  // wasm is using f32 for memory usage reasons
+  for (let i = 0; i < actual.length; i++) {
+    assertAlmostEquals(actual[i], expected[i], 5e-6);
+  }
 });
