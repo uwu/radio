@@ -16,7 +16,7 @@ function movingMax(buf: Float32Array, n: number) {
 }
 
 onMounted(() => {
-  const ctx = (document.getElementById("wfcanvas") as HTMLCanvasElement).getContext("2d")!;
+  const ctx = (document.getElementById("ascanvas") as HTMLCanvasElement).getContext("2d")!;
 
   const W = ctx.canvas.offsetWidth;
   const H = ctx.canvas.offsetHeight;
@@ -59,5 +59,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas id="wfcanvas" style="width: 100%; height: 100px"></canvas>
+  <canvas id="ascanvas" style="width: 100%; height: 100px"></canvas>
 </template>

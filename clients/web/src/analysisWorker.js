@@ -1,3 +1,4 @@
+import { downscale as wasmDS } from "./dsp-asm/assembly/index";
 import FFT from "fft.js";
 
 // avoid uploading the same buffer a ton of times
@@ -14,8 +15,10 @@ function uploadBuffer(buf) {
 function downscale(buf, size) {
   buf ??= currentBuffer;
 
+  return wasmDS(buf, size);
+
   // size of each chunk
-  const chunkSz = Math.ceil(buf.length / size);
+  /*const chunkSz = Math.ceil(buf.length / size);
   const nChunks = Math.ceil(buf.length / chunkSz);
 
   // this is at LEAST size, rounded up as necessary
@@ -24,7 +27,7 @@ function downscale(buf, size) {
   for (let ci = 0; ci < nChunks; ci++) {
     const chunk = buf.slice(ci * chunkSz, (ci + 1) * chunkSz);
 
-    let max = chunk[0]; /*, min = chunk[0]*/
+    let max = chunk[0]; /!*, min = chunk[0]*!/
     for (let i = 1; i < chunk.length; i++) {
       max = Math.max(chunk[i], max);
       //min = Math.min(chunk[i], min);
@@ -33,7 +36,7 @@ function downscale(buf, size) {
     res[ci] = max;
   }
 
-  return res;
+  return res;*/
 }
 
 /** @param {Float32Array} buf
@@ -123,7 +126,7 @@ function fft(buf, start, end, pad) {
 
   // min power of 2 that is <= buf.length
   const size = Math.pow(2, Math.ceil(Math.log2(pad + end - start)));
-  
+
   buf = [...buf.slice(start, end), ...Array(size - (end - start)).fill(0)];
 
   const fft = new FFT(size);
