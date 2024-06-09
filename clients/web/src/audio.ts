@@ -33,22 +33,33 @@ watchEffect(() => {
 const prettyFormatTime = (time: number) =>
   `${~~(time / 60)}:${(~~(time % 60)).toString().padStart(2, "0")}`;
 
+export const getDuration = () => audioSource?.buffer?.duration ?? 0;
+export const prettyDuration = () => prettyFormatTime(getDuration());
+
 const seek = ref<number>();
 export { seek };
 export const prettySeek = computed(() => prettyFormatTime(seek.value!));
 
-setInterval(
+/*setInterval(
   () => (seek.value = Math.min(audioCtx.currentTime - startTime + startSeek, getDuration())),
-  50,
-);
+  20,
+);*/
+
+let i = 0;
+const loop = () => {
+  if (++i === 2) {
+    seek.value = Math.min(audioCtx.currentTime - startTime + startSeek, getDuration());
+    i = 0;
+  }
+
+  requestAnimationFrame(loop);
+};
+loop();
 
 export const seekTo = (seek: number) => {
   startSeek = seek;
   audioSource?.start(0, seek);
 };
-
-export const getDuration = () => audioSource?.buffer?.duration ?? 0;
-export const prettyDuration = () => prettyFormatTime(getDuration());
 
 async function loadAudio(url: string) {
   const response = await fetch(url);

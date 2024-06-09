@@ -35,7 +35,15 @@ export function downscale(_buf: Float32Array | null, size: i32): Float32Array {
   return res;
 }
 
-export function fft(_buf: Float32Array | null, start: i32, end: i32, pad: i32): Float32Array {
+let lastFft: Float32Array | null;
+
+export function fft(
+  _buf: Float32Array | null,
+  start: i32,
+  end: i32,
+  pad: i32,
+  persistence: f32,
+): Float32Array {
   const buf = _buf ? _buf : currentBuf!;
   if (start === -1) start = 0;
   if (end === -1) end = buf.length;
@@ -58,7 +66,41 @@ export function fft(_buf: Float32Array | null, start: i32, end: i32, pad: i32): 
 
   fft.realTransform(output, fftInput);
 
-  return output.subarray(0, size);
+  const result = output.subarray(0, size);
+  if (Mathf.abs(persistence) < 0.0001) return result; // no persistence, just return the raw fft
+  if (!lastFft || lastFft!.length !== result.length) {
+    lastFft = result;
+    return result;
+  }
+
+  // blend last fft with this fft to reduce jitter
+  // round size down to 4 for simd purposes
+  const out = new Float32Array(lastFft!.length);
+
+  // TODO: null errors. why?
+  /*const simdSafeSize = 4 * (out.length / 4);
+  const outPtr = out.dataStart;
+  const lastPtr = lastFft!.dataStart;
+  const resPtr = result.dataStart;
+  
+  for (let i = 0; i < 4 * (out.length / 4); i++) {
+    // out_i = max(res_i, last_i * persistence)
+    v128.store(
+      outPtr + i * sizeof<v128>(),
+      f32x4.max(
+        v128.load(resPtr + i * sizeof<v128>()),
+        f32x4.mul(v128.load(lastPtr + i * sizeof<v128>()), f32x4.splat(persistence)),
+      ),
+    );
+  }*/
+
+  // do last few elements
+  for (let i = /*simdSafeSize*/ 0; i < out.length; i++) {
+    out[i] = result[i] + lastFft![i] * persistence;
+  }
+
+  lastFft = out;
+  return out.subarray(0, lastFft!.length);
 }
 
 function sliceByCrossings(
@@ -71,9 +113,7 @@ function sliceByCrossings(
   const buffers = new Array<Float32Array>();
   if (start === -1) start = 0;
   if (end === -1) end = buf.length;
-  console.log(n.toString());
   if (n === -1) n = 1;
-  console.log(n.toString());
 
   let startNext = start; // the start of the next buffer to be sliced
   let isPos = buf[start] > 0; // was the last sample positive?

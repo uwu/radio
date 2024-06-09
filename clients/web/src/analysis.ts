@@ -1,4 +1,4 @@
-import { watchEffect, ref, type WatchStopHandle } from "vue";
+import { ref, watchEffect, type WatchStopHandle } from "vue";
 import WORKER from "./analysisWorker.js?worker";
 import { seek } from "./audio";
 
@@ -54,8 +54,13 @@ const sbcMax = (buf: undefined | Float32Array, start?: number, end?: number, n?:
   callWorker<Float32Array>(3, [buf, start, end, n]);
 
 // computes the FFT of the buffer in the range
-const fft = (buf: undefined | Float32Array, start?: number, end?: number, pad?: number) =>
-  callWorker<Float32Array>(4, [buf, start, end, pad]);
+const fft = (
+  buf: undefined | Float32Array,
+  start?: number,
+  end?: number,
+  pad?: number,
+  persistence?: number,
+) => callWorker<Float32Array>(4, [buf, start, end, pad, persistence]);
 
 // === USEFUL REACTIVE STUFF ===
 
@@ -80,11 +85,12 @@ watchEffect(async () => {
         if (seek.value === undefined) return;
         const seekSamples = seek.value * buf.value!.sampleRate;
         // more samples = more accuracy, more padding = smoother plot
-        const seekEndSamples = seekSamples + 5000;
         const pad = 0;
 
-        fftd.value = (await fft(undefined, seekSamples, seekEndSamples, pad)).map(Math.abs);
-        singlePeriod.value = await sbcMax(undefined, seekSamples, seekEndSamples, 2);
+        fftd.value = (await fft(undefined, seekSamples, seekSamples + 10_000, pad, 0.93)).map(
+          Math.abs,
+        );
+        singlePeriod.value = await sbcMax(undefined, seekSamples, seekSamples + 5000, 2);
       }),
     );
   } else {
