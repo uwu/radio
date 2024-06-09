@@ -1,4 +1,19 @@
-import { downscale as wasmDS, fft as wasmFFT } from "./dsp-asm/assembly/index";
+//import { downscale as wasmDS, fft as wasmFFT } from "../dsp-asm/build/release.js";
+// init wasm
+import wasmUrl from "../dsp-asm/build/release.wasm?url";
+import { instantiate } from "../dsp-asm/build/release.js";
+
+let wasmDS, wasmFFT, init;
+
+function wasmInit() {
+  if (init) return init;
+  return (init = WebAssembly.compileStreaming(fetch(wasmUrl))
+    .then(instantiate)
+    .then(({ downscale, fft }) => {
+      wasmDS = downscale;
+      wasmFFT = fft;
+    }));
+}
 
 // avoid uploading the same buffer a ton of times
 let currentBuffer = new Float32Array(0);
@@ -15,27 +30,6 @@ function downscale(buf, size) {
   buf ??= currentBuffer;
 
   return wasmDS(buf, size);
-
-  // size of each chunk
-  /*const chunkSz = Math.ceil(buf.length / size);
-  const nChunks = Math.ceil(buf.length / chunkSz);
-
-  // this is at LEAST size, rounded up as necessary
-  const res = new Float32Array(nChunks);
-
-  for (let ci = 0; ci < nChunks; ci++) {
-    const chunk = buf.slice(ci * chunkSz, (ci + 1) * chunkSz);
-
-    let max = chunk[0]; /!*, min = chunk[0]*!/
-    for (let i = 1; i < chunk.length; i++) {
-      max = Math.max(chunk[i], max);
-      //min = Math.min(chunk[i], min);
-    }
-
-    res[ci] = max;
-  }
-
-  return res;*/
 }
 
 /** @param {Float32Array} buf
@@ -136,8 +130,11 @@ onmessage = (e) => {
     /*sliceByCrossings*/ undefined,
     sbcMax,
     fft,
+    wasmInit,
   ][e.data[0]];
   if (!func) postMessage(["ERR", `${e.data[0]} is not a command`]);
 
-  postMessage([e.data[1], func(...e.data.slice(2))]);
+  const res = func(...e.data.slice(2));
+  if (res instanceof Promise) res.then((r) => postMessage([e.data[1], r]))
+  else postMessage([e.data[1], res]);
 };

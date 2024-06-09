@@ -2,8 +2,9 @@
   "name": "uwuradio-client",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "run-p type-check build-only",
+    "dev": "pnpm build:as && vite",
+    "build": "pnpm build:as && run-p type-check build-only",
+    "build:as": "cd dsp-asm && pnpm asbuild:release && cd ..",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",

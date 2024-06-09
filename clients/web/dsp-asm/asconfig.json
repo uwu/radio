@@ -17,7 +17,7 @@
     }
   },
   "options": {
-    "bindings": "esm",
+    "bindings": "raw",
     "enable": ["simd"]
   }
 }

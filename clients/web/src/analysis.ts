@@ -34,6 +34,9 @@ function callWorker<T = unknown>(cmd: number, args: unknown[]): Promise<T> {
   return new Promise((res) => (pendingRequests[id] = res as any));
 }
 
+// init the wasm in the worker
+const initPromise = callWorker<void>(7, []);
+
 // === BINDINGS ===
 
 // sets the current worker's default buffer to this one
@@ -74,6 +77,8 @@ export const fftd = ref<Float32Array>();
 const innerCleanups: WatchStopHandle[] = [];
 watchEffect(async () => {
   if (enableAnalysis.value && buf.value) {
+    await initPromise;
+
     innerCleanups.forEach((c) => c());
 
     downscaled.value = undefined;

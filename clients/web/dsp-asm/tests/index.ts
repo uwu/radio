@@ -10,10 +10,7 @@ function jsfft(buf: Float32Array) {
 
   const size = Math.pow(2, Math.ceil(Math.log2(end - start)));
 
-  const input = [
-    ...buf.slice(start, end),
-    ...Array(size - (end - start)).fill(0),
-  ];
+  const input = [...buf.slice(start, end), ...Array(size - (end - start)).fill(0)];
   const fft = new FFT(size);
   const output = fft.createComplexArray();
   fft.realTransform(output, input);
@@ -29,7 +26,6 @@ Deno.test("FFT", () => {
   const actual = fft(input, -1, -1, -1);
 
   // wasm is using f32 for memory usage reasons
-  for (let i = 0; i < actual.length; i++) {
+  for (let i = 0; i < actual.length; i++) 
     assertAlmostEquals(actual[i], expected[i], 5e-6);
-  }
 });

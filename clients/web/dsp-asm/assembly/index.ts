@@ -8,8 +8,10 @@ export function downscale(buf: Float32Array, size: i32): Float32Array {
   const res = new Float32Array(nChunks);
   for (let ci = 0; ci < nChunks; ci++) {
     let max: f64 = 0;
-    for (let i = 1; i < chunkSz; i++) {
-      max = Math.max(buf[i + ci * chunkSz], max);
+    const chunk = buf.subarray(ci * chunkSz, (ci + 1) * chunkSz);
+
+    for (let i = 1; i < chunk.length; i++) {
+      max = Math.max(chunk[i], max);
     }
 
     res[ci] = <f32>max;
@@ -25,7 +27,7 @@ export function fft(buf: Float32Array, start: i32, end: i32, pad: i32): Float32A
 
   // min power of 2 that is <= buf.length
   const size = <i32>Math.pow(2, Math.ceil(Math.log2(pad + end - start)));
-  
+
   const fftInput = new Float32Array(size);
 
   // copy in buffer
