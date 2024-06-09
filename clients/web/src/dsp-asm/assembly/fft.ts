@@ -58,10 +58,23 @@ export class FFT {
     this._data = null;
     this._inv = 0;
   }
-  
+
   /** create a complex array of the size needed for this FFT */
   createComplexArray(): Float32Array {
     const res = new Float32Array(this._csize);
+    const ptr = res.dataStart; // UNSAFE
+
+    // csize is always a multiple of 4, so this will line up perfectly
+    for (let i = 0; i < (this._csize / 4); i++)
+      v128.store(ptr + i * 16, f32x4.splat(0));
+
+    return res;
+  }
+  
+  /** computes the conjugates of the spectrum to complete it */
+  completeSpectrum(): void {
+    // note that csize is always %4
+    // TODO
   }
 }
 
@@ -70,20 +83,26 @@ export function fromComplexArray(complex: Float32Array): Float32Array {
   const inPtr = complex.dataStart; // UNSAFE
   const res = new Float32Array(complex.length >>> 1);
   const outPtr = res.dataStart; // UNSAFE
-  
-  // all inputs must be %2, but as we read 4 at a time, we must be careful not to OOB
-  const willOverread = complex.length % 4 !== 0;
-  const upperBound = (res.length >>> 1) - (willOverread ? 1 : 0);
-  
-  for (let i = 0; i < upperBound; i++) {
+
+  if (complex.length % 2 !== 0) throw new Error("complex input must have an even length");
+  if (complex.length === 0) throw new Error("complex input must not be empty");
+
+  for (let i = 0; i < (res.length >>> 1); i++) {
     const comp = v128.load(inPtr + i * 16);
     // comp contains [a; b; c; d] f32s, we want [a; c]
-    const swiz = v128.swizzle(comp, v128(0, 1, 2, 3, 8, 9, 10, 11, 0, 0, 0, 0, 0, 0, 0, 0));
+    const swiz = v128.swizzle(comp, v128(
+      0, 1, 2, 3,
+      8, 9, 10, 11,
+      0, 0, 0, 0,
+      0, 0, 0, 0,
+    ));
     // store the first 64 bits (two floats) to the arr
     v128.store64_lane(outPtr + i * 8, swiz, 0);
   }
-  // handle last float separately to avoid reading out of bounds
-  if (willOverread) {
+
+  // all inputs must be %2, but as we read 4 at a time, we must be careful not to miss a last value
+  // we dont oob as >>> rounds down.
+  if (complex.length % 4 !== 0) {
     const i = res.length - 1;
     res[i] = complex[2 * i];
   }
@@ -91,22 +110,37 @@ export function fromComplexArray(complex: Float32Array): Float32Array {
   return res;
 }
 
-/*
-FFT.prototype.createComplexArray = function createComplexArray() {
-  const res = new Array(this._csize);
-  for (var i = 0; i < res.length; i++)
-    res[i] = 0;
-  return res;
-};
+/** convert an array of real values to an interleaved complex array */
+export function toComplexArray(real: Float32Array): Float32Array {
+  const inPtr = real.dataStart; // UNSAFE
+  const res = new Float32Array(real.length * 2);
+  const outPtr = res.dataStart; // UNSAFE
 
-FFT.prototype.toComplexArray = function toComplexArray(input, storage) {
-  var res = storage || this.createComplexArray();
-  for (var i = 0; i < res.length; i += 2) {
-    res[i] = input[i >>> 1];
-    res[i + 1] = 0;
+  // for every pair of real inputs
+  for (let i = 0; i < (real.length >>> 1); i++) {
+    // read two real f32s into a vector [a; b; 0; 0]
+    const reals = v128.load64_zero(inPtr + i * 8);
+    // to [a; 0; b; 0]
+    const swiz = v128.swizzle(reals, v128(
+      0, 1, 2, 3, // lane 1
+      8, 9, 10, 11, // lane 3
+      4, 5, 6, 7, // lane 2
+      8, 9, 10, 11, // lane 3 again
+    ));
+    // write this into the output
+    v128.store(outPtr + i * 16, swiz);
   }
+  // if theres an odd number of reals, the last one will get left
+  if (real.length % 2) {
+    const i = real.length - 1;
+    res[i * 2] = real[i];
+  }
+  
   return res;
-};
+}
+
+/*
+
 
 FFT.prototype.completeSpectrum = function completeSpectrum(spectrum) {
   var size = this._csize;
