@@ -1,8 +1,6 @@
-// @ts-ignore lol IDE doesnt like deno
-
 import { assertAlmostEquals } from "https://deno.land/std@0.224.0/assert/mod.ts";
 import FFT from "npm:fft.js";
-import { fft } from "../build/release.js";
+import { fft } from "../build/debug.js";
 
 function jsfft(buf: Float32Array) {
   const end = buf.length;
@@ -26,6 +24,7 @@ Deno.test("FFT", () => {
   const actual = fft(input, -1, -1, -1);
 
   // wasm is using f32 for memory usage reasons
-  for (let i = 0; i < actual.length; i++) 
+  for (let i = 0; i < actual.length; i++) {
     assertAlmostEquals(actual[i], expected[i], 5e-6);
+  }
 });

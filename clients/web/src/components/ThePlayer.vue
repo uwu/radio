@@ -57,6 +57,7 @@ const randomQuote = computed(() =>
             :style="{ width: (100 * (seek ?? 0)) / getDuration() + '%' }" />
         </div>
         <WaveForm :fill="true" :waveform="downscaled" />
+        <WaveForm :fill="false" :waveform="singlePeriod" />
         <AudioSpectrum :waveform="fftd" />
 
         <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-60" :max="0" /></div>

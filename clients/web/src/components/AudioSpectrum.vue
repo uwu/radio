@@ -2,6 +2,8 @@
 import { onMounted, watchEffect } from "vue";
 import { enableAnalysis } from "@/analysis";
 
+const id = Math.random().toString(16).split(".")[1];
+
 enableAnalysis.value = true;
 
 const props = defineProps<{ waveform: Float32Array | undefined }>();
@@ -16,7 +18,7 @@ function movingMax(buf: Float32Array, n: number) {
 }
 
 onMounted(() => {
-  const ctx = (document.getElementById("ascanvas") as HTMLCanvasElement).getContext("2d")!;
+  const ctx = (document.getElementById(id) as HTMLCanvasElement).getContext("2d")!;
 
   const W = ctx.canvas.offsetWidth;
   const H = ctx.canvas.offsetHeight;
@@ -59,5 +61,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <canvas id="ascanvas" style="width: 100%; height: 100px"></canvas>
+  <canvas :id="id" style="width: 100%; height: 100px"></canvas>
 </template>
