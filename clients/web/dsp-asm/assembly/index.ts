@@ -5,11 +5,14 @@ let currentBuf: Float32Array | null;
 
 export function uploadBuf(buf: Float32Array): void {
   currentBuf = buf;
+  // reset fft as we have a new buffer
+  lastFft = null;
 }
 
 export function downscale(_buf: Float32Array | null, size: i32): Float32Array {
   const buf = _buf ? _buf : currentBuf!;
-  // round chunk size up to a multiple of 4
+  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+  // round chunk up to a multiple of 4
   const fchunkSz = 4 * Math.ceil(<f64>buf.length / <f64>size / 4);
   const nChunks = <i32>Math.ceil(<f64>buf.length / fchunkSz);
   const chunkSz = <i32>fchunkSz;
@@ -45,9 +48,12 @@ export function fft(
   persistence: f32,
 ): Float32Array {
   const buf = _buf ? _buf : currentBuf!;
+  assert(buf, "cannot pass a null buffer without first uploading a buffer");
   if (start === -1) start = 0;
   if (end === -1) end = buf.length;
   if (pad === -1) pad = 0;
+
+  assert(end < buf.length, "(fft) end must not overflow the buf");
 
   // min power of 2 that is <= buf.length
   const size = <i32>Math.pow(2, Math.ceil(Math.log2(pad + end - start)));
@@ -110,10 +116,13 @@ function sliceByCrossings(
   n: i32,
 ): Array<Float32Array> {
   const buf = _buf ? _buf : currentBuf!;
+  assert(buf, "cannot pass a null buffer without first uploading a buffer");
   const buffers = new Array<Float32Array>();
   if (start === -1) start = 0;
   if (end === -1) end = buf.length;
   if (n === -1) n = 1;
+
+  assert(end < buf.length, "(slicebycrossings) end must not overflow the buf");
 
   let startNext = start; // the start of the next buffer to be sliced
   let isPos = buf[start] > 0; // was the last sample positive?
@@ -140,6 +149,10 @@ function sliceByCrossings(
 }
 
 function maxAbsPeakOf(bufs: Array<Float32Array>): Float32Array {
+  // don't just error because this is a common case with an all zeroes input, so fake a value
+  //assert(bufs.length, "(maxAbsPeakOf) cannot pick a max of no items");
+  if (!bufs.length) return new Float32Array(0);
+
   let maxBuf = bufs[0];
   let max: f32 = 0;
 
@@ -176,4 +189,49 @@ function maxAbsPeakOf(bufs: Array<Float32Array>): Float32Array {
 // sliceByCrossings -> maxAbsPeakOf all in one go as an opt
 export function sbcMax(_buf: Float32Array | null, start: i32, end: i32, n: i32): Float32Array {
   return maxAbsPeakOf(sliceByCrossings(_buf, start, end, n));
+}
+
+export function centeredSlice(
+  _buf: Float32Array | null,
+  pos: i32,
+  width: i32,
+  downs: i32,
+): Float32Array {
+  const buf = _buf ? _buf : currentBuf!;
+  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+
+  const start = pos - width / 2;
+  const end = pos + width / 2;
+
+  const padS = start < 0 ? -start : 0;
+  const padE = end >= buf.length ? end - buf.length /*+ 1*/ : 0;
+
+  let padded: Float32Array | null;
+
+  // happy path just returns this
+  if (padS === 0 && padE === 0) {
+    padded = buf.subarray(start, end);
+  } else {
+    // unhappy path - we need to pad it!
+    padded = new Float32Array(width);
+    // setup copy
+    const inOset = start < 0 ? 0 : start;
+    // safe version for debugging in case fast version causes memory issues (rt asserts)
+    /*for (let i = 0; i < width - padE - padS; i++) {
+      assert(i + padS < padded.length, "(centeredSlice) dest must stay in range");
+      assert(i + inOset < buf.length, 
+        "(centeredSlice) src must stay in range (i: " + i.toString() + " width: " + width.toString() + " padS: " + padS.toString() + " padE: " + padE.toString() + ")"
+      );
+      padded[i + padS] = buf[i + inOset];
+    }*/
+    const copyInStart = buf.dataStart + Float32Array.BYTES_PER_ELEMENT * (inOset);
+    const copyOutStart = padded.dataStart + Float32Array.BYTES_PER_ELEMENT * padS;
+    const copyLen = Float32Array.BYTES_PER_ELEMENT * (width - padE - padS);
+
+    memory.copy(copyOutStart, copyInStart, copyLen);
+  }
+
+  // TODO: fix shimmering due to downscaling
+  // increasing the downs size enough to remove shimmering while scrolling is too slow
+  return downs == -1 ? padded : downscale(padded, downs);
 }

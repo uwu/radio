@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import WaveForm from "@/components/WaveForm.vue";
 import AudioSpectrum from "@/components/AudioSpectrum.vue";
-import { downscaled, singlePeriod, fftd, enableAnalysis } from "@/analysis";
+import { downscaled, singlePeriod, fftd, slice, enableAnalysis } from "@/analysis";
 import { getDuration, seek } from "@/audio";
 </script>
 
@@ -19,9 +19,11 @@ import { getDuration, seek } from "@/audio";
         <div>moodbar</div>
       </div>
 
-      <div>
+      <div class="relative">
+        <div class="absolute top-33% bottom-2 b-l-white border-l-1 left-50%"></div>
+        
         <WaveForm :fill="false" :waveform="singlePeriod" />
-        <div>scrolling wave</div>
+        <WaveForm :fill="true" :waveform="slice" />
         <div>scrolling spectrogram</div>
       </div>
 

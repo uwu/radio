@@ -22,7 +22,7 @@ onMounted(() => {
     const len = buffer.length;
 
     const dx = W / len;
-    const scale = 1; /// Math.max(...buffer.map(Math.abs));
+    const scale = 1 / Math.max(1, ...buffer.map(Math.abs));
 
     ctx.clearRect(0, 0, W, H);
 
@@ -31,15 +31,19 @@ onMounted(() => {
     ctx.moveTo(0, H / 2);
     ctx.beginPath();
     for (let i = 0; i < len; i++) {
+      x = i * dx;
+      
       ctx.lineTo(x, (H / 2) * (1 - buffer[i] * scale));
-      x += dx;
+      //x += dx;
     }
 
     if (props.fill) {
       // draw bottom half, a mirror of the top half
       for (let i = len - 1; i >= 0; i--) {
+        x = i * dx;
+
         ctx.lineTo(x, (H / 2) * (1 + buffer[i] * scale));
-        x -= dx;
+        //x -= dx;
       }
       ctx.closePath();
       ctx.fill();

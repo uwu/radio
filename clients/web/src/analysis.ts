@@ -62,6 +62,10 @@ const fft = (
   persistence?: number,
 ) => callWorker<Float32Array>(4, [buf, start, end, pad, persistence]);
 
+// gets a slice from buf centered at the point with the given width, padding with zeroes if necessary, and optionally downscales
+const centeredSlice = (buf: undefined | Float32Array, pos: number, width: number, downs?: number) =>
+  callWorker<Float32Array>(5, [buf, pos, width, downs]);
+
 // === USEFUL REACTIVE STUFF ===
 
 export const downscaled = ref<Float32Array>();
@@ -70,27 +74,37 @@ export const singlePeriod = ref<Float32Array>();
 
 export const fftd = ref<Float32Array>();
 
+export const slice = ref<Float32Array>();
+
 const innerCleanups: WatchStopHandle[] = [];
 watchEffect(async () => {
+  innerCleanups.forEach((c) => c());
   if (enableAnalysis.value && buf.value) {
-    innerCleanups.forEach((c) => c());
-
     downscaled.value = undefined;
     await uploadBuffer(buf.value.getChannelData(0));
-    downscaled.value = await downscale(undefined, 1000);
+    downscaled.value = await downscale(undefined, 5000);
 
     innerCleanups.push(
       watchEffect(async () => {
-        // 2 crossings for a full waveform
         if (seek.value === undefined) return;
-        const seekSamples = seek.value * buf.value!.sampleRate;
-        // more samples = more accuracy, more padding = smoother plot
-        const pad = 0;
 
-        fftd.value = (await fft(undefined, seekSamples, seekSamples + 10_000, pad, 0.93)).map(
-          Math.abs,
-        );
-        singlePeriod.value = await sbcMax(undefined, seekSamples, seekSamples + 5000, 2);
+        const seekSamples = seek.value * buf.value!.sampleRate;
+
+        // ignore if we're gonna overflow
+        if (seekSamples + 10_000 < buf.value!.length) {
+          // more samples = more accuracy, more padding = smoother plot
+          fftd.value = (await fft(undefined, seekSamples, seekSamples + 10_000, 0, 0.8)).map(
+            Math.abs,
+          );
+          singlePeriod.value = await sbcMax(undefined, seekSamples, seekSamples + 5000, 2);
+        }
+        else {
+          singlePeriod.value = undefined;
+          fftd.value = undefined;
+        }
+
+        const sliceLen = 7.5 * buf.value!.sampleRate;
+        slice.value = await centeredSlice(undefined, seekSamples, sliceLen, 5_000);
       }),
     );
   } else {

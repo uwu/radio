@@ -1,17 +1,18 @@
 import wasmUrl from "../dsp-asm/build/release.wasm?url";
 import { instantiate } from "../dsp-asm/build/release.js";
 
-let wasmDS, wasmFFT, wasmUpload, wasmSbcMax, init;
+let wasmDS, wasmFFT, wasmUpload, wasmSbcMax, wasmCentSlic, init;
 
 function wasmInit() {
   if (init) return init;
   return (init = WebAssembly.compileStreaming(fetch(wasmUrl))
     .then(instantiate)
-    .then(({ downscale, fft, uploadBuf, sbcMax }) => {
+    .then(({ downscale, fft, uploadBuf, sbcMax, centeredSlice }) => {
       wasmDS = downscale;
       wasmFFT = fft;
       wasmUpload = uploadBuf;
       wasmSbcMax = sbcMax;
+      wasmCentSlic = centeredSlice;
     }));
 }
 
@@ -24,9 +25,11 @@ const sbcMax = (buf, start, end, n) => wasmSbcMax(buf, start ?? -1, end ?? -1, n
 const fft = (buf, start, end, pad, persistence) =>
   wasmFFT(buf, start ?? -1, end ?? -1, pad ?? -1, persistence ?? 0);
 
+const centeredSlice = (buf, pos, width, downs) => wasmCentSlic(buf, pos, width, downs ?? -1);
+
 onmessage = (e) => {
   // rip type safety
-  const func = [wasmInit, uploadBuffer, downscale, sbcMax, fft][e.data[0]];
+  const func = [wasmInit, uploadBuffer, downscale, sbcMax, fft, centeredSlice][e.data[0]];
   if (!func) postMessage(["ERR", `${e.data[0]} is not a command`]);
 
   const res = func(...e.data.slice(2));
