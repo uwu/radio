@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { onMounted, watchEffect } from "vue";
-import { enableAnalysis } from "@/analysis";
 
 const id = Math.random().toString(16).split(".")[1];
-
-enableAnalysis.value = true;
 
 const props = defineProps<{ waveform: Float32Array | undefined; fill: boolean }>();
 
@@ -48,11 +45,11 @@ onMounted(() => {
       ctx.fill();
     } else {
       ctx.stroke();
-      
+
       ctx.beginPath();
-      ctx.moveTo(x, H/2);
-      ctx.lineTo(0, H/2);
-      
+      ctx.moveTo(x, H / 2);
+      ctx.lineTo(0, H / 2);
+
       const prev = ctx.strokeStyle;
       ctx.strokeStyle = "#333";
       ctx.stroke();

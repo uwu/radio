@@ -8,11 +8,8 @@ import { getClient } from "@/syncClient";
 import TheClients from "./TheClients.vue";
 import { timePromise } from "@/util";
 import { visualizerEnabled } from "@/visualizer";
+import { enableAnalysis } from "@/analysis";
 import fallbackart from "@/assets/fallbackart_10x.png";
-
-import WaveForm from "./WaveForm.vue";
-import AudioSpectrum from "@/components/AudioSpectrum.vue";
-import { downscaled, singlePeriod, fftd } from "@/analysis";
 
 const visualizerSupported = isButterchurnSupported();
 
@@ -56,9 +53,6 @@ const randomQuote = computed(() =>
             class="h-px bg-white"
             :style="{ width: (100 * (seek ?? 0)) / getDuration() + '%' }" />
         </div>
-        <WaveForm :fill="true" :waveform="downscaled" />
-        <WaveForm :fill="false" :waveform="singlePeriod" />
-        <AudioSpectrum :waveform="fftd" />
 
         <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-60" :max="0" /></div>
       </div>
@@ -67,11 +61,16 @@ const randomQuote = computed(() =>
       {{ randomQuote }}
     </span>
     <TheHistory />
-    <button
-      v-if="visualizerSupported"
-      class="absolute bottom-2 right-2 h-8 bg-black border border-white p-1"
-      @click="visualizerEnabled = true">
-      enable visualizer
-    </button>
+    <div v-if="visualizerSupported" class="absolute bottom-2 right-2 children:ml-1">
+      <button class="bg-black border border-white p-1" @click="enableAnalysis = true">
+      redundant info mode
+      </button>
+      <button
+        v-if="visualizerSupported"
+        class="bg-black border border-white p-1"
+        @click="visualizerEnabled = true">
+        enable visualizer
+      </button>
+    </div>
   </div>
 </template>

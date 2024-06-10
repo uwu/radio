@@ -48,7 +48,7 @@ public static class DSP
 		var peak  = double.Parse(match.Groups[4].Value);
 		//Console.Error.WriteLine(stdErr);
 		//Console.Error.WriteLine($"measurement: {lufs} LUFS, {thres} threshold, {lra} LU range, {peak} dbFS peak");
-		
+
 		return new LoudnessMeasurement(lufs, thres, lra, peak);
 	}
 

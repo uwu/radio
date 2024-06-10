@@ -5,9 +5,11 @@ import { defineAsyncComponent, ref } from "vue";
 // @ts-expect-error this lib is not typed lol
 import canAutoplay from "can-autoplay";
 import { visualizerEnabled } from "./visualizer";
+import { enableAnalysis } from "./analysis";
 import { setupMediaSession } from "./mediaSession";
 import { audioCtx } from "./audio";
 const TheChurner = defineAsyncComponent(() => import("./components/TheChurner.vue"));
+const TheRedundantInfo = defineAsyncComponent(() => import("./components/TheRedundantInfo.vue"));
 
 interface CanAutoplay {
   result: boolean;
@@ -35,6 +37,9 @@ function handleEnterClick() {
     <template v-if="clicked">
       <Suspense v-if="visualizerEnabled">
         <TheChurner />
+      </Suspense>
+      <Suspense v-if="enableAnalysis">
+        <TheRedundantInfo />
       </Suspense>
       <TheSidebar />
       <Suspense>
