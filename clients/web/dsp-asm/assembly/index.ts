@@ -1,4 +1,11 @@
 import { FFT } from "./fft";
+import {
+  f32x4_load,
+  f32x4_store,
+  listAbsMax_f32,
+  listMax_f32_UNCHECKED,
+  memcpy_f32,
+} from "./fastutils";
 
 // copying arrays across thread boundaries is very expensive, so provide a mechanism to reuse it.
 let currentBuf: Float32Array | null;
@@ -14,25 +21,14 @@ export function downscale(_buf: Float32Array | null, size: i32): Float32Array {
   assert(buf, "cannot pass a null buffer without first uploading a buffer");
   // round chunk up to a multiple of 4
   const fchunkSz = 4 * Math.ceil(<f64>buf.length / <f64>size / 4);
-  const nChunks = <i32>Math.ceil(<f64>buf.length / fchunkSz);
+  const nChunks = <i32>Math.floor(<f64>buf.length / fchunkSz);
   const chunkSz = <i32>fchunkSz;
 
   const res = new Float32Array(nChunks);
   for (let ci = 0; ci < nChunks; ci++) {
-    let max = v128.splat<f32>(0);
-    const chunk = buf.subarray(ci * chunkSz, (ci + 1) * chunkSz);
-    const ptr = chunk.dataStart;
-
-    // 4 floats per vec
-    for (let i = 0; i < chunk.length; i += 4) {
-      const vec = v128.load(ptr + i * sizeof<v128>());
-      max = f32x4.max(max, vec);
-    }
-
-    res[ci] = Mathf.max(
-      Mathf.max(f32x4.extract_lane(max, 0), f32x4.extract_lane(max, 1)),
-      Mathf.max(f32x4.extract_lane(max, 2), f32x4.extract_lane(max, 3)),
-    );
+    const b = buf.subarray(ci * chunkSz, (ci + 1) * chunkSz);
+    // UNSAFE: the length of a chunk is always % 4
+    res[ci] = listMax_f32_UNCHECKED(b, b.length);
   }
 
   return res;
@@ -61,11 +57,7 @@ export function fft(
   const fftInput = new Float32Array(size);
 
   // copy in buffer
-  memory.copy(
-    fftInput.dataStart,
-    buf.dataStart + start * Float32Array.BYTES_PER_ELEMENT,
-    (end - start) * Float32Array.BYTES_PER_ELEMENT,
-  );
+  memcpy_f32(buf, fftInput, start, 0, end - start);
 
   const fft = new FFT(size);
   const output = fft.createComplexArray();
@@ -83,25 +75,17 @@ export function fft(
   // round size down to 4 for simd purposes
   const out = new Float32Array(lastFft!.length);
 
-  // TODO: null errors. why?
-  /*const simdSafeSize = 4 * (out.length / 4);
-  const outPtr = out.dataStart;
-  const lastPtr = lastFft!.dataStart;
-  const resPtr = result.dataStart;
-  
-  for (let i = 0; i < 4 * (out.length / 4); i++) {
+  const simdSafeSize = 4 * (out.length / 4);
+
+  for (let i = 0; i < simdSafeSize; i += 4) {
     // out_i = max(res_i, last_i * persistence)
-    v128.store(
-      outPtr + i * sizeof<v128>(),
-      f32x4.max(
-        v128.load(resPtr + i * sizeof<v128>()),
-        f32x4.mul(v128.load(lastPtr + i * sizeof<v128>()), f32x4.splat(persistence)),
-      ),
-    );
-  }*/
+    const persisted = f32x4.mul(f32x4_load(lastFft!, i), f32x4.splat(persistence));
+  
+    f32x4_store(f32x4.max(f32x4_load(result, i), persisted), out, i);
+  }
 
   // do last few elements
-  for (let i = /*simdSafeSize*/ 0; i < out.length; i++) {
+  for (let i = simdSafeSize; i < out.length; i++) {
     out[i] = result[i] + lastFft![i] * persistence;
   }
 
@@ -158,28 +142,11 @@ function maxAbsPeakOf(bufs: Array<Float32Array>): Float32Array {
 
   for (let bi = 0; bi < bufs.length; bi++) {
     const b = bufs[bi];
-    let maxV = f32x4.splat(0);
-    const ptr = b.dataStart;
 
-    // max over chunks of 4 floats, very quickly
-    const len = 4 * (b.length / 4);
-    for (let i = 0; i < len; i += 4) {
-      const vec = f32x4.abs(v128.load(ptr + i * sizeof<v128>()));
-      maxV = f32x4.max(maxV, vec);
-    }
+    const chunkMax = listAbsMax_f32(b);
 
-    let finalMax = Mathf.max(
-      Mathf.max(f32x4.extract_lane(maxV, 0), f32x4.extract_lane(maxV, 1)),
-      Mathf.max(f32x4.extract_lane(maxV, 2), f32x4.extract_lane(maxV, 3)),
-    );
-
-    // now just take the values we missed off due to only taking fours
-    for (let i = len; i < b.length; i++) {
-      finalMax = Mathf.max(finalMax, Mathf.abs(b[i]));
-    }
-
-    if (finalMax < max) continue;
-    max = finalMax;
+    if (chunkMax < max) continue;
+    max = chunkMax;
     maxBuf = b;
   }
 
@@ -214,21 +181,7 @@ export function centeredSlice(
   } else {
     // unhappy path - we need to pad it!
     padded = new Float32Array(width);
-    // setup copy
-    const inOset = start < 0 ? 0 : start;
-    // safe version for debugging in case fast version causes memory issues (rt asserts)
-    /*for (let i = 0; i < width - padE - padS; i++) {
-      assert(i + padS < padded.length, "(centeredSlice) dest must stay in range");
-      assert(i + inOset < buf.length, 
-        "(centeredSlice) src must stay in range (i: " + i.toString() + " width: " + width.toString() + " padS: " + padS.toString() + " padE: " + padE.toString() + ")"
-      );
-      padded[i + padS] = buf[i + inOset];
-    }*/
-    const copyInStart = buf.dataStart + Float32Array.BYTES_PER_ELEMENT * (inOset);
-    const copyOutStart = padded.dataStart + Float32Array.BYTES_PER_ELEMENT * padS;
-    const copyLen = Float32Array.BYTES_PER_ELEMENT * (width - padE - padS);
-
-    memory.copy(copyOutStart, copyInStart, copyLen);
+    memcpy_f32(buf, padded, start < 0 ? 0 : start, padS, width - padE - padS);
   }
 
   // TODO: fix shimmering due to downscaling
