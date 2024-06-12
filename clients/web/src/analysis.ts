@@ -192,7 +192,10 @@ watchEffect(async () => {
         slice.value = await centeredSlice(1, seekSamples, sliceLen, 5000);
 
         if (seekSamples) {
-          gonioPoints.value = await getGoniometerPoints(lastGonioIndex, seekSamples - lastGonioIndex);
+          // max length of 1/30th of a second at 44.1khz, to prevent stutters on copying like half a song back from wasm
+          const len = Math.min(seekSamples - lastGonioIndex, 1470);
+
+          gonioPoints.value = await getGoniometerPoints(lastGonioIndex, len);
           lastGonioIndex = seekSamples;
         }
       }),
