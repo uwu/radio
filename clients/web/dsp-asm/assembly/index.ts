@@ -3,7 +3,8 @@ import {
   f32x4_load,
   f32x4_store,
   listAbsMax_f32,
-  listMax_f32_UNCHECKED, listSqSum_f32,
+  listMax_f32_UNCHECKED, listNeg_f32,
+  listSqSum_f32,
   memcpy_f32,
 } from "./fastutils";
 
@@ -132,30 +133,32 @@ function sliceByCrossings(
   return buffers;
 }
 
-function maxAbsPeakOf(bufs: Array<Float32Array>): Float32Array {
+function maxBufLength(bufs: Array<Float32Array>): Float32Array {
   // don't just error because this is a common case with an all zeroes input, so fake a value
   //assert(bufs.length, "(maxAbsPeakOf) cannot pick a max of no items");
   if (!bufs.length) return new Float32Array(0);
 
   let maxBuf = bufs[0];
-  let max: f32 = 0;
+  let max: i32 = 0;
 
   for (let bi = 0; bi < bufs.length; bi++) {
     const b = bufs[bi];
 
-    const chunkMax = listAbsMax_f32(b);
-
-    if (chunkMax < max) continue;
-    max = chunkMax;
+    if (b.length < max) continue;
+    max = b.length;
     maxBuf = b;
   }
+
+  // attempt to normalize wave phase - take the sample 1/4 of the way in and make it positive
+  // this should always give an up-then-down motion
+  if (maxBuf[maxBuf.length / 4] < 0) listNeg_f32(maxBuf);
 
   return maxBuf;
 }
 
-// sliceByCrossings -> maxAbsPeakOf all in one go as an opt
+// sliceByCrossings -> maxBufLength all in one go as an opt
 export function sbcMax(_buf: Float32Array | null, start: i32, end: i32, n: i32): Float32Array {
-  return maxAbsPeakOf(sliceByCrossings(_buf, start, end, n));
+  return maxBufLength(sliceByCrossings(_buf, start, end, n));
 }
 
 export function centeredSlice(

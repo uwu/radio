@@ -6,11 +6,9 @@ export function listAbsMax_f32_UNCHECKED(buf: Float32Array, len: i32): f32 {
   let running = v128.splat<f32>(0);
 
   for (let i = 0; i < len; i += sizeof<v128>() / sizeof<f32>()) {
-    // load up a vec
-    const vec = f32x4.abs(v128.load(buf.dataStart + i * sizeof<v128>()));
     // pmax is faster than max due to not treating nulls etc
     // https://source.chromium.org/chromium/chromium/src/+/main:v8/src/compiler/backend/x64/code-generator-x64.cc;drc=8ab75a56a24f34d4f582261c99939ffa1446a3b7;l=2712
-    running = f32x4.pmax(running, vec);
+    running = f32x4.pmax(running, f32x4.abs(f32x4_load(buf, i)));
   }
 
   return Mathf.max(
@@ -24,11 +22,7 @@ export function listMax_f32_UNCHECKED(buf: Float32Array, len: i32): f32 {
   let running = v128.splat<f32>(f32.MIN_VALUE);
 
   for (let i = 0; i < len; i += sizeof<v128>() / sizeof<f32>()) {
-    // load up a vec
-    const vec = v128.load(buf.dataStart + i * sizeof<v128>());
-    // pmax is faster than max due to not treating nulls etc
-    // https://source.chromium.org/chromium/chromium/src/+/main:v8/src/compiler/backend/x64/code-generator-x64.cc;drc=8ab75a56a24f34d4f582261c99939ffa1446a3b7;l=2712
-    running = f32x4.pmax(running, vec);
+    running = f32x4.pmax(running, f32x4_load(buf, i));
   }
 
   return Mathf.max(
@@ -74,8 +68,7 @@ export function listSqSum_f32_UNCHECKED(buf: Float32Array, len: i32): f32 {
   let running = v128.splat<f32>(0);
 
   for (let i = 0; i < len; i += sizeof<v128>() / sizeof<f32>()) {
-    // load up a vec
-    const vec = v128.load(buf.dataStart + i * sizeof<v128>());
+    const vec = f32x4_load(buf, i)
     running = f32x4.add(running, f32x4.mul(vec, vec));
   }
 
@@ -99,6 +92,20 @@ export function listSqSum_f32(buf: Float32Array): f32 {
   }
 
   return running;
+}
+
+/** negates a buffer with SIMD */
+export function listNeg_f32(buf: Float32Array): void {
+  if (!buf.length) return;
+  
+  const simdSafeLen = 4 * (buf.length / 4);
+  for (let i = 0; i < simdSafeLen; i += sizeof<v128>() / sizeof<f32>()) {
+    f32x4_store(f32x4.neg(f32x4_load(buf, i)), buf, i);
+  }
+  
+  for (let i = simdSafeLen; i < buf.length; i++) {
+    buf[i] = -buf[i];
+  }
 }
 
 /** checked fast memory copy between two buffers.

@@ -9,7 +9,7 @@ import {
   enableAnalysis,
   peakDbfs,
   rmsDbfs,
-  peakHoldDbfs
+  peakHoldDbfs,
 } from "@/analysis";
 import { getDuration, seek } from "@/audio";
 
