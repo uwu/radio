@@ -85,9 +85,13 @@ export const slice = ref<Float32Array>();
 
 export const currentPeak = ref(0);
 export const currentRms = ref(0);
+export const currentPeakHold = ref(0);
 
 export const peakDbfs = () => 20 * Math.log10(currentPeak.value);
 export const rmsDbfs = () => 20 * Math.log10(currentRms.value);
+export const peakHoldDbfs = () => 20 * Math.log10(currentPeakHold.value);
+
+let peakHoldSetTime: number;
 
 function reset() {
   downscaled.value = undefined;
@@ -124,11 +128,19 @@ watchEffect(async () => {
           fftd.value = undefined;
         }
 
-        const s16m = ~~(buf.value!.sampleRate / 60);
+        const s16m = ~~(buf.value!.sampleRate / 30);
         const s300m = ~~(buf.value!.sampleRate * 0.3);
         if (seekSamples - s16m >= 0) {
           const pk = await samplePeak(undefined, seekSamples - s16m, seekSamples);
-          currentPeak.value = Math.max(currentPeak.value * 0.9, pk);
+          currentPeak.value = Math.max(currentPeak.value * 0.97, pk);
+
+          if (pk > currentPeakHold.value) {
+            currentPeakHold.value = pk;
+            peakHoldSetTime = performance.now();
+          }
+          if ((performance.now() - peakHoldSetTime) > 500) {
+            currentPeakHold.value *= 0.985;
+          }
         }
         if (seekSamples - s300m >= 0) {
           currentRms.value = await rms(undefined, seekSamples - s300m, seekSamples);

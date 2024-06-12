@@ -9,6 +9,7 @@ import {
   enableAnalysis,
   peakDbfs,
   rmsDbfs,
+  peakHoldDbfs
 } from "@/analysis";
 import { getDuration, seek } from "@/audio";
 
@@ -17,11 +18,12 @@ const RMS_OFFSET = 14; // dbFS, copied from REAPER
 
 // range +2 to -18dbFS, 0dbFS at 10% down from the top of the meter
 const displayPk = () => 0.1 + 0.05 * -peakDbfs();
+const displayPkHold = () => 0.1 + 0.05 * -peakHoldDbfs();
 // range -2 to -22dbFS, 0dbFS at 10% up off the top of the meter
 // or a range of (rms() + offset) of +12 to -8dbFS, 0 at 60% down
 const displayRms = () => 0.6 + 0.05 * -(rmsDbfs() + RMS_OFFSET);
 
-const peakTicks = [2, 1, 0, -3, -6, -9, -12].map((s) => 0.1 + 0.05 * -s);
+const peakTicks = [1, 0, -3, -6, -9, -12].map((s) => 0.1 + 0.05 * -s);
 
 const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + RMS_OFFSET));
 </script>
@@ -57,6 +59,9 @@ const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + 
         <div
           class="absolute bottom-0 left-2 w-5 bg-white"
           :style="{ top: 100 * displayPk() + '%' }" />
+        <div 
+          class="absolute left-2 w-5 border-t-4 b-t-gray-3"
+          :style="{ top: 100 * displayPkHold() + '%' }" />
         <div
           class="absolute bottom-0 left-9 w-2 bg-white"
           :style="{ top: 100 * displayRms() + '%' }" />
@@ -64,13 +69,13 @@ const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + 
         <div
           v-for="t of peakTicks"
           :key="'pt' + t"
-          class="absolute w-7 border-b b-b-gray-6"
+          class="absolute w-7 border-t b-t-gray-6"
           :style="{ top: 100 * t + '%' }" />
 
         <div
           v-for="t of rmsTicks"
           :key="'rt' + t"
-          class="absolute left-9 w-4 border-b b-b-gray-6"
+          class="absolute left-9 w-4 border-t b-t-gray-6"
           :style="{ top: 100 * t + '%' }" />
       </div>
     </div>
