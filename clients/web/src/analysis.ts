@@ -11,6 +11,7 @@ const buf = ref<AudioBuffer>();
 
 export function setAnalysisBuf(b: AudioBuffer) {
   buf.value = b;
+  reset();
 }
 
 // === WORKER HANDLING CODE ===
@@ -66,6 +67,12 @@ const fft = (
 const centeredSlice = (buf: undefined | Float32Array, pos: number, width: number, downs?: number) =>
   callWorker<Float32Array>(5, [buf, pos, width, downs]);
 
+const samplePeak = (buf: undefined | Float32Array, start?: number, end?: number) =>
+  callWorker<number>(6, [buf, start, end]);
+
+const rms = (buf: undefined | Float32Array, start?: number, end?: number) =>
+  callWorker<number>(7, [buf, start, end]);
+
 // === USEFUL REACTIVE STUFF ===
 
 export const downscaled = ref<Float32Array>();
@@ -75,6 +82,21 @@ export const singlePeriod = ref<Float32Array>();
 export const fftd = ref<Float32Array>();
 
 export const slice = ref<Float32Array>();
+
+export const currentPeak = ref(0);
+export const currentRms = ref(0);
+
+export const peakDbfs = () => 20 * Math.log10(currentPeak.value);
+export const rmsDbfs = () => 20 * Math.log10(currentRms.value);
+
+function reset() {
+  downscaled.value = undefined;
+  singlePeriod.value = undefined;
+  fftd.value = undefined;
+  slice.value = undefined;
+  currentPeak.value = 0;
+  currentRms.value = 0;
+}
 
 const innerCleanups: WatchStopHandle[] = [];
 watchEffect(async () => {
@@ -97,17 +119,24 @@ watchEffect(async () => {
             Math.abs,
           );
           singlePeriod.value = await sbcMax(undefined, seekSamples, seekSamples + 5000, 2);
-        }
-        else {
+        } else {
           singlePeriod.value = undefined;
           fftd.value = undefined;
+        }
+
+        const s16m = ~~(buf.value!.sampleRate / 60);
+        const s300m = ~~(buf.value!.sampleRate * 0.3);
+        if (seekSamples - s16m >= 0) {
+          const pk = await samplePeak(undefined, seekSamples - s16m, seekSamples);
+          currentPeak.value = Math.max(currentPeak.value * 0.9, pk);
+        }
+        if (seekSamples - s300m >= 0) {
+          currentRms.value = await rms(undefined, seekSamples - s300m, seekSamples);
         }
 
         const sliceLen = 7.5 * buf.value!.sampleRate;
         slice.value = await centeredSlice(undefined, seekSamples, sliceLen, 5_000);
       }),
     );
-  } else {
-    downscaled.value = undefined;
-  }
+  } else reset();
 });

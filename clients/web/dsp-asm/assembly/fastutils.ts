@@ -69,6 +69,38 @@ export function listAbsMax_f32(buf: Float32Array): f32 {
   return running;
 }
 
+/** UNSAFE CONTRACT: len MUST be a multiple of 4, and within buffer bounds */
+export function listSqSum_f32_UNCHECKED(buf: Float32Array, len: i32): f32 {
+  let running = v128.splat<f32>(0);
+
+  for (let i = 0; i < len; i += sizeof<v128>() / sizeof<f32>()) {
+    // load up a vec
+    const vec = v128.load(buf.dataStart + i * sizeof<v128>());
+    running = f32x4.add(running, f32x4.mul(vec, vec));
+  }
+
+  return f32x4.extract_lane(running, 0)
+    + f32x4.extract_lane(running, 1)
+    + f32x4.extract_lane(running, 2)
+    + f32x4.extract_lane(running, 3);
+}
+
+/** finds the sum of the squares of the buffer with SIMD */
+export function listSqSum_f32(buf: Float32Array): f32 {
+  assert(buf.length, "cannot get abs max of an empty buffer");
+
+  const simdSafeLen = 4 * (buf.length / 4);
+
+  // if buffer is smaller than 4, this will return 0
+  let running = listSqSum_f32_UNCHECKED(buf, simdSafeLen);
+
+  for (let i = simdSafeLen; i < buf.length; i++) {
+    running += buf[i] * buf[i];
+  }
+
+  return running;
+}
+
 /** checked fast memory copy between two buffers.
  * pass two buffers, the bytes per element, the offsets for where to write to, and the number of elemments.
  * a raw byte copy can be achieved with sz = 1.

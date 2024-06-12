@@ -3,7 +3,7 @@ import {
   f32x4_load,
   f32x4_store,
   listAbsMax_f32,
-  listMax_f32_UNCHECKED,
+  listMax_f32_UNCHECKED, listSqSum_f32,
   memcpy_f32,
 } from "./fastutils";
 
@@ -187,4 +187,23 @@ export function centeredSlice(
   // TODO: fix shimmering due to downscaling
   // increasing the downs size enough to remove shimmering while scrolling is too slow
   return downs == -1 ? padded : downscale(padded, downs);
+}
+
+export function samplePeak(_buf: Float32Array | null, start: i32, end: i32): f32 {
+  const buf = _buf ? _buf : currentBuf!;
+  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+  if (start < 1) start = 0;
+  if (end < 1) end = buf.length;
+
+  return listAbsMax_f32(buf.subarray(start, end));
+}
+
+export function rms(_buf: Float32Array | null, start: i32, end: i32): f32 {
+  const buf = _buf ? _buf : currentBuf!;
+  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+  if (start < 1) start = 0;
+  if (end < 1) end = buf.length;
+
+  // root-mean-square is [the root of [the mean of [the squares]]]
+  return Mathf.sqrt(listSqSum_f32(buf.subarray(start, end)) / <f32>(end - start));
 }
