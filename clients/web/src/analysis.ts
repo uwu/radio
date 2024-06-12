@@ -19,6 +19,9 @@ export function setAnalysisBuf(b: AudioBuffer) {
   cleanup1 = watchEffect(async () => {
     cleanup2?.();
 
+    // will cause a brief stutter on song change
+    // oh well! we're already repainting the ui
+    // without interaction so its not toooo noticeable i figure
     await uploadBuffer(b.getChannelData(0), b.getChannelData(1));
     downscaled.value = await downscale(bufMain, 5000);
 
