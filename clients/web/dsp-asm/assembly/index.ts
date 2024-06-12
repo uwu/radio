@@ -10,17 +10,83 @@ import {
 } from "./fastutils";
 
 // copying arrays across thread boundaries is very expensive, so provide a mechanism to reuse it.
-let currentBuf: Float32Array | null;
+let currentBuf1: Float32Array | null; // left
+let currentBuf2: Float32Array | null; // right
+let currentBuf3: Float32Array | null; // mid
+let currentBuf4: Float32Array | null; // side
 
-export function uploadBuf(buf: Float32Array): void {
-  currentBuf = buf;
-  // reset fft as we have a new buffer
-  lastFft = null;
+let lastFft: Float32Array | null;
+
+// common logic for bsel, _buf params
+function resolveBuffer(bsel: i32, _b: null | Float32Array): Float32Array {
+  switch (bsel) {
+    case 0:
+      assert(_b, "cannot pass null buffer and use it");
+      return _b!;
+
+    case 1:
+      assert(currentBuf1, "cannot try to use buffer 1 when its not uploaded");
+      return currentBuf1!;
+
+    case 2:
+      assert(currentBuf2, "cannot try to use buffer 2 when its not uploaded");
+      return currentBuf2!;
+
+    case 3:
+      assert(currentBuf3, "cannot try to use buffer 3 when its not set");
+      return currentBuf3!;
+
+    case 4:
+      assert(currentBuf4, "cannot try to use buffer 4 when its not set");
+      return currentBuf4!;
+
+    default:
+      assert(false, "cannot try to use a buffer selection value outside than 0-4 inclusive");
+      return null!; // for static analysis
+  }
 }
 
-export function downscale(_buf: Float32Array | null, size: i32, ash: i32): Float32Array {
-  const buf = _buf ? _buf : currentBuf!;
-  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+export function uploadBuf(buf1: Float32Array, buf2: null | Float32Array): void {
+  currentBuf1 = buf1;
+  if (buf2) currentBuf2 = buf2;
+  // reset fft as we have a new buffer
+  lastFft = null;
+  // fill buffers 3 & 4
+  calcMidSide();
+}
+
+function calcMidSide(): void {
+  assert(currentBuf1, "both buffers must be in place to swap them to M-S");
+  assert(currentBuf2, "both buffers must be in place to swap them to M-S");
+  assert(
+    currentBuf1!.length === currentBuf2!.length,
+    "both buffers must be the same size to swap them to M-S",
+  );
+
+  currentBuf3 = new Float32Array(currentBuf1!.length);
+  currentBuf4 = new Float32Array(currentBuf1!.length);
+
+  // unsafe simd stuff here because this feels way too specific to go in fastutils?
+  const simdSafeLen = 4 * (currentBuf1!.length / 4);
+
+  for (let i = 0; i < simdSafeLen; i += 4) {
+    const s1 = f32x4_load(currentBuf1!, i);
+    const s2 = f32x4_load(currentBuf2!, i);
+
+    f32x4_store(f32x4.div(f32x4.add(s1, s2), f32x4.splat(2)), currentBuf3!, i);
+    f32x4_store(f32x4.div(f32x4.sub(s1, s2), f32x4.splat(2)), currentBuf4!, i);
+  }
+
+  for (let i = simdSafeLen; i < currentBuf1!.length; i++) {
+    const s1 = currentBuf1![i];
+    const s2 = currentBuf2![i];
+    currentBuf3![i] = (s1 + s2) / 2;
+    currentBuf4![i] = (s1 - s2) / 2;
+  }
+}
+
+export function downscale(bsel: i32, _buf: Float32Array | null, size: i32, ash: i32): Float32Array {
+  const buf = resolveBuffer(bsel, _buf);
 
   // part of the scrolling waveform's anti-shimmer measures
   if (ash < 0) ash = 0;
@@ -45,17 +111,15 @@ export function downscale(_buf: Float32Array | null, size: i32, ash: i32): Float
   return res;
 }
 
-let lastFft: Float32Array | null;
-
 export function fft(
+  bsel: i32,
   _buf: Float32Array | null,
   start: i32,
   end: i32,
   pad: i32,
   persistence: f32,
 ): Float32Array {
-  const buf = _buf ? _buf : currentBuf!;
-  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+  const buf = resolveBuffer(bsel, _buf);
   if (start === -1) start = 0;
   if (end === -1) end = buf.length;
   if (pad === -1) pad = 0;
@@ -105,13 +169,13 @@ export function fft(
 }
 
 function sliceByCrossings(
+  bsel: i32,
   _buf: Float32Array | null,
   start: i32,
   end: i32,
   n: i32,
 ): Array<Float32Array> {
-  const buf = _buf ? _buf : currentBuf!;
-  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+  const buf = resolveBuffer(bsel, _buf);
   const buffers = new Array<Float32Array>();
   if (start === -1) start = 0;
   if (end === -1) end = buf.length;
@@ -167,18 +231,24 @@ function maxBufLength(bufs: Array<Float32Array>): Float32Array {
 }
 
 // sliceByCrossings -> maxBufLength all in one go as an opt
-export function sbcMax(_buf: Float32Array | null, start: i32, end: i32, n: i32): Float32Array {
-  return maxBufLength(sliceByCrossings(_buf, start, end, n));
+export function sbcMax(
+  bsel: i32,
+  _buf: Float32Array | null,
+  start: i32,
+  end: i32,
+  n: i32,
+): Float32Array {
+  return maxBufLength(sliceByCrossings(bsel, _buf, start, end, n));
 }
 
 export function centeredSlice(
+  bsel: i32,
   _buf: Float32Array | null,
   pos: i32,
   width: i32,
   downs: i32,
 ): Float32Array {
-  const buf = _buf ? _buf : currentBuf!;
-  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+  const buf = resolveBuffer(bsel, _buf);
 
   const start = pos - width / 2;
   const end = pos + width / 2;
@@ -199,21 +269,19 @@ export function centeredSlice(
 
   // offset scrolls the chunks used for downscaling with the wave to fix shimmering
   // increasing the downs size enough to remove shimmering while scrolling is too slow
-  return downs == -1 ? padded : downscale(padded, downs, pos);
+  return downs == -1 ? padded : downscale(0, padded, downs, pos);
 }
 
-export function samplePeak(_buf: Float32Array | null, start: i32, end: i32): f32 {
-  const buf = _buf ? _buf : currentBuf!;
-  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+export function samplePeak(bsel: i32, _buf: Float32Array | null, start: i32, end: i32): f32 {
+  const buf = resolveBuffer(bsel, _buf);
   if (start < 1) start = 0;
   if (end < 1) end = buf.length;
 
   return listAbsMax_f32(buf.subarray(start, end));
 }
 
-export function rms(_buf: Float32Array | null, start: i32, end: i32): f32 {
-  const buf = _buf ? _buf : currentBuf!;
-  assert(buf, "cannot pass a null buffer without first uploading a buffer");
+export function rms(bsel: i32, _buf: Float32Array | null, start: i32, end: i32): f32 {
+  const buf = resolveBuffer(bsel, _buf);
   if (start < 1) start = 0;
   if (end < 1) end = buf.length;
 

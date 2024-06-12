@@ -55,7 +55,7 @@ onMounted(() => {
       ctx.lineTo(0, H / 2);
 
       const prev = ctx.strokeStyle;
-      ctx.strokeStyle = "#333";
+      ctx.strokeStyle = "rgb(75, 85, 99)"; // uno gray-6
       ctx.stroke();
       ctx.strokeStyle = prev;
     }

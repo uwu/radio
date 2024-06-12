@@ -44,19 +44,19 @@ async function callWorker<T = unknown>(cmd: number, args: unknown[]): Promise<T>
 
 // sets the current worker's default buffer to this one
 // this avoids unnecessarily sending the same buffer multiple times
-const uploadBuffer = (buf: Float32Array) => callWorker(1, [buf]);
+const uploadBuffer = (buf1: Float32Array, buf2?: Float32Array) => callWorker(1, [buf1, buf2]);
 
 // downscales buf to size, using naive sampling
-const downscale = (buf: undefined | Float32Array, size: number) =>
+const downscale = (buf: WasmBuf, size: number) =>
   callWorker<Float32Array>(2, [buf, size]);
 
 // slices a buffer every n zero crossings, and returns the slice with the biggest peak amplitude
-const sbcMax = (buf: undefined | Float32Array, start?: number, end?: number, n?: number) =>
+const sbcMax = (buf: WasmBuf, start?: number, end?: number, n?: number) =>
   callWorker<Float32Array>(3, [buf, start, end, n]);
 
 // computes the FFT of the buffer in the range
 const fft = (
-  buf: undefined | Float32Array,
+  buf: WasmBuf,
   start?: number,
   end?: number,
   pad?: number,
@@ -64,14 +64,23 @@ const fft = (
 ) => callWorker<Float32Array>(4, [buf, start, end, pad, persistence]);
 
 // gets a slice from buf centered at the point with the given width, padding with zeroes if necessary, and optionally downscales
-const centeredSlice = (buf: undefined | Float32Array, pos: number, width: number, downs?: number) =>
+const centeredSlice = (buf: WasmBuf, pos: number, width: number, downs?: number) =>
   callWorker<Float32Array>(5, [buf, pos, width, downs]);
 
-const samplePeak = (buf: undefined | Float32Array, start?: number, end?: number) =>
+const samplePeak = (buf: WasmBuf, start?: number, end?: number) =>
   callWorker<number>(6, [buf, start, end]);
 
-const rms = (buf: undefined | Float32Array, start?: number, end?: number) =>
+const rms = (buf: WasmBuf, start?: number, end?: number) =>
   callWorker<number>(7, [buf, start, end]);
+
+type WasmBuf = Float32Array | BUF;
+
+enum BUF {
+  L = 1,
+  R,
+  M,
+  S,
+}
 
 // === USEFUL REACTIVE STUFF ===
 
@@ -83,32 +92,48 @@ export const fftd = ref<Float32Array>();
 
 export const slice = ref<Float32Array>();
 
-export const currentPeak = ref(0);
-export const currentRms = ref(0);
-export const currentPeakHold = ref(0);
+export const currentPeakL = ref(0);
+export const currentPeakR = ref(0);
+export const currentRmsL = ref(0);
+export const currentRmsR = ref(0);
+export const currentPeakHoldL = ref(0);
+export const currentPeakHoldR = ref(0);
 
-export const peakDbfs = () => 20 * Math.log10(currentPeak.value);
-export const rmsDbfs = () => 20 * Math.log10(currentRms.value);
-export const peakHoldDbfs = () => 20 * Math.log10(currentPeakHold.value);
+export const peakDbfsL = () => 20 * Math.log10(currentPeakL.value);
+export const peakDbfsR = () => 20 * Math.log10(currentPeakR.value);
+export const rmsDbfsL = () => 20 * Math.log10(currentRmsL.value);
+export const rmsDbfsR = () => 20 * Math.log10(currentRmsR.value);
+export const peakHoldDbfsL = () => 20 * Math.log10(currentPeakHoldL.value);
+export const peakHoldDbfsR = () => 20 * Math.log10(currentPeakHoldR.value);
 
-let peakHoldSetTime: number;
+let peakHoldSetTimeL: number;
+let peakHoldSetTimeR: number;
 
 function reset() {
   downscaled.value = undefined;
   singlePeriod.value = undefined;
   fftd.value = undefined;
   slice.value = undefined;
-  currentPeak.value = 0;
-  currentRms.value = 0;
+  currentPeakL.value = 0;
+  currentPeakR.value = 0;
+  currentPeakHoldL.value = 0;
+  currentPeakHoldR.value = 0;
+  currentRmsL.value = 0;
+  currentRmsR.value = 0;
 }
 
 const innerCleanups: WatchStopHandle[] = [];
 watchEffect(async () => {
+  const bufMain = BUF.M; // most metering is done off this channel
+  // I kind of like M/S volume metering but if you don't *know* its M/S it looks weird as hell sooo
+  const bufM1 = BUF.L; // left side peak & rms metering
+  const bufM2 = BUF.R; // right side peak & rms metering
+
   innerCleanups.forEach((c) => c());
   if (enableAnalysis.value && buf.value) {
     downscaled.value = undefined;
-    await uploadBuffer(buf.value.getChannelData(0));
-    downscaled.value = await downscale(undefined, 5000);
+    await uploadBuffer(buf.value.getChannelData(0), buf.value.getChannelData(1));
+    downscaled.value = await downscale(bufMain, 5000);
 
     innerCleanups.push(
       watchEffect(async () => {
@@ -119,10 +144,10 @@ watchEffect(async () => {
         // ignore if we're gonna overflow
         if (seekSamples + 10_000 < buf.value!.length) {
           // more samples = more accuracy, more padding = smoother plot
-          fftd.value = (await fft(undefined, seekSamples, seekSamples + 10_000, 0, 0.8)).map(
+          fftd.value = (await fft(bufMain, seekSamples, seekSamples + 10_000, 0, 0.8)).map(
             Math.abs,
           );
-          singlePeriod.value = await sbcMax(undefined, seekSamples, seekSamples + 5000, 2);
+          singlePeriod.value = await sbcMax(bufMain, seekSamples, seekSamples + 5000, 2);
         } else {
           singlePeriod.value = undefined;
           fftd.value = undefined;
@@ -131,23 +156,34 @@ watchEffect(async () => {
         const s16m = ~~(buf.value!.sampleRate / 30);
         const s300m = ~~(buf.value!.sampleRate * 0.3);
         if (seekSamples - s16m >= 0) {
-          const pk = await samplePeak(undefined, seekSamples - s16m, seekSamples);
-          currentPeak.value = Math.max(currentPeak.value * 0.97, pk);
+          const pkl = await samplePeak(bufM1, seekSamples - s16m, seekSamples);
+          const pkr = await samplePeak(bufM2, seekSamples - s16m, seekSamples);
+          currentPeakL.value = Math.max(currentPeakL.value * 0.97, pkl);
+          currentPeakR.value = Math.max(currentPeakR.value * 0.97, pkr);
 
-          if (pk > currentPeakHold.value) {
-            currentPeakHold.value = pk;
-            peakHoldSetTime = performance.now();
+          if (pkl > currentPeakHoldL.value) {
+            currentPeakHoldL.value = pkl;
+            peakHoldSetTimeL = performance.now();
           }
-          if ((performance.now() - peakHoldSetTime) > 500) {
-            currentPeakHold.value *= 0.985;
+          if (pkr > currentPeakHoldR.value) {
+            currentPeakHoldR.value = pkr;
+            peakHoldSetTimeR = performance.now();
+          }
+
+          if ((performance.now() - peakHoldSetTimeL) > 500) {
+            currentPeakHoldL.value *= 0.985;
+          }
+          if ((performance.now() - peakHoldSetTimeR) > 500) {
+            currentPeakHoldR.value *= 0.985;
           }
         }
         if (seekSamples - s300m >= 0) {
-          currentRms.value = await rms(undefined, seekSamples - s300m, seekSamples);
+          currentRmsL.value = await rms(bufM1, seekSamples - s300m, seekSamples);
+          currentRmsR.value = await rms(bufM2, seekSamples - s300m, seekSamples);
         }
 
         const sliceLen = 7.5 * buf.value!.sampleRate;
-        slice.value = await centeredSlice(undefined, seekSamples, sliceLen, 5000);
+        slice.value = await centeredSlice(1, seekSamples, sliceLen, 5000);
       }),
     );
   } else reset();

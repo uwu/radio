@@ -18,24 +18,31 @@ function wasmInit() {
     }));
 }
 
-const uploadBuffer = (buf) => wasmUpload(buf);
+const bsel = (buf) => (typeof buf === "number" ? buf : 0);
+const bval = (buf) => (typeof buf === "number" ? undefined : buf);
 
-const downscale = (buf, size) => wasmDS(buf, size, -1); // -1 to disable antishimmer
+const uploadBuffer = (buf1, buf2) => wasmUpload(buf1, buf2);
 
-const sbcMax = (buf, start, end, n) => wasmSbcMax(buf, start ?? -1, end ?? -1, n ?? -1);
+const downscale = (buf, size) => wasmDS(bsel(buf), bval(buf), size, -1); // -1 to disable antishimmer
+
+const sbcMax = (buf, start, end, n) =>
+  wasmSbcMax(bsel(buf), bval(buf), start ?? -1, end ?? -1, n ?? -1);
 
 const fft = (buf, start, end, pad, persistence) =>
-  wasmFFT(buf, start ?? -1, end ?? -1, pad ?? -1, persistence ?? 0);
+  wasmFFT(bsel(buf), bval(buf), start ?? -1, end ?? -1, pad ?? -1, persistence ?? 0);
 
-const centeredSlice = (buf, pos, width, downs) => wasmCentSlic(buf, pos, width, downs ?? -1);
+const centeredSlice = (buf, pos, width, downs) =>
+  wasmCentSlic(bsel(buf), bval(buf), pos, width, downs ?? -1);
 
-const samplePeak = (buf, start, end) => wasmSamPk(buf, start ?? -1, end ?? -1);
+const samplePeak = (buf, start, end) => wasmSamPk(bsel(buf), bval(buf), start ?? -1, end ?? -1);
 
-const rms = (buf, start, end) => wasmRms(buf, start ?? -1, end ?? -1);
+const rms = (buf, start, end) => wasmRms(bsel(buf), bval(buf), start ?? -1, end ?? -1);
 
 onmessage = (e) => {
   // rip type safety
-  const func = [wasmInit, uploadBuffer, downscale, sbcMax, fft, centeredSlice, samplePeak, rms][e.data[0]];
+  const func = [wasmInit, uploadBuffer, downscale, sbcMax, fft, centeredSlice, samplePeak, rms][
+    e.data[0]
+  ];
   if (!func) postMessage(["ERR", `${e.data[0]} is not a command`]);
 
   const res = func(...e.data.slice(2));
