@@ -1,4 +1,4 @@
-import { ref, watchEffect, type WatchStopHandle } from "vue";
+import { ref, watch, watchEffect, type WatchStopHandle } from "vue";
 import WORKER from "./analysisWorker.js?worker";
 import { seek } from "./audio";
 
@@ -9,9 +9,21 @@ import { seek } from "./audio";
 export const enableAnalysis = ref(false);
 const buf = ref<AudioBuffer>();
 
+let cleanup1: WatchStopHandle;
+let cleanup2: WatchStopHandle;
 export function setAnalysisBuf(b: AudioBuffer) {
   buf.value = b;
   reset();
+
+  cleanup1?.();
+  cleanup1 = watchEffect(async () => {
+    cleanup2?.();
+
+    await uploadBuffer(b.getChannelData(0), b.getChannelData(1));
+    downscaled.value = await downscale(bufMain, 5000);
+
+    cleanup2 = watchEffect(updateVis);
+  });
 }
 
 // === WORKER HANDLING CODE ===
@@ -79,6 +91,12 @@ enum BUF {
   S,
 }
 
+const bufMain = BUF.M; // most metering is done off this channel
+// left side peak & rms metering
+const bufM1 = () => (volumeMeteringMidSide.value ? BUF.M : BUF.L);
+// right side peak & rms metering
+const bufM2 = () => (volumeMeteringMidSide.value ? BUF.S : BUF.R);
+
 // === USEFUL REACTIVE STUFF ===
 
 export const downscaled = ref<Float32Array>();
@@ -127,78 +145,61 @@ function reset() {
 // for ui purposes
 export const volumeMeteringMidSide = ref(false);
 
-const innerCleanups: WatchStopHandle[] = [];
-watchEffect(async () => {
-  const bufMain = BUF.M; // most metering is done off this channel
-  // left side peak & rms metering
-  const bufM1 = () => (volumeMeteringMidSide.value ? BUF.M : BUF.L);
-  // right side peak & rms metering
-  const bufM2 = () => (volumeMeteringMidSide.value ? BUF.S : BUF.R);
+// this is usable directly as a watchEffect() arg.
+async function updateVis() {
+  if (seek.value === undefined || !enableAnalysis.value) return;
 
-  innerCleanups.forEach((c) => c());
-  if (enableAnalysis.value && buf.value) {
-    downscaled.value = undefined;
-    await uploadBuffer(buf.value.getChannelData(0), buf.value.getChannelData(1));
-    downscaled.value = await downscale(bufMain, 5000);
+  const seekSamples = seek.value * buf.value!.sampleRate;
 
-    innerCleanups.push(
-      watchEffect(async () => {
-        if (seek.value === undefined) return;
-
-        const seekSamples = seek.value * buf.value!.sampleRate;
-
-        // ignore if we're gonna overflow
-        if (seekSamples + 10_000 < buf.value!.length) {
-          // more samples = more accuracy, more padding = smoother plot
-          fftd.value = (await fft(bufMain, seekSamples, seekSamples + 10_000, 0, 0.8)).map(
-            Math.abs,
-          );
-          singlePeriod.value = await sbcMax(bufMain, seekSamples, seekSamples + 5000, 2);
-        } else {
-          singlePeriod.value = undefined;
-          fftd.value = undefined;
-        }
-
-        const s16m = ~~(buf.value!.sampleRate / 30);
-        const s300m = ~~(buf.value!.sampleRate * 0.3);
-        if (seekSamples - s16m >= 0) {
-          const pkl = await samplePeak(bufM1(), seekSamples - s16m, seekSamples);
-          const pkr = await samplePeak(bufM2(), seekSamples - s16m, seekSamples);
-          currentPeakL.value = Math.max(currentPeakL.value * 0.97, pkl);
-          currentPeakR.value = Math.max(currentPeakR.value * 0.97, pkr);
-
-          if (pkl > currentPeakHoldL.value) {
-            currentPeakHoldL.value = pkl;
-            peakHoldSetTimeL = performance.now();
-          }
-          if (pkr > currentPeakHoldR.value) {
-            currentPeakHoldR.value = pkr;
-            peakHoldSetTimeR = performance.now();
-          }
-
-          if (performance.now() - peakHoldSetTimeL > 500) {
-            currentPeakHoldL.value *= 0.985;
-          }
-          if (performance.now() - peakHoldSetTimeR > 500) {
-            currentPeakHoldR.value *= 0.985;
-          }
-        }
-        if (seekSamples - s300m >= 0) {
-          currentRmsL.value = await rms(bufM1(), seekSamples - s300m, seekSamples);
-          currentRmsR.value = await rms(bufM2(), seekSamples - s300m, seekSamples);
-        }
-
-        const sliceLen = 7.5 * buf.value!.sampleRate;
-        slice.value = await centeredSlice(1, seekSamples, sliceLen, 5000);
-
-        if (seekSamples) {
-          // max length of 1/30th of a second at 44.1khz, to prevent stutters on copying like half a song back from wasm
-          const len = Math.min(seekSamples - lastGonioIndex, 1470);
-
-          gonioPoints.value = await getGoniometerPoints(lastGonioIndex, len);
-          lastGonioIndex = seekSamples;
-        }
-      }),
+  // ignore if we're gonna overflow
+  if (seekSamples + 10_000 < buf.value!.length) {
+    // more samples = more accuracy, more padding = smoother plot
+    fftd.value = (await fft(bufMain, seekSamples, seekSamples + 10_000, 0, 0.8)).map(
+      Math.abs,
     );
-  } else reset();
-});
+    singlePeriod.value = await sbcMax(bufMain, seekSamples, seekSamples + 5000, 2);
+  } else {
+    singlePeriod.value = undefined;
+    fftd.value = undefined;
+  }
+
+  const s16m = ~~(buf.value!.sampleRate / 30);
+  const s300m = ~~(buf.value!.sampleRate * 0.3);
+  if (seekSamples - s16m >= 0) {
+    const pkl = await samplePeak(bufM1(), seekSamples - s16m, seekSamples);
+    const pkr = await samplePeak(bufM2(), seekSamples - s16m, seekSamples);
+    currentPeakL.value = Math.max(currentPeakL.value * 0.97, pkl);
+    currentPeakR.value = Math.max(currentPeakR.value * 0.97, pkr);
+
+    if (pkl > currentPeakHoldL.value) {
+      currentPeakHoldL.value = pkl;
+      peakHoldSetTimeL = performance.now();
+    }
+    if (pkr > currentPeakHoldR.value) {
+      currentPeakHoldR.value = pkr;
+      peakHoldSetTimeR = performance.now();
+    }
+
+    if (performance.now() - peakHoldSetTimeL > 500) {
+      currentPeakHoldL.value *= 0.985;
+    }
+    if (performance.now() - peakHoldSetTimeR > 500) {
+      currentPeakHoldR.value *= 0.985;
+    }
+  }
+  if (seekSamples - s300m >= 0) {
+    currentRmsL.value = await rms(bufM1(), seekSamples - s300m, seekSamples);
+    currentRmsR.value = await rms(bufM2(), seekSamples - s300m, seekSamples);
+  }
+
+  const sliceLen = 7.5 * buf.value!.sampleRate;
+  slice.value = await centeredSlice(1, seekSamples, sliceLen, 5000);
+
+  if (seekSamples) {
+    // max length of 1/30th of a second at 44.1khz, to prevent stutters on copying like half a song back from wasm
+    const len = Math.min(seekSamples - lastGonioIndex, 1470);
+
+    gonioPoints.value = await getGoniometerPoints(lastGonioIndex, len);
+    lastGonioIndex = seekSamples;
+  }
+}
