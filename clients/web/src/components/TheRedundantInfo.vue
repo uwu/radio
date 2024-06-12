@@ -55,11 +55,11 @@ const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + 
         <div class="aspect-ratio-square flex-shrink-0">goniometer</div>
       </div>
 
-      <div class="grid-col-start-2 grid-row-span-3 ml-8 w-30 relative">
+      <div class="grid-col-start-2 grid-row-span-3 ml-8 w-30 relative overflow-clip">
         <div
           class="absolute bottom-0 left-2 w-5 bg-white"
           :style="{ top: 100 * displayPk() + '%' }" />
-        <div 
+        <div
           class="absolute left-2 w-5 border-t-4 b-t-gray-3"
           :style="{ top: 100 * displayPkHold() + '%' }" />
         <div

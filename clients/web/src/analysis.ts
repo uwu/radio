@@ -147,7 +147,7 @@ watchEffect(async () => {
         }
 
         const sliceLen = 7.5 * buf.value!.sampleRate;
-        slice.value = await centeredSlice(undefined, seekSamples, sliceLen, 5_000);
+        slice.value = await centeredSlice(undefined, seekSamples, sliceLen, 5000);
       }),
     );
   } else reset();

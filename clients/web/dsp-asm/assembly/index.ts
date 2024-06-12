@@ -3,7 +3,8 @@ import {
   f32x4_load,
   f32x4_store,
   listAbsMax_f32,
-  listMax_f32_UNCHECKED, listNeg_f32,
+  listMax_f32,
+  listNeg_f32,
   listSqSum_f32,
   memcpy_f32,
 } from "./fastutils";
@@ -17,19 +18,28 @@ export function uploadBuf(buf: Float32Array): void {
   lastFft = null;
 }
 
-export function downscale(_buf: Float32Array | null, size: i32): Float32Array {
+export function downscale(_buf: Float32Array | null, size: i32, ash: i32): Float32Array {
   const buf = _buf ? _buf : currentBuf!;
   assert(buf, "cannot pass a null buffer without first uploading a buffer");
+
+  // part of the scrolling waveform's anti-shimmer measures
+  if (ash < 0) ash = 0;
+
   // round chunk up to a multiple of 4
+  // this increases the # of chunks that are maxed *entirely* with simd
   const fchunkSz = 4 * Math.ceil(<f64>buf.length / <f64>size / 4);
   const nChunks = <i32>Math.floor(<f64>buf.length / fchunkSz);
   const chunkSz = <i32>fchunkSz;
 
+  ash %= chunkSz; // the caller does not know the chunk size, so `ash` is likely to be huge
+  ash = -ash; // counteract scrolling motion (i think this is the correct direction?)
+
   const res = new Float32Array(nChunks);
   for (let ci = 0; ci < nChunks; ci++) {
-    const b = buf.subarray(ci * chunkSz, (ci + 1) * chunkSz);
-    // UNSAFE: the length of a chunk is always % 4
-    res[ci] = listMax_f32_UNCHECKED(b, b.length);
+    const b = buf.subarray(ci * chunkSz + ash, (ci + 1) * chunkSz + ash);
+    if (b.length) {
+      res[ci] = listMax_f32(b);
+    } // TODO: why?
   }
 
   return res;
@@ -81,7 +91,7 @@ export function fft(
   for (let i = 0; i < simdSafeSize; i += 4) {
     // out_i = max(res_i, last_i * persistence)
     const persisted = f32x4.mul(f32x4_load(lastFft!, i), f32x4.splat(persistence));
-  
+
     f32x4_store(f32x4.max(f32x4_load(result, i), persisted), out, i);
   }
 
@@ -187,9 +197,9 @@ export function centeredSlice(
     memcpy_f32(buf, padded, start < 0 ? 0 : start, padS, width - padE - padS);
   }
 
-  // TODO: fix shimmering due to downscaling
+  // offset scrolls the chunks used for downscaling with the wave to fix shimmering
   // increasing the downs size enough to remove shimmering while scrolling is too slow
-  return downs == -1 ? padded : downscale(padded, downs);
+  return downs == -1 ? padded : downscale(padded, downs, pos);
 }
 
 export function samplePeak(_buf: Float32Array | null, start: i32, end: i32): f32 {

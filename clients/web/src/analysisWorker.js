@@ -20,7 +20,7 @@ function wasmInit() {
 
 const uploadBuffer = (buf) => wasmUpload(buf);
 
-const downscale = (buf, size) => wasmDS(buf, size);
+const downscale = (buf, size) => wasmDS(buf, size, -1); // -1 to disable antishimmer
 
 const sbcMax = (buf, start, end, n) => wasmSbcMax(buf, start ?? -1, end ?? -1, n ?? -1);
 
