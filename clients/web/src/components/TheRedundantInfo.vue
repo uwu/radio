@@ -39,7 +39,7 @@ const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + 
   <div class="z-5 absolute w-screen h-screen bg-black flex flex-col gap-2">
     <span class="text-lg z-1 mt-2 text-center">redundant information mode</span>
 
-    <div class="grid grid-rows-3 grid-flow-col grid-cols-[1fr_auto] flex-grow">
+    <div class="grid grid-rows-3 grid-flow-col grid-cols-[1fr_auto] flex-grow ml-2 mb-2">
       <div class="relative">
         <div
           class="absolute top-0 bottom-2 b-l-white border-l-1"
@@ -59,7 +59,7 @@ const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + 
 
       <div class="flex">
         <AudioSpectrum :waveform="fftd" class="flex-1" />
-        <TheGoniometer class="aspect-ratio-square flex-shrink-0" />
+        <TheGoniometer class="aspect-ratio-square flex-shrink-0 ml-2" />
       </div>
 
       <div class="grid-col-start-2 grid-row-span-3 ml-8 w-25 mr-17 relative overflow-clip">
