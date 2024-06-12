@@ -14,6 +14,7 @@ import {
   rmsDbfsR,
   peakHoldDbfsL,
   peakHoldDbfsR,
+  volumeMeteringMidSide,
 } from "@/analysis";
 import { getDuration, seek } from "@/audio";
 
@@ -30,7 +31,7 @@ const displayPkHoldR = () => 0.1 + 0.05 * -peakHoldDbfsR();
 const displayRmsL = () => 0.6 + 0.05 * -(rmsDbfsL() + RMS_OFFSET);
 const displayRmsR = () => 0.6 + 0.05 * -(rmsDbfsR() + RMS_OFFSET);
 
-const peakTicks = [1, 0, -3, -6, -9, -12].map((s) => 0.1 + 0.05 * -s);
+const peakTicks = [0, -3, -6, -9, -12].map((s) => 0.1 + 0.05 * -s);
 
 const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + RMS_OFFSET));
 </script>
@@ -63,6 +64,16 @@ const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + 
       </div>
 
       <div class="grid-col-start-2 grid-row-span-3 ml-8 w-25 mr-17 relative overflow-clip">
+        <button
+          class="text-sm h-7 border b-white p-1 mx-auto block"
+          :style="{
+            background: volumeMeteringMidSide ? 'white' : 'black',
+            color: volumeMeteringMidSide ? 'black' : 'white',
+          }"
+          @click="volumeMeteringMidSide = !volumeMeteringMidSide">
+          M/S
+        </button>
+
         <div
           class="absolute bottom-0 left-2 w-2 bg-white"
           :style="{ top: 100 * displayRmsL() + '%' }" />

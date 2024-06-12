@@ -124,12 +124,16 @@ function reset() {
   lastGonioIndex = 0;
 }
 
+// for ui purposes
+export const volumeMeteringMidSide = ref(false);
+
 const innerCleanups: WatchStopHandle[] = [];
 watchEffect(async () => {
   const bufMain = BUF.M; // most metering is done off this channel
-  // I kind of like M/S volume metering but if you don't *know* its M/S it looks weird as hell sooo
-  const bufM1 = BUF.L; // left side peak & rms metering
-  const bufM2 = BUF.R; // right side peak & rms metering
+  // left side peak & rms metering
+  const bufM1 = () => (volumeMeteringMidSide.value ? BUF.M : BUF.L);
+  // right side peak & rms metering
+  const bufM2 = () => (volumeMeteringMidSide.value ? BUF.S : BUF.R);
 
   innerCleanups.forEach((c) => c());
   if (enableAnalysis.value && buf.value) {
@@ -158,8 +162,8 @@ watchEffect(async () => {
         const s16m = ~~(buf.value!.sampleRate / 30);
         const s300m = ~~(buf.value!.sampleRate * 0.3);
         if (seekSamples - s16m >= 0) {
-          const pkl = await samplePeak(bufM1, seekSamples - s16m, seekSamples);
-          const pkr = await samplePeak(bufM2, seekSamples - s16m, seekSamples);
+          const pkl = await samplePeak(bufM1(), seekSamples - s16m, seekSamples);
+          const pkr = await samplePeak(bufM2(), seekSamples - s16m, seekSamples);
           currentPeakL.value = Math.max(currentPeakL.value * 0.97, pkl);
           currentPeakR.value = Math.max(currentPeakR.value * 0.97, pkr);
 
@@ -180,18 +184,17 @@ watchEffect(async () => {
           }
         }
         if (seekSamples - s300m >= 0) {
-          currentRmsL.value = await rms(bufM1, seekSamples - s300m, seekSamples);
-          currentRmsR.value = await rms(bufM2, seekSamples - s300m, seekSamples);
+          currentRmsL.value = await rms(bufM1(), seekSamples - s300m, seekSamples);
+          currentRmsR.value = await rms(bufM2(), seekSamples - s300m, seekSamples);
         }
 
         const sliceLen = 7.5 * buf.value!.sampleRate;
         slice.value = await centeredSlice(1, seekSamples, sliceLen, 5000);
 
-        gonioPoints.value = await getGoniometerPoints(
-          lastGonioIndex,
-          seekSamples - lastGonioIndex,
-        );
-        lastGonioIndex = seekSamples;
+        if (seekSamples) {
+          gonioPoints.value = await getGoniometerPoints(lastGonioIndex, seekSamples - lastGonioIndex);
+          lastGonioIndex = seekSamples;
+        }
       }),
     );
   } else reset();

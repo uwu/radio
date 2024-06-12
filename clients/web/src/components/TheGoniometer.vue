@@ -22,7 +22,7 @@ onMounted(() => {
 
   watchEffect(() => {
     if (!gonioPoints.value) {
-      ctx.clearRect(0, 0, W, H);
+      //ctx.clearRect(0, 0, W, H);
       return;
     }
 
