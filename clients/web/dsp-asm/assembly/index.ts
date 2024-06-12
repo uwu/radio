@@ -288,3 +288,38 @@ export function rms(bsel: i32, _buf: Float32Array | null, start: i32, end: i32):
   // root-mean-square is [the root of [the mean of [the squares]]]
   return Mathf.sqrt(listSqSum_f32(buf.subarray(start, end)) / <f32>(end - start));
 }
+
+export function getGoniometerPoints(start: i32, length: i32/*, points: i32*/): Float32Array {
+  /*let start = <i64>_start;
+  let length = <i64>_length;*/
+
+  if (start < 0) start = 0;
+  assert(length > 0, "length must be > 0");
+
+  assert(currentBuf3, "M channel must be set");
+  assert(currentBuf4, "S channel must be set");
+  assert(currentBuf3!.length === currentBuf4!.length, "channel sizes must match");
+
+  assert(start >= 0, "start must not underflow");
+  assert(start + length < currentBuf3!.length, "end must not overflow");
+
+  const output = new Float32Array(length * 2/*points * 2*/);
+
+  // i had overflow errors before within the math for sampling
+  /*const sta64 = <i64>start;
+  const len64 = <i64>length;
+  const pts64 = <i64>points;*/
+
+  for (let i = 0; i < length; i++) {
+    const inputI = start + i; /*sta64 + <i64>((<i64>i * len64) / pts64);*/
+
+    assert(inputI >= 0, "inputI underflowed");
+    assert(inputI < currentBuf3!.length, "inputI will overflow");
+    assert(inputI <= i32.MAX_VALUE, "inputI is bigger than an i32");
+
+    output[i * 2] = currentBuf3![<i32>inputI];
+    output[i * 2 + 1] = currentBuf4![<i32>inputI];
+  }
+
+  return output;
+}

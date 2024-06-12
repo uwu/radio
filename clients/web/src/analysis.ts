@@ -47,21 +47,15 @@ async function callWorker<T = unknown>(cmd: number, args: unknown[]): Promise<T>
 const uploadBuffer = (buf1: Float32Array, buf2?: Float32Array) => callWorker(1, [buf1, buf2]);
 
 // downscales buf to size, using naive sampling
-const downscale = (buf: WasmBuf, size: number) =>
-  callWorker<Float32Array>(2, [buf, size]);
+const downscale = (buf: WasmBuf, size: number) => callWorker<Float32Array>(2, [buf, size]);
 
 // slices a buffer every n zero crossings, and returns the slice with the biggest peak amplitude
 const sbcMax = (buf: WasmBuf, start?: number, end?: number, n?: number) =>
   callWorker<Float32Array>(3, [buf, start, end, n]);
 
 // computes the FFT of the buffer in the range
-const fft = (
-  buf: WasmBuf,
-  start?: number,
-  end?: number,
-  pad?: number,
-  persistence?: number,
-) => callWorker<Float32Array>(4, [buf, start, end, pad, persistence]);
+const fft = (buf: WasmBuf, start?: number, end?: number, pad?: number, persistence?: number) =>
+  callWorker<Float32Array>(4, [buf, start, end, pad, persistence]);
 
 // gets a slice from buf centered at the point with the given width, padding with zeroes if necessary, and optionally downscales
 const centeredSlice = (buf: WasmBuf, pos: number, width: number, downs?: number) =>
@@ -72,6 +66,9 @@ const samplePeak = (buf: WasmBuf, start?: number, end?: number) =>
 
 const rms = (buf: WasmBuf, start?: number, end?: number) =>
   callWorker<number>(7, [buf, start, end]);
+
+const getGoniometerPoints = (start: number, length: number) =>
+  callWorker<Float32Array>(8, [start, length]);
 
 type WasmBuf = Float32Array | BUF;
 
@@ -99,6 +96,8 @@ export const currentRmsR = ref(0);
 export const currentPeakHoldL = ref(0);
 export const currentPeakHoldR = ref(0);
 
+export const gonioPoints = ref<Float32Array>();
+
 export const peakDbfsL = () => 20 * Math.log10(currentPeakL.value);
 export const peakDbfsR = () => 20 * Math.log10(currentPeakR.value);
 export const rmsDbfsL = () => 20 * Math.log10(currentRmsL.value);
@@ -108,6 +107,7 @@ export const peakHoldDbfsR = () => 20 * Math.log10(currentPeakHoldR.value);
 
 let peakHoldSetTimeL: number;
 let peakHoldSetTimeR: number;
+let lastGonioIndex = 0;
 
 function reset() {
   downscaled.value = undefined;
@@ -120,6 +120,8 @@ function reset() {
   currentPeakHoldR.value = 0;
   currentRmsL.value = 0;
   currentRmsR.value = 0;
+  gonioPoints.value = undefined;
+  lastGonioIndex = 0;
 }
 
 const innerCleanups: WatchStopHandle[] = [];
@@ -170,10 +172,10 @@ watchEffect(async () => {
             peakHoldSetTimeR = performance.now();
           }
 
-          if ((performance.now() - peakHoldSetTimeL) > 500) {
+          if (performance.now() - peakHoldSetTimeL > 500) {
             currentPeakHoldL.value *= 0.985;
           }
-          if ((performance.now() - peakHoldSetTimeR) > 500) {
+          if (performance.now() - peakHoldSetTimeR > 500) {
             currentPeakHoldR.value *= 0.985;
           }
         }
@@ -184,6 +186,12 @@ watchEffect(async () => {
 
         const sliceLen = 7.5 * buf.value!.sampleRate;
         slice.value = await centeredSlice(1, seekSamples, sliceLen, 5000);
+
+        gonioPoints.value = await getGoniometerPoints(
+          lastGonioIndex,
+          seekSamples - lastGonioIndex,
+        );
+        lastGonioIndex = seekSamples;
       }),
     );
   } else reset();

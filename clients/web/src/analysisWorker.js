@@ -1,21 +1,33 @@
 import wasmUrl from "../dsp-asm/build/release.wasm?url";
 import { instantiate } from "../dsp-asm/build/release.js";
 
-let wasmDS, wasmFFT, wasmUpload, wasmSbcMax, wasmCentSlic, wasmSamPk, wasmRms, init;
+let wasmDS, wasmFFT, wasmUpload, wasmSbcMax, wasmCentSlic, wasmSamPk, wasmRms, wasmGonio, init;
 
 function wasmInit() {
   if (init) return init;
   return (init = WebAssembly.compileStreaming(fetch(wasmUrl))
     .then(instantiate)
-    .then(({ downscale, fft, uploadBuf, sbcMax, centeredSlice, samplePeak, rms }) => {
-      wasmDS = downscale;
-      wasmFFT = fft;
-      wasmUpload = uploadBuf;
-      wasmSbcMax = sbcMax;
-      wasmCentSlic = centeredSlice;
-      wasmSamPk = samplePeak;
-      wasmRms = rms;
-    }));
+    .then(
+      ({
+        downscale,
+        fft,
+        uploadBuf,
+        sbcMax,
+        centeredSlice,
+        samplePeak,
+        rms,
+        getGoniometerPoints,
+      }) => {
+        wasmDS = downscale;
+        wasmFFT = fft;
+        wasmUpload = uploadBuf;
+        wasmSbcMax = sbcMax;
+        wasmCentSlic = centeredSlice;
+        wasmSamPk = samplePeak;
+        wasmRms = rms;
+        wasmGonio = getGoniometerPoints;
+      },
+    ));
 }
 
 const bsel = (buf) => (typeof buf === "number" ? buf : 0);
@@ -38,11 +50,21 @@ const samplePeak = (buf, start, end) => wasmSamPk(bsel(buf), bval(buf), start ??
 
 const rms = (buf, start, end) => wasmRms(bsel(buf), bval(buf), start ?? -1, end ?? -1);
 
+const getGoniometerPoints = (start, length) => wasmGonio(start, length);
+
 onmessage = (e) => {
   // rip type safety
-  const func = [wasmInit, uploadBuffer, downscale, sbcMax, fft, centeredSlice, samplePeak, rms][
-    e.data[0]
-  ];
+  const func = [
+    wasmInit,
+    uploadBuffer,
+    downscale,
+    sbcMax,
+    fft,
+    centeredSlice,
+    samplePeak,
+    rms,
+    getGoniometerPoints,
+  ][e.data[0]];
   if (!func) postMessage(["ERR", `${e.data[0]} is not a command`]);
 
   const res = func(...e.data.slice(2));

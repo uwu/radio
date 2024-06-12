@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import WaveForm from "@/components/WaveForm.vue";
 import AudioSpectrum from "@/components/AudioSpectrum.vue";
+import TheGoniometer from "@/components/TheGoniometer.vue";
 import {
   downscaled,
   singlePeriod,
@@ -58,7 +59,7 @@ const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + 
 
       <div class="flex">
         <AudioSpectrum :waveform="fftd" class="flex-1" />
-        <div class="aspect-ratio-square flex-shrink-0">goniometer</div>
+        <TheGoniometer class="aspect-ratio-square flex-shrink-0" />
       </div>
 
       <div class="grid-col-start-2 grid-row-span-3 ml-8 w-25 mr-17 relative overflow-clip">
