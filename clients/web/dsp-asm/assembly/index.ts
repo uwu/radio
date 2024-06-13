@@ -289,7 +289,7 @@ export function rms(bsel: i32, _buf: Float32Array | null, start: i32, end: i32):
   return Mathf.sqrt(listSqSum_f32(buf.subarray(start, end)) / <f32>(end - start));
 }
 
-export function getGoniometerPoints(start: i32, length: i32/*, points: i32*/): Float32Array {
+export function getGoniometerPoints(start: i32, length: i32 /*, points: i32*/): Float32Array {
   /*let start = <i64>_start;
   let length = <i64>_length;*/
 
@@ -303,7 +303,7 @@ export function getGoniometerPoints(start: i32, length: i32/*, points: i32*/): F
   assert(start >= 0, "start must not underflow");
   assert(start + length < currentBuf3!.length, "end must not overflow");
 
-  const output = new Float32Array(length * 2/*points * 2*/);
+  const output = new Float32Array(length * 2 /*points * 2*/);
 
   // i had overflow errors before within the math for sampling
   /*const sta64 = <i64>start;
@@ -322,4 +322,70 @@ export function getGoniometerPoints(start: i32, length: i32/*, points: i32*/): F
   }
 
   return output;
+}
+
+function spectogram(
+  bsel: i32,
+  _buf: null | Float32Array,
+  start: i32,
+  end: i32,
+  pad: i32,
+  size: i32,
+): Float32Array {
+  const fftSize = <i32>Math.pow(2, Math.ceil(Math.log2(size + pad/*pad + end - start*/)));
+  const outputSize = size * fftSize;
+
+  if (start < 0) start = 0;
+  assert(end > start, "end out of range");
+
+  // element 0 is the height of the spectrogram
+  const output = new Float32Array(outputSize + 1);
+  output[0] = <f32>fftSize;
+
+  for (let i = 0; i < size; i++) {
+    const osetS = start + <i32>((<f32>i * <f32>(end - start)) / <f32>size);
+
+    const res = fft(bsel, _buf, osetS, osetS + fftSize, pad, 0);
+    
+    memcpy_f32(res, output, 0, 1 + i * fftSize, fftSize);
+  }
+
+  return output;
+}
+
+export function centeredSpectogram(
+  bsel: i32,
+  _buf: null | Float32Array,
+  pos: i32,
+  width: i32,
+  padFft: i32,
+  ds: i32,
+): Float32Array {
+  const buf = resolveBuffer(bsel, _buf);
+
+  const start = pos - width / 2;
+  const end = pos + width / 2;
+
+  const padS = start < 0 ? -start : 0;
+  const padE = end >= buf.length ? end - buf.length : 0;
+
+  let padded: Float32Array | null;
+
+  // happy path just returns this
+  if (padS === 0 && padE === 0) {
+    padded = spectogram(0, buf, start, end, padFft, ds);
+  } else {
+    // unhappy path - we need to pad it!
+    const raw = spectogram(0, buf, start - padS, end - padE, padFft, ds);
+    const fftSize = <i32>raw[0];
+    const chunksUnpadded = raw.subarray(1);
+
+    const paddedSize = 1 + fftSize * width;
+
+    padded = new Float32Array(paddedSize);
+    padded[0] = <f32>fftSize;
+    memcpy_f32(chunksUnpadded, padded, 0, padS, paddedSize - fftSize * (padE + padS));
+  }
+
+  return padded;
 }

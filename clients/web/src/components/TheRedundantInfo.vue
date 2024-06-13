@@ -2,6 +2,7 @@
 import WaveForm from "@/components/WaveForm.vue";
 import AudioSpectrum from "@/components/AudioSpectrum.vue";
 import TheGoniometer from "@/components/TheGoniometer.vue";
+import TheSpectogram from "@/components/TheSpectogram.vue";
 import {
   downscaled,
   singlePeriod,
@@ -41,21 +42,22 @@ const rmsTicks = [-3, -6, -9, -12, -15, -18, -21].map((s) => 0.6 + 0.05 * -(s + 
     <span class="text-lg z-1 mt-2 text-center">redundant information mode</span>
 
     <div class="grid grid-rows-3 grid-flow-col grid-cols-[1fr_auto] flex-grow ml-2 mb-2">
-      <div class="relative">
+      <div class="relative grid grid-cols-1">
         <div
           class="absolute top-0 bottom-2 b-l-white border-l-1"
           :style="{ left: (100 * (seek ?? 0)) / getDuration() + '%' }" />
 
         <WaveForm :fill="true" :waveform="downscaled" class="mt-4" />
-        <div>moodbar</div>
+        <div class="text-center">moodbar</div>
       </div>
 
-      <div class="relative">
+      <div class="relative grid grid-cols-1">
         <div class="absolute top-33% bottom-2 b-l-white border-l-1 left-50%" />
 
         <WaveForm :fill="false" :waveform="singlePeriod" />
         <WaveForm :fill="true" :waveform="slice" />
-        <div>scrolling spectrogram</div>
+<!--        <TheSpectogram />-->
+        <div class="text-center">TODO: make spectogram not horrifically slow</div>
       </div>
 
       <div class="flex">

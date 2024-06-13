@@ -1,7 +1,16 @@
 import wasmUrl from "../dsp-asm/build/release.wasm?url";
 import { instantiate } from "../dsp-asm/build/release.js";
 
-let wasmDS, wasmFFT, wasmUpload, wasmSbcMax, wasmCentSlic, wasmSamPk, wasmRms, wasmGonio, init;
+let wasmDS,
+  wasmFFT,
+  wasmUpload,
+  wasmSbcMax,
+  wasmCentSlic,
+  wasmSamPk,
+  wasmRms,
+  wasmGonio,
+  wasmSpecto,
+  init;
 
 function wasmInit() {
   if (init) return init;
@@ -17,6 +26,7 @@ function wasmInit() {
         samplePeak,
         rms,
         getGoniometerPoints,
+        centeredSpectogram,
       }) => {
         wasmDS = downscale;
         wasmFFT = fft;
@@ -26,6 +36,7 @@ function wasmInit() {
         wasmSamPk = samplePeak;
         wasmRms = rms;
         wasmGonio = getGoniometerPoints;
+        wasmSpecto = centeredSpectogram;
       },
     ));
 }
@@ -52,6 +63,9 @@ const rms = (buf, start, end) => wasmRms(bsel(buf), bval(buf), start ?? -1, end 
 
 const getGoniometerPoints = (start, length) => wasmGonio(start, length);
 
+const centeredSpectogram = (buf, pos, width, padFft, ds) =>
+  wasmSpecto(bsel(buf), bval(buf), pos, width, padFft, ds);
+
 onmessage = (e) => {
   // rip type safety
   const func = [
@@ -64,6 +78,7 @@ onmessage = (e) => {
     samplePeak,
     rms,
     getGoniometerPoints,
+    centeredSpectogram,
   ][e.data[0]];
   if (!func) postMessage(["ERR", `${e.data[0]} is not a command`]);
 

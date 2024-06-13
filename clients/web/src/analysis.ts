@@ -85,6 +85,9 @@ const rms = (buf: WasmBuf, start?: number, end?: number) =>
 const getGoniometerPoints = (start: number, length: number) =>
   callWorker<Float32Array>(8, [start, length]);
 
+const centeredSpectogram = (buf: WasmBuf, pos: number, width: number, padFft: number, ds: number) =>
+  callWorker<Float32Array>(9, [buf, pos, width, padFft, ds]);
+
 type WasmBuf = Float32Array | BUF;
 
 enum BUF {
@@ -109,6 +112,8 @@ export const singlePeriod = ref<Float32Array>();
 export const fftd = ref<Float32Array>();
 
 export const slice = ref<Float32Array>();
+
+export const currentSpecto = ref<Float32Array>();
 
 export const currentPeakL = ref(0);
 export const currentPeakR = ref(0);
@@ -197,6 +202,7 @@ async function updateVis() {
 
   const sliceLen = 7.5 * buf.value!.sampleRate;
   slice.value = await centeredSlice(1, seekSamples, sliceLen, 5000);
+  //currentSpecto.value = await centeredSpectogram(1, seekSamples, sliceLen, 0, 500);
 
   if (seekSamples) {
     // max length of 1/30th of a second at 44.1khz, to prevent stutters on copying like half a song back from wasm
