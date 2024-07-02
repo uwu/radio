@@ -9,14 +9,13 @@ import org.koin.core.context.startKoin
 
 class UwuRadio : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
+	override fun onCreate() {
+		super.onCreate()
 
-        startKoin {
-            androidContext(this@UwuRadio)
+		startKoin {
+			androidContext(this@UwuRadio)
 
-            modules(clientModule, mainModule, homeModule)
-        }
-    }
-
+			modules(clientModule, mainModule, homeModule)
+		}
+	}
 }

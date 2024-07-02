@@ -9,30 +9,30 @@ import network.uwu.radio.ui.component.LocalTextStyle
 
 @Composable
 fun UwuRadioTheme(
-    colorScheme: ColorScheme = colorScheme(),
-    typography: Typography = typography(),
-    content: @Composable () -> Unit
+	colorScheme: ColorScheme = colorScheme(),
+	typography: Typography = typography(),
+	content: @Composable () -> Unit
 ) {
-    CompositionLocalProvider(
-        LocalTypography provides typography,
-        LocalColorScheme provides colorScheme,
-        LocalTextStyle provides typography.body,
-        LocalContentColor provides colorScheme.onBackground,
-        content = content
-    )
+	CompositionLocalProvider(
+		LocalTypography provides typography,
+		LocalColorScheme provides colorScheme,
+		LocalTextStyle provides typography.body,
+		LocalContentColor provides colorScheme.onBackground,
+		content = content
+	)
 }
 
 object UwuRadioTheme {
 
-    val colorScheme
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalColorScheme.current
+	val colorScheme
+		@Composable
+		@ReadOnlyComposable
+		get() = LocalColorScheme.current
 
-    val typography
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalTypography.current
+	val typography
+		@Composable
+		@ReadOnlyComposable
+		get() = LocalTypography.current
 
 }
 
