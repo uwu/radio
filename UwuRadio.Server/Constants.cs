@@ -38,6 +38,11 @@ public class Constants
 	public string YtDlpPath { get; set; } = null!;
 
 	/// <summary>
+	///     Proxy that yt-dlp should use, empty for none
+	/// </summary>
+	public string YtDlpProxy { get; set; } = null!;
+
+	/// <summary>
 	///     Downloaded files are saved here and removed on app exit
 	/// </summary>
 	public string CacheFolder { get; set; } = null!;

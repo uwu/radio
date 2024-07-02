@@ -3,6 +3,7 @@
   "PreloadTime": 30,
   "ServerDlUrl": "http://localhost:5002/api/file/",
   "YtDlpPath": "/usr/bin/yt-dlp",
+  "YtDlpProxy": "",
   "CacheFolder": "DL_CACHE",
   "IngestFolder": "../ingest",
   "AudioFormat": "mp3",

@@ -65,7 +65,7 @@ public class DownloadService : IDisposable
 	private static async Task<SongFileInfo> DownloadSong(string url)
 	{
 		var args
-			= $"\"{url}\" -O after_move:filepath --quiet --print-json -f bestaudio --extract-audio --audio-quality 0";
+			= $"--proxy \"{Constants.C.YtDlpProxy}\" \"{url}\" -O after_move:filepath --quiet --print-json -f bestaudio --extract-audio --audio-quality 0";
 
 		var (rawPath, durationStr) = await InvokeYtDlp(args);
 
