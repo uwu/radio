@@ -567,28 +567,76 @@
 			"Artist": "midwxst",
 			"StreamUrl": "https://soundcloud.com/midwxst/no-trace",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-xZoYpdo9ra42-0-t500x500.jpg"
+		},
+		{
+			"Name": "Russian Roulette",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/russian-roulette",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-iIcm49tQqYKd-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Knock Yourself Out XD",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/knock-yourself-out-xd",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-nb4aQTlS4Kd5-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Cheerleader",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/cheerleader",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-4T3V7000PPI2-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Kitsune Maison Freestyle",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/kitsune-maison-freestyle",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-3vsxm1Y0PfZa-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Is There Really No Happiness?",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/is-there-really-no-happiness",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-hr6PSVQj5gms-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Perfect Pinterest Garden",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/perfect-pinterest-garden",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-h3iqttdtkB04-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Year of the Cup",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/year-of-the-cup",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-HVlwkx4A2t4b-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Mona Lisa",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/mona-lisa",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-mJLWMDO38bex-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Everything To Me",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/everything-to-me",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-M2N3fVIpMkie-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Easier to Love You",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/easier-to-love-you",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-zuJQ35rHhUaa-0-t500x500.png",
+			"Album": "SMILE! :D"
 		}
-		// Uncomment these when the album drops
-		// {
-		// 	"Name": "Russian Roulette",
-		// 	"Artist": "Porter Robinson",
-		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/russian-roulette",
-		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-iIcm49tQqYKd-0-t500x500.png",
-		// 	"Album": "SMILE! :D"
-		// },
-		// {
-		// 	"Name": "Knock Yourself Out XD",
-		// 	"Artist": "Porter Robinson",
-		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/knock-yourself-out-xd",
-		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-nb4aQTlS4Kd5-0-t500x500.png",
-		// 	"Album": "SMILE! :D"
-		// },
-		// {
-		// 	"Name": "Cheerleader",
-		// 	"Artist": "Porter Robinson",
-		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/cheerleader",
-		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-4T3V7000PPI2-0-t500x500.png",
-		// 	"Album": "SMILE! :D"
-		// }
 	]
 }
