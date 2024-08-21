@@ -3,7 +3,7 @@
   "PreloadTime": 30,
   "ServerDlUrl": "https://radio.k6.tf/api/file/",
   "YtDlpPath": "yt-dlp",
-  "YtDlpProxy": "a.k6.tf:59414",
+  "YtDlpProxy": "10.24.0.41:48932",
   "CacheFolder": "../DL_CACHE",
   "IngestFolder": "ingest",
   "AudioFormat": "mp3",
