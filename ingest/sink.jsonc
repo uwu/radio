@@ -1701,6 +1701,67 @@
 			"SortArtist": "James Landino",
 			"StreamUrl": "https://www.youtube.com/watch?v=m8QhhiYCC9Q&pp=ygUWamFtZXMgbGFuZGlubyBkb3duIGxvdw%3D%3D",
 			"ArtUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/95/57/7c/95577c13-5abd-37f6-61ef-7dfb5921d519/197077666939_cover.jpg/1080x1080bb.webp"
+		},
+		{
+			"Name": "laced up",
+			"Artist": "tsubi club",
+			"StreamUrl": "https://www.youtube.com/watch?v=cnFK3VA-k3I",
+			"ArtUrl": "https://coverartarchive.org/release/c1b75cbc-0f72-4418-bcfb-fd690b09b88d/39509032297-1200.jpg"
+		},
+		{
+			"Name": "part of me!!! [lane3 FunMix]",
+			"Artist": "lane3",
+			"StreamUrl": "https://soundcloud.com/lanethree/part-of-me-lane3-funmix",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-7RKWgYPedF6SAdiP-hJReLA-t500x500.jpg"
+		},
+		{
+			"Name": "Medium Rare Milk (Elxnce Remix)",
+			"Artist": "Syzy",
+			"StreamUrl": "https://soundcloud.com/prodelxnce/syzy-medium-rare-milk-elxnce-remix",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-IElTtfox63rFFTIS-CCHosA-t500x500.jpg"
+		},
+		{
+			"Name": "Love 2 You",
+			"Artist": "acounta ft. Petal Supply & DJ Kuroneko",
+			"SortArtist": "acounta",
+			"StreamUrl": "https://soundcloud.com/acounta/love-2-you-ft-petal-supply-dj-kuroneko-art-by-hamulkid",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-3lK2QxyBfcjHIraU-L6GVqA-t500x500.jpg"
+		},
+		{
+			"Name": "LEFT RIGHT (Jukaa Bootleg)",
+			"Artist": "XG",
+			"StreamUrl": "https://soundcloud.com/jukaamusic/xg-left-right-jukaa-bootleg",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-tcavltDdQL0xCR2F-lT9XQg-t500x500.jpg"
+		},
+		{
+			"Name": "Get a grip!",
+			"Artist": "Syzy & Neonix",
+			"SortArtist": "Syzy",
+			"Album": "The weight of the world",
+			"StreamUrl": "https://www.youtube.com/watch?v=VgO0PTjgPBQ",
+			"ArtUrl": "https://coverartarchive.org/release/c3a3364e-ea32-4984-9aba-67bc18cddddb/39206498325-1200.jpg"
+		},
+		{
+			"Name": "In your face!",
+			"Artist": "Syzy",
+			"Album": "The weight of the world",
+			"StreamUrl": "https://www.youtube.com/watch?v=yRj8OMzVPn4",
+			"ArtUrl": "https://coverartarchive.org/release/c3a3364e-ea32-4984-9aba-67bc18cddddb/39206498325-1200.jpg"
+		},
+		{
+			"Name": "HEART123",
+			"Artist": "Syzy & kmoe",
+			"SortArtist": "Syzy",
+			"Album": "The weight of the world",
+			"StreamUrl": "https://www.youtube.com/watch?v=AK8NzBkM_HY",
+			"ArtUrl": "https://coverartarchive.org/release/c3a3364e-ea32-4984-9aba-67bc18cddddb/39206498325-1200.jpg"
+		},
+		{
+			"Name": "Dancing on my own",
+			"Artist": "Syzy",
+			"Album": "The weight of the world",
+			"StreamUrl": "https://www.youtube.com/watch?v=b7I8aYVmxws",
+			"ArtUrl": "https://coverartarchive.org/release/c3a3364e-ea32-4984-9aba-67bc18cddddb/39206498325-1200.jpg"
 		}
 	]
 }
