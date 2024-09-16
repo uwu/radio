@@ -35,3 +35,5 @@
 -keep class network.uwu.radio.network.dto.ApiSong { *; }
 -keep class com.microsoft.signalr.** { *; }
 -keep interface com.microsoft.signalr.** { *; }
+
+-dontwarn org.slf4j.impl.StaticLoggerBinder
