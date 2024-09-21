@@ -26,15 +26,15 @@ public record TransitSong(
 	string  Submitter,
 	string? Quote)
 {
-	public TransitSong(Song song, string quote) : this(song.Name,
-													   song.Artist,
-													   song.SortArtist,
-													   Constants.C.ServerDlUrl + song.Id,
-													   song.StreamUrl,
-													   song.ArtUrl,
-													   song.Album,
-													   song.Submitter,
-													   quote)
+	public TransitSong(Song song, string? quote) : this(song.Name,
+														song.Artist,
+														song.SortArtist,
+														Constants.C.ServerDlUrl + song.Id,
+														song.StreamUrl,
+														song.ArtUrl,
+														song.Album,
+														song.Submitter,
+														quote)
 	{
 	}
 }
