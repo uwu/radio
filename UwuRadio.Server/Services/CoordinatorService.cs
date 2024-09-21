@@ -8,9 +8,9 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class CoordinatorService : IDisposable
 {
-	private readonly DownloadService      _dlService;
-	private readonly IHubContext<SyncHub> _hubCtxt;
-	private readonly PickerService         _pickerService;
+	private readonly DownloadService                      _dlService;
+	private readonly IHubContext<SyncHub, ISyncHubClient> _hubCtxt;
+	private readonly PickerService                        _pickerService;
 
 	private bool _haltThread;
 
@@ -19,7 +19,7 @@ public class CoordinatorService : IDisposable
 	public Instant CurrentStarted;
 	public Song    Next;
 
-	public CoordinatorService(IHubContext<SyncHub> hubCtxt, DownloadService dlService, PickerService pickerService)
+	public CoordinatorService(IHubContext<SyncHub, ISyncHubClient> hubCtxt, DownloadService dlService, PickerService pickerService)
 	{
 		_hubCtxt      = hubCtxt;
 		_dlService    = dlService;
@@ -50,11 +50,10 @@ public class CoordinatorService : IDisposable
 		CurrentStarted = Helpers.Now();
 		CurrentEnds    = CurrentStarted + _dlService.GetFileInfo(Current).Length;
 
-		await _hubCtxt.Clients.All.SendAsync("ReceiveState",
-											 new TransitSong(Current),
-											 CurrentStarted.ToUnixTimeSeconds(),
-											 new TransitSong(Next),
-											 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
+		await _hubCtxt.Clients.All.ReceiveState(new TransitSong(Current),
+												CurrentStarted.ToUnixTimeSeconds(),
+												new TransitSong(Next),
+												CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 
 		var preloadHandled = false;
 
@@ -116,9 +115,8 @@ public class CoordinatorService : IDisposable
 			if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
-				await _hubCtxt.Clients.All.SendAsync("BroadcastNext",
-													 new TransitSong(Next),
-													 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
+				await _hubCtxt.Clients.All.BroadcastNext(new TransitSong(Next),
+														 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 				
 				Helpers.Log(nameof(CoordinatorService), $"Broadcasted next song ({Next.Name}) to clients");
 				
