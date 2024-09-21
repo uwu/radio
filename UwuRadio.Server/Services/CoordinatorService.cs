@@ -19,14 +19,17 @@ public class CoordinatorService : IDisposable
 	public Instant CurrentStarted;
 	public Song    Next;
 
+	public string? CurrentQuote;
+	public string? NextQuote;
+
 	public CoordinatorService(IHubContext<SyncHub, ISyncHubClient> hubCtxt, DownloadService dlService, PickerService pickerService)
 	{
 		_hubCtxt      = hubCtxt;
 		_dlService    = dlService;
 		_pickerService = pickerService;
 
-		Current = _pickerService.SelectSong();
-		Next    = _pickerService.SelectSong();
+		(Current, CurrentQuote) = _pickerService.SelectSong();
+		(Next, NextQuote)       = _pickerService.SelectSong();
 
 		// run this explicitly on another thread
 		Task.Run(StartBgThread);
@@ -50,9 +53,9 @@ public class CoordinatorService : IDisposable
 		CurrentStarted = Helpers.Now();
 		CurrentEnds    = CurrentStarted + _dlService.GetFileInfo(Current).Length;
 
-		await _hubCtxt.Clients.All.ReceiveState(new TransitSong(Current),
+		await _hubCtxt.Clients.All.ReceiveState(new TransitSong(Current, CurrentQuote),
 												CurrentStarted.ToUnixTimeSeconds(),
-												new TransitSong(Next),
+												new TransitSong(Next, NextQuote),
 												CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 
 		var preloadHandled = false;
@@ -69,7 +72,7 @@ public class CoordinatorService : IDisposable
 			{
 				Helpers.Log(nameof(CoordinatorService), "Encountered blacklisted song, skipping it!");
 
-				Next = _pickerService.SelectSong();
+				(Next, NextQuote) = _pickerService.SelectSong();
 				_dlService.EnsureDownloaded(Next);
 
 				// wait for the song to either succeed or fail to download
@@ -96,8 +99,9 @@ public class CoordinatorService : IDisposable
 				CurrentStarted = CurrentEnds;
 				CurrentEnds    = CurrentEnds.Plus(info.Length);
 
-				Current = Next;
-				Next    = _pickerService.SelectSong();
+				Current           = Next;
+				CurrentQuote      = NextQuote;
+				(Next, NextQuote) = _pickerService.SelectSong();
 
 				// clients are only told about the next when we need to handle preloading
 				// however we will *need* to know the length of the song and be able to serve it at preload time
@@ -115,7 +119,7 @@ public class CoordinatorService : IDisposable
 			if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
-				await _hubCtxt.Clients.All.BroadcastNext(new TransitSong(Next),
+				await _hubCtxt.Clients.All.BroadcastNext(new TransitSong(Next, NextQuote),
 														 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 				
 				Helpers.Log(nameof(CoordinatorService), $"Broadcasted next song ({Next.Name}) to clients");

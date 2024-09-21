@@ -14,10 +14,10 @@ public class SyncHub : Hub<ISyncHubClient>
 
 	public SyncHub(CoordinatorService cServ) { _coordinatorService = cServ; }
 
-	public async Task RequestState() => await Clients.Caller.ReceiveState(new TransitSong(_coordinatorService.Current),
+	public async Task RequestState() => await Clients.Caller.ReceiveState(new TransitSong(_coordinatorService.Current, _coordinatorService.CurrentQuote),
 																	   _coordinatorService.CurrentStarted
 																		  .ToUnixTimeSeconds(),
-																	   new TransitSong(_coordinatorService.Next),
+																	   new TransitSong(_coordinatorService.Next, _coordinatorService.NextQuote),
 																	   _coordinatorService.CurrentEnds
 																		  .ToUnixTimeSeconds() + Constants.C.BufferTime);
 

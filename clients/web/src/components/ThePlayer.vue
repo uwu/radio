@@ -13,13 +13,6 @@ import fallbackart from "@/assets/fallbackart_10x.png";
 const visualizerSupported = isButterchurnSupported();
 
 const client = await timePromise.then(() => getClient());
-
-// @ts-expect-error IT IS COMPLETELY FINE IF UNDEFINED GETS RETURNED, OPTIONAL CHAINING EXISTS PLEASE SHUT THE FUCK UP.
-const quotes = computed(() => client.submitters.get(client.currentSong?.submitter)?.quotes);
-
-const randomQuote = computed(() =>
-  quotes.value?.length ? `"${quotes.value[~~(Math.random() * quotes.value.length)]}"` : "",
-);
 </script>
 
 <template>
@@ -56,7 +49,7 @@ const randomQuote = computed(() =>
       </div>
     </div>
     <span class="text-center">
-      {{ randomQuote }}
+      {{ client.currentSong?.quote }}
     </span>
     <TheHistory />
     <button

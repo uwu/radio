@@ -34,6 +34,8 @@ namespace UwuRadio.Server.Services;
 /// </summary>
 public class PickerService
 {
+	private DataService _dataService;
+	
 	private Song[] _queue;
 	private Song[] _unpickedSongs;
 
@@ -41,8 +43,9 @@ public class PickerService
 
 	public PickerService(DataService dataService)
 	{
-		var allSongs = SpotifyShuffle(dataService.Songs).ToArray();
-
+		_dataService = dataService;
+		
+		var allSongs = SpotifyShuffle(_dataService.Songs).ToArray();
 		var queueSize = 2 * (allSongs.Length / 3);
 
 		_queue         = new Song[queueSize];
@@ -54,7 +57,7 @@ public class PickerService
 		ShuffleQueue();
 	}
 
-	public Song SelectSong()
+	public (Song, string?) SelectSong()
 	{
 		_queuePos++;
 
@@ -64,7 +67,11 @@ public class PickerService
 			ShuffleQueue();
 		}
 
-		return _queue[_queuePos];
+		var song   = _queue[_queuePos];
+		var quotes = _dataService.Submitters[song.Submitter].Quotes;
+		var quote = quotes.Length > 0 ? quotes[Random.Shared.Next(quotes.Length)] : null;
+		
+		return (song, quote);
 	}
 
 	private void ShuffleQueue()
