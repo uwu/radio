@@ -44,12 +44,11 @@ public class ApiController : Controller
 
 		Response.Headers.CacheControl = $"public, max-age={1 * 7 * 24 * 60 * 60}, immutable";
 		
-		// if range processing is enabled it makes the client get very angy
 		return File(
 				    fileInfo.File.OpenRead(),
 				    "audio/mpeg",
 				    null,
 				    new EntityTagHeaderValue(new StringSegment('"' + fileInfo.Md5 + '"')),
-				    false);
+				    true);
 	}
 }
