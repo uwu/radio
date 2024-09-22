@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.map
 import network.uwu.radio.domain.model.DomainSongData
 import network.uwu.radio.network.dto.ApiSong
 import network.uwu.radio.network.service.ClientState
-import network.uwu.radio.network.service.UwuRadioApiService
 import network.uwu.radio.network.service.UwuRadioSyncService
 
 interface SessionRepository {
@@ -13,9 +12,7 @@ interface SessionRepository {
     suspend fun connectSyncClient()
 
     suspend fun requestData()
-
-    suspend fun getRandomQuote(submitter: String): String?
-
+		
     fun observeSyncClientState(): Flow<ClientState>
 
     fun observeProgressbar(): Flow<Long>
@@ -26,7 +23,6 @@ interface SessionRepository {
 
 class SessionRepositoryImpl(
     private val uwuRadioSyncService: UwuRadioSyncService,
-    private val uwuRadioApiService: UwuRadioApiService
 ) : SessionRepository {
 
     override suspend fun connectSyncClient() {
@@ -61,21 +57,14 @@ class SessionRepositoryImpl(
             }
     }
 
-    override suspend fun getRandomQuote(submitter: String): String? {
-        return uwuRadioApiService.getSubmitters()
-            .find { it.name == submitter }
-            ?.quotes
-            ?.randomOrNull()
-    }
-
-    private suspend fun ApiSong.toDomain(startTime: Long = 0L): DomainSongData {
+    private fun ApiSong.toDomain(startTime: Long = 0L): DomainSongData {
         return DomainSongData(
             songName = name,
             songArtist = artist,
             songArtworkUrl = artUrl,
-            songUrl = dlUrl!!,
+            songUrl = dlUrl,
             submitterName = submitter,
-            submitterQuote = getRandomQuote(submitter),
+            submitterQuote = quote,
             startTime = startTime
         )
     }
