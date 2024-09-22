@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import isButterchurnSupported from "butterchurn/lib/isSupported.min";
 import RangeSlider from "./RangeSlider.vue";
 import TheHistory from "./TheHistory.vue";
 import { prettySeek, prettyDuration, volumeDbfs, getDuration, seek } from "@/audio";
 import { getClient } from "@/syncClient";
-import TheClients from "./TheClients.vue";
 import { timePromise } from "@/util";
 import { visualizerEnabled } from "@/visualizer";
 import fallbackart from "@/assets/fallbackart_10x.png";
@@ -22,7 +20,6 @@ const client = await timePromise.then(() => getClient());
       class="absolute w-full min-h-8 bg-#fedc6c color-black z-5 text-center grid content-center">
       reconnecting...
     </div>
-    <TheClients />
     <span class="text-lg z-1 mt-2">RADIO.UWU.NETWORK</span>
     <div class="text-center w-70 md:w-100" id="player">
       <div
