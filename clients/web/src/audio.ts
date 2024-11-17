@@ -73,7 +73,7 @@ export async function play(song: Song, seek: number) {
 
   audioSource.connect(audioAnalyser).connect(audioGain).connect(audioCtx.destination);
 
-  seek = seek + currentTimestamp() - then;
+  seek = Math.max(0, seek + currentTimestamp() - then); // time to create the audio node should be counted
   startTime = audioCtx.currentTime;
   startSeek = seek;
   audioSource.start(0, seek);

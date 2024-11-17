@@ -13,8 +13,13 @@ async function measureTimeOffset() {
 
 async function updateTimeOffset() {
   // sample a few times to improve precision
-  const results = [await measureTimeOffset(), await measureTimeOffset(), await measureTimeOffset()];
-  timeOffset = results.reduce((a, b) => a + b) / 3;
+  let sum = 0;
+  for (let i = 0; i < 5; i++)
+    sum += await measureTimeOffset();
+
+  timeOffset = sum / 5;
+
+  console.log(`time offset from server: ${(timeOffset * 1000).toFixed(1)}ms`)
 }
 
 export let timeOffset = 0;
