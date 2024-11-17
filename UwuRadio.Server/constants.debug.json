@@ -8,6 +8,6 @@
   "IngestFolder": "../ingest",
   "AudioFormat": "mp3",
   "AudioQScale": "6",
-  "AudioNormIntegrated": -8,
-  "AudioNormMaxClip": 2
+  "AudioNormIntegrated": -9,
+  "AudioNormMaxClip": 0
 }
