@@ -18,7 +18,7 @@ export default defineConfig({
         presetWebFonts({
           provider: "google",
           fonts: {
-            mono: ["IBM Plex Mono"],
+            mono: ["IBM Plex Mono", "IBM Plex Sans JP"],
           },
         }),
       ],
