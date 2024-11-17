@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
@@ -21,7 +22,7 @@ public class ApiController : Controller
 	public IActionResult Ping() => Ok("Pong!");
 
 	// /api/time
-	public IActionResult Time() => Json(Helpers.Now().ToUnixTimeSeconds());
+	public IActionResult Time() => Ok((Helpers.Now().ToUnixTimeMilliseconds() / 1000.0).ToString(CultureInfo.InvariantCulture));
 
 	// /api/data
 	public IActionResult Data() => Json(new
