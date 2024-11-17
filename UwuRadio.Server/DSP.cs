@@ -48,7 +48,7 @@ public static class DSP
 				"-i",
 				path,
 				"-af",
-				$"loudnorm=I={Constants.C.AudioNormIntegrated}:TP={Constants.C.AudioNormMaxClip}:print_format=json",
+				$"loudnorm=I={Constants.C.AudioNormIntegrated}:TP=0:LRA={Constants.C.AudioNormLra}:print_format=json",
 				"-f",
 				"null",
 				"-"
@@ -73,7 +73,7 @@ public static class DSP
 			"-i",
 			inPath,
 			"-af",
-			$"loudnorm=I={Constants.C.AudioNormIntegrated}:TP={Constants.C.AudioNormMaxClip}"
+			$"loudnorm=I={Constants.C.AudioNormIntegrated}:TP=0:LRA={Constants.C.AudioNormLra}"
 		  + $":measured_I={measurement.I}:measured_TP={measurement.TP}"
 		  + $":measured_LRA={measurement.LRA}:measured_thresh={measurement.Thresh}"
 		  + $":offset={measurement.Oset}:linear=true",

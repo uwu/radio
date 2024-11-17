@@ -73,7 +73,7 @@ public class Constants
 	public double AudioNormIntegrated { get; set; }
 	
 	/// <summary>
-	/// Allow to clip the audio by at most this much dB True Peak
+	/// Target loudness range
 	/// </summary>
-	public double AudioNormMaxClip { get; set; }
+	public double AudioNormLra { get; set; }
 }
