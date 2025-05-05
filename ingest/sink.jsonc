@@ -566,6 +566,13 @@
 			"ArtUrl": "https://cdn.hyrule.pics/07b6fb403.png"
 		},
 		{
+			"Name": "Secret Level",
+			"Artist": "No Mana & Chipzel",
+			"SortArtist": "No Mana",
+			"StreamUrl": "https://ihavenomanas.bandcamp.com/track/secret-level",
+			"ArtUrl": "https://f4.bcbits.com/img/a2789783537_10.jpg"
+		},
+		{
 			"Name": "Contact",
 			"Artist": "Daft Punk",
 			"StreamUrl": "https://youtu.be/JI5noh4OyXc",
@@ -1646,6 +1653,25 @@
 			"ArtUrl": "https://aart.yellows.ink/release/cc8a6fb3-c2e5-411a-b08f-babad5a75e41.webp"
 		},
 		{
+			"Name": "Linoleum",
+			"Artist": "kmoe",
+			"StreamUrl": "https://kmoethekid.bandcamp.com/track/linoleum",
+			"ArtUrl": "https://f4.bcbits.com/img/a1525203373_10.jpg"
+		},
+		{
+			"Name": "Do I keep you up?",
+			"Artist": "kmoe",
+			"StreamUrl": "https://soundcloud.com/kmoethekid/doikeepyouup",
+			"ArtUrl": "https://aart.yellows.ink/release/df662fd7-9be2-4626-b054-421d04940848.webp"
+		},
+		{
+			"Name": "everything comes around (unreleased)",
+			"Artist": "kmoe and Jane Remover",
+			"SortArtist": "kmoe",
+			"StreamUrl": "https://soundcloud.com/hexapin/eca",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-1tGjMf6RA94MLq2A-Fc7zIA-t500x500.jpg"
+		},
+		{
 			"Name": "Pieces",
 			"Artist": "Icon For Hire",
 			"StreamUrl": "https://www.youtube.com/watch?v=1W_nU-pNy1E",
@@ -1762,6 +1788,93 @@
 			"Album": "The weight of the world",
 			"StreamUrl": "https://www.youtube.com/watch?v=b7I8aYVmxws",
 			"ArtUrl": "https://aart.yellows.ink/release/c3a3364e-ea32-4984-9aba-67bc18cddddb.webp"
+		},
+		{
+			"Name": "Industry Corporate Freak",
+			"Artist": "Syzy",
+			"StreamUrl": "https://soundcloud.com/syzymusic/industry-corporate-freak",
+			"ArtUrl": "https://aart.yellows.ink/release/c74fb2be-30df-432d-a47c-e1651a000201.webp"
+		},
+		{
+			"Name": "i don't wanna",
+			"Artist": "snuffles",
+			"StreamUrl": "https://snuffles.bandcamp.com/track/i-dont-wanna",
+			"ArtUrl": "https://f4.bcbits.com/img/a4240305117_10.jpg"
+		},
+		{
+			"Name": "adderall",
+			"Artist": "Niomi",
+			"Album": "chichi",
+			"StreamUrl": "https://niomiautemn.bandcamp.com/track/adderall",
+			"ArtUrl": "https://f4.bcbits.com/img/a0242646370_10.jpg"
+		},
+		{
+			"Name": "Another... Seriously...? (Dont Act Like You Dont ##Like It!)",
+			"Artist": "hatena",
+			"StreamUrl": "https://soundcloud.com/fnhatena/s1e1",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-BZyy649sapUD635F-yHVSaw-t500x500.jpg"
+		},
+		{
+			"Name": "he went to the store and saw \"Brakence JPOP\"",
+			"Artist": "syzy2",
+			"SortArtist": "Syzy",
+			"StreamUrl": "https://soundcloud.com/syzymusic2/brakence-jpop",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-MsiQYXrl86pwc5uy-iripDA-t500x500.jpg"
+		},
+		{
+			"Name": "LESBIAN PONIES WITH WEAPONS",
+			"Artist": "Vylet Pony",
+			"Album": "CUTIEMARKS (And the Things That Bind Us)",
+			"StreamUrl": "https://vyletpony.bandcamp.com/track/lesbian-ponies-with-weapons-2",
+			"ArtUrl": "https://aart.yellows.ink/release/5592695d-2a4a-4837-a03d-a7318894093d.webp"
+		},
+		{
+			"Name": "Obsession",
+			"Artist": "OK Go",
+			"Album": "Hungry Ghosts",
+			"StreamUrl": "https://paracadute.bandcamp.com/track/obsession",
+			"ArtUrl": "https://aart.yellows.ink/release/735ef72e-2e2e-48a4-8ef2-7bc76af60c3a.webp"
+		},
+		{
+			"Name": "Bright as Your Eyes",
+			"Artist": "OK Go",
+			"Album": "Hungry Ghosts",
+			"StreamUrl": "https://paracadute.bandcamp.com/track/bright-as-your-eyes",
+			"ArtUrl": "https://aart.yellows.ink/release/735ef72e-2e2e-48a4-8ef2-7bc76af60c3a.webp"
+		},
+		{
+			"Name": "I Won't Let You Down",
+			"Artist": "OK Go",
+			"Album": "Hungry Ghosts",
+			"StreamUrl": "https://paracadute.bandcamp.com/track/i-wont-let-you-down",
+			"ArtUrl": "https://aart.yellows.ink/release/735ef72e-2e2e-48a4-8ef2-7bc76af60c3a.webp"
+		},
+		{
+			"Name": "The One Moment",
+			"Artist": "OK Go",
+			"Album": "Hungry Ghosts",
+			"StreamUrl": "https://paracadute.bandcamp.com/track/the-one-moment",
+			"ArtUrl": "https://aart.yellows.ink/release/735ef72e-2e2e-48a4-8ef2-7bc76af60c3a.webp"
+		},
+		{
+			"Name": "This Too Shall Pass",
+			"Artist": "OK Go",
+			"Album": "Of the Blue Colour of the Sky",
+			"StreamUrl": "https://paracadute.bandcamp.com/track/this-too-shall-pass",
+			"ArtUrl": "http://aart.yellows.ink/release/68106d44-b83e-4280-b966-9962aa819812.webp"
+		},
+		{
+			"Name": "White Knuckles",
+			"Artist": "OK Go",
+			"Album": "Of the Blue Colour of the Sky",
+			"StreamUrl": "https://paracadute.bandcamp.com/track/white-knuckles",
+			"ArtUrl": "http://aart.yellows.ink/release/68106d44-b83e-4280-b966-9962aa819812.webp"
+		},
+		{
+			"Name": "Valley of the Shadows",
+			"Artist": "Origin Unknown",
+			"StreamUrl": "https://www.youtube.com/watch?v=a5meT63flnM",
+			"ArtUrl": "https://resources.tidal.com/images/76735461/5eb0/4c41/b560/5738a10373a5/1280x1280.jpg"
 		}
 	]
 }
