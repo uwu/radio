@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -40,7 +40,7 @@ jobs:
         
         cp constants.json ../dist
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: linux-x64-build
         path: dist
@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: linux-x64-build
           path: dotnet-dist
