@@ -15,6 +15,7 @@ builder.Services.AddSingleton<DataService>();
 builder.Services.AddSingleton<PickerService>();
 builder.Services.AddSingleton<DownloadService>();
 builder.Services.AddSingleton<CoordinatorService>();
+builder.Services.AddSingleton<SongStreamingService>();
 
 var app = builder.Build();
 

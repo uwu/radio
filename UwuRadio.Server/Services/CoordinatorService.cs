@@ -11,6 +11,7 @@ public class CoordinatorService : IDisposable
 	private readonly DownloadService                      _dlService;
 	private readonly IHubContext<SyncHub, ISyncHubClient> _hubCtxt;
 	private readonly PickerService                        _pickerService;
+	private readonly SongStreamingService                 _streamingService;
 
 	private bool _haltThread;
 
@@ -22,11 +23,12 @@ public class CoordinatorService : IDisposable
 	public string? CurrentQuote;
 	public string? NextQuote;
 
-	public CoordinatorService(IHubContext<SyncHub, ISyncHubClient> hubCtxt, DownloadService dlService, PickerService pickerService)
+	public CoordinatorService(IHubContext<SyncHub, ISyncHubClient> hubCtxt, DownloadService dlService, PickerService pickerService, SongStreamingService streamingService)
 	{
-		_hubCtxt      = hubCtxt;
-		_dlService    = dlService;
-		_pickerService = pickerService;
+		_hubCtxt          = hubCtxt;
+		_dlService        = dlService;
+		_pickerService    = pickerService;
+		_streamingService = streamingService;
 
 		(Current, CurrentQuote) = _pickerService.SelectSong();
 		(Next, NextQuote)       = _pickerService.SelectSong();
@@ -57,6 +59,9 @@ public class CoordinatorService : IDisposable
 												CurrentStarted.ToUnixTimeSeconds(),
 												new TransitSong(Next, NextQuote),
 												CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
+		
+		// start streaming service
+		_streamingService.PushNextSong(Current);
 
 		var preloadHandled = false;
 
@@ -123,6 +128,8 @@ public class CoordinatorService : IDisposable
 														 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
 				
 				Helpers.Log(nameof(CoordinatorService), $"Broadcast next song ({Next.Name}) to clients");
+				
+				_streamingService.PushNextSong(Next);
 				
 				continue;
 			}
