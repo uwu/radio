@@ -18,6 +18,9 @@ public class SongStreamingService : IDisposable
 	
 	// decoders per song placed into this
 	private readonly AsyncThrottleStream<DoubleBufferingReadStream> _decodersStream = new(new(), PcmThroughput, null);
+
+
+	public event EventHandler? Flip;
 	
 	private readonly DownloadService _downloadService;
 	
@@ -25,6 +28,8 @@ public class SongStreamingService : IDisposable
 	{
 		Fanout           = new AsyncDroppingFanout(_encoderStream);
 		_downloadService = downloadService;
+
+		_decodersStream.BackingStream.Flip += (sender, args) => Flip?.Invoke(sender, args);
 		
 		// start feeding the encoder stream
 		// when the _decodersStream is disposed it'll return 0 from read and this task will stop

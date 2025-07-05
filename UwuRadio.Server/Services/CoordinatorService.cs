@@ -65,6 +65,10 @@ public class CoordinatorService : IDisposable
 
 		var preloadHandled = false;
 
+		Instant? flipToHandle = null;
+
+		_streamingService.Flip += (_, _) => flipToHandle = Helpers.Now();
+
 		Helpers.Log(nameof(CoordinatorService), "Ready to serve clients");
 		
 		while (!_haltThread)
@@ -85,12 +89,12 @@ public class CoordinatorService : IDisposable
 				// and the state to mutex this isnt worth it
 				while (!_dlService.IsDownloaded(Next) && !_dlService.IsBlacklisted(Next))
 					await Task.Delay(100);
-				
+
 				continue;
 			}
 			
 			// handle advancing song
-			if (Helpers.Now() >= CurrentEnds)
+			if (flipToHandle.HasValue) //if (Helpers.Now() >= CurrentEnds)
 			{
 				// we need this to be downloaded for the song length.
 				while (!_dlService.IsDownloaded(Next) && !_dlService.IsBlacklisted(Next))
@@ -101,12 +105,14 @@ public class CoordinatorService : IDisposable
 				preloadHandled = false;
 
 				var info = _dlService.GetFileInfo(Next);
-				CurrentStarted = CurrentEnds;
-				CurrentEnds    = CurrentEnds.Plus(info.Length);
+				CurrentStarted = flipToHandle.Value;
+				CurrentEnds    = flipToHandle.Value.Plus(info.Length);
 
 				Current           = Next;
 				CurrentQuote      = NextQuote;
 				(Next, NextQuote) = _pickerService.SelectSong();
+
+				flipToHandle = null;
 
 				// clients are only told about the next when we need to handle preloading
 				// however we will *need* to know the length of the song and be able to serve it at preload time
@@ -121,7 +127,7 @@ public class CoordinatorService : IDisposable
 			}
 
 			// handle preloading
-			if (!preloadHandled && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
+			if (!preloadHandled && _dlService.IsDownloaded(Next) && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
 				await _hubCtxt.Clients.All.BroadcastNext(new TransitSong(Next, NextQuote),
