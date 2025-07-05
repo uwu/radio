@@ -45,6 +45,7 @@ public class SongStreamingService : IDisposable
 		Task.Run(async () =>
 		{
 			await codedStream.CopyToAsync(decoder);
+			decoder.InputFinished();
 			await codedStream.DisposeAsync();
 		});
 		

@@ -274,11 +274,10 @@ public class DoubleBufferingReadStream : Stream
 
 	private void DoFlip()
 	{
+		Current?.Dispose();
+		Current = null;
+
 		_currentIsB = !_currentIsB;
-		
-		// actually the previous!
-		Next!.Dispose();
-		Next = null;
 		
 		NeedsRefill++;
 		
