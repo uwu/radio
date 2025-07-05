@@ -135,7 +135,6 @@ public class FFmpegStream : Stream
 
     protected override void Dispose(bool disposing)
     {
-        Console.WriteLine($"dispose ffmpeg: {disposing}");
         if (!disposing) return;
         
         _proc.Kill(true);
