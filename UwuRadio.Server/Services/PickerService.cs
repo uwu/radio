@@ -51,6 +51,8 @@ public class PickerService
 
 		} while (song.Id == _lastSong?.Id);
 
+		_lastSong = song;
+
 		var quotes = _dataService.Submitters[song.Submitter].Quotes;
 		var quote = quotes.Length > 0 ? quotes[Random.Shared.Next(quotes.Length)] : null;
 
