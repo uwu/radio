@@ -1875,6 +1875,61 @@
 			"Artist": "Origin Unknown",
 			"StreamUrl": "https://www.youtube.com/watch?v=a5meT63flnM",
 			"ArtUrl": "https://resources.tidal.com/images/76735461/5eb0/4c41/b560/5738a10373a5/1280x1280.jpg"
+		},
+		{
+			"Name": "Music",
+			"Artist": "underscores",
+			"StreamUrl": "https://soundcloud.com/underscores/music",
+			"ArtUrl": "https://aart.yellows.ink/release/5fb6e267-696c-4be6-95f0-7b608b4c04b4.webp"
+		},
+		{
+			"Name": "Stupid (Can't run from the urge)",
+			"Artist": "underscores",
+			"Album": "Wallsocket (Director's Cut)",
+			"StreamUrl": "https://soundcloud.com/underscores/stupid",
+			"ArtUrl": "https://aart.yellows.ink/release/06efd7a6-f6ee-406d-8575-2c52a0ff297c.webp"
+		},
+		{
+			"Name": "Cops and robbers",
+			"Artist": "underscores",
+			"Album": "Wallsocket",
+			"StreamUrl": "https://underscores.bandcamp.com/track/cops-and-robbers-1",
+			"ArtUrl": "https://aart.yellows.ink/release/9d56a188-72d7-4e66-9619-d10043a1d6e4.webp"
+		},
+		{
+			"Name": "inertia",
+			"Artist": "disphing",
+			"Album": "href",
+			"StreamUrl": "https://disphing.bandcamp.com/track/inertia",
+			"ArtUrl": "https://aart.yellows.ink/release-group/95030d88-87d5-4ac1-b14b-b958d594ff2c.webp"
+		},
+		{
+			"Name": "inadequate",
+			"Artist": "disphing",
+			"Album": "href",
+			"StreamUrl": "https://disphing.bandcamp.com/track/inadequate",
+			"ArtUrl": "https://aart.yellows.ink/release-group/95030d88-87d5-4ac1-b14b-b958d594ff2c.webp"
+		},
+		{
+			"Name": "ineffable",
+			"Artist": "disphing",
+			"Album": "href",
+			"StreamUrl": "https://disphing.bandcamp.com/track/ineffable",
+			"ArtUrl": "https://aart.yellows.ink/release-group/95030d88-87d5-4ac1-b14b-b958d594ff2c.webp"
+		},
+		{
+			"Name": "You Belong // Built Myself",
+			"Artist": "Swardy",
+			"Album": "Compact Objects",
+			"StreamUrl": "https://swardy.bandcamp.com/track/you-belong-built-myself",
+			"ArtUrl": "https://aart.yellows.ink/release-group/d4df5202-e3f0-45d6-9c1a-93cb9a040f04.webp"
+		},
+		{
+			"Name": "Undercover Martyn",
+			"Artist": "Two Door Cinema Club",
+			"Album": "Tourist History",
+			"ArtUrl": "https://aart.yellows.ink/release-group/a3597f45-b9d9-4c8a-803e-0a7d0d4d4e9b.webp",
+			"StreamUrl": "https://www.youtube.com/watch?v=LLK4oaXUuLg"
 		}
 	]
 }
