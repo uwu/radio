@@ -3,13 +3,11 @@ import { useElementHover, useIdle, useWindowSize } from "@vueuse/core";
 import { computed, effect, onMounted, onUnmounted, ref, watch } from "vue";
 import butterchurn from "butterchurn";
 import butterchurnPresets from "butterchurn-presets";
-import { audioCtx, audioAnalyser } from "@/audio";
-import { timePromise } from "@/util";
-import { getClient } from "@/syncClient";
+import { waitForReady, audioCtx, audioAnalyser, currentSong } from "@/compatibility";
 import { visualizerEnabled } from "@/visualizer";
 import TheChurnerSelect from "./TheChurnerSelect.vue";
 
-const client = await timePromise.then(() => getClient());
+await waitForReady;
 
 const presets = butterchurnPresets.getPresets();
 const presetNames = Object.keys(presets);
@@ -54,11 +52,11 @@ onMounted(() => {
     visualizer.setRendererSize(width.value, height.value);
   });
 
-  const clearTitleWatch = watch(client.current, () => {
-    if (client.current.value) visualizer.launchSongTitleAnim(client.current.value.name);
+  const clearTitleWatch = watch(currentSong, () => {
+    if (currentSong.value) visualizer.launchSongTitleAnim(currentSong.value.name);
   });
-  if (client.currentSong !== undefined && client.currentSong?.submitter !== "...")
-    visualizer.launchSongTitleAnim(client.currentSong.name);
+  if (currentSong.value !== undefined && currentSong.value?.submitter !== "...")
+    visualizer.launchSongTitleAnim(currentSong.value.name);
 
   let stopRender = false;
   const render = () => {

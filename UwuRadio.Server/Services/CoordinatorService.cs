@@ -39,7 +39,7 @@ public class CoordinatorService : IDisposable
 
 	public void Dispose()
 	{
-		_haltThread = true; 
+		_haltThread = true;
 		Helpers.Log(nameof(CoordinatorService), "Disposed");
 	}
 
@@ -55,11 +55,11 @@ public class CoordinatorService : IDisposable
 		CurrentStarted = Helpers.Now();
 		CurrentEnds    = CurrentStarted + _dlService.GetFileInfo(Current).Length;
 
-		await _hubCtxt.Clients.All.ReceiveState(new TransitSong(Current, CurrentQuote),
+		await _hubCtxt.Clients.All.ReceiveState(new TransitSong(Current, CurrentQuote, _dlService.GetFileInfo(Current).Length.TotalSeconds),
 												CurrentStarted.ToUnixTimeSeconds(),
-												new TransitSong(Next, NextQuote),
+												new TransitSong(Next, NextQuote, null),
 												CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
-		
+
 		// start streaming service
 		_streamingService.PushNextSong(Current);
 
@@ -70,12 +70,12 @@ public class CoordinatorService : IDisposable
 		_streamingService.Flip += (_, _) => flipToHandle = Helpers.Now();
 
 		Helpers.Log(nameof(CoordinatorService), "Ready to serve clients");
-		
+
 		while (!_haltThread)
 		{
 			// this lives at the top so we can just use continue; to return to idle state from anywhere.
 			await Task.Delay(1000);
-			
+
 			// if there is a blacklisted song, keep skipping until a song downloads
 			if (_dlService.IsBlacklisted(Next))
 			{
@@ -92,7 +92,7 @@ public class CoordinatorService : IDisposable
 
 				continue;
 			}
-			
+
 			// handle advancing song
 			if (flipToHandle.HasValue) //if (Helpers.Now() >= CurrentEnds)
 			{
@@ -101,7 +101,7 @@ public class CoordinatorService : IDisposable
 					await Task.Delay(100);
 
 				if (_dlService.IsBlacklisted(Next)) continue;
-				
+
 				preloadHandled = false;
 
 				var info = _dlService.GetFileInfo(Next);
@@ -130,13 +130,13 @@ public class CoordinatorService : IDisposable
 			if (!preloadHandled && _dlService.IsDownloaded(Next) && Helpers.Now() >= CurrentEnds - Duration.FromSeconds(Constants.C.PreloadTime))
 			{
 				preloadHandled = true;
-				await _hubCtxt.Clients.All.BroadcastNext(new TransitSong(Next, NextQuote),
+				await _hubCtxt.Clients.All.BroadcastNext(new TransitSong(Next, NextQuote, _dlService.GetFileInfo(Next).Length.TotalSeconds),
 														 CurrentEnds.ToUnixTimeSeconds() + Constants.C.BufferTime);
-				
+
 				Helpers.Log(nameof(CoordinatorService), $"Broadcast next song ({Next.Name}) to clients");
-				
+
 				_streamingService.PushNextSong(Next);
-				
+
 				continue;
 			}
 		}

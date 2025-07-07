@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { history } from "@/audio";
+import { history } from "@/compatibility";
 import { computed, ref } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 

@@ -4,8 +4,7 @@ import { defineAsyncComponent, ref } from "vue";
 // @ts-expect-error this lib is not typed lol
 import canAutoplay from "can-autoplay";
 import { visualizerEnabled } from "./visualizer";
-import { setupMediaSession } from "./mediaSession";
-import { audioCtx } from "./audio";
+import { mediaSession, audioCtx, isReady } from "./compatibility";
 const TheChurner = defineAsyncComponent(() => import("./components/TheChurner.vue"));
 
 interface CanAutoplay {
@@ -21,11 +20,13 @@ canAutoplay.audio().then(({ result }: CanAutoplay) => {
 function handleEnterClick() {
   clicked.value = true;
 
+  if (!isReady) return;
+
   // two workarounds needed for iOS:
   // the media session setup calls play(), which is blocked outside of dom events
   // audio contexts created out of events are also paused by default, so need resuming from inside one
-  setupMediaSession();
-  audioCtx.resume();
+  mediaSession?.setupMediaSession();
+  audioCtx?.resume();
 }
 </script>
 

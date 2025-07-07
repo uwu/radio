@@ -12,14 +12,21 @@ async function measureTimeOffset() {
 }
 
 async function updateTimeOffset() {
+  let offsets = [];
   // sample a few times to improve precision
   let sum = 0;
   for (let i = 0; i < 5; i++)
-    sum += await measureTimeOffset();
+  {
+    let oset = await measureTimeOffset()
+    offsets.push(oset);
+    sum += oset;
+  }
 
-  timeOffset = sum / 5;
+  timeOffset = sum / offsets.length;
 
-  console.log(`time offset from server: ${(timeOffset * 1000).toFixed(1)}ms`)
+  const stdDev = Math.sqrt((offsets.map(x => (x - timeOffset) ** 2)).reduce((a,b) => a + b) / 5);
+
+  console.log(`time offset from server: ${(timeOffset * 1000).toFixed(1)}ms, stddev = ${stdDev * 1000}`)
 }
 
 export let timeOffset = 0;
