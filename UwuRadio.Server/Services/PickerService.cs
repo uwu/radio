@@ -1,33 +1,6 @@
-namespace UwuRadio.Server.Services;
+using System.Collections.Immutable;
 
-/*
- * Take the list of songs and split it into three
- * Make your queue consist of a randomly picked 2/3 of that
- * Run through the queue as normal, and when you reach the end:
- *
- * | former queue half : latter queue half |  | unpicked songs |
- *
- * Form a new queue of the former third and unpicked songs:
- *
- * | former queue half : unpicked songs |  | latter queue half |
- *
- * And shuffle the full queue:
- *
- * |      queue      | | unpicked songs |
- *
- *
- * This system gives a bias against recent songs, but it avoids the drawback
- * of just excluding the most recent half of the queue, in which the queue is
- * consisted of the full ingest:
- * the problem that that would essentially split the ingest into two halves,
- * where we alternate between them, albeit randomly within each half.
- *
- * This is non-ideal, and this thirds system allows songs to move around the queue
- * and intermingle over time.
- *
- * Hopefully this should lead to better shuffling? let's see!
- *  -- Yellowsink
- */
+namespace UwuRadio.Server.Services;
 
 /// <summary>
 ///     Selects new songs
@@ -35,16 +8,21 @@ namespace UwuRadio.Server.Services;
 public class PickerService
 {
 	private DataService _dataService;
-	
+
+	/*
 	private Song[] _queue;
 	private Song[] _unpickedSongs;
 
 	private int _queuePos;
+	*/
+
+	private Song? _lastSong;
 
 	public PickerService(DataService dataService)
 	{
 		_dataService = dataService;
-		
+
+		/*
 		var allSongs = SpotifyShuffle(_dataService.Songs).ToArray();
 		var queueSize = 2 * (allSongs.Length / 3);
 
@@ -55,25 +33,31 @@ public class PickerService
 		MemCopy(allSongs, _unpickedSongs, queueSize, 0);
 
 		ShuffleQueue();
+		*/
 	}
 
 	public (Song, string?) SelectSong()
 	{
-		_queuePos++;
+		Song song;
 
-		if (_queuePos >= _queue.Length)
+		do
 		{
-			_queuePos -= _queue.Length;
-			ShuffleQueue();
-		}
+			// pick a (sort) artist
+			var artists = _dataService.Songs.GroupBy(song => song.SortOrArtist.ToLowerInvariant()).ToImmutableArray();
+			var artistSongs = artists[Random.Shared.Next(artists.Length)].ToImmutableArray();
 
-		var song   = _queue[_queuePos];
+			// pick a song
+			song = artistSongs[Random.Shared.Next(artistSongs.Length)];
+
+		} while (song.Id == _lastSong?.Id);
+
 		var quotes = _dataService.Submitters[song.Submitter].Quotes;
 		var quote = quotes.Length > 0 ? quotes[Random.Shared.Next(quotes.Length)] : null;
-		
+
 		return (song, quote);
 	}
 
+	/*
 	private void ShuffleQueue()
 	{
 		var halfQueueSize    = _queue.Length / 2;
@@ -107,7 +91,7 @@ public class PickerService
 		    {
 			    var groupArr = group.ToArray();
 			    FisherYatesShuffle(groupArr);
-				
+
 				var groupOset = Random.Shared.NextDouble() * (1.0 / groupArr.Length);
 
 			    return groupArr.Select((song, idx) =>
@@ -116,7 +100,7 @@ public class PickerService
 								 - (0.1 / groupArr.Length);
 
 					var pos = (double) idx / groupArr.Length + groupOset + songOset;
-					
+
 					return (song, pos);
 				});
 			})
@@ -131,4 +115,5 @@ public class PickerService
 		var srcSpan  = new ReadOnlySpan<T>(src, srcIdx, count);
 		srcSpan.CopyTo(destSpan);
 	}
+	*/
 }
