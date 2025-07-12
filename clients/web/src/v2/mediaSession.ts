@@ -54,7 +54,9 @@ export function setupMediaSession() {
 
   // Seperate effect since this is called every second
   watchEffect(() => {
-    if (!isNaN(seek.value ?? 0)) {
+    const boundedSeek = Math.min(seek.value, duration.value);
+
+    if (!isNaN(seek.value ?? 0) && boundedSeek >= 0) {
       navigator.mediaSession.setPositionState({
         position: Math.min(seek.value, duration.value),
         duration: duration.value,
