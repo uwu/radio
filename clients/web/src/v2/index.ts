@@ -3,6 +3,7 @@ import { currentTimestamp } from "@/timesync";
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import { computed, reactive, ref, watchEffect } from "vue";
 import { setupMediaSession } from "./mediaSession";
+import { cacheImage } from "@/imgCache";
 
 export interface Song {
   name: string;
@@ -111,6 +112,10 @@ watchEffect(() => {
   }
 
   if (nextSongStarts.value && streamStarted.value)
+
+    if (nextSong.value?.artUrl)
+      cacheImage(nextSong.value.artUrl);
+
     songChangeTimeout = setTimeout(() => {
 
       // advance the song
@@ -126,7 +131,7 @@ watchEffect(() => {
 
       if (history.length > 25) history.shift();
 
-    }, 1000 * (nextSongStarts.value - streamTimestamp()));
+    }, 1000 * (nextSongStarts.value! - streamTimestamp()));
 });
 
 // init code
