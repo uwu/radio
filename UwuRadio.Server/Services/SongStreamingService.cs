@@ -71,7 +71,6 @@ public class SongStreamingService : IDisposable
 
 		resp.OnCompleted(() =>
 		{
-			Console.WriteLine("remove from fanout");
 			Fanout.Remove(writerStream);
 			return Task.CompletedTask;
 		});
@@ -87,7 +86,6 @@ public class SongStreamingService : IDisposable
 		{
 			if (tok.IsCancellationRequested)
 			{
-				Console.WriteLine("cancellation requested");
 				await resp.CompleteAsync();
 				break;
 			}
