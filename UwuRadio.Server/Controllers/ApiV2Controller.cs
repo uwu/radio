@@ -8,21 +8,26 @@ namespace UwuRadio.Server.Controllers;
 public class ApiV2Controller : Controller
 {
 	private readonly SongStreamingService _streamingService;
+	private readonly CoordinatorService _coord;
+
 	private readonly IHubContext<SyncHub, ISyncHubClient> _hubCtxt;
 
 	private readonly IHostApplicationLifetime _lifetime;
 
-  public ApiV2Controller(SongStreamingService streamingService, IHubContext<SyncHub, ISyncHubClient> hubCtxt, IHostApplicationLifetime lifetime)
+  public ApiV2Controller(SongStreamingService streamingService, IHubContext<SyncHub, ISyncHubClient> hubCtxt, IHostApplicationLifetime lifetime, CoordinatorService coord)
   {
 	_streamingService = streamingService;
 	_hubCtxt = hubCtxt;
 	_lifetime = lifetime;
+	_coord = coord;
   }
 
 
   [HttpGet("stream/{token?}")]
 	public async Task<IActionResult> Stream(string? token)
 	{
+		await _coord.IsReady;
+
 		var tokenSrc = new CancellationTokenSource();
 		HttpContext.RequestAborted.Register(() => tokenSrc.Cancel());
 		_lifetime.ApplicationStopping.Register(() => tokenSrc.Cancel());

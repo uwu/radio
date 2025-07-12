@@ -21,6 +21,8 @@ public class SyncHub : Hub<ISyncHubClient>
 
 	public async Task RequestState()
 	{
+		await _coordinatorService.IsReady;
+
 		var curr = _coordinatorService.Current;
 		var currLen = _downloadService.GetFileInfo(curr).Length.TotalSeconds;
 
@@ -36,7 +38,10 @@ public class SyncHub : Hub<ISyncHubClient>
 	}
 
 	public async Task RequestSeekPos()
-		=> await Clients.Caller.ReceiveSeekPos(_coordinatorService.CurrentStarted.ToUnixTimeSeconds());
+	{
+		await _coordinatorService.IsReady;
+		await Clients.Caller.ReceiveSeekPos(_coordinatorService.CurrentStarted.ToUnixTimeSeconds());
+	}
 }
 
 public interface ISyncHubClient

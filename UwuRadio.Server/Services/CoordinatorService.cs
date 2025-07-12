@@ -23,6 +23,10 @@ public class CoordinatorService : IDisposable
 	public string? CurrentQuote;
 	public string? NextQuote;
 
+	private TaskCompletionSource _readyEvent = new();
+
+	public Task IsReady => _readyEvent.Task;
+
 	public CoordinatorService(IHubContext<SyncHub, ISyncHubClient> hubCtxt, DownloadService dlService, PickerService pickerService, SongStreamingService streamingService)
 	{
 		_hubCtxt          = hubCtxt;
@@ -62,6 +66,9 @@ public class CoordinatorService : IDisposable
 
 		// start streaming service
 		_streamingService.PushNextSong(Current);
+
+		// allow the api etc to move forward
+		_readyEvent.SetResult();
 
 		var preloadHandled = false;
 

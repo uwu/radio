@@ -87,9 +87,4 @@ public static class Helpers
 		var hash = XXHash.Hash64(buffer);
 		return hash.ToBase60();
 	}
-
-	public record OnDispose(Action func) : IDisposable
-	{
-		public void Dispose() => func();
-	}
 }
