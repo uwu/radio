@@ -10,17 +10,24 @@ public class ApiV2Controller : Controller
 	private readonly SongStreamingService _streamingService;
 	private readonly IHubContext<SyncHub, ISyncHubClient> _hubCtxt;
 
-  public ApiV2Controller(SongStreamingService streamingService, IHubContext<SyncHub, ISyncHubClient> hubCtxt)
+	private readonly IHostApplicationLifetime _lifetime;
+
+  public ApiV2Controller(SongStreamingService streamingService, IHubContext<SyncHub, ISyncHubClient> hubCtxt, IHostApplicationLifetime lifetime)
   {
 	_streamingService = streamingService;
 	_hubCtxt = hubCtxt;
+	_lifetime = lifetime;
   }
 
 
   [HttpGet("stream/{token?}")]
 	public async Task<IActionResult> Stream(string? token)
 	{
-		await _streamingService.StreamToResponse(Response, () =>
+		var tokenSrc = new CancellationTokenSource();
+		HttpContext.RequestAborted.Register(() => tokenSrc.Cancel());
+		_lifetime.ApplicationStopping.Register(() => tokenSrc.Cancel());
+
+		await _streamingService.StreamToResponse(Response, tokenSrc.Token, () =>
 		{
 			if (token != null)
 				_hubCtxt.Clients.Client(token).ReceiveStreamStartedAt(Helpers.Now().ToUnixTimeTicks() / (1000.0 * 10_000.0));

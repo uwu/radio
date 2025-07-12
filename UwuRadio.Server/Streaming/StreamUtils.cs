@@ -15,7 +15,7 @@ public class AsyncDroppingFanout : IDisposable
     public AsyncDroppingFanout(Stream source)
     {
         _source = source;
-        
+
         // start task to funnel data around
         var t = Task.Run(async () =>
         {
@@ -29,7 +29,7 @@ public class AsyncDroppingFanout : IDisposable
                     var read = await source.ReadAsync(buffer, _ctsSrc.Token);
 
                     var tasks = new List<ValueTask>();
-                    foreach (var output in _outputs) 
+                    foreach (var output in _outputs)
                         tasks.Add(output.WriteAsync(buffer[.. read], _ctsSrc.Token));
 
                     foreach (var vt in tasks) await vt;
@@ -42,7 +42,7 @@ public class AsyncDroppingFanout : IDisposable
     }
 
     public void Add(Stream destination) => _outputs.Add(destination);
-    
+
     public bool Remove(Stream destination) => _outputs.Remove(destination);
 
     public void Dispose()
@@ -54,27 +54,27 @@ public class AsyncDroppingFanout : IDisposable
     protected virtual void Dispose(bool disposing)
     {
         if (!disposing) return;
-        
+
         _ctsSrc.Cancel();
         _ctsSrc.Dispose();
         _source.Dispose();
-        
-        foreach (var output in _outputs) 
+
+        foreach (var output in _outputs)
             output.Dispose();
     }
 }
 
-/// streams data through ffmpeg 
+/// streams data through ffmpeg
 public class FFmpegStream : Stream
 {
     private static readonly string[] DefaultArgs = ["-hide_banner", "-nostats", "-loglevel", "warning"];
-    
+
     private readonly CancellationTokenSource _ctsSrc = new();
 
     private readonly Process _proc;
 
     public bool IsFinished => _proc.HasExited;
-    
+
     public FFmpegStream(IEnumerable<string> args)
     {
         var psi = new ProcessStartInfo("ffmpeg", DefaultArgs.Concat(args))
@@ -117,7 +117,7 @@ public class FFmpegStream : Stream
     }
 
     public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
-    
+
     public override void Flush() => _proc.StandardInput.BaseStream.Flush();
     public override Task FlushAsync(CancellationToken cancellationToken) => _proc.StandardInput.BaseStream.FlushAsync(cancellationToken);
 
@@ -136,10 +136,10 @@ public class FFmpegStream : Stream
     protected override void Dispose(bool disposing)
     {
         if (!disposing) return;
-        
+
         _proc.Kill(true);
         _ctsSrc.Cancel();
-            
+
         _proc.Dispose();
         _ctsSrc.Dispose();
     }
@@ -150,7 +150,7 @@ public class AsyncThrottleStream<T>(T backingStream, double? readThroughput, dou
 	where T : Stream
 {
     public readonly T BackingStream = backingStream;
-    
+
     private int _written;
     private int _read;
 
@@ -159,13 +159,13 @@ public class AsyncThrottleStream<T>(T backingStream, double? readThroughput, dou
 
     private int ToWrite => WriteTarget - _written;
     private int ToRead => ReadTarget - _read;
-    
+
     private static readonly long Freq = Stopwatch.Frequency;
     private readonly long _startTs = Stopwatch.GetTimestamp();
     private double CurrentTime => (double)(Stopwatch.GetTimestamp() - _startTs) / Freq;
 
     private PeriodicTimer _timer = new(TimeSpan.FromMilliseconds(1000));
-    
+
     // synchronous read and write are not throttled but do count
     public override int Read(byte[] buffer, int offset, int count)
     {
@@ -179,7 +179,7 @@ public class AsyncThrottleStream<T>(T backingStream, double? readThroughput, dou
         BackingStream.Write(buffer, offset, count);
         _written += Math.Min(buffer.Length - offset, count);
     }
-    
+
     // actual throttled impls
     public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         => ReadAsync(new Memory<byte>(buffer)[offset..count], cancellationToken).AsTask();
@@ -189,7 +189,7 @@ public class AsyncThrottleStream<T>(T backingStream, double? readThroughput, dou
         while (ToRead <= 0) await _timer.WaitForNextTickAsync(cancellationToken);
 
         var count = Math.Min(buffer.Length, ToRead);
-        
+
         var read = await BackingStream.ReadAsync(buffer[..count], cancellationToken);
         _read += read;
         return read;
@@ -209,7 +209,7 @@ public class AsyncThrottleStream<T>(T backingStream, double? readThroughput, dou
     }
 
     public override long Seek(long offset, SeekOrigin origin) => throw new NotSupportedException();
-    
+
     public override void Flush() => BackingStream.Flush();
     public override Task FlushAsync(CancellationToken cancellationToken) => BackingStream.FlushAsync(cancellationToken);
 
@@ -224,7 +224,7 @@ public class AsyncThrottleStream<T>(T backingStream, double? readThroughput, dou
         get => throw new NotSupportedException();
         set => throw new NotSupportedException();
     }
-    
+
     protected override void Dispose(bool disposing)
     {
         if (disposing) BackingStream.Dispose();
@@ -240,7 +240,7 @@ public class DoubleBufferingReadStream : Stream
 	private bool _finished;
 
 	private bool _currentIsB;
-	
+
 	public Stream? Current
 	{
 		get => _currentIsB ? _b : _a;
@@ -278,9 +278,9 @@ public class DoubleBufferingReadStream : Stream
 		Current = null;
 
 		_currentIsB = !_currentIsB;
-		
+
 		NeedsRefill++;
-		
+
 		Flip?.Invoke(this, EventArgs.Empty);
 	}
 
@@ -290,11 +290,11 @@ public class DoubleBufferingReadStream : Stream
 		{
 			case 0:
 				throw new InvalidOperationException("no refill needed, no space to put stream");
-			
+
 			case 1:
 				Next = toPush;
 				break;
-			
+
 			default:
 				Current = toPush;
 				break;
@@ -302,20 +302,20 @@ public class DoubleBufferingReadStream : Stream
 
 		NeedsRefill--;
 	}
-	
+
 	public override int Read(byte[] buffer, int offset, int count)
 	{
 		if (_finished) return 0;
-		
+
 		if (NeedsRefill >= 2) return 0;
-		
+
 		if (Current is null)
 			throw new InvalidOperationException("needsrefill cannot be <2 when current is null");
-		
+
 		var cRead = Current.Read(buffer, offset, count);
 
 		if (cRead > 0) return cRead;
-		
+
 		DoFlip();
 
 		return Current?.Read(buffer, offset, count) ?? 0;
@@ -327,7 +327,7 @@ public class DoubleBufferingReadStream : Stream
 		while (true)
 		{
 			if (_finished) return 0;
-			
+
 			// wait for at least one stream to exist to exist
 			while (NeedsRefill >= 2)
 			{
@@ -337,7 +337,7 @@ public class DoubleBufferingReadStream : Stream
 
 			if (Current is null)
 				throw new InvalidOperationException("needsrefill cannot be <2 when current is null");
-		
+
 			var read = await Current.ReadAsync(buffer, cancellationToken);
 
 			if (read > 0) return read;
@@ -351,14 +351,13 @@ public class DoubleBufferingReadStream : Stream
 
 	protected override void Dispose(bool disposing)
 	{
-		Console.WriteLine($"dispose ffmpeg: {disposing}");
 		if (!disposing) return;
 
 		_finished = true;
 		_a?.Dispose();
 		_b?.Dispose();
 	}
-	
+
 	public override void Flush()
 	{
 	}

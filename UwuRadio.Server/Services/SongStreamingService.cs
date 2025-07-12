@@ -58,7 +58,7 @@ public class SongStreamingService : IDisposable
 		_decodersStream.BackingStream.Refill(decoder);
 	}
 
-	public async Task StreamToResponse(HttpResponse resp, Action? onStart = null)
+	public async Task StreamToResponse(HttpResponse resp, CancellationToken tok, Action? onStart = null)
 	{
 		resp.Headers.ContentType = "audio/ogg";
 
@@ -69,23 +69,32 @@ public class SongStreamingService : IDisposable
 		var writerStream = pipe.Writer.AsStream();
 		Fanout.Add(writerStream);
 
-		resp.RegisterForDispose(new Helpers.OnDispose(() => Fanout.Remove(writerStream)));
+		resp.OnCompleted(() =>
+		{
+			Console.WriteLine("remove from fanout");
+			Fanout.Remove(writerStream);
+			return Task.CompletedTask;
+		});
 
 		const uint serialNumber = 0x55575552; // "UWUR"
 
-		await Task.Run(async () =>
+		await resp.BodyWriter.WriteAsync(Ogg.BuildOpusIdHeader(serialNumber, 2, 3840, 48000, 0));
+		await resp.BodyWriter.WriteAsync(Ogg.BuildOpusCommentHeader(serialNumber));
+
+		onStart?.Invoke();
+
+		await foreach (var page in new Ogg.PageEnumerable(pipe.Reader.AsStream()))
 		{
-			await resp.BodyWriter.WriteAsync(Ogg.BuildOpusIdHeader(serialNumber, 2, 3840, 48000, 0));
-			await resp.BodyWriter.WriteAsync(Ogg.BuildOpusCommentHeader(serialNumber));
+			if (tok.IsCancellationRequested)
+			{
+				Console.WriteLine("cancellation requested");
+				await resp.CompleteAsync();
+				break;
+			}
 
-			onStart?.Invoke();
-
-			await foreach (var page in new Ogg.PageEnumerable(pipe.Reader.AsStream()))
-				{
-					Ogg.SetSerialNumberAndSum(page, serialNumber);
-					await resp.BodyWriter.WriteAsync(page);
-				}
-		});
+			Ogg.SetSerialNumberAndSum(page, serialNumber);
+			await resp.BodyWriter.WriteAsync(page, tok);
+		}
 	}
 
 	public void Dispose()
