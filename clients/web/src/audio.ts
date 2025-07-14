@@ -14,7 +14,7 @@ let startSeek: number;
 const songs: Record<string, Promise<AudioBuffer>> = {};
 
 export const history = reactive<Array<Song>>([]);
-export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? (10 ** (-10/20) + "")));
+export const volume = ref<number>(JSON.parse(localStorage.getItem("volume") ?? (10 ** (-10 / 20) + "")));
 // default volume of -10dBFS is approximately 0.31 linearly (or exactly 1/sqrt(10)!)
 
 export const volumeDbfs = computed({
@@ -69,6 +69,14 @@ export async function play(song: Song, seek: number) {
 
   audioSource = new AudioBufferSourceNode(audioCtx, {
     buffer: await (songs[url] ?? preload(url)),
+  });
+
+  audioSource.addEventListener("ended", function () {
+    // important: disconnect called in event after stop(): https://stackoverflow.com/a/53263710/13160456
+    this.disconnect();
+    // this is meant to act as cache? its a lot of stuff to keep in memory
+    // despite being so infrequently re-accessed
+    delete songs[url];
   });
 
   audioSource.connect(audioAnalyser).connect(audioGain).connect(audioCtx.destination);
