@@ -1,9 +1,9 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
-import { currentTimestamp } from "./util";
+import { currentTimestamp } from "../timesync";
 import { play, preload, seekTo } from "./audio";
 import { ref, computed } from "vue";
-import { serverUrl } from "./constants";
-import { cacheImage } from "./imgCache";
+import { serverUrl } from "../constants";
+import { cacheImage } from "../imgCache";
 
 const loadingSong: Song = {
   name: "loading...",
@@ -49,7 +49,7 @@ export default class SyncClient {
 
   // this desperately needs a rewrite (when i do channels i'll redo all the sync and audio logic)
   current = ref<Song | undefined>(loadingSong);
-  #next = ref<Song>();
+  next = ref<Song>();
 
   #currentStarted = ref<number>();
   #nextStarts = ref<number>();
@@ -62,7 +62,7 @@ export default class SyncClient {
     return this.current.value;
   }
   get nextSong() {
-    return this.#next.value;
+    return this.next.value;
   }
 
   get currentStartedTime() {
@@ -81,7 +81,7 @@ export default class SyncClient {
 
   #handlers = {
     BroadcastNext: (nextSong: Song, startTime: number) => {
-      this.#next.value = nextSong;
+      this.next.value = nextSong;
       this.#nextStarts.value = startTime;
       this.#scheduleNext(startTime);
     },
@@ -93,7 +93,7 @@ export default class SyncClient {
     ) => {
       this.current.value = currentSong;
       this.#currentStarted.value = currentStarted;
-      this.#next.value = nextSong;
+      this.next.value = nextSong;
       this.#nextStarts.value = nextStart;
 
       play(this.current.value!, this.seekPos.value!);
@@ -143,16 +143,16 @@ export default class SyncClient {
   }
 
   #scheduleNext(startTime: number) {
-    if (this.#next.value === undefined) return;
-    preload(this.#next.value.dlUrl!);
-    cacheImage(this.#next.value.artUrl!);
+    if (this.next.value === undefined) return;
+    preload(this.next.value.dlUrl!);
+    cacheImage(this.next.value.artUrl!);
 
     clearInterval(this.#interval);
     this.#interval = setTimeout(
       () => {
-        this.current.value = this.#next.value;
+        this.current.value = this.next.value;
         this.#currentStarted.value = this.#nextStarts.value;
-        this.#next.value = undefined;
+        this.next.value = undefined;
         this.#nextStarts.value = undefined;
 
         const correction = Math.min(-(startTime - currentTimestamp()), 0);

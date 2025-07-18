@@ -24,9 +24,10 @@ public record TransitSong(
 	string? ArtUrl,
 	string? Album,
 	string  Submitter,
-	string? Quote)
+	string? Quote,
+	double? Length)
 {
-	public TransitSong(Song song, string? quote) : this(song.Name,
+	public TransitSong(Song song, string? quote, double? length) : this(song.Name,
 														song.Artist,
 														song.SortArtist,
 														Constants.C.ServerDlUrl + song.Id,
@@ -34,7 +35,8 @@ public record TransitSong(
 														song.ArtUrl,
 														song.Album,
 														song.Submitter,
-														quote)
+														quote,
+														length)
 	{
 	}
 }
