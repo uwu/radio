@@ -111,7 +111,7 @@ watchEffect(() => {
     songChangeTimeout = undefined;
   }
 
-  if (nextSongStarts.value && streamStarted.value)
+  if (nextSongStarts.value && streamStarted.value) {
 
     if (nextSong.value?.artUrl)
       cacheImage(nextSong.value.artUrl);
@@ -132,6 +132,7 @@ watchEffect(() => {
       if (history.length > 25) history.shift();
 
     }, 1000 * (nextSongStarts.value! - streamTimestamp()));
+  }
 });
 
 // init code
