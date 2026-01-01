@@ -15,7 +15,6 @@ builder.Services.AddSingleton<DataService>();
 builder.Services.AddSingleton<PickerService>();
 builder.Services.AddSingleton<DownloadService>();
 builder.Services.AddSingleton<CoordinatorService>();
-builder.Services.AddSingleton<SongStreamingService>();
 
 var app = builder.Build();
 
@@ -35,12 +34,12 @@ if (args.Contains("--cache-all"))
 		while (!dlSrv.IsDownloaded(song) && !dlSrv.IsBlacklisted(song))
 			// lol this makes the entire program wrapped in an async state machine in debug builds :)
 			await Task.Delay(100);
-
+		
 		Helpers.Log("debug cache-all", $"downloaded: {idx + 1} of {dataSrv.Songs.Length}");
 	}
-
+	
 	Helpers.Log("debug cache-all", "successfully downloaded all songs");
-
+	
 	return;
 }
 #endif

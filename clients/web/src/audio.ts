@@ -1,7 +1,7 @@
 import { ref, reactive, computed, watchEffect } from "vue";
 import { setupMediaSession } from "./mediaSession";
 import type { Song } from "./syncClient";
-import { currentTimestamp } from "../timesync";
+import { currentTimestamp } from "./util";
 
 export const audioCtx = new AudioContext();
 export const audioAnalyser = new AnalyserNode(audioCtx);

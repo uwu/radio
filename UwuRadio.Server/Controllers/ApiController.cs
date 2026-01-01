@@ -22,7 +22,7 @@ public class ApiController : Controller
 	public IActionResult Ping() => Ok("Pong!");
 
 	// /api/time
-	public IActionResult Time() => Ok((Helpers.Now().ToUnixTimeTicks() / (1000.0 * 10_000.0)).ToString(CultureInfo.InvariantCulture));
+	public IActionResult Time() => Ok((Helpers.Now().ToUnixTimeMilliseconds() / 1000.0).ToString(CultureInfo.InvariantCulture));
 
 	// /api/data
 	public IActionResult Data() => Json(new
@@ -44,7 +44,7 @@ public class ApiController : Controller
 			return StatusCode(StatusCodes.Status304NotModified);
 
 		Response.Headers.CacheControl = $"public, max-age={1 * 7 * 24 * 60 * 60}, immutable";
-
+		
 		return File(
 				    fileInfo.File.OpenRead(),
 				    "audio/mpeg",

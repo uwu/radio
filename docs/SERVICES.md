@@ -43,11 +43,3 @@ To do its job, it fires off a background thread that loops in a CPU-efficient ma
 
 This is the only service that does this as everything it does is in response
 to certain points in time being hit.
-
-## SongStreamingService
-
-This handles generating the audio livestreams that are used by the client.
- - Starts reading songs from disk and creates decoder streams
- - Ties together decoded audio for songs seamlessly
- - Connects streams to the encoder
- - Connects http responses to the encoded stream

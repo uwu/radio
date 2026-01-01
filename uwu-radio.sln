@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "uwuradio-client", "clients\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwuRadio.Server.Tests", "UwuRadio.Server.Tests\UwuRadio.Server.Tests.csproj", "{1A4A129A-CF8E-4428-9064-94634B894AAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UwuRadio.Ogg", "UwuRadio.Ogg\UwuRadio.Ogg.csproj", "{3753B941-3A13-44F9-A5AD-014F013DD4E7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,9 +26,5 @@ Global
 		{1A4A129A-CF8E-4428-9064-94634B894AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A4A129A-CF8E-4428-9064-94634B894AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A4A129A-CF8E-4428-9064-94634B894AAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3753B941-3A13-44F9-A5AD-014F013DD4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3753B941-3A13-44F9-A5AD-014F013DD4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3753B941-3A13-44F9-A5AD-014F013DD4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3753B941-3A13-44F9-A5AD-014F013DD4E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
