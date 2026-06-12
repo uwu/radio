@@ -1,0 +1,82 @@
+{
+  "Name": "tasky",
+  "PfpUrl": "https://avatars.githubusercontent.com/u/75871323?v=4",
+  "Quotes": [],
+  "Songs": [
+    {
+      "Name": "Holdin On",
+      "Artist": "Flume",
+      "StreamUrl": "https://music.youtube.com/watch?v=hS5zyIZmXMM",
+      "ArtUrl": "https://aart.yellows.ink/release/9a700029-ee4e-442b-89fc-7d408edf9983.webp",
+      "Album": "Flume"
+    },
+    {
+      "Name": "Perfect Form",
+      "Artist": "Cyril Hahn",
+      "StreamUrl": "https://music.youtube.com/watch?v=AnOOeRBL3rU",
+      "ArtUrl": "https://i.ytimg.com/vi/AnOOeRBL3rU/hqdefault.jpg"
+    },
+    {
+      "Name": "Who Gets Your Love",
+      "Artist": "Vanilla",
+      "StreamUrl": "https://music.youtube.com/watch?v=RjnKvUA6Ctc",
+      "ArtUrl": "https://aart.yellows.ink/release/c7c9aa00-f5e7-4a98-8fb6-755861043bd6.webp",
+      "Album": "Sweet Talk"
+    },
+    {
+      "Name": "Real Thing",
+      "Artist": "Vanilla",
+      "StreamUrl": "https://music.youtube.com/watch?v=TEO3oUhmMeM",
+      "ArtUrl": "https://aart.yellows.ink/release/c7c9aa00-f5e7-4a98-8fb6-755861043bd6.webp",
+      "Album": "Sweet Talk"
+    },
+    {
+      "Name": "Falling in Love Again",
+      "Artist": "Vanilla",
+      "StreamUrl": "https://music.youtube.com/watch?v=XmBjHnpdpyg",
+      "ArtUrl": "https://aart.yellows.ink/release/c7c9aa00-f5e7-4a98-8fb6-755861043bd6.webp",
+      "Album": "Sweet Talk"
+    },
+    {
+      "Name": "All in My Mind",
+      "Artist": "Vanilla",
+      "StreamUrl": "https://music.youtube.com/watch?v=Xg36xhgdxeA",
+      "ArtUrl": "https://aart.yellows.ink/release/29239f24-7e7f-4efe-ad55-e21e464ea143.webp",
+      "Album": "Origin"
+    },
+    {
+      "Name": "20 Questions",
+      "Artist": "Ivy Lab",
+      "StreamUrl": "https://music.youtube.com/watch?v=zA86HdvIjjE",
+      "ArtUrl": "https://aart.yellows.ink/release/d17b27b4-2fd5-4c16-9aee-f53f84491200.webp",
+      "Album": "Drum&BassArena: 20 Years of D&B 1996‐2016"
+    },
+    {
+      "Name": "Hold On",
+      "Artist": "KAYTRANADA, Dawn Richard",
+      "StreamUrl": "https://music.youtube.com/watch?v=4fh-ljWDozQ",
+      "ArtUrl": "https://aart.yellows.ink/release/03fea6f3-251d-4b94-8c24-83bc8953707b.webp",
+      "Album": "TIMELESS"
+    },
+    {
+      "Name": "Our Time",
+      "Artist": "Ivy Lab",
+      "StreamUrl": "https://music.youtube.com/watch?v=eaIV13ycbvI",
+      "ArtUrl": "https://aart.yellows.ink/release/3fc6f70e-a011-4bc7-a55a-46fbc146bc22.webp",
+      "Album": "Infinite Falling Ground"
+    },
+    {
+      "Name": "Inferno",
+      "Artist": "Cyril Hahn, Say Lou Lou",
+      "StreamUrl": "https://music.youtube.com/watch?v=LzLQ4DWOKeI",
+      "ArtUrl": "https://aart.yellows.ink/release/75c3e3c6-ccb6-4321-b6e0-19e32ee617b8.webp",
+      "Album": "Begin"
+    },
+    {
+      "Name": "Help Me Lose My Mind",
+      "Artist": "Disclosure, London Grammar",
+      "StreamUrl": "https://music.youtube.com/watch?v=i04NBNAZiqY",
+      "ArtUrl": "https://i.ytimg.com/vi/i04NBNAZiqY/hqdefault.jpg"
+    }
+  ]
+}
