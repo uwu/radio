@@ -1,7 +1,7 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
 import { currentTimestamp } from "./util";
 import { play, preload, seekTo } from "./audio";
-import { ref, reactive, computed } from "vue";
+import { ref, computed } from "vue";
 import { serverUrl } from "./constants";
 import { cacheImage } from "./imgCache";
 
@@ -9,6 +9,7 @@ const loadingSong: Song = {
   name: "loading...",
   artist: "...",
   submitter: "...",
+  quote: null,
 };
 
 export interface Song {
@@ -19,6 +20,7 @@ export interface Song {
   artUrl?: string | null;
   album?: string | null;
   submitter: string;
+  quote: string | null;
 }
 
 export interface Submitter {
@@ -48,8 +50,6 @@ export default class SyncClient {
   // this desperately needs a rewrite (when i do channels i'll redo all the sync and audio logic)
   current = ref<Song | undefined>(loadingSong);
   #next = ref<Song>();
-
-  submitters = reactive(new Map<string, Submitter>());
 
   #currentStarted = ref<number>();
   #nextStarts = ref<number>();
@@ -131,12 +131,6 @@ export default class SyncClient {
   }
 
   updateState() {
-    fetch(this.#apiRes("/api/data"))
-      .then((r) => r.json())
-      .then((r) => {
-        for (const submitter of r.submitters) this.submitters.set(submitter.name, submitter);
-      });
-
     this.requestState();
   }
 
@@ -154,15 +148,18 @@ export default class SyncClient {
     cacheImage(this.#next.value.artUrl!);
 
     clearInterval(this.#interval);
-    this.#interval = setTimeout(() => {
-      this.current.value = this.#next.value;
-      this.#currentStarted.value = this.#nextStarts.value;
-      this.#next.value = undefined;
-      this.#nextStarts.value = undefined;
+    this.#interval = setTimeout(
+      () => {
+        this.current.value = this.#next.value;
+        this.#currentStarted.value = this.#nextStarts.value;
+        this.#next.value = undefined;
+        this.#nextStarts.value = undefined;
 
-      const correction = Math.min(-(startTime - currentTimestamp()), 0);
-      play(this.current.value!, correction);
-    }, 1000 * (startTime - currentTimestamp()));
+        const correction = Math.min(-(startTime - currentTimestamp()), 0);
+        play(this.current.value!, correction);
+      },
+      1000 * (startTime - currentTimestamp()),
+    );
   }
 }
 

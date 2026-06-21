@@ -85,7 +85,7 @@
 			"Name": "optimist (w/ Bkode)",
 			"Artist": "voxkai",
 			"StreamUrl": "https://soundcloud.com/voxkai/optimist-w-bkode",
-			"ArtUrl": "https://i1.sndcdn.com/artworks-0aRSydcCusVwUixt-hMBj0Q-t500x500.jpg"
+			"ArtUrl": "https://i1.sndcdn.com/artworks-5EHE1z3M8LSlIhXo-4E3saA-t1080x1080.jpg"
 		},
 		{
 			"Name": "he'll hide behind SAD furry .jpegs! :3 +nerootter",
@@ -96,13 +96,13 @@
 		{
 			"Name": "Don't be too soft on me (ft. Jozzy)",
 			"Artist": "SOPHIE",
-			"StreamUrl": "https://soundcloud.com/infraliminal/sophie-ft-jozzy-dont-be-too",
+			"StreamUrl": "https://soundcloud.com/archive1000000/sophie-ft-jozzy-dont-be-too",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-UPP6JhJw1p397E79-BzL2og-t500x500.jpg"
 		},
 		{
 			"Name": "this will surely put an end to my abuse of underscores acapellas 2",
 			"Artist": "user-177606669",
-			"StreamUrl": "https://soundcloud.com/user-177606669/this-will-surely-put-an-end-to-my-abuse-of-underscores-acapellas-2",
+			"StreamUrl": "https://soundcloud.com/user-177606668/this-will-surely-put-an-end-to-my-abuse-of-underscores-acapellas-2",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-4egezumNhHmry0fe-7SVtfw-t500x500.jpg"
 		},
 		{
@@ -133,7 +133,7 @@
 		{
 			"Name": "Leave Me Like This (Wherefore Edit)",
 			"Artist": "Skrillex",
-			"StreamUrl": "https://soundcloud.com/whereforetunes/skrillex-leave-me-like-this-wherefore-edit",
+			"StreamUrl": "https://soundcloud.com/whereforerocks/skrillex-leave-me-like-this-wherefore-edit",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-vFqejDc9ybbzqbmS-oS5SHQ-t500x500.jpg"
 		},
 		{
@@ -195,6 +195,7 @@
 		{
 			"Name": "✧✧ i'll make your day! ✧✧ - NNTY remix",
 			"Artist": "syzy2",
+			"SortArtist": "Syzy",
 			"StreamUrl": "https://soundcloud.com/nntymusic/make-ur-day-ash-edit",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-plEzNfYofKXeAMMM-OZwMCg-t500x500.jpg"
 		},
@@ -567,28 +568,161 @@
 			"Artist": "midwxst",
 			"StreamUrl": "https://soundcloud.com/midwxst/no-trace",
 			"ArtUrl": "https://i1.sndcdn.com/artworks-xZoYpdo9ra42-0-t500x500.jpg"
+		},
+		{
+			"Name": "Russian Roulette",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/russian-roulette",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-iIcm49tQqYKd-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Knock Yourself Out XD",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/knock-yourself-out-xd",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-nb4aQTlS4Kd5-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Cheerleader",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/cheerleader",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-4T3V7000PPI2-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Kitsune Maison Freestyle",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/kitsune-maison-freestyle",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-3vsxm1Y0PfZa-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Is There Really No Happiness?",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/is-there-really-no-happiness",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-hr6PSVQj5gms-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Perfect Pinterest Garden",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/perfect-pinterest-garden",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-h3iqttdtkB04-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Year of the Cup",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/year-of-the-cup",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-HVlwkx4A2t4b-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Mona Lisa",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/mona-lisa",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-mJLWMDO38bex-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Everything To Me",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/everything-to-me",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-M2N3fVIpMkie-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Easier to Love You",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/easier-to-love-you",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-zuJQ35rHhUaa-0-t500x500.png",
+			"Album": "SMILE! :D"
+		},
+		{
+			"Name": "Hollowheart ft. Amy Millan",
+			"Artist": "Porter Robinson",
+			"StreamUrl": "https://soundcloud.com/porter-robinson/hollowheart-ft-amy-millan-from-the-worlds-10th-anniversary-edition",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-eqTNwsdc0lYeuuTe-CSk5eQ-t500x500.jpg",
+			"Album": "Worlds"
+		},
+		{
+			"Name": "Everything Perfect",
+			"Artist": "James Ivy",
+			"StreamUrl": "https://www.youtube.com/watch?v=6luETDLnyR0",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-wSCdgO4UohYy-0-t500x500.jpg"
+		},
+		{
+			"Name": "reasons",
+			"Artist": "Jay Kim",
+			"StreamUrl": "https://soundcloud.com/jaykim1/reasons",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-aTKxXNst0wI1hb85-z72gDw-t500x500.jpg"
+		},
+		{
+			"Name": "Hanakotoba",
+			"Artist": "Golin",
+			"StreamUrl": "https://soundcloud.com/5_lin/hana-kotoba",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-yJn7dHRJYyk2-0-t500x500.jpg"
+		},
+		{
+			"Name": "LIKE DIS ft. Kent Osborne + Caroline Lucent",
+			"Artist": "cali cartier",
+			"StreamUrl": "https://soundcloud.com/calicartierchain/likedis",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-D2DX8dTEIphye0mw-LGbtDg-t500x500.jpg"
+		},
+		{
+			"Name": "Yo fav sidekick",
+			"Artist": "Icon Eri",
+			"StreamUrl": "https://soundcloud.com/iconeri/brazillian-sidekick",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-weHWsLmncezntszZ-9myYeQ-t500x500.jpg"
+		},
+		{
+			"Name": "Glasswork",
+			"Artist": "gabby start",
+			"StreamUrl": "https://soundcloud.com/gabbystart/glasswork",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-x5hRh41YUz1ZQ2Lz-hhNYew-t500x500.png"
+		},
+		{
+			"Name": "cagegirl",
+			"Artist": "user-177606668",
+			"StreamUrl": "https://soundcloud.com/user-177606668/cagegirl",
+			"ArtUrl": "https://i1.sndcdn.com/avatars-A8C8ai1dACqJBkY3-WSlTTA-t500x500.jpg"
+		},
+		{
+			"Name": "Lock Screen (prod. TUNA DISPLAY)",
+			"Artist": "plastic pet, Tuna Display",
+			"StreamUrl": "https://soundcloud.com/plasticpet/pet-tuna",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-ytLmDy94kgaPRUJL-VXz6Yw-t500x500.jpg"
+		},
+		{
+			"Name": "To tell you the truth",
+			"Artist": "acloudyskye",
+			"StreamUrl": "https://soundcloud.com/acloudyskye/to-tell-you-the-truth-2",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-BHSNWjxAGVJyTsbs-oZLTPQ-t500x500.jpg"
+		},
+		{
+			"Name": "give it up",
+			"Artist": "After Wes",
+			"StreamUrl": "https://soundcloud.com/afterwesmusic/give-it-up",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-qXN5awaxcwHKHX71-pupE8g-t500x500.png"
+		},
+		{
+			"Name": "Bullets",
+			"Artist": "Thy Slaughter, A. G. Cook, Finn Keane",
+			"StreamUrl": "https://soundcloud.com/thyslaughter/bullets",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-K8gocPgvCKJg-0-t500x500.jpg"
+		},
+		{
+			"Name": "speaker (LAN Party Remix) [feat. Ravenna Golden]",
+			"Artist": "umru, Sophie Cates",
+			"StreamUrl": "https://soundcloud.com/umru/umru-sophie-cates-feat-ravenna",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-qetHc9Sjk75f-0-t500x500.jpg"
+		},
+		{
+			"Name": "pressure [23]",
+			"Artist": "bandoum",
+			"StreamUrl": "https://soundcloud.com/bandoum/pressure",
+			"ArtUrl": "https://i1.sndcdn.com/artworks-rQTOeAP23kwEA3Qy-icGisA-t1080x1080.jpg"
 		}
-		// Uncomment these when the album drops
-		// {
-		// 	"Name": "Russian Roulette",
-		// 	"Artist": "Porter Robinson",
-		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/russian-roulette",
-		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-iIcm49tQqYKd-0-t500x500.png",
-		// 	"Album": "SMILE! :D"
-		// },
-		// {
-		// 	"Name": "Knock Yourself Out XD",
-		// 	"Artist": "Porter Robinson",
-		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/knock-yourself-out-xd",
-		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-nb4aQTlS4Kd5-0-t500x500.png",
-		// 	"Album": "SMILE! :D"
-		// },
-		// {
-		// 	"Name": "Cheerleader",
-		// 	"Artist": "Porter Robinson",
-		// 	"StreamUrl": "https://soundcloud.com/porter-robinson/cheerleader",
-		// 	"ArtUrl": "https://i1.sndcdn.com/artworks-4T3V7000PPI2-0-t500x500.png",
-		// 	"Album": "SMILE! :D"
-		// }
 	]
 }

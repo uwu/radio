@@ -8,8 +8,6 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import network.uwu.radio.BuildConfig
-import network.uwu.radio.network.service.UwuRadioApiService
-import network.uwu.radio.network.service.UwuRadioApiServiceImpl
 import network.uwu.radio.network.service.UwuRadioSyncService
 import network.uwu.radio.network.service.UwuRadioSyncServiceImpl
 import org.koin.core.module.dsl.singleOf
@@ -35,5 +33,4 @@ val clientModule = module {
         }
     }
     singleOf(::UwuRadioSyncServiceImpl) bind UwuRadioSyncService::class
-    singleOf(::UwuRadioApiServiceImpl) bind UwuRadioApiService::class
 }

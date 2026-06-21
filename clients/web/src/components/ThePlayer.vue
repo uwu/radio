@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import isButterchurnSupported from "butterchurn/lib/isSupported.min";
 import RangeSlider from "./RangeSlider.vue";
 import TheHistory from "./TheHistory.vue";
 import { prettySeek, prettyDuration, volumeDbfs, getDuration, seek } from "@/audio";
 import { getClient } from "@/syncClient";
-import TheClients from "./TheClients.vue";
 import { timePromise } from "@/util";
 import { visualizerEnabled } from "@/visualizer";
 import { enableAnalysis } from "@/analysis";
@@ -14,13 +12,6 @@ import fallbackart from "@/assets/fallbackart_10x.png";
 const visualizerSupported = isButterchurnSupported();
 
 const client = await timePromise.then(() => getClient());
-
-// @ts-expect-error IT IS COMPLETELY FINE IF UNDEFINED GETS RETURNED, OPTIONAL CHAINING EXISTS PLEASE SHUT THE FUCK UP.
-const quotes = computed(() => client.submitters.get(client.currentSong?.submitter)?.quotes);
-
-const randomQuote = computed(() =>
-  quotes.value?.length ? `"${quotes.value[~~(Math.random() * quotes.value.length)]}"` : "",
-);
 </script>
 
 <template>
@@ -30,7 +21,6 @@ const randomQuote = computed(() =>
       class="absolute w-full min-h-8 bg-#fedc6c color-black z-5 text-center grid content-center">
       reconnecting...
     </div>
-    <TheClients />
     <span class="text-lg z-1 mt-2">RADIO.UWU.NETWORK</span>
     <div class="text-center w-70 md:w-100" id="player">
       <div
@@ -51,14 +41,14 @@ const randomQuote = computed(() =>
         <div class="w-full mb-4">
           <div
             class="h-px bg-white"
-            :style="{ width: (100 * (seek ?? 0)) / getDuration() + '%' }" />
+            :style="{ scale: ((seek ?? 0)) / getDuration(), translate: -50 + (100 * (seek ?? 0) / getDuration() / 2) + '%' }" />
         </div>
 
         <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-60" :max="0" /></div>
       </div>
     </div>
     <span class="text-center">
-      {{ randomQuote }}
+      {{ client.currentSong?.quote }}
     </span>
     <TheHistory />
     <div v-if="visualizerSupported" class="absolute bottom-2 right-2 children:ml-1">

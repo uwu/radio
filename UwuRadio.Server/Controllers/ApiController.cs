@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
@@ -21,7 +22,7 @@ public class ApiController : Controller
 	public IActionResult Ping() => Ok("Pong!");
 
 	// /api/time
-	public IActionResult Time() => Json(Helpers.Now().ToUnixTimeSeconds());
+	public IActionResult Time() => Ok((Helpers.Now().ToUnixTimeMilliseconds() / 1000.0).ToString(CultureInfo.InvariantCulture));
 
 	// /api/data
 	public IActionResult Data() => Json(new
@@ -44,12 +45,11 @@ public class ApiController : Controller
 
 		Response.Headers.CacheControl = $"public, max-age={1 * 7 * 24 * 60 * 60}, immutable";
 		
-		// if range processing is enabled it makes the client get very angy
 		return File(
 				    fileInfo.File.OpenRead(),
 				    "audio/mpeg",
 				    null,
 				    new EntityTagHeaderValue(new StringSegment('"' + fileInfo.Md5 + '"')),
-				    false);
+				    true);
 	}
 }

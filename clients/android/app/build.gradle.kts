@@ -14,8 +14,8 @@ android {
         applicationId = "network.uwu.radio"
         minSdk = 21
         targetSdk = 33
-        versionCode = 100
-        versionName = "1.0.0"
+        versionCode = 110
+        versionName = "1.1.0"
 
         vectorDrawables {
             useSupportLibrary = true

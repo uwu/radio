@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TheSidebar from "./components/TheSidebar.vue";
 import ThePlayer from "./components/ThePlayer.vue";
 import { defineAsyncComponent, ref } from "vue";
 // @ts-expect-error this lib is not typed lol
@@ -23,7 +22,7 @@ canAutoplay.audio().then(({ result }: CanAutoplay) => {
 
 function handleEnterClick() {
   clicked.value = true;
-  
+
   // two workarounds needed for iOS:
   // the media session setup calls play(), which is blocked outside of dom events
   // audio contexts created out of events are also paused by default, so need resuming from inside one
@@ -41,7 +40,6 @@ function handleEnterClick() {
       <Suspense v-if="enableAnalysis">
         <TheRedundantInfo />
       </Suspense>
-      <TheSidebar />
       <Suspense>
         <ThePlayer />
       </Suspense>

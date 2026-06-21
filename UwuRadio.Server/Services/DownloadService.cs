@@ -10,7 +10,7 @@ public record SongFileInfo(FileInfo File, string Md5, Duration Length);
 /// <summary>
 ///     This service downloads songs when required and keeps track of them on disk
 /// </summary>
-public class DownloadService : IDisposable
+public class DownloadService
 {
 	private readonly Queue<Song>                      _downloadQueue     = new();
 	private readonly Dictionary<string, SongFileInfo> _fileInfos         = new();
@@ -19,8 +19,6 @@ public class DownloadService : IDisposable
 	private bool _isCurrentlyDownloading;
 
 	public DownloadService() { Directory.CreateDirectory(Constants.C.CacheFolder); }
-
-	public void Dispose() => Directory.Delete(Constants.C.CacheFolder, true);
 
 	public bool IsBlacklisted(Song song) => _downloadBlacklist.Contains(song.Id);
 	
@@ -65,7 +63,7 @@ public class DownloadService : IDisposable
 	private static async Task<SongFileInfo> DownloadSong(string url)
 	{
 		var args
-			= $"\"{url}\" -O after_move:filepath --quiet --print-json -f bestaudio --extract-audio --audio-quality 0";
+			= $"--proxy \"{Constants.C.YtDlpProxy}\" \"{url}\" -O after_move:filepath --quiet --print-json -f bestaudio --extract-audio --audio-quality 0";
 
 		var (rawPath, durationStr) = await InvokeYtDlp(args);
 
