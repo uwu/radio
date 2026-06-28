@@ -6,72 +6,67 @@ const canvas = ref<HTMLCanvasElement>();
 
 let animationFrame = 0;
 let resizeObserver: ResizeObserver | undefined;
-let frequencyData: Uint8Array;
-let smoothed: Float32Array;
+let waveformData: Uint8Array;
+let lastWidth = 0;
+let lastHeight = 0;
+let lastRatio = 0;
 
 function resizeCanvas(ctx: CanvasRenderingContext2D) {
   const rect = ctx.canvas.getBoundingClientRect();
   const ratio = window.devicePixelRatio || 1;
   const width = Math.max(1, Math.floor(rect.width));
   const height = Math.max(1, Math.floor(rect.height));
+  if (width === lastWidth && height === lastHeight && ratio === lastRatio) return;
 
+  lastWidth = width;
+  lastHeight = height;
+  lastRatio = ratio;
   ctx.canvas.width = Math.floor(width * ratio);
   ctx.canvas.height = Math.floor(height * ratio);
   ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-  smoothed = new Float32Array(width);
 }
 
-function drawSpectrum(ctx: CanvasRenderingContext2D) {
+function drawWaveform(ctx: CanvasRenderingContext2D) {
+  resizeCanvas(ctx);
+
   const width = ctx.canvas.width / (window.devicePixelRatio || 1);
   const height = ctx.canvas.height / (window.devicePixelRatio || 1);
 
-  audioAnalyser.getByteFrequencyData(frequencyData);
+  audioAnalyser.getByteTimeDomainData(waveformData);
 
   ctx.clearRect(0, 0, width, height);
+  ctx.strokeStyle = "#fff";
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(0, height / 2);
+  ctx.lineTo(width, height / 2);
+  ctx.stroke();
 
-  ctx.fillStyle = "#fff";
   ctx.strokeStyle = "#fff";
   ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.moveTo(0, height);
 
-  for (let x = 0; x < width; x++) {
-    const from = Math.floor((x / width) ** 2 * frequencyData.length);
-    const to = Math.max(
-      from + 1,
-      Math.floor(((x + 1) / width) ** 2 * frequencyData.length),
-    );
-    let peak = 0;
+  for (let i = 0; i < waveformData.length; i++) {
+    const x = (i / (waveformData.length - 1)) * width;
+    const y = (waveformData[i] / 255) * height;
 
-    for (let bin = from; bin < Math.min(to, frequencyData.length); bin++) {
-      peak = Math.max(peak, frequencyData[bin]);
-    }
-
-    const next = (peak / 255) ** 0.72;
-    smoothed[x] = Math.max(next, smoothed[x] * 0.86);
-    ctx.lineTo(x, height * (1 - smoothed[x]));
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
   }
 
-  ctx.lineTo(width, height);
-  ctx.lineTo(0, height);
-  ctx.closePath();
-  ctx.fill();
-
-  animationFrame = requestAnimationFrame(() => drawSpectrum(ctx));
+  ctx.stroke();
+  animationFrame = requestAnimationFrame(() => drawWaveform(ctx));
 }
 
 onMounted(() => {
   const ctx = canvas.value!.getContext("2d")!;
 
   audioAnalyser.fftSize = 2048;
-  audioAnalyser.smoothingTimeConstant = 0.68;
-  frequencyData = new Uint8Array(audioAnalyser.frequencyBinCount);
-  smoothed = new Float32Array(1);
+  waveformData = new Uint8Array(audioAnalyser.fftSize);
 
   resizeObserver = new ResizeObserver(() => resizeCanvas(ctx));
   resizeObserver.observe(ctx.canvas);
-  resizeCanvas(ctx);
-  drawSpectrum(ctx);
+  drawWaveform(ctx);
 });
 
 onBeforeUnmount(() => {

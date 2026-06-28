@@ -25,8 +25,9 @@ const client = await timePromise.then(() => getClient());
     <div class="text-center w-70 md:w-100" id="player">
       <div
         class="w-70 h-70 mb-2 md:(w-100 h-100)"
-        :style="{ background: `center / contain no-repeat url(${client.currentSong?.artUrl ?? fallbackart})` }"
-      />
+        :style="{
+          background: `center / contain no-repeat url(${client.currentSong?.artUrl ?? fallbackart})`,
+        }" />
 
       <div class="md:text-xl">
         <div>{{ client.currentSong?.name }}</div>
@@ -41,10 +42,15 @@ const client = await timePromise.then(() => getClient());
         <div class="w-full mb-4">
           <div
             class="h-px bg-white"
-            :style="{ scale: ((seek ?? 0)) / getDuration(), translate: -50 + (100 * (seek ?? 0) / getDuration() / 2) + '%' }" />
+            :style="{
+              scale: (seek ?? 0) / getDuration(),
+              translate: -50 + (100 * (seek ?? 0)) / getDuration() / 2 + '%',
+            }" />
         </div>
 
-        <div class="flex items-center gap-3">VOL <RangeSlider v-model="volumeDbfs" :min="-60" :max="0" /></div>
+        <div class="flex items-center gap-3">
+          VOL <RangeSlider v-model="volumeDbfs" :min="-60" :max="0" />
+        </div>
       </div>
     </div>
     <span class="text-center">
@@ -53,7 +59,7 @@ const client = await timePromise.then(() => getClient());
     <TheHistory />
     <div v-if="visualizerSupported" class="absolute bottom-2 right-2 children:ml-1">
       <button class="bg-black border border-white p-1" @click="enableAnalysis = true">
-      redundant info mode
+        redundant info mode
       </button>
       <button
         v-if="visualizerSupported"
