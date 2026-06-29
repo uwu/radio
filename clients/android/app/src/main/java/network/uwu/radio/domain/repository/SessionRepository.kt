@@ -12,7 +12,7 @@ interface SessionRepository {
     suspend fun connectSyncClient()
 
     suspend fun requestData()
-		
+
     fun observeSyncClientState(): Flow<ClientState>
 
     fun observeProgressbar(): Flow<Long>

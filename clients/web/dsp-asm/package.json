@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "test": "pnpm run asbuild:release && deno test tests/index.ts --allow-read",
+    "asbuild:debug": "asc assembly/index.ts --target debug",
+    "asbuild:release": "asc assembly/index.ts --target release",
+    "asbuild": "pnpm run asbuild:debug && pnpm run asbuild:release",
+    "start": "npx serve ."
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "assemblyscript": "^0.27.27"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  }
+}
